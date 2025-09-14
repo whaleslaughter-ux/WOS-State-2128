@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>WOS State 2128 — Players</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg1: #0d1b2a; --bg2: #1b263b; --text: #fff;
+      --card-w: 260px; --card-h: 360px; --radius: 14px;
+    }
+    body {
+      margin: 0; font-family: system-ui, Arial, sans-serif; color: var(--text);
+      background: linear-gradient(135deg, var(--bg1), var(--bg2)); text-align: center;
+    }
+    header { padding: 40px 16px 10px; }
+    header h1 { margin: 0 0 8px; letter-spacing: .04em; }
+    .sub { opacity: .85; margin: 0 0 24px; }
+
+    /* Simple top nav back to main 2128 page */
+    .topnav { margin: 10px 0 20px; }
+    .topnav a { color: #fff; text-decoration: underline; }
+
+    /* Grid of cards */
+    .grid {
+      display: grid; gap: 22px; padding: 24px; justify-content: center;
+      grid-template-columns: repeat(auto-fit, minmax(var(--card-w), 1fr));
+      max-width: 1200px; margin: 0 auto 40px;
+    }
+
+    /* Flip card (checkbox hack for mobile tap) */
+    .card {
+      width: var(--card-w); height: var(--card-h); perspective: 1200px; margin: 0 auto;
+    }
+    .flip {
+      position: relative; width: 100%; height: 100%;
+      transform-style: preserve-3d; transition: transform .6s;
+    }
+    /* Hover flip (desktop) */
+    .card:hover .flip { transform: rotateY(180deg); }
+    /* Tap flip (mobile) */
+    .toggle { display: none; }
+    .toggle:checked + .flip { transform: rotateY(180deg); }
+    .face {
+      position: absolute; inset: 0; border-radius: var(--radius);
+      backface-visibility: hidden; overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0,0,0,.25);
+      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.15);
+      display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 14px;
+    }
+    .back { transform: rotateY(180deg); padding: 16px; gap: 10px; }
+    .name { font-weight: 800; font-size: 1.15rem; margin-top: 10px; letter-spacing: .03em; }
+    .role { opacity: .85; font-size: .95rem; }
+    .avatar {
+      width: 84%; height: 55%; object-fit: cover; border-radius: 10px; border: 1px solid rgba(255,255,255,.25);
+      background: rgba(255,255,255,.08);
+    }
+    .stats { font-size: .95rem; line-height: 1.35; text-align: left; width: 88%; margin: 0 auto; }
+    .links a { color: #fff; text-decoration: underline; font-size: .95rem; }
+    footer { opacity: .7; padding: 24px; }
+
+    /* Tap target label */
+    .taplabel {
+      position: absolute; bottom: 10px; right: 12px; font-size: .8rem; opacity: .8;
+      background: rgba(255,255,255,.12); padding: 4px 8px; border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>WOS STATE 2128 — Players</h1>
+    <p class="sub">Tap or hover a card to flip. Add, remove, and edit freely as the roster evolves.</p>
+    <div class="topnav">
+      <a href="index.html">⬅ Back to WOS State 2128 Home</a>
+    </div>
+  </header>
+
+  <section class="grid">
+
+    <!-- ===== Player Card TEMPLATE =====
+    Duplicate this whole .card block for each player. Replace placeholders.
+    Image tip: put files in /assets/players/ and reference them like assets/players/NAME.jpg
+    -->
+    <article class="card">
+      <!-- Mobile tap flip control -->
+      <input class="toggle" type="checkbox" id="p1" />
+      <div class="flip">
+        <!-- Front -->
+        <label class="face front" for="p1" title="Flip card">
+          <img class="avatar" src="assets/players/sample.jpg" alt="Player avatar">
+          <div class="name">WHALESLAUGHTER</div>
+          <div class="role">Alliance Lead • havoc</div>
+          <div class="taplabel">Flip ◈</div>
+        </label>
+        <!-- Back -->
+        <label class="face back" for="p1" title="Flip back">
+          <div class="stats">
+            <strong>Bio:</strong> Chaos meets craft; drummer of schemes; writer of songs.<br>
+            <strong>Strengths:</strong> Strategy, morale, recruitment posters.<br>
+            <strong>Favorite Build:</strong> Maw havoc + frostbite jokes.<br>
+            <strong>Taglines:</strong> “Fund WHALES Evil.”
+          </div>
+          <div class="links" style="margin-top:10px;">
+            <a href="https://whaleslaughter-ux.github.io/Whaleslaughter.com/" target="_blank" rel="noopener">Main Site</a>
+          </div>
+        </label>
+      </div>
+    </article>
+
+    <!-- Example #2 -->
+    <article class="card">
+      <input class="toggle" type="checkbox" id="p2" />
+      <div class="flip">
+        <label class="face front" for="p2" title="Flip card">
+          <img class="avatar" src="assets/players/sample2.jpg" alt="Player avatar">
+          <div class="name">Granny Beelzebub</div>
+          <div class="role">Chaos Auntie • WOS 2128</div>
+          <div class="taplabel">Flip ◈</div>
+        </label>
+        <label class="face back" for="p2" title="Flip back">
+          <div class="stats">
+            <strong>Bio:</strong> Cookies, curses, and clutch heals.<br>
+            <strong>Strengths:</strong> Timing, trolling, team buffs.<br>
+            <strong>Quote:</strong> “Did you hydrate?”
+          </div>
+          <div class="links" style="margin-top:10px;">
+            <a href="#" target="_blank" rel="noopener">Profile</a>
+          </div>
+        </label>
+      </div>
+    </article>
+
+    <!-- Add more players by copying a .card block -->
+  </section>
+
+  <footer>
+    &copy; 2025 WOS State 2128 — Site created &amp; maintained by WHALESLAUGHTER.
+  </footer>
+</body>
+</html>
