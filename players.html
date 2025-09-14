@@ -1,140 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>WOS State 2128 — Players</title>
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tarot Player Cards – Flip on Hover/Click</title>
   <style>
-    :root {
-      --bg1: #0d1b2a; --bg2: #1b263b; --text: #fff;
-      --card-w: 260px; --card-h: 360px; --radius: 14px;
+    :root{
+      --bg:#0a0f24;               /* deep indigo page bg */
+      --gold:#d4b06a;              /* ornate gold */
+      --ink:#11131a;               /* near-black */
+      --snow:#d8e7ff;              /* frosty accent */
+      --card-w: 320px;             /* base card size (2:3) */
+      --card-h: 480px;
+      --radius: 18px;
+      --shadow: 0 12px 30px rgba(0,0,0,.45);
+      --transition: transform .8s cubic-bezier(.2,.7,.2,1), box-shadow .2s ease;
     }
-    body {
-      margin: 0; font-family: system-ui, Arial, sans-serif; color: var(--text);
-      background: linear-gradient(135deg, var(--bg1), var(--bg2)); text-align: center;
-    }
-    header { padding: 40px 16px 10px; }
-    header h1 { margin: 0 0 8px; letter-spacing: .04em; }
-    .sub { opacity: .85; margin: 0 0 24px; }
 
-    /* Simple top nav back to main 2128 page */
-    .topnav { margin: 10px 0 20px; }
-    .topnav a { color: #fff; text-decoration: underline; }
+    html,body{height:100%;}
+    body{
+      margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, "Noto Sans", Arial, Apple Color Emoji, Segoe UI Emoji;
+      background: radial-gradient(1200px 600px at 50% -10%, #1a2147 0%, #0b1030 40%, #060915 100%);
+      color:#eef2ff;
+      display:flex; align-items: center; justify-content: center; padding: 40px 16px;
+    }
+
+    .wrap{width:min(1200px, 100%);}
+    header{ text-align:center; margin-bottom:24px; }
+    header h1{ margin:0 0 6px; font-size: clamp(1.2rem, 1.6vw + 1rem, 2rem); letter-spacing:.5px; }
+    header p{ margin:0; opacity:.8; }
 
     /* Grid of cards */
-    .grid {
-      display: grid; gap: 22px; padding: 24px; justify-content: center;
-      grid-template-columns: repeat(auto-fit, minmax(var(--card-w), 1fr));
-      max-width: 1200px; margin: 0 auto 40px;
+    .grid{ display:grid; gap:22px; grid-template-columns: repeat(auto-fit, minmax(var(--card-w), 1fr)); justify-items:center; }
+
+    /* Flip card */
+    .card-outer{ perspective: 1400px; }
+    .card{ width:var(--card-w); height:var(--card-h); position:relative; transform-style:preserve-3d; border-radius: var(--radius); transition: var(--transition); box-shadow: var(--shadow); }
+    .card-outer:hover .card{ transform: rotateY(180deg); }
+    .card-outer:focus-within .card{ transform: rotateY(180deg); }
+    .card:focus{ outline: 4px solid #88a2ff; outline-offset: 6px; }
+
+    /* Prefer-reduced-motion: flip on click only, no hover spin */
+    @media (prefers-reduced-motion: reduce){
+      .card{ transition: box-shadow .2s ease; }
+      .card-outer:hover .card, .card-outer:focus-within .card{ transform:none; }
+      .card.is-flipped{ transform: rotateY(180deg); }
     }
 
-    /* Flip card (checkbox hack for mobile tap) */
-    .card {
-      width: var(--card-w); height: var(--card-h); perspective: 1200px; margin: 0 auto;
-    }
-    .flip {
-      position: relative; width: 100%; height: 100%;
-      transform-style: preserve-3d; transition: transform .6s;
-    }
-    /* Hover flip (desktop) */
-    .card:hover .flip { transform: rotateY(180deg); }
-    /* Tap flip (mobile) */
-    .toggle { display: none; }
-    .toggle:checked + .flip { transform: rotateY(180deg); }
-    .face {
-      position: absolute; inset: 0; border-radius: var(--radius);
-      backface-visibility: hidden; overflow: hidden;
-      box-shadow: 0 8px 24px rgba(0,0,0,.25);
-      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.15);
-      display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 14px;
-    }
-    .back { transform: rotateY(180deg); padding: 16px; gap: 10px; }
-    .name { font-weight: 800; font-size: 1.15rem; margin-top: 10px; letter-spacing: .03em; }
-    .role { opacity: .85; font-size: .95rem; }
-    .avatar {
-      width: 84%; height: 55%; object-fit: cover; border-radius: 10px; border: 1px solid rgba(255,255,255,.25);
-      background: rgba(255,255,255,.08);
-    }
-    .stats { font-size: .95rem; line-height: 1.35; text-align: left; width: 88%; margin: 0 auto; }
-    .links a { color: #fff; text-decoration: underline; font-size: .95rem; }
-    footer { opacity: .7; padding: 24px; }
+    .face{ position:absolute; inset:0; backface-visibility:hidden; border-radius: var(--radius); overflow:hidden; }
 
-    /* Tap target label */
-    .taplabel {
-      position: absolute; bottom: 10px; right: 12px; font-size: .8rem; opacity: .8;
-      background: rgba(255,255,255,.12); padding: 4px 8px; border-radius: 8px;
+    /* FRONT */
+    .front{ background: linear-gradient(180deg, #0e1433 0%, #0a0f24 60%, #070b1a 100%); border:1px solid rgba(212,176,106,.35); }
+    /* Ornate border using double outlines + inner glow */
+    .front::before{ content:""; position:absolute; inset:10px; border-radius: calc(var(--radius) - 8px); border:2px solid var(--gold); box-shadow: inset 0 0 0 2px rgba(255,255,255,.06), 0 0 30px rgba(212,176,106,.15); }
+    /* Frosted star dust */
+    .front::after{ content:""; position:absolute; inset:0; background: radial-gradient(circle at 20% 25%, rgba(255,255,255,.075), transparent 40%), radial-gradient(circle at 80% 65%, rgba(216,231,255,.06), transparent 45%), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="160" height="240"><g fill="%23d8e7ff" opacity="0.35"><circle cx="10" cy="10" r="1"/><circle cx="120" cy="40" r="1"/><circle cx="50" cy="120" r="1"/><circle cx="150" cy="200" r="1"/></g></svg>'); background-size: cover; pointer-events:none; }
+
+    /* FRONT content */
+    .name{ position:absolute; left:18px; right:18px; top:16px; text-align:center; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--snow); text-shadow: 0 1px 0 #000; }
+    .art{ position:absolute; inset:60px 20px 70px; border-radius: 12px; background-position:center; background-size:cover; outline:1px solid rgba(255,255,255,.06); box-shadow: inset 0 0 40px rgba(0,0,0,.6); }
+    .title{ position:absolute; left:18px; right:18px; bottom:16px; text-align:center; color:#f7f4ea; font-weight:600; opacity:.95; }
+
+    /* BACK */
+    .back{ transform: rotateY(180deg); background: linear-gradient(180deg, #0c122f 0%, #070b1a 80%); border:1px solid rgba(212,176,106,.35); }
+    .back::before{ content:""; position:absolute; inset:10px; border-radius: calc(var(--radius) - 8px); border:2px solid var(--gold); box-shadow: inset 0 0 0 2px rgba(255,255,255,.06), 0 0 30px rgba(212,176,106,.15); }
+
+    .back-inner{ position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px; padding:22px; text-align:center; }
+    .crest{ width:92px; aspect-ratio:1; border-radius:50%; border:2px solid var(--gold); display:grid; place-items:center; font-size:36px; color:var(--gold); box-shadow: inset 0 0 30px rgba(212,176,106,.15), 0 8px 20px rgba(0,0,0,.45); }
+    .hook{ font-size: 0.98rem; line-height:1.35; color:#e7ecff; opacity:.92; }
+
+    /* Touch toggle button */
+    .flip-btn{ position:absolute; right:10px; top:10px; background: rgba(10,15,36,.6); color:#fff; border:1px solid rgba(255,255,255,.2); border-radius:999px; padding:6px 10px; font-size:.8rem; backdrop-filter: blur(4px); cursor:pointer; }
+    .flip-btn:focus{ outline: 3px solid #88a2ff; }
+
+    /* Utility */
+    .subtle{ color:#cbd5ff; opacity:.8; font-size:.9rem; text-align:center; margin-top:12px; }
+
+    /* Responsive scale: shrink cards slightly on narrow screens */
+    @media (max-width: 380px){
+      :root{ --card-w: 280px; --card-h: 420px; }
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>WOS STATE 2128 — Players</h1>
-    <p class="sub">Tap or hover a card to flip. Add, remove, and edit freely as the roster evolves.</p>
-    <div class="topnav">
-      <a href="index.html">⬅ Back to WOS State 2128 Home</a>
-    </div>
-  </header>
+  <div class="wrap" aria-labelledby="title">
+    <header>
+      <h1 id="title">Tarot Player Cards – Flip on Hover / Click</h1>
+      <p>Hover (desktop) or tap the • Flip • button (mobile / reduced‑motion) to view the back.</p>
+    </header>
 
-  <section class="grid">
-
-    <!-- ===== Player Card TEMPLATE =====
-    Duplicate this whole .card block for each player. Replace placeholders.
-    Image tip: put files in /assets/players/ and reference them like assets/players/NAME.jpg
-    -->
-    <article class="card">
-      <!-- Mobile tap flip control -->
-      <input class="toggle" type="checkbox" id="p1" />
-      <div class="flip">
-        <!-- Front -->
-        <label class="face front" for="p1" title="Flip card">
-          <img class="avatar" src="assets/players/sample.jpg" alt="Player avatar">
-          <div class="name">WHALESLAUGHTER</div>
-          <div class="role">Alliance Lead • havoc</div>
-          <div class="taplabel">Flip ◈</div>
-        </label>
-        <!-- Back -->
-        <label class="face back" for="p1" title="Flip back">
-          <div class="stats">
-            <strong>Bio:</strong> Chaos meets craft; drummer of schemes; writer of songs.<br>
-            <strong>Strengths:</strong> Strategy, morale, recruitment posters.<br>
-            <strong>Favorite Build:</strong> Maw havoc + frostbite jokes.<br>
-            <strong>Taglines:</strong> “Fund WHALES Evil.”
+    <section class="grid" aria-label="Player card gallery">
+      <!-- CARD 1 — Whaleslaughter example -->
+      <article class="card-outer" tabindex="0" aria-label="WHALESLAUGHTER card">
+        <div class="card" role="img" aria-roledescription="flip card" aria-label="WHALESLAUGHTER – The Siren">
+          <button class="flip-btn" aria-pressed="false" aria-label="Flip card">Flip</button>
+          <div class="face front">
+            <div class="name">WHALESLAUGHTER</div>
+            <div class="art" style="background-image:url('https://images.unsplash.com/photo-1548094896-5a003f1a2ec5?q=80&w=1200&auto=format&fit=crop');" aria-hidden="true"></div>
+            <div class="title">THE SIREN</div>
           </div>
-          <div class="links" style="margin-top:10px;">
-            <a href="https://whaleslaughter-ux.github.io/Whaleslaughter.com/" target="_blank" rel="noopener">Main Site</a>
+          <div class="face back">
+            <div class="back-inner">
+              <div class="crest" aria-hidden="true">✶</div>
+              <div class="hook">Continuity Hook: carries a frost‑rimmed map that’s always missing a corner. Returning motif: snow crystals glittering on the border.</div>
+              <div class="subtle">Alliance: havoc • Role: Drummer / Raider</div>
+            </div>
           </div>
-        </label>
-      </div>
-    </article>
+        </div>
+      </article>
 
-    <!-- Example #2 -->
-    <article class="card">
-      <input class="toggle" type="checkbox" id="p2" />
-      <div class="flip">
-        <label class="face front" for="p2" title="Flip card">
-          <img class="avatar" src="assets/players/sample2.jpg" alt="Player avatar">
-          <div class="name">Granny Beelzebub</div>
-          <div class="role">Chaos Auntie • WOS 2128</div>
-          <div class="taplabel">Flip ◈</div>
-        </label>
-        <label class="face back" for="p2" title="Flip back">
-          <div class="stats">
-            <strong>Bio:</strong> Cookies, curses, and clutch heals.<br>
-            <strong>Strengths:</strong> Timing, trolling, team buffs.<br>
-            <strong>Quote:</strong> “Did you hydrate?”
+      <!-- CARD 2 — Blank template to duplicate -->
+      <article class="card-outer" tabindex="0" aria-label="Player card template">
+        <div class="card" role="img" aria-roledescription="flip card" aria-label="PLAYER NAME – Tarot Title">
+          <button class="flip-btn" aria-pressed="false" aria-label="Flip card">Flip</button>
+          <div class="face front">
+            <div class="name">PLAYER NAME</div>
+            <div class="art" style="background-image:url('https://images.unsplash.com/photo-1533613220915-609f661a6fe1?q=80&w=1200&auto=format&fit=crop');" aria-hidden="true"></div>
+            <div class="title">TAROT TITLE</div>
           </div>
-          <div class="links" style="margin-top:10px;">
-            <a href="#" target="_blank" rel="noopener">Profile</a>
+          <div class="face back">
+            <div class="back-inner">
+              <div class="crest" aria-hidden="true">♒︎</div>
+              <div class="hook">Continuity Hook: one crisp sentence that can return in future scenes. Example: “Keeps a key they claim opens any door—but never the one they need.”</div>
+              <div class="subtle">Alliance / Rank • Fun stat bar ★★★★☆</div>
+            </div>
           </div>
-        </label>
-      </div>
-    </article>
+        </div>
+      </article>
 
-    <!-- Add more players by copying a .card block -->
-  </section>
+    </section>
 
-  <footer>
-    &copy; 2025 WOS State 2128 — Site created &amp; maintained by WHALESLAUGHTER.
-  </footer>
+    <p class="subtle">Tip: duplicate a card block and replace the name, image URL, title, and hook. Keep sizes for a uniform deck.</p>
+  </div>
+
+  <script>
+    // Flip via button for touch / reduced-motion users
+    document.querySelectorAll('.card-outer').forEach(outer => {
+      const card = outer.querySelector('.card');
+      const btn = outer.querySelector('.flip-btn');
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      const toggle = () => {
+        const flipped = card.classList.toggle('is-flipped');
+        if(btn){ btn.setAttribute('aria-pressed', flipped ? 'true' : 'false'); }
+      };
+
+      if(btn){ btn.addEventListener('click', e => { e.stopPropagation(); toggle(); }); }
+
+      // Keyboard accessibility: Enter/Space flips
+      outer.addEventListener('keydown', (e) => {
+        if(e.key === 'Enter' || e.key === ' '){
+          e.preventDefault(); toggle();
+        }
+      });
+
+      // On non-reduced-motion devices, rely on hover for flip; on reduced-motion, require click
+      if(!prefersReduced){
+        // No extra JS; CSS :hover handles the flip. Button is optional for touch users.
+      } else {
+        // Force initial state non-flipped; click toggles
+        card.classList.remove('is-flipped');
+      }
+    });
+  </script>
 </body>
 </html>
