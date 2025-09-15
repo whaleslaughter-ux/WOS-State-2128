@@ -126,6 +126,15 @@
 .card-outer.no-flip:focus-within .card { transform: none; }
 
 .card.noflip { transform: none; }  /* baseline */
+/* Hover animation for CTA card */
+.card-outer.no-flip .card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card-outer.no-flip:hover .card {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.45), 0 0 18px rgba(212,176,106,0.35);
+}
 
   </style>
 </head>
