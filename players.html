@@ -5,23 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>WOS State 2128 — Player Cards</title>
 
-  <!-- If you made a shared stylesheet, keep this line -->
-  <!-- <link rel="stylesheet" href="style.css"> -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>WOS State 2128 — Player Cards</title>
-
-  <!-- If you made a shared stylesheet, keep this line -->
-  <!-- <link rel="stylesheet" href="style.css"> -->
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
-
   <style>
     :root{
-      --bg:#0a0f24; --gold:#d4b06a; --snow:#d8e7ff;
-      --card-w: 320px; --card-h: 480px; --radius: 18px;
+      --bg:#0a0f24;
+      --gold:#d4b06a;
+      --snow:#d8e7ff;
+      --card-w: 320px;
+      --card-h: 480px;
+      --radius: 18px;
       --shadow: 0 12px 30px rgba(0,0,0,.45);
       --transition: transform .8s cubic-bezier(.2,.7,.2,1), box-shadow .2s ease;
     }
@@ -34,10 +25,18 @@
       background: radial-gradient(1200px 600px at 50% -10%, #1a2147 0%, #0b1030 40%, #060915 100%);
     }
 
-    /* Accessible sticky nav (reuse on all 2128 pages if you like) */
+    /* Sticky nav */
     .skip-link{position:absolute;top:-40px;left:10px;background:#000;color:#fff;padding:8px 12px;z-index:1100}
     .skip-link:focus{top:10px}
-    .site-nav{position:sticky;top:0;z-index:1000;background:rgba(0,0,0,.35);backdrop-filter:blur(3px);text-align:center;padding:10px 0}
+    .site-nav{
+      position:sticky;
+      top:0;
+      z-index:1000;
+      background:rgba(0,0,0,.35);
+      backdrop-filter:blur(3px);
+      text-align:center;
+      padding:10px 0;
+    }
     .site-nav a{color:#fff;margin:0 14px;text-decoration:underline;font-weight:600}
     .site-nav a:hover,.site-nav a:focus{text-decoration:none}
 
@@ -46,10 +45,8 @@
     header h1{margin:0 0 6px;font-size:clamp(1.2rem,1.6vw + 1rem,2rem);letter-spacing:.5px;text-transform:uppercase}
     header p{margin:0;opacity:.85}
 
-    /* Grid of cards */
     .grid{display:grid;gap:22px;grid-template-columns:repeat(auto-fit,minmax(var(--card-w),1fr));justify-items:center}
 
-    /* Flip card shell */
     .card-outer{perspective:1400px}
     .card{
       width:var(--card-w);height:var(--card-h);position:relative;transform-style:preserve-3d;
@@ -59,7 +56,6 @@
     .card-outer:focus-within .card{transform:rotateY(180deg)}
     .card:focus{outline:4px solid #88a2ff;outline-offset:6px}
 
-    /* Reduce motion → click/toggle only */
     @media (prefers-reduced-motion: reduce){
       .card{transition:box-shadow .2s ease}
       .card-outer:hover .card,.card-outer:focus-within .card{transform:none}
@@ -68,162 +64,67 @@
 
     .face{position:absolute;inset:0;backface-visibility:hidden;border-radius:var(--radius);overflow:hidden}
 
-    /* FRONT frame + full-bleed art */
-    .front{background:linear-gradient(180deg,#0e1433 0%,#0a0f24 60%,#070b1a 100%);border:1px solid rgba(212,176,106,.35)}
-    .front::before{content:"";position:absolute;inset:12px;border-radius:calc(var(--radius) - 10px);border:2px solid var(--gold);
-      box-shadow:inset 0 0 0 2px rgba(255,255,255,.06),0 0 30px rgba(212,176,106,.15)}
+    .front{
+      background:linear-gradient(180deg,#0e1433 0%,#0a0f24 60%,#070b1a 100%);
+      border:1px solid rgba(212,176,106,.35);
+    }
+    .front::before{
+      content:"";
+      position:absolute;
+      inset:12px;
+      border-radius:calc(var(--radius) - 10px);
+      border:2px solid var(--gold);
+      box-shadow:inset 0 0 0 2px rgba(255,255,255,.06),0 0 30px rgba(212,176,106,.15);
+    }
     .art{
-      position:absolute;inset:12px;border-radius:calc(var(--radius) - 10px);
-      background-position:center;background-size:cover;background-repeat:no-repeat;
-      outline:1px solid rgba(255,255,255,.06);box-shadow:inset 0 0 40px rgba(0,0,0,.55)
+      position:absolute;
+      inset:12px;
+      border-radius:calc(var(--radius) - 10px);
+      background-position:center;
+      background-size:cover;
+      background-repeat:no-repeat;
+      outline:1px solid rgba(255,255,255,.06);
+      box-shadow:inset 0 0 40px rgba(0,0,0,.55);
     }
 
-    /* BACK frame + full-bleed back image area */
-    .back{transform:rotateY(180deg);background:linear-gradient(180deg,#0c122f 0%,#070b1a 80%);border:1px solid rgba(212,176,106,.35)}
-    .back::before{content:"";position:absolute;inset:12px;border-radius:calc(var(--radius) - 10px);border:2px solid var(--gold);
-      box-shadow:inset 0 0 0 2px rgba(255,255,255,.06),0 0 30px rgba(212,176,106,.15)}
+    .back{
+      transform:rotateY(180deg);
+      background:linear-gradient(180deg,#0c122f 0%,#070b1a 80%);
+      border:1px solid rgba(212,176,106,.35);
+    }
+    .back::before{
+      content:"";
+      position:absolute;
+      inset:12px;
+      border-radius:calc(var(--radius) - 10px);
+      border:2px solid var(--gold);
+      box-shadow:inset 0 0 0 2px rgba(255,255,255,.06),0 0 30px rgba(212,176,106,.15);
+    }
     .back-fill{
-      position:absolute;inset:12px;border-radius:calc(var(--radius) - 10px);
-      background-position:center;background-size:cover;background-repeat:no-repeat
+      position:absolute;
+      inset:12px;
+      border-radius:calc(var(--radius) - 10px);
+      background-position:center;
+      background-size:cover;
+      background-repeat:no-repeat;
     }
 
-    /* Flip button for touch */
     .flip-btn{
-      position:absolute;right:10px;top:10px;background:rgba(10,15,36,.6);color:#fff;border:1px solid rgba(255,255,255,.2);
-      border-radius:999px;padding:6px 10px;font-size:.8rem;backdrop-filter:blur(4px);cursor:pointer
+      position:absolute;right:10px;top:10px;
+      background:rgba(10,15,36,.6);color:#fff;
+      border:1px solid rgba(255,255,255,.2);
+      border-radius:999px;padding:6px 10px;font-size:.8rem;
+      backdrop-filter:blur(4px);cursor:pointer;
     }
     .flip-btn:focus{outline:3px solid #88a2ff}
 
     .tip{color:#cbd5ff;opacity:.8;font-size:.9rem;text-align:center;margin-top:12px}
-
     @media (max-width:380px){:root{--card-w:280px;--card-h:420px}}
     footer{text-align:center;opacity:.75;margin:28px 0}
-    /* --- Watercolor / Washi theme overrides --- */
-
-body {
-  font-family: "Noto Serif JP", ui-serif, Georgia, serif;
-  color: #2b2b2b;
-  background:
-    radial-gradient(1200px 600px at 50% -10%, rgba(255,255,255,.7), rgba(255,255,255,.9)),
-    #faf7f2; /* warm paper base */
-  position: relative;
-}
-
-/* subtle paper fibers overlay */
-body::after {
-  content: "";
-  position: fixed; inset: 0;
-  pointer-events: none;
-  opacity: .25;
-  mix-blend-mode: multiply;
-  background:
-    url('data:image/svg+xml;utf8,\
-<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400">\
-<filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/></filter>\
-<rect width="100%" height="100%" filter="url(%23n)" opacity="0.03" fill="#000"/>\
-</svg>') repeat;
-  background-size: 400px 400px;
-  z-index: 0;
-}
-
-/* sticky nav to match paper look */
-.site-nav {
-  background: rgba(255, 255, 255, .75);
-  backdrop-filter: blur(2px);
-  border-bottom: 1px solid rgba(0,0,0,.06);
-}
-.site-nav a {
-  color: #3a3a3a;
-  text-decoration: none;
-}
-.site-nav a:hover, .site-nav a:focus {
-  text-decoration: underline;
-}
-
-/* headings soften */
-header h1 {
-  letter-spacing: .06em;
-  text-transform: none;
-  color: #1f1f1f;
-}
-header p { color: #3a3a3a; }
-
-/* grid spacing breathes on paper */
-.wrap { padding-top: 28px; }
-.grid { gap: 26px; }
-
-/* card: washi + brush frame, softer shadow */
-.card {
-  box-shadow: 0 10px 26px rgba(0,0,0,.10);
-  border-radius: 16px;
-}
-.face {
-  background: #fff7ef; /* warm off-white */
-}
-
-/* Brush-stroke border using SVG mask */
-.front::before,
-.back::before {
-  border: none;
-  box-shadow: none;
-  inset: 0;
-  border-radius: 0;
-  -webkit-mask: url('data:image/svg+xml;utf8,\
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1500" preserveAspectRatio="none">\
-<rect width="100%" height="100%" fill="white"/>\
-<rect x="18" y="18" width="964" height="1464" fill="black" rx="18" ry="18"/>\
-</svg>') exclude;
-  background:
-    radial-gradient(80% 60% at 50% 45%, rgba(0,0,0,.06), rgba(0,0,0,0) 60%),
-    linear-gradient(#1c1c1c, #1c1c1c); /* dark ink edge */
-  opacity: .22;
-}
-
-/* full-bleed art, but with slight ink/bleed & soft vignette */
-.art,
-.back-fill {
-  inset: 14px;
-  border-radius: 12px;
-  background-size: cover; background-position: center; background-repeat: no-repeat;
-  filter: saturate(.95) contrast(.98);
-  position: absolute;
-  box-shadow:
-    inset 0 0 60px rgba(0,0,0,.10),
-    inset 0 0 0 1px rgba(0,0,0,.06);
-}
-
-/* optional paper grain over the card only */
-.front::after, .back::after {
-  content: "";
-  position: absolute; inset: 0;
-  pointer-events: none;
-  opacity: .18;
-  mix-blend-mode: multiply;
-  background:
-    url('data:image/svg+xml;utf8,\
-<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300">\
-<filter id="g"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="1"/><feColorMatrix type="saturate" values="0"/></filter>\
-<rect width="100%" height="100%" filter="url(%23g)" opacity="0.12" fill="#000"/>\
-</svg>') repeat;
-  background-size: 300px 300px;
-}
-
-/* Flip button → ink pill */
-.flip-btn {
-  background: rgba(0,0,0,.5);
-  border-color: rgba(0,0,0,.25);
-  font-weight: 600;
-}
-
-/* footer tone */
-footer { color: #3a3a3a; }
-footer a { color: #2b2b2b; text-decoration: underline; }
-
   </style>
 </head>
 <body>
 
-  <!-- Sticky nav -->
   <a href="#main" class="skip-link">Skip to main content</a>
   <nav class="site-nav" aria-label="Main navigation">
     <a href="index.html">Home</a>
@@ -240,101 +141,59 @@ footer a { color: #2b2b2b; text-decoration: underline; }
     </header>
 
     <section class="grid" aria-label="Player card gallery">
-
-      <!-- CARD 1 — WHALESLAUGHTER (uses your uploaded PNGs, full-bleed) -->
+      <!-- Card 1 -->
       <article class="card-outer" tabindex="0" aria-label="WHALESLAUGHTER card">
-        <div class="card" role="img" aria-roledescription="flip card" aria-label="WHALESLAUGHTER card">
+        <div class="card" role="img" aria-roledescription="flip card">
           <button class="flip-btn" aria-pressed="false" aria-label="Flip card">Flip</button>
-
-          <!-- Front -->
           <div class="face front">
-            <div class="art"
-                 style="background-image:url('assets/players/whaleslaughter-front.png');"
-                 aria-hidden="true"></div>
+            <div class="art" style="background-image:url('assets/players/whaleslaughter-front.png');"></div>
           </div>
-
-          <!-- Back -->
           <div class="face back">
-            <div class="back-fill"
-                 style="background-image:url('assets/players/whaleslaughter-back.png');"></div>
+            <div class="back-fill" style="background-image:url('assets/players/whaleslaughter-back.png');"></div>
           </div>
         </div>
       </article>
 
-   
-      <article class="card-outer" tabindex="0" aria-label="Player card template">
-        <div class="card" role="img" aria-roledescription="flip card" aria-label="PLAYER NAME card">
+      <!-- Card 2 -->
+      <article class="card-outer" tabindex="0" aria-label="Sarge card">
+        <div class="card" role="img" aria-roledescription="flip card">
           <button class="flip-btn" aria-pressed="false" aria-label="Flip card">Flip</button>
-
-          <!-- Front -->
           <div class="face front">
-            <div class="art"
-                 style="background-image:url('assets/players/sarge-front.png');"
-                 aria-hidden="true"></div>
+            <div class="art" style="background-image:url('assets/players/sarge-front.png');"></div>
           </div>
-
-          <!-- Back -->
           <div class="face back">
-            <div class="back-fill"
-                 style="background-image:url('assets/players/sarge-back.png');"></div>
+            <div class="back-fill" style="background-image:url('assets/players/sarge-back.png');"></div>
           </div>
         </div>
       </article>
-         <!--  — Card 3 -->
-        <article class="card-outer" tabindex="0" aria-label="Player card template">
-        <div class="card" role="img" aria-roledescription="flip card" aria-label="PLAYER NAME card">
+
+      <!-- Card 3 -->
+      <article class="card-outer" tabindex="0" aria-label="Daniel Niels card">
+        <div class="card" role="img" aria-roledescription="flip card">
           <button class="flip-btn" aria-pressed="false" aria-label="Flip card">Flip</button>
-
-          <!-- Front -->
           <div class="face front">
-            <div class="art"
-                 style="background-image:url('assets/players/danielneils-front.png');"
-                 aria-hidden="true"></div>
+            <div class="art" style="background-image:url('assets/players/danielneils-front.png');"></div>
           </div>
-
-          <!-- Back -->
           <div class="face back">
-            <div class="back-fill"
-                 style="background-image:url('assets/players/danielniels-back.png');"></div>
+            <div class="back-fill" style="background-image:url('assets/players/danielniels-back.png');"></div>
           </div>
         </div>
       </article>
-         <!-- CARD 4 — Template to duplicate -->
-      <article class="card-outer" tabindex="0" aria-label="Player card template">
-        <div class="card" role="img" aria-roledescription="flip card" aria-label="PLAYER NAME card">
-          <button class="flip-btn" aria-pressed="false" aria-label="Flip card">Flip</button>
-
-          <!-- Front -->
-          <div class="face front">
-            <div class="art"
-                 style="background-image:url('assets/players/PLAYER-front.png');"
-                 aria-hidden="true"></div>
-          </div>
-
-          <!-- Back -->
-          <div class="face back">
-            <div class="back-fill"
-                 style="background-image:url('assets/players/PLAYER-back.png');"></div>
-          </div>
-        </div>
-      </article>
-      <!-- Copy/paste more cards here -->
-
     </section>
 
-    <p class="tip">Tip: upload images to <code>assets/players/</code> and update each card’s image URLs. Keep file names lowercase.</p>
+    <p class="tip">
+      Tip: upload images to <code>assets/players/</code> and update each card’s image URLs. Keep file names lowercase.
+    </p>
   </div>
 
-<footer>
-  &copy; 2025 WOS State 2128 — Site created &amp; maintained by
-  <a href="https://whaleslaughter.com" target="_blank" rel="noopener"
-     style="color:#fff; text-decoration:underline;">
-     WHALESLAUGHTER
-  </a>.
-</footer>
+  <footer>
+    &copy; 2025 WOS State 2128 — Site created &amp; maintained by
+    <a href="https://whaleslaughter.com" target="_blank" rel="noopener" style="color:#fff;text-decoration:underline;">
+      WHALESLAUGHTER
+    </a>.
+  </footer>
 
   <script>
-    // Flip via button for touch / reduced-motion users
     document.querySelectorAll('.card-outer').forEach(outer => {
       const card = outer.querySelector('.card');
       const btn  = outer.querySelector('.flip-btn');
@@ -346,240 +205,11 @@ footer a { color: #2b2b2b; text-decoration: underline; }
       };
 
       if (btn) btn.addEventListener('click', e => { e.stopPropagation(); toggle(); });
-
-      // Keyboard: Enter/Space flips
       outer.addEventListener('keydown', e => {
         if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
       });
 
-      // Reduced motion: rely only on click/toggle
-      if (!prefersReduced) {
-        // :hover handles flip on desktop; button helps touch users
-      } else {
-        card.classList.remove('is-flipped');
-      }
-    });
-  </script>
-</body>
-  <style>
-    :root{
-      --bg:#0a0f24; --gold:#d4b06a; --snow:#d8e7ff;
-      --card-w: 320px; --card-h: 480px; --radius: 18px;
-      --shadow: 0 12px 30px rgba(0,0,0,.45);
-      --transition: transform .8s cubic-bezier(.2,.7,.2,1), box-shadow .2s ease;
-    }
-
-    html,body{height:100%;}
-    body{
-      margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, "Noto Sans", Arial;
-      color:#eef2ff;
-      background: radial-gradient(1200px 600px at 50% -10%, #1a2147 0%, #0b1030 40%, #060915 100%);
-    }
-
-    /* Accessible sticky nav (reuse on all 2128 pages if you like) */
-    .skip-link{position:absolute;top:-40px;left:10px;background:#000;color:#fff;padding:8px 12px;z-index:1100}
-    .skip-link:focus{top:10px}
-    .site-nav{position:sticky;top:0;z-index:1000;background:rgba(0,0,0,.35);backdrop-filter:blur(3px);text-align:center;padding:10px 0}
-    .site-nav a{color:#fff;margin:0 14px;text-decoration:underline;font-weight:600}
-    .site-nav a:hover,.site-nav a:focus{text-decoration:none}
-
-    .wrap{width:min(1200px,100%);margin:0 auto;padding:40px 16px}
-    header{text-align:center;margin-bottom:24px}
-    header h1{margin:0 0 6px;font-size:clamp(1.2rem,1.6vw + 1rem,2rem);letter-spacing:.5px;text-transform:uppercase}
-    header p{margin:0;opacity:.85}
-
-    /* Grid of cards */
-    .grid{display:grid;gap:22px;grid-template-columns:repeat(auto-fit,minmax(var(--card-w),1fr));justify-items:center}
-
-    /* Flip card shell */
-    .card-outer{perspective:1400px}
-    .card{
-      width:var(--card-w);height:var(--card-h);position:relative;transform-style:preserve-3d;
-      border-radius:var(--radius);transition:var(--transition);box-shadow:var(--shadow)
-    }
-    .card-outer:hover .card{transform:rotateY(180deg)}
-    .card-outer:focus-within .card{transform:rotateY(180deg)}
-    .card:focus{outline:4px solid #88a2ff;outline-offset:6px}
-
-    /* Reduce motion → click/toggle only */
-    @media (prefers-reduced-motion: reduce){
-      .card{transition:box-shadow .2s ease}
-      .card-outer:hover .card,.card-outer:focus-within .card{transform:none}
-      .card.is-flipped{transform:rotateY(180deg)}
-    }
-
-    .face{position:absolute;inset:0;backface-visibility:hidden;border-radius:var(--radius);overflow:hidden}
-
-    /* FRONT frame + full-bleed art */
-    .front{background:linear-gradient(180deg,#0e1433 0%,#0a0f24 60%,#070b1a 100%);border:1px solid rgba(212,176,106,.35)}
-    .front::before{content:"";position:absolute;inset:12px;border-radius:calc(var(--radius) - 10px);border:2px solid var(--gold);
-      box-shadow:inset 0 0 0 2px rgba(255,255,255,.06),0 0 30px rgba(212,176,106,.15)}
-    .art{
-      position:absolute;inset:12px;border-radius:calc(var(--radius) - 10px);
-      background-position:center;background-size:cover;background-repeat:no-repeat;
-      outline:1px solid rgba(255,255,255,.06);box-shadow:inset 0 0 40px rgba(0,0,0,.55)
-    }
-
-    /* BACK frame + full-bleed back image area */
-    .back{transform:rotateY(180deg);background:linear-gradient(180deg,#0c122f 0%,#070b1a 80%);border:1px solid rgba(212,176,106,.35)}
-    .back::before{content:"";position:absolute;inset:12px;border-radius:calc(var(--radius) - 10px);border:2px solid var(--gold);
-      box-shadow:inset 0 0 0 2px rgba(255,255,255,.06),0 0 30px rgba(212,176,106,.15)}
-    .back-fill{
-      position:absolute;inset:12px;border-radius:calc(var(--radius) - 10px);
-      background-position:center;background-size:cover;background-repeat:no-repeat
-    }
-
-    /* Flip button for touch */
-    .flip-btn{
-      position:absolute;right:10px;top:10px;background:rgba(10,15,36,.6);color:#fff;border:1px solid rgba(255,255,255,.2);
-      border-radius:999px;padding:6px 10px;font-size:.8rem;backdrop-filter:blur(4px);cursor:pointer
-    }
-    .flip-btn:focus{outline:3px solid #88a2ff}
-
-    .tip{color:#cbd5ff;opacity:.8;font-size:.9rem;text-align:center;margin-top:12px}
-
-    @media (max-width:380px){:root{--card-w:280px;--card-h:420px}}
-    footer{text-align:center;opacity:.75;margin:28px 0}
-  </style>
-</head>
-<body>
-
-  <!-- Sticky nav -->
-  <a href="#main" class="skip-link">Skip to main content</a>
-  <nav class="site-nav" aria-label="Main navigation">
-    <a href="index.html">Home</a>
-    <a href="players.html" aria-current="page">Players</a>
-    <a href="nut-rules.html">NUT Rules</a>
-    <a href="https://state2128.github.io/wos/" target="_blank" rel="noopener">Legacy Site</a>
-    <a href="https://whaleslaughter-ux.github.io/Whaleslaughter.com/">Main Site</a>
-  </nav>
-
-  <div class="wrap" id="main" aria-labelledby="title">
-    <header>
-      <h1 id="title">WOS STATE 2128 — Player Cards</h1>
-      <p>Hover (desktop) or tap the <strong>Flip</strong> button (mobile / reduced-motion) to view the back.</p>
-    </header>
-
-    <section class="grid" aria-label="Player card gallery">
-
-      <!-- CARD 1 — WHALESLAUGHTER (uses your uploaded PNGs, full-bleed) -->
-      <article class="card-outer" tabindex="0" aria-label="WHALESLAUGHTER card">
-        <div class="card" role="img" aria-roledescription="flip card" aria-label="WHALESLAUGHTER card">
-          <button class="flip-btn" aria-pressed="false" aria-label="Flip card">Flip</button>
-
-          <!-- Front -->
-          <div class="face front">
-            <div class="art"
-                 style="background-image:url('assets/players/whaleslaughter-front.png');"
-                 aria-hidden="true"></div>
-          </div>
-
-          <!-- Back -->
-          <div class="face back">
-            <div class="back-fill"
-                 style="background-image:url('assets/players/whaleslaughter-back.png');"></div>
-          </div>
-        </div>
-      </article>
-
-   
-      <article class="card-outer" tabindex="0" aria-label="Player card template">
-        <div class="card" role="img" aria-roledescription="flip card" aria-label="PLAYER NAME card">
-          <button class="flip-btn" aria-pressed="false" aria-label="Flip card">Flip</button>
-
-          <!-- Front -->
-          <div class="face front">
-            <div class="art"
-                 style="background-image:url('assets/players/sarge-front.png');"
-                 aria-hidden="true"></div>
-          </div>
-
-          <!-- Back -->
-          <div class="face back">
-            <div class="back-fill"
-                 style="background-image:url('assets/players/sarge-back.png');"></div>
-          </div>
-        </div>
-      </article>
-         <!--  — Card 3 -->
-        <article class="card-outer" tabindex="0" aria-label="Player card template">
-        <div class="card" role="img" aria-roledescription="flip card" aria-label="PLAYER NAME card">
-          <button class="flip-btn" aria-pressed="false" aria-label="Flip card">Flip</button>
-
-          <!-- Front -->
-          <div class="face front">
-            <div class="art"
-                 style="background-image:url('assets/players/danielneils-front.png');"
-                 aria-hidden="true"></div>
-          </div>
-
-          <!-- Back -->
-          <div class="face back">
-            <div class="back-fill"
-                 style="background-image:url('assets/players/danielniels-back.png');"></div>
-          </div>
-        </div>
-      </article>
-         <!-- CARD 4 — Template to duplicate -->
-      <article class="card-outer" tabindex="0" aria-label="Player card template">
-        <div class="card" role="img" aria-roledescription="flip card" aria-label="PLAYER NAME card">
-          <button class="flip-btn" aria-pressed="false" aria-label="Flip card">Flip</button>
-
-          <!-- Front -->
-          <div class="face front">
-            <div class="art"
-                 style="background-image:url('assets/players/PLAYER-front.png');"
-                 aria-hidden="true"></div>
-          </div>
-
-          <!-- Back -->
-          <div class="face back">
-            <div class="back-fill"
-                 style="background-image:url('assets/players/PLAYER-back.png');"></div>
-          </div>
-        </div>
-      </article>
-      <!-- Copy/paste more cards here -->
-
-    </section>
-
-    <p class="tip">Tip: upload images to <code>assets/players/</code> and update each card’s image URLs. Keep file names lowercase.</p>
-  </div>
-
-<footer>
-  &copy; 2025 WOS State 2128 — Site created &amp; maintained by
-  <a href="https://whaleslaughter.com" target="_blank" rel="noopener"
-     style="color:#fff; text-decoration:underline;">
-     WHALESLAUGHTER
-  </a>.
-</footer>
-
-  <script>
-    // Flip via button for touch / reduced-motion users
-    document.querySelectorAll('.card-outer').forEach(outer => {
-      const card = outer.querySelector('.card');
-      const btn  = outer.querySelector('.flip-btn');
-      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-      const toggle = () => {
-        const flipped = card.classList.toggle('is-flipped');
-        if (btn) btn.setAttribute('aria-pressed', flipped ? 'true' : 'false');
-      };
-
-      if (btn) btn.addEventListener('click', e => { e.stopPropagation(); toggle(); });
-
-      // Keyboard: Enter/Space flips
-      outer.addEventListener('keydown', e => {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
-      });
-
-      // Reduced motion: rely only on click/toggle
-      if (!prefersReduced) {
-        // :hover handles flip on desktop; button helps touch users
-      } else {
-        card.classList.remove('is-flipped');
-      }
+      if (prefersReduced) card.classList.remove('is-flipped');
     });
   </script>
 </body>
