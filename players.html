@@ -91,23 +91,28 @@
 
     <section class="grid" aria-label="Player card gallery">
       <!-- CARD 1 — Whaleslaughter example -->
-      <article class="card-outer" tabindex="0" aria-label="WHALESLAUGHTER card">
-        <div class="card" role="img" aria-roledescription="flip card" aria-label="WHALESLAUGHTER – The Siren">
-          <button class="flip-btn" aria-pressed="false" aria-label="Flip card">Flip</button>
-          <div class="face front">
-            <div class="name">WHALESLAUGHTER</div>
-            <div class="art" style="background-image:url('https://images.unsplash.com/photo-1548094896-5a003f1a2ec5?q=80&w=1200&auto=format&fit=crop');" aria-hidden="true"></div>
-            <div class="title">THE SIREN</div>
-          </div>
-          <div class="face back">
-            <div class="back-inner">
-              <div class="crest" aria-hidden="true">✶</div>
-              <div class="hook">Continuity Hook: carries a frost‑rimmed map that’s always missing a corner. Returning motif: snow crystals glittering on the border.</div>
-              <div class="subtle">Alliance: havoc • Role: Drummer / Raider</div>
-            </div>
-          </div>
-        </div>
-      </article>
+    <article class="card-outer" tabindex="0" aria-label="WHALESLAUGHTER card">
+  <div class="card" role="img" aria-roledescription="flip card" aria-label="WHALESLAUGHTER card">
+    <button class="flip-btn" aria-pressed="false" aria-label="Flip card">Flip</button>
+
+    <!-- FRONT -->
+    <div class="face front">
+      <div class="art"
+           style="background-image:url('assets/players/whaleslaughter-front.png');"
+           aria-hidden="true"></div>
+    </div>
+
+    <!-- BACK -->
+    <div class="face back">
+      <div class="back-inner"
+           style="background-image:url('assets/players/whaleslaughter-back.png'); background-size:cover;">
+      </div>
+    </div>
+
+  </div>
+</article>
+
+     
 
       <!-- CARD 2 — Blank template to duplicate -->
       <article class="card-outer" tabindex="0" aria-label="Player card template">
