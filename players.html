@@ -142,12 +142,13 @@
 
     <section class="grid" aria-label="Player card gallery">
      <!-- CTA Card — invite players to fill the form -->
-<!-- CTA Card — no flip, whole thing is a link -->
-<article class="card-outer" tabindex="0" aria-label="Get your own Player Card">
+<!-- CTA Card — same size as other cards -->
+<article class="card-outer" aria-label="Get your own Player Card">
   <a href="https://forms.gle/StCbCzoMK8Fv6yAZ6"
      target="_blank" rel="noopener"
      style="
        display:flex;
+       flex-direction:column;
        align-items:center;
        justify-content:center;
        text-align:center;
@@ -158,16 +159,18 @@
        border:1px solid rgba(212,176,106,.35);
        box-shadow:var(--shadow);
        color:#fff;
-       font-size:1.3rem;
+       font-size:1.25rem;
        font-weight:600;
-       line-height:1.4;
        text-decoration:none;
-       padding:20px;
+       padding:30px 20px;
      ">
-    ✨ Want your own<br>Player Card?<br>
-    <span style="font-size:1rem;font-weight:400;">Click here to fill out the form</span>
+      ✨ Want your own<br>Player Card?
+      <span style="margin-top:10px;font-size:1rem;font-weight:400;opacity:.9;">
+        Click here to fill out the form
+      </span>
   </a>
 </article>
+
 
  <!-- Card 1 -->
       <article class="card-outer" tabindex="0" aria-label="WHALESLAUGHTER card">
