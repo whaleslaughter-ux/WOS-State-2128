@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NUT Rules — WOS State 2128</title>
-
   <style>
     body{
       margin:0;
@@ -12,46 +11,39 @@
       color:#eef2ff;
       background: radial-gradient(1200px 600px at 50% -10%, #1a2147 0%, #0b1030 40%, #060915 100%);
     }
-
+    /* sticky nav */
     .skip-link{position:absolute;top:-40px;left:10px;background:#000;color:#fff;padding:8px 12px;z-index:1100}
     .skip-link:focus{top:10px}
     .site-nav{
-      position:sticky;top:0;z-index:1000;
-      background:rgba(0,0,0,.35);backdrop-filter:blur(3px);
-      text-align:center;padding:10px 0
+      position:sticky; top:0; z-index:1000;
+      background:rgba(0,0,0,.35); backdrop-filter:blur(3px);
+      text-align:center; padding:10px 0;
     }
-    .site-nav a{
-      color:#fff;margin:0 14px;text-decoration:underline;font-weight:600
-    }
-    .site-nav a:hover,.site-nav a:focus{text-decoration:none}
+    .site-nav a{color:#fff; margin:0 14px; text-decoration:underline; font-weight:600}
+    .site-nav a:hover, .site-nav a:focus{ text-decoration:none }
 
-    .wrap{width:min(1000px,95%);margin:0 auto;padding:40px 20px}
-    header{text-align:center;margin-bottom:1.5rem}
-    header h1{margin:0 0 .4rem;font-size:clamp(1.4rem,1.8vw + 1rem,2.4rem);letter-spacing:.5px;text-transform:uppercase}
-    header h2{margin:0;font-size:1.2rem;font-weight:600;opacity:.85}
+    .wrap{width:min(1000px,95%); margin:0 auto; padding:40px 20px}
+    header{text-align:center; margin-bottom:1.5rem}
+    header h1{margin:0 0 .4rem; font-size:clamp(1.4rem,1.8vw + 1rem,2.4rem); letter-spacing:.5px; text-transform:uppercase}
+    header h2{margin:0; font-size:1.2rem; font-weight:600; opacity:.9}
 
+    /* tidy intro */
     .intro{
       max-width:650px;
       margin:1rem auto 2rem;
-      line-height:1.5;
+      line-height:1.55;
       text-align:center;
     }
-    .intro nav a{
-      display:inline-block;
-      margin:0 .5rem;
-      color:#d8e7ff;
-      text-decoration:underline;
-    }
-    .intro nav a:hover{color:#fff;text-decoration:none}
+    .intro nav a{display:inline-block; margin:.25rem .5rem; color:#d8e7ff; text-decoration:underline}
+    .intro nav a:hover{color:#fff; text-decoration:none}
 
-    h3{margin-top:2rem;font-size:1.3rem}
-    ul{line-height:1.5;margin-top:.5rem}
-
-    footer{text-align:center;margin:2rem 0;opacity:.75}
+    h3{margin-top:2rem; font-size:1.3rem}
+    h4{margin-top:1.2rem}
+    ul{line-height:1.55; margin-top:.4rem}
+    footer{text-align:center; margin:2rem 0; opacity:.75}
   </style>
 </head>
 <body>
-
   <a href="#main" class="skip-link">Skip to main content</a>
   <nav class="site-nav" aria-label="Main navigation">
     <a href="index.html">Home</a>
@@ -69,9 +61,8 @@
 
     <div class="intro">
       <p>
-        Welcome to the NUT page, where alliances collaborate to maintain harmony
-        and competitiveness in State 2128. If your alliance chooses not to
-        participate, you may opt out. By default, all alliances are opted in.
+        Welcome to the NUT page, where alliances collaborate to maintain harmony and competitiveness in State 2128.
+        If your alliance chooses not to participate, you may opt out. By default, all alliances are opted in.
       </p>
       <nav aria-label="Quick links">
         <a href="#rules">NUT Rules</a>
@@ -82,6 +73,7 @@
 
     <section id="rules">
       <h3>NUT Rules</h3>
+
       <h4>Freedom of Speech</h4>
       <ul>
         <li>No restrictions on speech in world or private chats.</li>
@@ -92,22 +84,92 @@
       <ul>
         <li>Furnace level <strong>20 and below</strong> can attack anyone anytime.</li>
         <li>Do not repeatedly attack the same city to zero them.</li>
-        <li>Scouting: Allowed at all times.</li>
+        <li><strong>Scouting:</strong> Allowed at all times.</li>
       </ul>
 
       <h4>Alliance Structures</h4>
       <ul>
         <li>Alliance headquarters cannot be attacked.</li>
-        <li>Alliance banners cannot be attacked unless they block access to facilities.</li>
-        <li>If banners block access: contact the R5/R4 before attacking and allow up to 24h to move them.</li>
+        <li>Alliance banners cannot be attacked unless the banners block access to facilities.</li>
+        <li>If banners block access: contact the R5 and R4 before attacking banners and allow time to move them (shouldn’t take more than 24 hours).</li>
       </ul>
-      <!-- continue the rest of your rules here -->
+
+      <h4>Tile Attacks</h4>
+      <ul>
+        <li>Allowed only during <strong>Kill Event (KE)</strong>.</li>
+        <li>If a player gathers in another alliance’s territory, those tiles can be attacked.</li>
+      </ul>
+
+      <h4>Scheduled Battles</h4>
+      <ul>
+        <li>Alliances can schedule fights by agreement.</li>
+        <li>No attacking outside of scheduled time.</li>
+      </ul>
+
+      <h4>Presidency Rotation</h4>
+      <ul>
+        <li>Rotates among the top 10 alliances in NUT.</li>
+        <li>“Whales” should switch alliances to help hold the castle.</li>
+        <li>Rallies on the Sunfire Castle are prohibited to make it easier for any alliance to hold it. Solo attacks are allowed.</li>
+      </ul>
+
+      <h4>Whale Distribution</h4>
+      <ul>
+        <li>“Whales” should spread out during major events like Castle Battle to create an equalized battle.</li>
+      </ul>
+
+      <h4>Fortress/Stronghold Distribution</h4>
+      <ul>
+        <li>Rotates among alliances with at least 50 active members.</li>
+        <li>Alliances can trade fortresses/strongholds based on reward preferences.</li>
+        <li>Any alliance not assigned a fortress or stronghold can attack any fortress or stronghold of their choice.</li>
+      </ul>
+
+      <h4>State vs State (SvS)</h4>
+      <ul>
+        <li>Players can switch alliances to help in SvS.</li>
+        <li>Players must return to their original alliance after unless they decide to stay and there is space.</li>
+        <li>R5s will share the plan for State vs State with their alliance. Follow the plan. Don’t be an embarrassment.</li>
+      </ul>
+
+      <h4>Recruitment</h4>
+      <ul>
+        <li>World chat and private message recruitment is always allowed.</li>
+        <li>If members leave, it’s a leadership or alliance issue, not a recruitment problem.</li>
+        <li>There should be no retaliation against any person/alliance that recruits from another.</li>
+      </ul>
+
+      <h4>Facilities</h4>
+      <ul>
+        <li>All facilities are free-for-all.</li>
+        <li>No blocking alliances from “touching” facilities.</li>
+        <li>No alliance should control more than one of the same facility type at the same time.
+          For example, having two Lv1 Tech Facilities is pointless—the buffs do not stack. Share it; don’t be stupid.</li>
+      </ul>
+    </section>
+
+    <section id="bia">
+      <h3>Brothers in Arms Rules</h3>
+      <p>Brothers in Arms is a high-intensity, two-day PvP event in Whiteout Survival where alliances battle by attacking enemy cities and troops. Players earn points by killing or severely injuring troops, with rewards based on individual and alliance rankings. Strategic coordination is key, as alliances must balance offense and defense while protecting their own resources and structures.</p>
+      <ul>
+        <li><strong>Shield or Fight:</strong> If you don’t want to participate, shield up. No complaints. Stay in your alliance territory for higher safety.</li>
+        <li><strong>City Attacks:</strong> Max <strong>2 attacks per city</strong>. If a city is burning, it means someone already attacked twice—move on.</li>
+        <li><strong>Alliance Structures:</strong> HQs and banners are off-limits.</li>
+        <li><strong>Tile Combat:</strong> Resource tiles are fair game; gather at your own risk.</li>
+        <li><strong>No Facility/Bear Interference:</strong> Don’t attack an alliance during facility battles or bear fights.</li>
+        <li><strong>Team Strategy Allowed:</strong> Organized group attacks are fine within attack limits.</li>
+        <li><strong>Respect Weaker Players:</strong> Only attack within ±5 Furnace levels.</li>
+      </ul>
+    </section>
+
+    <section id="opt">
+      <h3>Opt-Out Information</h3>
+      <p>If your alliance chooses to opt out of NUT, notify the leadership council. Opting out means your alliance will not be protected by NUT rules, and other alliances may engage freely with your members. Ensure this decision aligns with your alliance’s goals and strategy.</p>
     </section>
 
     <footer>
       &copy; 2025 WOS State 2128 — Site created &amp; maintained by
-      <a href="https://whaleslaughter.com" target="_blank" rel="noopener"
-         style="color:#fff;text-decoration:underline;">WHALESLAUGHTER</a>.
+      <a href="https://whaleslaughter.com" target="_blank" rel="noopener" style="color:#fff;text-decoration:underline;">WHALESLAUGHTER</a>.
     </footer>
   </div>
 </body>
