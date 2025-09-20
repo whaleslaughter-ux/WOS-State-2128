@@ -1,1 +1,15 @@
 
+- label: Home
+  url: /
+- label: Players
+  url: /players/
+- label: NUT Rules
+  url: /nut-rules/
+- label: Alliances
+  url: /alliances/
+- label: Songs
+  url: /songs/
+- label: Contests
+  url: /contests/
+- label: Legacy Site
+  url: https://state2128.github.io/wos/
