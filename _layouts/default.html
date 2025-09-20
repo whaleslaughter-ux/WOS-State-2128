@@ -1,1 +1,41 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>{{ page.title }} — {{ site.title }}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, "Noto Sans", Arial;
+      color:#eef2ff;
+      background: radial-gradient(1200px 600px at 50% -10%, #1a2147 0%, #0b1030 40%, #060915 100%);
+    }
+    .wrap{width:min(1000px,95%); margin:0 auto; padding:40px 20px}
+    header{text-align:center; margin:0 0 1.5rem}
+    header h1{margin:0 0 .4rem; font-size:clamp(1.4rem,1.8vw + 1rem,2.2rem); letter-spacing:.5px; text-transform:uppercase}
+    header h2{margin:0; font-size:1.1rem; font-weight:600; opacity:.9}
+    footer{text-align:center; margin:2rem 0; opacity:.75}
+    a{color:#d8e7ff}
+    a:hover{color:#fff}
+  </style>
+</head>
+<body>
+  {% include nav.html %}
+  <div class="wrap" id="main">
+    {% if page.title %}
+    <header>
+      <h1>{{ page.title }}</h1>
+      {% if page.subtitle %}<h2>{{ page.subtitle }}</h2>{% endif %}
+    </header>
+    {% endif %}
+
+    {{ content }}
+
+    <footer>
+      &copy; 2025 WOS State 2128 — Site created &amp; maintained by WHALESLAUGHTER.
+    </footer>
+  </div>
+</body>
+</html>
