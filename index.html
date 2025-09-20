@@ -1,21 +1,47 @@
----
-layout: default
-title: WOS State 2128
-subtitle: We don’t do NAP — we do NUT: No Unnecessary Trouble.
----
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WOS State 2128</title>
+  <style>
+    :root{--bg1:#0b1030;--bg2:#1a2147;--ink:#eef2ff;--muted:#b9c3ff}
+    *{box-sizing:border-box}
+    body{
+      margin:0; color:var(--ink);
+      font:16px/1.6 ui-sans-serif,system-ui,-apple-system,Segoe UI,Inter,Roboto,"Noto Sans",Arial;
+      background: radial-gradient(1100px 560px at 50% -10%, var(--bg2) 0%, var(--bg1) 42%, #060915 100%);
+    }
+    .wrap{max-width:1000px;margin:0 auto;padding:40px 20px}
+    header{text-align:center;margin:0 0 24px}
+    header h1{margin:0 0 8px;font-size:clamp(26px,2.2vw,34px);letter-spacing:.3px;text-transform:uppercase}
+    header p{margin:0;color:var(--muted);font-weight:600}
+    a{color:#a5b4ff;text-decoration:underline} a:hover{color:#fff;text-decoration:none}
+    footer{text-align:center;margin:34px 0;color:var(--muted)}
+  </style>
+</head>
+<body>
+  <!-- shared nav loads here -->
+  <div id="nav-placeholder"></div>
+  <script>
+    fetch('/nav.html').then(r=>r.text()).then(h=>{document.getElementById('nav-placeholder').innerHTML=h});
+  </script>
 
-<header>
-  <h1>WOS STATE 2128</h1>
-  <p>
-    Hub for alliance news, lore, guides, and strategy. <br>
-    Collaborators: add anything you like, from stories to tips.
-  </p>
-</header>
+  <div class="wrap">
+    <header>
+      <h1>WOS STATE 2128</h1>
+      <p>Hub for alliance news, lore, guides, and strategy. Collaborators: add anything you like, from stories to tips.</p>
+    </header>
 
-<section>
-  <ul style="list-style:none; padding:0; font-size:1.1rem; line-height:1.6;">
-    <li>📜 <a href="/nut-rules.html">NUT Rules</a></li>
-    <li>🎴 <a href="/players.html">Player Cards</a></li>
-    <li>🕰️ <a href="https://state2128.github.io/wos/" target="_blank" rel="noopener">Legacy Site</a></li>
-  </ul>
-</section>
+    <section>
+      <ul style="list-style:none;padding:0;font-size:1.1rem;line-height:1.6;">
+        <li>📜 <a href="/nut-rules.html">NUT Rules</a></li>
+        <li>🎴 <a href="/players.html">Player Cards</a></li>
+        <li>🕰️ <a href="https://state2128.github.io/wos/" target="_blank" rel="noopener">Legacy Site</a></li>
+      </ul>
+    </section>
+
+    <footer>&copy; 2025 WOS State 2128 — Site created &amp; maintained by WHALESLAUGHTER.</footer>
+  </div>
+</body>
+</html>
