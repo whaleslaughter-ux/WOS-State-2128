@@ -6,13 +6,6 @@
   <title>NUT Rules — WOS State 2128</title>
   <style>
     *{box-sizing:border-box}
-    <div id="footer-placeholder"></div>
-<script>
-  fetch('/footer.html')
-    .then(r => r.text())
-    .then(html => { document.getElementById('footer-placeholder').innerHTML = html; });
-</script>
-
     body{
       margin:0; color:#eef2ff;
       font:16px/1.6 ui-sans-serif,system-ui,-apple-system,Segoe UI,Inter,Roboto,"Noto Sans",Arial;
@@ -36,7 +29,9 @@
   <!-- shared nav -->
   <div id="nav-placeholder"></div>
   <script>
-    fetch('/nav.html').then(r=>r.text()).then(h=>{document.getElementById('nav-placeholder').innerHTML=h});
+    fetch('/nav.html').then(r=>r.text()).then(h=>{
+      document.getElementById('nav-placeholder').innerHTML=h
+    });
   </script>
 
   <div class="wrap" id="main">
@@ -59,7 +54,6 @@
 
     <section id="rules">
       <h3>NUT Rules</h3>
-
       <h4>Freedom of Speech</h4>
       <ul>
         <li>No restrictions on speech in world or private chats.</li>
@@ -151,8 +145,14 @@
       <h3>Opt-Out Information</h3>
       <p>If your alliance opts out of NUT, you won’t be protected by these rules and others may engage freely. Make sure this aligns with your goals.</p>
     </section>
-
-   
   </div>
+
+  <!-- shared footer -->
+  <div id="footer-placeholder"></div>
+  <script>
+    fetch('/footer.html')
+      .then(r => r.text())
+      .then(html => { document.getElementById('footer-placeholder').innerHTML = html; });
+  </script>
 </body>
 </html>
