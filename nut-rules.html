@@ -6,6 +6,13 @@
   <title>NUT Rules — WOS State 2128</title>
   <style>
     *{box-sizing:border-box}
+    <div id="footer-placeholder"></div>
+<script>
+  fetch('/footer.html')
+    .then(r => r.text())
+    .then(html => { document.getElementById('footer-placeholder').innerHTML = html; });
+</script>
+
     body{
       margin:0; color:#eef2ff;
       font:16px/1.6 ui-sans-serif,system-ui,-apple-system,Segoe UI,Inter,Roboto,"Noto Sans",Arial;
@@ -145,9 +152,7 @@
       <p>If your alliance opts out of NUT, you won’t be protected by these rules and others may engage freely. Make sure this aligns with your goals.</p>
     </section>
 
-    <footer>&copy; 2025 WOS State 2128 — Site created &amp; maintained by
-      <a href="https://whaleslaughter.com" target="_blank" rel="noopener" style="color:#fff;text-decoration:underline;">WHALESLAUGHTER</a>.
-    </footer>
+   
   </div>
 </body>
 </html>
