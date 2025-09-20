@@ -12,13 +12,6 @@
       --transition: transform .8s cubic-bezier(.2,.7,.2,1), box-shadow .2s ease;
     }
     *{box-sizing:border-box}
-    <div id="footer-placeholder"></div>
-<script>
-  fetch('/footer.html')
-    .then(r => r.text())
-    .then(html => { document.getElementById('footer-placeholder').innerHTML = html; });
-</script>
-
     body{
       margin:0; color:#eef2ff;
       font:16px/1.6 ui-sans-serif,system-ui,-apple-system,Segoe UI,Inter,Roboto,"Noto Sans",Arial;
@@ -94,7 +87,9 @@
   <!-- shared nav -->
   <div id="nav-placeholder"></div>
   <script>
-    fetch('/nav.html').then(r=>r.text()).then(h=>{document.getElementById('nav-placeholder').innerHTML=h});
+    fetch('/nav.html')
+      .then(r=>r.text())
+      .then(h=>{ document.getElementById('nav-placeholder').innerHTML = h; });
   </script>
 
   <div class="wrap">
@@ -166,8 +161,15 @@
     </section>
 
     <p class="tip">Tip: upload images to <code>assets/players/</code> and keep filenames lowercase.</p>
-   
   </div>
+
+  <!-- shared footer -->
+  <div id="footer-placeholder"></div>
+  <script>
+    fetch('/footer.html')
+      .then(r => r.text())
+      .then(html => { document.getElementById('footer-placeholder').innerHTML = html; });
+  </script>
 
   <script>
     document.querySelectorAll('.card-outer').forEach(outer => {
