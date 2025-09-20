@@ -1,9 +1,6 @@
 <nav class="nav" aria-label="Main">
-  <div class="nav__inner">
-    {% assign here = page.url | replace: 'index.html','' %}
-    <a href="/" class="nav__link{% if here == '/' %} is-active{% endif %}">Home</a>
-    <a href="/players.html" class="nav__link{% if here contains '/players' %} is-active{% endif %}">Players</a>
-    <a href="/nut-rules.html" class="nav__link{% if here contains '/nut-rules' %} is-active{% endif %}">NUT Rules</a>
-    <a href="https://state2128.github.io/wos/" class="nav__link" target="_blank" rel="noopener">Legacy Site</a>
-  </div>
+  <a href="/">Home</a>
+  <a href="/players.html">Players</a>
+  <a href="/nut-rules.html">NUT Rules</a>
+  <a href="https://state2128.github.io/wos/" target="_blank" rel="noopener">Legacy Site</a>
 </nav>
