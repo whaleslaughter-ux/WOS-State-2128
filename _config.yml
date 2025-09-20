@@ -1,1 +1,18 @@
+title: "WOS State 2128"
+description: "Home of NUT rules, alliances, songs, contests, and more."
+# Turn on collections so you can add content without editing nav/layout each time
+collections:
+  alliances:
+    output: true
+    permalink: /alliances/:slug/
+  songs:
+    output: true
+    permalink: /songs/:slug/
+  contests:
+    output: true
+    permalink: /contests/:slug/
+# Pretty permalinks for regular pages
+permalink: /:title/
+# Optional: set a baseurl if this is NOT at a custom domain. For you, leave it blank.
+baseurl: ""
 
