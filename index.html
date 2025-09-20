@@ -7,12 +7,6 @@
   <style>
     :root{--bg1:#0b1030;--bg2:#1a2147;--ink:#eef2ff;--muted:#b9c3ff}
     *{box-sizing:border-box}
-    <div id="footer-placeholder"></div>
-<script>
-  fetch('/footer.html')
-    .then(r => r.text())
-    .then(html => { document.getElementById('footer-placeholder').innerHTML = html; });
-</script>
 
     body{
       margin:0; color:var(--ink);
@@ -31,7 +25,9 @@
   <!-- shared nav loads here -->
   <div id="nav-placeholder"></div>
   <script>
-    fetch('/nav.html').then(r=>r.text()).then(h=>{document.getElementById('nav-placeholder').innerHTML=h});
+    fetch('/nav.html')
+      .then(r => r.text())
+      .then(h => { document.getElementById('nav-placeholder').innerHTML = h; });
   </script>
 
   <div class="wrap">
@@ -47,8 +43,14 @@
         <li>🕰️ <a href="https://state2128.github.io/wos/" target="_blank" rel="noopener">Legacy Site</a></li>
       </ul>
     </section>
-
- 
   </div>
+
+  <!-- shared footer loads here -->
+  <div id="footer-placeholder"></div>
+  <script>
+    fetch('/footer.html')
+      .then(r => r.text())
+      .then(html => { document.getElementById('footer-placeholder').innerHTML = html; });
+  </script>
 </body>
 </html>
