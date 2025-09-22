@@ -126,7 +126,9 @@
       <p class="sub">Rotating presidency chosen by alliance councils. Current president is featured. Flip any card to read the bio in your language.</p>
     </header>
 
-    <section class="grid" aria-label="Presidential portraits" id="cards"></section>
+    <section class="grid" aria-label="Presidential portraits" id="cards">
+      <p style="opacity:.85">Loading presidents…</p>
+    </section>
 
     <p class="note">
       Content loads from our live sheet. Add rows (or new <code>bio-xx</code> columns) in Google Sheets — no redeploy needed.
@@ -143,8 +145,7 @@
 
   <script>
     // ====== Config ======
-    const EXEC_URL = 'https://script.google.com/macros/s/AKfycbyuU12nPaJKJkjf7xHs_CCURUPxlrG0hTKyoYQQhgC3BZGq40rKJCSiBZWBOY1m2xWW/exec'
-; // <-- replace with your Apps Script exec URL
+    const EXEC_URL = 'https://script.google.com/macros/s/AKfycbyuU12nPaJKJkjf7xHs_CCURUPxlrG0hTKyoYQQhgC3BZGq40rKJCSiBZWBOY1m2xWW/exec';
     const SITE_DEFAULT_LANG = 'en';
 
     // ====== Helpers ======
@@ -228,10 +229,10 @@
       const ally = allianceColor(r);
       const name = r.name || r.id || 'Unknown';
       const title = r.short_title || '';
-      const alliance = r.alliance || '';
+      const alliance = r.alliance || r.alliance_name || '';
       const termStart = r.term_start || '';
       const termEnd = r.term_end || '';
-      const img = r.portrait_url || '/assets/presidents/placeholder.png';
+      const img = r.portrait || r.portrait_url || '/assets/presidents/placeholder.png';
       const isCurrent = String(r.is_current).toLowerCase() === 'true' || String(r.draft).toLowerCase() === 'true';
       const bio = pickBio(r, langPref);
       const ariaFront = `${name}, President of State 2128`;
@@ -300,21 +301,13 @@
         const res = await fetch(`${EXEC_URL}?v=${bust}`);
         const data = await res.json();
 
-        // Expecting either {rows:[...]} or just [...]
-       // Try several common shapes from Apps Script responses
-let rows =
-  Array.isArray(data)               ? data :
-  Array.isArray(data.rows)          ? data.rows :
-  Array.isArray(data.data)          ? data.data :
-  Array.isArray(data.presidents)    ? data.presidents :
-  Array.isArray(data.result)        ? data.result :
-  [];
+        // Accept array directly or common wrapped shapes (yours = { presidents:[...] })
+        const rows = Array.isArray(data)
+          ? data
+          : (data.presidents || data.rows || data.data || []);
+        console.log('Exec payload:', data, 'rows length:', rows.length);
 
-// (Optional) Inspect what's coming back the first time:
-console.log('Exec payload:', data, 'rows length:', rows.length);
-
-mountCards(rows);
-
+        mountCards(rows);
       }catch(err){
         console.error('Failed to load presidents:', err);
         const grid = document.getElementById('cards');
