@@ -16,10 +16,10 @@
     header h1{margin:0 0 .4rem; font-size:clamp(1.4rem,1.8vw + 1rem,2.2rem); letter-spacing:.5px; text-transform:uppercase}
     header p.sub{margin:.25rem 0 0; opacity:.9}
 
-    /* Grid */
+    /* Grid: allow 3 per row on desktop */
     .grid{
       display:grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* was 320px */
       gap:24px;
       align-items:start;
       min-height:120px;
@@ -66,13 +66,14 @@
     .glow{ position:absolute; inset:-6px; border-radius:22px; pointer-events:none;
            box-shadow:0 0 36px 12px rgba(255,0,0,.35); }
 
+    /* Plaque: bump sizes */
     .plaque{ position:absolute; left:50%; bottom:14px; transform:translateX(-50%); text-align:center;
-             min-width:70%; padding:10px 14px; border-radius:14px;
+             min-width:70%; padding:12px 16px; border-radius:14px;
              background:linear-gradient(180deg, rgba(212,176,106,.95), rgba(138,100,40,.98));
              color:#2e2412; border:1px solid rgba(0,0,0,.35);
              box-shadow: inset 0 1px 0 rgba(255,255,255,.4), 0 6px 14px rgba(0,0,0,.35); }
-    .plaque .name{ font-weight:900; letter-spacing:.3px; }
-    .plaque .meta{ margin-top:2px; font-size:13px; opacity:.95; }
+    .plaque .name{ font-weight:900; letter-spacing:.4px; font-size:clamp(1rem, 0.6vw + .95rem, 1.15rem); }
+    .plaque .meta{ margin-top:4px; font-size:clamp(.88rem, 0.4vw + .8rem, 1rem); opacity:.96; }
     .badge{ display:inline-flex; align-items:center; gap:6px; font-weight:700; }
     .badge .dot{ width:8px; height:8px; border-radius:50%; background:var(--ally); box-shadow:0 0 8px var(--ally); }
 
@@ -82,14 +83,14 @@
       display:flex; flex-direction:column; padding:16px;
       background:linear-gradient(180deg, #11183a, #0f1532 70%);
     }
-    .back h3{margin:0 0 .25rem; font-size:1rem; letter-spacing:.3px}
-    .back .term{opacity:.85; font-size:.9rem; margin-bottom:.5rem}
+    .back h3{margin:0 0 .25rem; font-size:1.05rem; letter-spacing:.3px}
+    .back .term{opacity:.9; font-size:.95rem; margin-bottom:.6rem}
     .back .scroll{
       position:relative; flex:1; overflow:auto; padding-right:8px;
       mask-image: linear-gradient(180deg, rgba(0,0,0,1) 85%, rgba(0,0,0,0));
       -webkit-mask-image: linear-gradient(180deg, rgba(0,0,0,1) 85%, rgba(0,0,0,0));
     }
-    .back .scroll p{margin:0; white-space:pre-wrap; line-height:1.55}
+    .back .scroll p{margin:0; font-size:1rem; white-space:pre-wrap; line-height:1.6}
 
     /* Flip control (hidden on hover devices) */
     .controls{
@@ -184,7 +185,7 @@
       return Object.values(byCode)[0] || '';
     }
 
-    // Date parsing for ordering
+    // Date parsing + nice formatting
     function toDate(val){
       if (!val) return null;
       const v = String(val).trim();
@@ -194,6 +195,16 @@
       const m = v.match(/^(\d{1,2})[.\-\/](\d{1,2})[.\-\/](\d{4})$/);
       if (m){ const [_, d, mo, y]=m; return new Date(+y, +mo-1, +d); }
       return null;
+    }
+    function niceDate(val){
+      if (!val) return '—';
+      if (/present|now/i.test(String(val))) return 'Present';
+      const d = new Date(val);
+      if (isNaN(d)) return String(val);
+      const dd = String(d.getDate()).padStart(2,'0');
+      const mm = String(d.getMonth()+1).padStart(2,'0');
+      const yyyy = d.getFullYear();
+      return `${dd}.${mm}.${yyyy}`;
     }
 
     function normalizeRow(r, idx){
@@ -235,8 +246,8 @@
       const name = r.name || r.id || 'Unknown';
       const title = r.short_title || '';
       const allianceLabel = r.alliance_name || r.alliance || '';
-      const termStart = r.term_start || '';
-      const termEnd = r.term_end || '';
+      const termStart = niceDate(r.term_start);
+      const termEnd = r.term_end ? niceDate(r.term_end) : '';
       const img = r.portrait || r.portrait_url || '/assets/presidents/placeholder.png';
       const isCurrent = String(r.is_current).toLowerCase()==='true' || String(r.draft).toLowerCase()==='true';
       const bio = pickBio(r, langPref);
@@ -256,7 +267,7 @@
               <div class="meta">
                 ${allianceLabel ? `<span class="badge"><span class="dot"></span> ${allianceLabel}</span> • ` : ''}
                 ${title ? `${title} • ` : ''}
-                Term: ${termStart || '—'} ${termEnd ? `– ${termEnd}` : ''}
+                Term: ${termStart} ${termEnd ? `– ${termEnd}` : ''}
               </div>
             </div>
             <div class="controls"><button class="btn flip-btn" aria-label="Flip card to read bio">Flip</button></div>
@@ -264,7 +275,7 @@
           <div class="face back" aria-hidden="true">
             <div class="controls"><button class="btn flip-btn" aria-label="Flip card to front">Front</button></div>
             <h3>${name}</h3>
-            <div class="term">${allianceLabel ? `${allianceLabel} • ` : ''}${title ? `${title} • ` : ''}Term: ${termStart || '—'} ${termEnd ? `– ${termEnd}` : ''}</div>
+            <div class="term">${allianceLabel ? `${allianceLabel} • ` : ''}${title ? `${title} • ` : ''}Term: ${termStart} ${termEnd ? `– ${termEnd}` : ''}</div>
             <div class="scroll"><p>${bio || '<em>(No bio available in your language — showing default.)</em>'}</p></div>
           </div>
         </div>
