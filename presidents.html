@@ -301,8 +301,20 @@
         const data = await res.json();
 
         // Expecting either {rows:[...]} or just [...]
-        const rows = Array.isArray(data) ? data : (data.rows || []);
-        mountCards(rows);
+       // Try several common shapes from Apps Script responses
+let rows =
+  Array.isArray(data)               ? data :
+  Array.isArray(data.rows)          ? data.rows :
+  Array.isArray(data.data)          ? data.data :
+  Array.isArray(data.presidents)    ? data.presidents :
+  Array.isArray(data.result)        ? data.result :
+  [];
+
+// (Optional) Inspect what's coming back the first time:
+console.log('Exec payload:', data, 'rows length:', rows.length);
+
+mountCards(rows);
+
       }catch(err){
         console.error('Failed to load presidents:', err);
         const grid = document.getElementById('cards');
