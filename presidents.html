@@ -220,4 +220,98 @@
 
     function cardHTML(r, isFeatured){
       const ally = allianceColor(r);
-      const name =
+      const name = r.name || r.id || 'Unknown';
+      const title = r.short_title || '';
+      const allianceLabel = r.alliance_name || r.alliance || '';
+      const termStart = r.term_start || '';
+      const termEnd = r.term_end || '';
+      const img = r.portrait || r.portrait_url || '/assets/presidents/placeholder.png';
+      const isCurrent = String(r.is_current).toLowerCase()==='true' || String(r.draft).toLowerCase()==='true';
+      const bio = pickBio(r, langPref);
+      const ariaFront = `${name}, President of State 2128`;
+      const currentRibbon = isCurrent ? `<div class="ribbon" aria-hidden="true">CURRENT PRESIDENT</div>` : '';
+
+      return `
+      <article class="card ${isFeatured?'featured':''} ${isCurrent?'current':''}" style="--ally:${ally}" data-id="${r.id||''}">
+        <div class="flip">
+          <div class="face front" aria-label="${ariaFront}">
+            ${isCurrent ? '<div class="glow" aria-hidden="true"></div>' : ''}
+            <div class="img" role="img" style="background-image:url('${img}')"></div>
+            ${currentRibbon}
+            <div class="grad" aria-hidden="true"></div>
+            <div class="plaque">
+              <div class="name">${name.toUpperCase()}</div>
+              <div class="meta">
+                ${allianceLabel ? `<span class="badge"><span class="dot"></span> ${allianceLabel}</span> • ` : ''}
+                ${title ? `${title} • ` : ''}
+                Term: ${termStart || '—'} ${termEnd ? `– ${termEnd}` : ''}
+              </div>
+            </div>
+            <div class="controls"><button class="btn flip-btn" aria-label="Flip card to read bio">Flip</button></div>
+          </div>
+          <div class="face back" aria-hidden="true">
+            <div class="controls"><button class="btn flip-btn" aria-label="Flip card to front">Front</button></div>
+            <h3>${name}</h3>
+            <div class="term">${allianceLabel ? `${allianceLabel} • ` : ''}${title ? `${title} • ` : ''}Term: ${termStart || '—'} ${termEnd ? `– ${termEnd}` : ''}</div>
+            <div class="scroll"><p>${bio || '<em>(No bio available in your language — showing default.)</em>'}</p></div>
+          </div>
+        </div>
+      </article>`;
+    }
+
+    function mountCards(rows){
+      const grid = document.getElementById('cards');
+      grid.innerHTML = '';
+
+      if (!rows.length){
+        grid.innerHTML = '<p style="opacity:.85">No presidents found.</p>';
+        return;
+      }
+
+      const normalized = rows.map(normalizeRow);
+      const ordered = sortPresidents(normalized);
+
+      ordered.forEach((r, i)=>{
+        const isFeatured = (i === 0); // first = current (featured on desktop)
+        grid.insertAdjacentHTML('beforeend', cardHTML(r, isFeatured));
+      });
+
+      // Flip controls
+      grid.addEventListener('click', (e)=>{
+        const btn = e.target.closest('.flip-btn');
+        if (!btn) return;
+        const card = btn.closest('.card');
+        card.classList.toggle('is-flipped');
+      });
+    }
+
+    // ====== Load data with clear error reporting ======
+    ;(async function(){
+      const grid = document.getElementById('cards');
+      try{
+        const bust = Date.now();
+        const res = await fetch(`${EXEC_URL}?v=${bust}`, { cache: 'no-store' });
+
+        const raw = await res.text();
+        console.log('Exec RAW (first 300):', raw.slice(0,300));
+
+        let data;
+        try { data = JSON.parse(raw); }
+        catch (e) { throw new Error('Bad JSON from exec: ' + e.message); }
+
+        const rows = Array.isArray(data)
+          ? data
+          : (data.presidents || data.rows || data.data || []);
+
+        if (!Array.isArray(rows)) throw new Error('No array found at data.presidents / data.rows / data.data');
+
+        console.log('Parsed rows length:', rows.length);
+        mountCards(rows);
+      }catch(err){
+        console.error('Failed to load presidents:', err);
+        grid.innerHTML = '<p style="opacity:.85">Couldn’t load presidents: ' + (err?.message || String(err)) + '</p>';
+      }
+    })();
+  </script>
+</body>
+</html>
