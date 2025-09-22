@@ -22,6 +22,7 @@
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap:24px;
       align-items:start;
+      min-height:120px;
     }
 
     /* Card + flip skeleton */
@@ -148,7 +149,7 @@
     const EXEC_URL = 'https://script.google.com/macros/s/AKfycbyuU12nPaJKJkjf7xHs_CCURUPxlrG0hTKyoYQQhgC3BZGq40rKJCSiBZWBOY1m2xWW/exec';
     const SITE_DEFAULT_LANG = 'en';
 
-    // ====== Helpers ======
+    // ====== Language helpers ======
     const langPref = (() => {
       const stored = localStorage.getItem('wos_lang');
       if (stored) return stored;
@@ -156,67 +157,59 @@
       return nav.toLowerCase().slice(0,2);
     })();
 
+    // Support bio-es and bio_es; pick preferred -> site default -> any
     function pickBio(row, preferred) {
       const keys = Object.keys(row);
-      const bioKeys = keys.filter(k => /^bio-/.test(k) && row[k] && String(row[k]).trim().length);
-      if (!bioKeys.length) return ''; // nothing to show
-      const byCode = Object.fromEntries(bioKeys.map(k => [k.slice(4).toLowerCase(), row[k]]));
-      // Try preferred -> site default -> any
+      const bioKeys = keys.filter(k =>
+        /^bio[-_][a-z]{2}$/i.test(k) && row[k] && String(row[k]).trim().length
+      );
+      if (!bioKeys.length) return '';
+      const byCode = Object.fromEntries(
+        bioKeys.map(k => [k.split(/[-_]/)[1].toLowerCase(), row[k]])
+      );
       if (byCode[preferred]) return byCode[preferred];
       if (byCode[SITE_DEFAULT_LANG]) return byCode[SITE_DEFAULT_LANG];
-      const any = Object.values(byCode)[0];
-      return any || '';
+      return Object.values(byCode)[0] || '';
     }
 
+    // Date parsing for ordering
     function toDate(val){
-      // Accept ISO, dd.mm.yyyy, mm/dd/yyyy, or plain text "present"
       if (!val) return null;
       const v = String(val).trim();
-      if (!v || /present|now/i.test(v)) return new Date(8640000000000000); // far future for sorting
-      // Try native Date parse first
+      if (!v || /present|now/i.test(v)) return new Date(8640000000000000); // far future
       const d1 = new Date(v);
       if (!isNaN(d1)) return d1;
-      // dd.mm.yyyy
       const m = v.match(/^(\d{1,2})[.\-\/](\d{1,2})[.\-\/](\d{4})$/);
-      if (m){
-        const [_, d, mo, y]=m;
-        return new Date(Number(y), Number(mo)-1, Number(d));
-      }
-      return null; // unknown; will sort by input order later
+      if (m){ const [_, d, mo, y]=m; return new Date(+y, +mo-1, +d); }
+      return null;
     }
 
     function normalizeRow(r, idx){
-      const start = toDate(r.term_start);
-      return {
-        ...r,
-        __index: idx,
-        __start: start
-      };
+      return { ...r, __index: idx, __start: toDate(r.term_start) };
     }
 
     function sortPresidents(rows){
-      // 1) current first (there should be exactly one)
-      // 2) newest -> oldest by term_start (missing dates fall back to input order desc)
-      const current = rows.find(r => String(r.is_current).toLowerCase() === 'true' || String(r.draft).toLowerCase() === 'true');
+      const isCur = r => String(r.is_current).toLowerCase()==='true' || String(r.draft).toLowerCase()==='true';
+      const current = rows.find(isCur);
       const others = rows.filter(r => r !== current);
       others.sort((a,b)=>{
-        const as = a.__start, bs = b.__start;
+        const as=a.__start, bs=b.__start;
         if (as && bs) return bs - as;
         if (as && !bs) return -1;
         if (!as && bs) return 1;
-        // both missing: reverse input order (newest appended last)
-        return b.__index - a.__index;
+        return b.__index - a.__index; // reverse input order
       });
       return current ? [current, ...others] : others;
     }
 
     function allianceColor(r){
-      // Prefer explicit color from sheet; otherwise map by alliance name; fallback to red used in your sample
       if (r.accent_color) return r.accent_color;
-      const a = (r.alliance || '').toLowerCase();
+      const raw = r.alliance_name ?? r.alliance ?? '';
+      const a = String(raw).toLowerCase().trim();
       const map = {
+        'out of order':'#9b1c31', 'ooo':'#9b1c31',
+        'whales':'#2b6cc0', 'whl':'#2b6cc0',
         'havoc':'#c0392b',
-        'out of order':'#9b1c31',
         'jst':'#2b6cc0',
         'nwo':'#2c7a7b',
         'snk':'#b7791f',
@@ -227,93 +220,4 @@
 
     function cardHTML(r, isFeatured){
       const ally = allianceColor(r);
-      const name = r.name || r.id || 'Unknown';
-      const title = r.short_title || '';
-      const alliance = r.alliance || r.alliance_name || '';
-      const termStart = r.term_start || '';
-      const termEnd = r.term_end || '';
-      const img = r.portrait || r.portrait_url || '/assets/presidents/placeholder.png';
-      const isCurrent = String(r.is_current).toLowerCase() === 'true' || String(r.draft).toLowerCase() === 'true';
-      const bio = pickBio(r, langPref);
-      const ariaFront = `${name}, President of State 2128`;
-      const currentRibbon = isCurrent ? `<div class="ribbon" aria-hidden="true">CURRENT PRESIDENT</div>` : '';
-
-      return `
-      <article class="card ${isFeatured?'featured':''} ${isCurrent?'current':''}" style="--ally:${ally}" data-id="${r.id||''}">
-        <div class="flip">
-          <div class="face front" aria-label="${ariaFront}">
-            ${isCurrent ? '<div class="glow" aria-hidden="true"></div>' : ''}
-            <div class="img" role="img" style="background-image:url('${img}')"></div>
-            ${currentRibbon}
-            <div class="grad" aria-hidden="true"></div>
-            <div class="plaque">
-              <div class="name">${name.toUpperCase()}</div>
-              <div class="meta">
-                ${alliance ? `<span class="badge"><span class="dot"></span> ${alliance}</span> • ` : ''}
-                ${title ? `${title} • ` : ''}
-                Term: ${termStart || '—'} ${termEnd ? `– ${termEnd}` : ''}
-              </div>
-            </div>
-            <div class="controls"><button class="btn flip-btn" aria-label="Flip card to read bio">Flip</button></div>
-          </div>
-          <div class="face back" aria-hidden="true">
-            <div class="controls"><button class="btn flip-btn" aria-label="Flip card to front">Front</button></div>
-            <h3>${name}</h3>
-            <div class="term">${alliance ? `${alliance} • ` : ''}${title ? `${title} • ` : ''}Term: ${termStart || '—'} ${termEnd ? `– ${termEnd}` : ''}</div>
-            <div class="scroll"><p>${bio || '<em>(No bio available in your language — showing default.)</em>'}</p></div>
-          </div>
-        </div>
-      </article>`;
-    }
-
-    function mountCards(rows){
-      const grid = document.getElementById('cards');
-      grid.innerHTML = '';
-
-      if (!rows.length){
-        grid.innerHTML = '<p style="opacity:.85">No presidents found.</p>';
-        return;
-      }
-
-      const normalized = rows.map(normalizeRow);
-      const ordered = sortPresidents(normalized);
-
-      ordered.forEach((r, i)=>{
-        const isFeatured = (i === 0); // first = current (featured on desktop)
-        grid.insertAdjacentHTML('beforeend', cardHTML(r, isFeatured));
-      });
-
-      // Flip controls
-      grid.addEventListener('click', (e)=>{
-        const btn = e.target.closest('.flip-btn');
-        if (!btn) return;
-        const card = btn.closest('.card');
-        card.classList.toggle('is-flipped');
-      });
-
-      // Keyboard support: Enter/Space on flip button handled by browser default (button)
-    }
-
-    // ====== Load data ======
-    ;(async function(){
-      try{
-        const bust = Date.now(); // short cache-buster so Sheet edits appear
-        const res = await fetch(`${EXEC_URL}?v=${bust}`);
-        const data = await res.json();
-
-        // Accept array directly or common wrapped shapes (yours = { presidents:[...] })
-        const rows = Array.isArray(data)
-          ? data
-          : (data.presidents || data.rows || data.data || []);
-        console.log('Exec payload:', data, 'rows length:', rows.length);
-
-        mountCards(rows);
-      }catch(err){
-        console.error('Failed to load presidents:', err);
-        const grid = document.getElementById('cards');
-        grid.innerHTML = '<p style="opacity:.85">Couldn’t load presidents right now.</p>';
-      }
-    })();
-  </script>
-</body>
-</html>
+      const name =
