@@ -85,13 +85,13 @@
     .back h3{margin:0 0 .25rem; font-size:1rem; letter-spacing:.3px}
     .back .term{opacity:.85; font-size:.9rem; margin-bottom:.5rem}
     .back .scroll{
-      position:relative; flex:1; overflow:auto; padding-right:8px; /* room for scrollbar */
+      position:relative; flex:1; overflow:auto; padding-right:8px;
       mask-image: linear-gradient(180deg, rgba(0,0,0,1) 85%, rgba(0,0,0,0));
       -webkit-mask-image: linear-gradient(180deg, rgba(0,0,0,1) 85%, rgba(0,0,0,0));
     }
     .back .scroll p{margin:0; white-space:pre-wrap; line-height:1.55}
 
-    /* Flip control */
+    /* Flip control (hidden on hover devices) */
     .controls{
       position:absolute; top:10px; right:10px; z-index:3;
       display:flex; gap:8px;
@@ -106,6 +106,12 @@
     /* Featured current card = 2x2 on desktop only */
     @media (min-width: 1024px){
       .card.featured{ grid-column: span 2; grid-row: span 2; }
+    }
+
+    /* Hover-to-flip on devices that actually have hover (desktop/laptop) */
+    @media (hover: hover) and (pointer: fine) {
+      .card:hover .flip { transform: rotateY(180deg); }
+      .card .controls { display:none; }
     }
 
     .note{ margin-top:20px; font-size:14px; opacity:.8; text-align:center; }
@@ -150,11 +156,17 @@
     const SITE_DEFAULT_LANG = 'en';
 
     // ====== Language helpers ======
+    function getQueryLang() {
+      const p = new URLSearchParams(location.search).get('lang');
+      return p ? p.toLowerCase().slice(0,2) : null;
+    }
     const langPref = (() => {
+      const q = getQueryLang();
+      if (q) { localStorage.setItem('wos_lang', q); return q; }
       const stored = localStorage.getItem('wos_lang');
       if (stored) return stored;
       const nav = navigator.language || navigator.userLanguage || 'en';
-      return nav.toLowerCase().slice(0,2);
+      return (nav || 'en').toLowerCase().slice(0,2);
     })();
 
     // Support bio-es and bio_es; pick preferred -> site default -> any
@@ -197,7 +209,7 @@
         if (as && bs) return bs - as;
         if (as && !bs) return -1;
         if (!as && bs) return 1;
-        return b.__index - a.__index; // reverse input order
+        return b.__index - a.__index;
       });
       return current ? [current, ...others] : others;
     }
@@ -276,13 +288,15 @@
         grid.insertAdjacentHTML('beforeend', cardHTML(r, isFeatured));
       });
 
-      // Flip controls
-      grid.addEventListener('click', (e)=>{
-        const btn = e.target.closest('.flip-btn');
-        if (!btn) return;
-        const card = btn.closest('.card');
-        card.classList.toggle('is-flipped');
-      });
+      // Flip controls for touch devices only
+      if (window.matchMedia('(hover: none)').matches) {
+        grid.addEventListener('click', (e)=>{
+          const btn = e.target.closest('.flip-btn');
+          if (!btn) return;
+          const card = btn.closest('.card');
+          card.classList.toggle('is-flipped');
+        });
+      }
     }
 
     // ====== Load data with clear error reporting ======
