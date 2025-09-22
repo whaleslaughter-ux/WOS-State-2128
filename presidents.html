@@ -88,6 +88,9 @@
     .back .term{opacity:.9; font-size:.95rem; margin-bottom:.6rem}
     .back .scroll{
       position:relative; flex:1; overflow:auto; padding-right:8px;
+      /* no fade by default; JS toggles .faded when not at bottom */
+    }
+    .back .scroll.faded{
       mask-image: linear-gradient(180deg, rgba(0,0,0,1) 85%, rgba(0,0,0,0));
       -webkit-mask-image: linear-gradient(180deg, rgba(0,0,0,1) 85%, rgba(0,0,0,0));
     }
@@ -161,6 +164,10 @@
       const p = new URLSearchParams(location.search).get('lang');
       return p ? p.toLowerCase().slice(0,2) : null;
     }
+    (function maybeResetLang(){
+      const reset = new URLSearchParams(location.search).get('langreset');
+      if (reset) localStorage.removeItem('wos_lang');
+    })();
     const langPref = (() => {
       const q = getQueryLang();
       if (q) { localStorage.setItem('wos_lang', q); return q; }
@@ -170,31 +177,27 @@
       return (nav || 'en').toLowerCase().slice(0,2);
     })();
 
- // ====== Bio picker: preferred -> English -> site default -> first non-empty
-function pickBio(row, preferred) {
-  const entries = Object.entries(row).filter(([k,v]) =>
-    /^bio([-_][a-z]{2})?$/i.test(String(k).trim()) && v && String(v).trim().length
-  );
-  if (!entries.length) return '';
-
-  const map = {};
-  for (const [rawKey, v] of entries){
-    const k = String(rawKey).trim().toLowerCase();
-    if (k === 'bio' || k === 'bio-en' || k === 'bio_en') {
-      map['en'] = String(v).trim(); // treat plain "bio" as English
-    } else {
-      const code = k.split(/[-_]/)[1];
-      if (code) map[code] = String(v).trim();
+    // ====== Bio picker: preferred -> English -> site default -> any
+    function pickBio(row, preferred) {
+      const entries = Object.entries(row).filter(([k,v]) =>
+        /^bio([-_][a-z]{2})?$/i.test(String(k).trim()) && v && String(v).trim().length
+      );
+      if (!entries.length) return '';
+      const map = {};
+      for (const [rawKey, v] of entries){
+        const k = String(rawKey).trim().toLowerCase();
+        if (k === 'bio' || k === 'bio-en' || k === 'bio_en') {
+          map['en'] = String(v).trim(); // treat plain "bio" as English
+        } else {
+          const code = k.split(/[-_]/)[1];
+          if (code) map[code] = String(v).trim();
+        }
+      }
+      if (preferred && map[preferred]) return map[preferred];
+      if (map['en']) return map['en'];
+      if (map[SITE_DEFAULT_LANG]) return map[SITE_DEFAULT_LANG];
+      return Object.values(map)[0] || '';
     }
-  }
-
-  // Order: preferred -> English -> site default -> any
-  if (preferred && map[preferred]) return map[preferred];
-  if (map['en']) return map['en'];
-  if (map[SITE_DEFAULT_LANG]) return map[SITE_DEFAULT_LANG];
-  return Object.values(map)[0] || '';
-}
-
 
     // ====== Dates: parse + format
     function toDate(val){
@@ -236,23 +239,14 @@ function pickBio(row, preferred) {
       return current ? [current, ...others] : others;
     }
 
-    // ====== Alliance color (robust + fallback)
+    // ====== Alliance color (robust + palette)
     function normalizeAllianceKey(raw){
       const s = String(raw ?? '').toLowerCase();
-      // letters only; collapse spaces/dashes; take code-like forms too
       return s.replace(/[^a-z]/g,'');
-    }
-    function hashColor(key){
-      // deterministic pleasant HSL -> CSS color string
-      let h=0; for (let i=0;i<key.length;i++){ h = (h*31 + key.charCodeAt(i))>>>0; }
-      const hue = h % 360;
-      const s = 65, l = 45;
-      return `hsl(${hue}deg ${s}% ${l}%)`;
     }
     function allianceColor(r){
       if (r.accent_color) return r.accent_color;
       const key = normalizeAllianceKey(r.alliance_name ?? r.alliance ?? '');
-      // Known palette (codes and names)
       const M = {
         // Codes
         whl:'#2B6CC0', ooo:'#9B1C31', hav:'#FF8C00', nwo:'#2C7A7B', snk:'#B7791F',
@@ -270,11 +264,8 @@ function pickBio(row, preferred) {
         dwr:'#0EA5E9',
         caramba:'#D97706'
       };
-      // Try first 3 letters as code too
       const code3 = key.slice(0,3);
-      return M[key] || M[code3] || '#9B1C31' /* default */ ;
-      // If you want a generated fallback instead of default crimson, swap to:
-      // return M[key] || M[code3] || hashColor(key || 'ally');
+      return M[key] || M[code3] || '#9B1C31';
     }
 
     function cardHTML(r, isFeatured){
@@ -344,6 +335,16 @@ function pickBio(row, preferred) {
           card.classList.toggle('is-flipped');
         });
       }
+
+      // Fade that auto-disappears at bottom
+      document.querySelectorAll('.back .scroll').forEach(el => {
+        const checkFade = () => {
+          const atBottom = el.scrollTop + el.clientHeight >= el.scrollHeight - 2;
+          el.classList.toggle('faded', !atBottom);
+        };
+        checkFade(); // on mount
+        el.addEventListener('scroll', checkFade);
+      });
     }
 
     // ====== Load data (clear error reporting) ======
