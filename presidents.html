@@ -16,15 +16,47 @@
     header h1{margin:0 0 .4rem; font-size:clamp(1.4rem,1.8vw + 1rem,2.2rem); letter-spacing:.5px; text-transform:uppercase}
     header p.sub{margin:.25rem 0 0; opacity:.9}
 
-    .grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap:24px; }
+    /* Grid */
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap:24px;
+      align-items:start;
+    }
 
-    /* Card */
+    /* Card + flip skeleton */
     :root{ --gold:#d4b06a; }
-    .card{ --ally:#9b1c31; position:relative; width:100%; aspect-ratio:2/3; border-radius:18px; overflow:hidden;
-           background:#0f1633; border:3px solid var(--ally); box-shadow:0 16px 30px rgba(0,0,0,.45); }
-    .card::before{ content:""; position:absolute; inset:0; border-radius:14px; margin:4px;
-                   box-shadow: inset 0 0 0 3px rgba(212,176,106,.8); pointer-events:none; }
-    .img{ position:absolute; inset:0; background:url('/assets/presidents/prezhilltop.png') center/cover no-repeat; }
+    .card{
+      --ally:#9b1c31;
+      position:relative;
+      width:100%;
+      aspect-ratio:2/3;
+      border-radius:18px;
+      perspective: 1200px;
+    }
+    .flip{
+      position:relative; inset:0;
+      width:100%; height:100%;
+      transform-style: preserve-3d;
+      transition: transform .8s cubic-bezier(.2,.7,.2,1);
+      border-radius:18px;
+      box-shadow:0 16px 30px rgba(0,0,0,.45);
+    }
+    .card.is-flipped .flip{ transform: rotateY(180deg); }
+
+    .face{
+      position:absolute; inset:0;
+      border-radius:18px; overflow:hidden;
+      backface-visibility:hidden;
+      background:#0f1633; border:3px solid var(--ally);
+    }
+    .face::before{
+      content:""; position:absolute; inset:0; border-radius:14px; margin:4px;
+      box-shadow: inset 0 0 0 3px rgba(212,176,106,.8); pointer-events:none;
+    }
+
+    /* Front */
+    .front .img{ position:absolute; inset:0; background:#0b1030 center/cover no-repeat; }
     .grad{ position:absolute; left:0; right:0; bottom:0; height:38%;
            background:linear-gradient(180deg, rgba(0,0,0,0), rgba(0,0,0,.6) 35%, rgba(0,0,0,.82)); }
     .ribbon{ position:absolute; top:12px; left:50%; transform:translateX(-50%); padding:6px 10px;
@@ -43,6 +75,38 @@
     .badge{ display:inline-flex; align-items:center; gap:6px; font-weight:700; }
     .badge .dot{ width:8px; height:8px; border-radius:50%; background:var(--ally); box-shadow:0 0 8px var(--ally); }
 
+    /* Back */
+    .back{
+      transform: rotateY(180deg);
+      display:flex; flex-direction:column; padding:16px;
+      background:linear-gradient(180deg, #11183a, #0f1532 70%);
+    }
+    .back h3{margin:0 0 .25rem; font-size:1rem; letter-spacing:.3px}
+    .back .term{opacity:.85; font-size:.9rem; margin-bottom:.5rem}
+    .back .scroll{
+      position:relative; flex:1; overflow:auto; padding-right:8px; /* room for scrollbar */
+      mask-image: linear-gradient(180deg, rgba(0,0,0,1) 85%, rgba(0,0,0,0));
+      -webkit-mask-image: linear-gradient(180deg, rgba(0,0,0,1) 85%, rgba(0,0,0,0));
+    }
+    .back .scroll p{margin:0; white-space:pre-wrap; line-height:1.55}
+
+    /* Flip control */
+    .controls{
+      position:absolute; top:10px; right:10px; z-index:3;
+      display:flex; gap:8px;
+    }
+    .btn{
+      appearance:none; border:1px solid rgba(255,255,255,.25); background:rgba(8,12,32,.5);
+      color:#fff; border-radius:10px; padding:6px 10px; font-weight:700; font-size:12px;
+      cursor:pointer;
+    }
+    .btn:focus-visible{ outline:2px solid #a5b4ff; outline-offset:2px; }
+
+    /* Featured current card = 2x2 on desktop only */
+    @media (min-width: 1024px){
+      .card.featured{ grid-column: span 2; grid-row: span 2; }
+    }
+
     .note{ margin-top:20px; font-size:14px; opacity:.8; text-align:center; }
     a{color:#a5b4ff;text-decoration:underline} a:hover{color:#fff;text-decoration:none}
   </style>
@@ -52,45 +116,198 @@
   <div id="nav-placeholder"></div>
   <script>
     fetch('/nav.html').then(r=>r.text()).then(h=>{
-      document.getElementById('nav-placeholder').innerHTML=h
+      document.getElementById('nav-placeholder').innerHTML=h;
     });
   </script>
 
   <main class="pwrap" id="main">
     <header>
       <h1>Presidents of State 2128</h1>
-      <p class="sub">Rotating presidency chosen by alliance councils. Current president is highlighted. All text is live (translatable) and layered on top of the portrait.</p>
+      <p class="sub">Rotating presidency chosen by alliance councils. Current president is featured. Flip any card to read the bio in your language.</p>
     </header>
 
-    <section class="grid" aria-label="Presidential portraits">
-      <!-- Current President -->
-      <article class="card current" style="--ally:#9b1c31" aria-label="Hilltop, President of State 2128">
-        <div class="glow" aria-hidden="true"></div>
-        <div class="img" role="img" aria-label="Official portrait of Whaleslaughter standing at the presidential desk"></div>
-        <div class="ribbon">CURRENT PRESIDENT</div>
-        <div class="grad" aria-hidden="true"></div>
-        <div class="plaque">
-          <div class="name">HILLTOP</div>
-          <div class="meta">
-            <span class="badge"><span class="dot"></span> Out of Order</span> • 15th President • Term: 14.09.2128 – 27.09.2128
-          </div>
-        </div>
-      </article>
-      <!-- Duplicate <article class="card"> blocks here for past presidents -->
-    </section>
+    <section class="grid" aria-label="Presidential portraits" id="cards"></section>
 
     <p class="note">
-      To add a president: duplicate the <code>.card</code>, set <code>--ally</code> to the alliance color, update the portrait path if needed,
-      and edit the text. Keep text out of images for translation.
+      Content loads from our live sheet. Add rows (or new <code>bio-xx</code> columns) in Google Sheets — no redeploy needed.
     </p>
   </main>
 
   <!-- shared footer -->
   <div id="footer-placeholder"></div>
   <script>
-    fetch('/footer.html')
-      .then(r => r.text())
-      .then(html => { document.getElementById('footer-placeholder').innerHTML = html; });
+    fetch('/footer.html').then(r=>r.text()).then(html=>{
+      document.getElementById('footer-placeholder').innerHTML = html;
+    });
+  </script>
+
+  <script>
+    // ====== Config ======
+    const EXEC_URL = 'YOUR_EXEC_URL_HERE'; // <-- replace with your Apps Script exec URL
+    const SITE_DEFAULT_LANG = 'en';
+
+    // ====== Helpers ======
+    const langPref = (() => {
+      const stored = localStorage.getItem('wos_lang');
+      if (stored) return stored;
+      const nav = navigator.language || navigator.userLanguage || 'en';
+      return nav.toLowerCase().slice(0,2);
+    })();
+
+    function pickBio(row, preferred) {
+      const keys = Object.keys(row);
+      const bioKeys = keys.filter(k => /^bio-/.test(k) && row[k] && String(row[k]).trim().length);
+      if (!bioKeys.length) return ''; // nothing to show
+      const byCode = Object.fromEntries(bioKeys.map(k => [k.slice(4).toLowerCase(), row[k]]));
+      // Try preferred -> site default -> any
+      if (byCode[preferred]) return byCode[preferred];
+      if (byCode[SITE_DEFAULT_LANG]) return byCode[SITE_DEFAULT_LANG];
+      const any = Object.values(byCode)[0];
+      return any || '';
+    }
+
+    function toDate(val){
+      // Accept ISO, dd.mm.yyyy, mm/dd/yyyy, or plain text "present"
+      if (!val) return null;
+      const v = String(val).trim();
+      if (!v || /present|now/i.test(v)) return new Date(8640000000000000); // far future for sorting
+      // Try native Date parse first
+      const d1 = new Date(v);
+      if (!isNaN(d1)) return d1;
+      // dd.mm.yyyy
+      const m = v.match(/^(\d{1,2})[.\-\/](\d{1,2})[.\-\/](\d{4})$/);
+      if (m){
+        const [_, d, mo, y]=m;
+        return new Date(Number(y), Number(mo)-1, Number(d));
+      }
+      return null; // unknown; will sort by input order later
+    }
+
+    function normalizeRow(r, idx){
+      const start = toDate(r.term_start);
+      return {
+        ...r,
+        __index: idx,
+        __start: start
+      };
+    }
+
+    function sortPresidents(rows){
+      // 1) current first (there should be exactly one)
+      // 2) newest -> oldest by term_start (missing dates fall back to input order desc)
+      const current = rows.find(r => String(r.is_current).toLowerCase() === 'true' || String(r.draft).toLowerCase() === 'true');
+      const others = rows.filter(r => r !== current);
+      others.sort((a,b)=>{
+        const as = a.__start, bs = b.__start;
+        if (as && bs) return bs - as;
+        if (as && !bs) return -1;
+        if (!as && bs) return 1;
+        // both missing: reverse input order (newest appended last)
+        return b.__index - a.__index;
+      });
+      return current ? [current, ...others] : others;
+    }
+
+    function allianceColor(r){
+      // Prefer explicit color from sheet; otherwise map by alliance name; fallback to red used in your sample
+      if (r.accent_color) return r.accent_color;
+      const a = (r.alliance || '').toLowerCase();
+      const map = {
+        'havoc':'#c0392b',
+        'out of order':'#9b1c31',
+        'jst':'#2b6cc0',
+        'nwo':'#2c7a7b',
+        'snk':'#b7791f',
+        'europa':'#6b46c1'
+      };
+      return map[a] || '#9b1c31';
+    }
+
+    function cardHTML(r, isFeatured){
+      const ally = allianceColor(r);
+      const name = r.name || r.id || 'Unknown';
+      const title = r.short_title || '';
+      const alliance = r.alliance || '';
+      const termStart = r.term_start || '';
+      const termEnd = r.term_end || '';
+      const img = r.portrait_url || '/assets/presidents/placeholder.png';
+      const isCurrent = String(r.is_current).toLowerCase() === 'true' || String(r.draft).toLowerCase() === 'true';
+      const bio = pickBio(r, langPref);
+      const ariaFront = `${name}, President of State 2128`;
+      const currentRibbon = isCurrent ? `<div class="ribbon" aria-hidden="true">CURRENT PRESIDENT</div>` : '';
+
+      return `
+      <article class="card ${isFeatured?'featured':''} ${isCurrent?'current':''}" style="--ally:${ally}" data-id="${r.id||''}">
+        <div class="flip">
+          <div class="face front" aria-label="${ariaFront}">
+            ${isCurrent ? '<div class="glow" aria-hidden="true"></div>' : ''}
+            <div class="img" role="img" style="background-image:url('${img}')"></div>
+            ${currentRibbon}
+            <div class="grad" aria-hidden="true"></div>
+            <div class="plaque">
+              <div class="name">${name.toUpperCase()}</div>
+              <div class="meta">
+                ${alliance ? `<span class="badge"><span class="dot"></span> ${alliance}</span> • ` : ''}
+                ${title ? `${title} • ` : ''}
+                Term: ${termStart || '—'} ${termEnd ? `– ${termEnd}` : ''}
+              </div>
+            </div>
+            <div class="controls"><button class="btn flip-btn" aria-label="Flip card to read bio">Flip</button></div>
+          </div>
+          <div class="face back" aria-hidden="true">
+            <div class="controls"><button class="btn flip-btn" aria-label="Flip card to front">Front</button></div>
+            <h3>${name}</h3>
+            <div class="term">${alliance ? `${alliance} • ` : ''}${title ? `${title} • ` : ''}Term: ${termStart || '—'} ${termEnd ? `– ${termEnd}` : ''}</div>
+            <div class="scroll"><p>${bio || '<em>(No bio available in your language — showing default.)</em>'}</p></div>
+          </div>
+        </div>
+      </article>`;
+    }
+
+    function mountCards(rows){
+      const grid = document.getElementById('cards');
+      grid.innerHTML = '';
+
+      if (!rows.length){
+        grid.innerHTML = '<p style="opacity:.85">No presidents found.</p>';
+        return;
+      }
+
+      const normalized = rows.map(normalizeRow);
+      const ordered = sortPresidents(normalized);
+
+      ordered.forEach((r, i)=>{
+        const isFeatured = (i === 0); // first = current (featured on desktop)
+        grid.insertAdjacentHTML('beforeend', cardHTML(r, isFeatured));
+      });
+
+      // Flip controls
+      grid.addEventListener('click', (e)=>{
+        const btn = e.target.closest('.flip-btn');
+        if (!btn) return;
+        const card = btn.closest('.card');
+        card.classList.toggle('is-flipped');
+      });
+
+      // Keyboard support: Enter/Space on flip button handled by browser default (button)
+    }
+
+    // ====== Load data ======
+    ;(async function(){
+      try{
+        const bust = Date.now(); // short cache-buster so Sheet edits appear
+        const res = await fetch(`${EXEC_URL}?v=${bust}`);
+        const data = await res.json();
+
+        // Expecting either {rows:[...]} or just [...]
+        const rows = Array.isArray(data) ? data : (data.rows || []);
+        mountCards(rows);
+      }catch(err){
+        console.error('Failed to load presidents:', err);
+        const grid = document.getElementById('cards');
+        grid.innerHTML = '<p style="opacity:.85">Couldn’t load presidents right now.</p>';
+      }
+    })();
   </script>
 </body>
 </html>
