@@ -6,11 +6,20 @@
   <title>Presidents of State 2128 — WOS</title>
   <style>
     *{box-sizing:border-box}
+    /* Font stacks: Latin + Arabic-friendly */
+    :root{
+      --font-latin: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Inter, Roboto, "Noto Sans", Arial;
+      --font-ar: "Noto Naskh Arabic", "Amiri", "Cairo", "IBM Plex Arabic", "Geeza Pro", var(--font-latin);
+      --gold:#d4b06a;
+    }
+    html{ color-scheme: dark light; }
     body{
       margin:0; color:#eef2ff;
-      font:16px/1.6 ui-sans-serif,system-ui,-apple-system,Segoe UI,Inter,Roboto,"Noto Sans",Arial;
+      font:16px/1.6 var(--font-latin);
       background: radial-gradient(1100px 560px at 50% -10%, #1a2147 0%, #0b1030 42%, #060915 100%);
     }
+    body.rtl{ font-family: var(--font-ar); }
+
     .pwrap{ max-width:1000px; margin:0 auto; padding:40px 20px; }
     header{text-align:center; margin-bottom:1.25rem}
     header h1{margin:0 0 .4rem; font-size:clamp(1.4rem,1.8vw + 1rem,2.2rem); letter-spacing:.5px; text-transform:uppercase}
@@ -24,8 +33,6 @@
       align-items:start;
       min-height:120px;
     }
-
-    :root{ --gold:#d4b06a; }
 
     /* Card + flip skeleton */
     .card{
@@ -67,7 +74,7 @@
     .glow{ position:absolute; inset:-6px; border-radius:22px; pointer-events:none;
            box-shadow:0 0 36px 12px rgba(255,0,0,.35); }
 
-    /* Plaque: larger, clearer */
+    /* Plaque */
     .plaque{ position:absolute; left:50%; bottom:14px; transform:translateX(-50%); text-align:center;
              min-width:70%; padding:12px 16px; border-radius:14px;
              background:linear-gradient(180deg, rgba(212,176,106,.95), rgba(138,100,40,.98));
@@ -77,6 +84,7 @@
     .plaque .meta{ margin-top:4px; font-size:clamp(.88rem, 0.4vw + .8rem, 1rem); opacity:.96; }
     .badge{ display:inline-flex; align-items:center; gap:6px; font-weight:700; }
     .badge .dot{ width:8px; height:8px; border-radius:50%; background:var(--ally); box-shadow:0 0 8px var(--ally); }
+    body.rtl .badge{ flex-direction: row-reverse; }
 
     /* Back face */
     .back{
@@ -86,9 +94,9 @@
     }
     .back h3{margin:0 0 .25rem; font-size:1.05rem; letter-spacing:.3px}
     .back .term{opacity:.9; font-size:.95rem; margin-bottom:.6rem}
+    body.rtl .back h3, body.rtl .back .term, body.rtl .back .scroll p{ text-align:right; }
     .back .scroll{
-      position:relative; flex:1; overflow:auto; padding-right:8px;
-      /* no fade by default; JS toggles .faded when not at bottom */
+      position:relative; flex:1; overflow:auto; padding-right:8px; /* JS toggles .faded */
     }
     .back .scroll.faded{
       mask-image: linear-gradient(180deg, rgba(0,0,0,1) 85%, rgba(0,0,0,0));
@@ -159,7 +167,7 @@
     const EXEC_URL = 'https://script.google.com/macros/s/AKfycbyuU12nPaJKJkjf7xHs_CCURUPxlrG0hTKyoYQQhgC3BZGq40rKJCSiBZWBOY1m2xWW/exec';
     const SITE_DEFAULT_LANG = 'en';
 
-    // ====== Language helpers ======
+    // ====== Language + RTL helpers ======
     function getQueryLang() {
       const p = new URLSearchParams(location.search).get('lang');
       return p ? p.toLowerCase().slice(0,2) : null;
@@ -176,6 +184,10 @@
       const nav = navigator.language || navigator.userLanguage || 'en';
       return (nav || 'en').toLowerCase().slice(0,2);
     })();
+    const isRTL = (langPref === 'ar');
+    document.documentElement.setAttribute('dir', isRTL ? 'rtl' : 'ltr');
+    document.documentElement.lang = langPref || 'en';
+    document.body.classList.toggle('rtl', isRTL);
 
     // ====== Bio picker: preferred -> English -> site default -> any
     function pickBio(row, preferred) {
@@ -199,7 +211,27 @@
       return Object.values(map)[0] || '';
     }
 
-    // ====== Dates: parse + format
+    // ====== Dates: locale-aware, with Arabic “Present”
+    function niceDate(val){
+      if (!val) return '—';
+      if (/present|now/i.test(String(val))) return (langPref==='ar' ? 'حتى الآن' : 'Present');
+      const d = new Date(val);
+      if (isNaN(d)) return String(val);
+      try{
+        const opts = { day:'2-digit', month:'2-digit', year:'numeric' };
+        // Keep western numerals for readability; remove numberingSystem to use Arabic-Indic digits
+        const locale = langPref === 'ar' ? 'ar' : langPref;
+        const fmt = new Intl.DateTimeFormat(locale, { ...opts, numberingSystem: 'latn' });
+        return fmt.format(d);
+      }catch(_){
+        const dd = String(d.getDate()).padStart(2,'0');
+        const mm = String(d.getMonth()+1).padStart(2,'0');
+        const yyyy = d.getFullYear();
+        return `${dd}.${mm}.${yyyy}`;
+      }
+    }
+
+    // ====== Ordering
     function toDate(val){
       if (!val) return null;
       const v = String(val).trim();
@@ -210,18 +242,6 @@
       if (m){ const [_, d, mo, y]=m; return new Date(+y, +mo-1, +d); }
       return null;
     }
-    function niceDate(val){
-      if (!val) return '—';
-      if (/present|now/i.test(String(val))) return 'Present';
-      const d = new Date(val);
-      if (isNaN(d)) return String(val);
-      const dd = String(d.getDate()).padStart(2,'0');
-      const mm = String(d.getMonth()+1).padStart(2,'0');
-      const yyyy = d.getFullYear();
-      return `${dd}.${mm}.${yyyy}`;
-    }
-
-    // ====== Ordering
     function normalizeRow(r, idx){
       return { ...r, __index: idx, __start: toDate(r.term_start) };
     }
@@ -279,7 +299,8 @@
       const isCurrent = String(r.is_current).toLowerCase()==='true' || String(r.draft).toLowerCase()==='true';
       const bio = pickBio(r, langPref);
       const ariaFront = `${name}, President of State 2128`;
-      const currentRibbon = isCurrent ? `<div class="ribbon" aria-hidden="true">CURRENT PRESIDENT</div>` : '';
+      const currentRibbon = isCurrent ? `<div class="ribbon" aria-hidden="true">${langPref==='ar' ? 'الرئيس الحالي' : 'CURRENT PRESIDENT'}</div>` : '';
+      const termLabel = (langPref==='ar' ? 'المدة' : 'Term');
 
       return `
       <article class="card ${isFeatured?'featured':''} ${isCurrent?'current':''}" style="--ally:${ally}" data-id="${r.id||''}">
@@ -294,16 +315,16 @@
               <div class="meta">
                 ${allianceLabel ? `<span class="badge"><span class="dot"></span> ${allianceLabel}</span> • ` : ''}
                 ${title ? `${title} • ` : ''}
-                Term: ${termStart} ${termEnd ? `– ${termEnd}` : ''}
+                ${termLabel}: ${termStart} ${termEnd ? `– ${termEnd}` : ''}
               </div>
             </div>
-            <div class="controls"><button class="btn flip-btn" aria-label="Flip card to read bio">Flip</button></div>
+            <div class="controls"><button class="btn flip-btn" aria-label="${langPref==='ar' ? 'اقلب البطاقة لقراءة النبذة' : 'Flip card to read bio'}">${langPref==='ar' ? 'اقلب' : 'Flip'}</button></div>
           </div>
           <div class="face back" aria-hidden="true">
-            <div class="controls"><button class="btn flip-btn" aria-label="Flip card to front">Front</button></div>
+            <div class="controls"><button class="btn flip-btn" aria-label="${langPref==='ar' ? 'العودة إلى الواجهة' : 'Flip card to front'}">${langPref==='ar' ? 'الواجهة' : 'Front'}</button></div>
             <h3>${name}</h3>
-            <div class="term">${allianceLabel ? `${allianceLabel} • ` : ''}${title ? `${title} • ` : ''}Term: ${termStart} ${termEnd ? `– ${termEnd}` : ''}</div>
-            <div class="scroll"><p>${bio || '<em>(No bio available in your language — showing default.)</em>'}</p></div>
+            <div class="term">${allianceLabel ? `${allianceLabel} • ` : ''}${title ? `${title} • ` : ''}${termLabel}: ${termStart} ${termEnd ? `– ${termEnd}` : ''}</div>
+            <div class="scroll"><p>${bio || (langPref==='ar' ? '<em>(لا توجد نبذة متاحة بلغتك — يتم عرض الافتراضية.)</em>' : '<em>(No bio available in your language — showing default.)</em>')}</p></div>
           </div>
         </div>
       </article>`;
@@ -314,7 +335,7 @@
       grid.innerHTML = '';
 
       if (!rows.length){
-        grid.innerHTML = '<p style="opacity:.85">No presidents found.</p>';
+        grid.innerHTML = `<p style="opacity:.85">${langPref==='ar' ? 'لم يتم العثور على رؤساء.' : 'No presidents found.'}</p>`;
         return;
       }
 
@@ -347,7 +368,7 @@
       });
     }
 
-    // ====== Load data (clear error reporting) ======
+    // ====== Load data ======
     ;(async function(){
       const grid = document.getElementById('cards');
       try{
@@ -371,7 +392,7 @@
         mountCards(rows);
       }catch(err){
         console.error('Failed to load presidents:', err);
-        grid.innerHTML = '<p style="opacity:.85">Couldn’t load presidents: ' + (err?.message || String(err)) + '</p>';
+        grid.innerHTML = `<p style="opacity:.85">${langPref==='ar' ? 'تعذر تحميل الرؤساء: ' : 'Couldn’t load presidents: '}${err?.message || String(err)}</p>`;
       }
     })();
   </script>
