@@ -85,30 +85,48 @@
   </script>
 
   <!-- Carousel Script --> 
-  <script>
-    const slides = [
-      {src:"/assets/alliances/alliance-havoc.png",caption:"HAVOC"},
-      {src:"/assets/alliances/alliance-justice.png",caption:"Justice"},
-      {src:"/assets/alliances/alliance-out-of-order.png",caption:"Out of Order"},
-      {src:"/assets/alliances/alliance-new-world-order.png",caption:"New World Order"},
-      {src:"/assets/alliances/alliance-300.png",caption:"300"},
-      {src:"/assets/alliances/alliance-guardians.png",caption:"Guardians"},
-      {src:"/assets/alliance/alliance-eternal-frost.png",caption:"Eternal Frost"},
-      {src:"/assets/alliances/alliance-snack-kingdom.png",caption:"Snack Kingdom"}
-    ];
-    let idx=0;
-    const carousel=document.getElementById('alliance-carousel');
-    const img=carousel.querySelector('img');
-    const caption=carousel.querySelector('.caption');
-    function showSlide(i){
-      idx=(i+slides.length)%slides.length;
-      img.src=slides[idx].src;
-      img.alt=slides[idx].caption+" Alliance";
-      caption.textContent=slides[idx].caption;
-    }
-    carousel.querySelector('.prev').onclick=()=>showSlide(idx-1);
-    carousel.querySelector('.next').onclick=()=>showSlide(idx+1);
-    setInterval(()=>showSlide(idx+1),5000);
-  </script>
+ <script>
+  const slides = [
+    {src:"/assets/alliances/alliance-havoc.png",caption:"HAVOC"},
+    {src:"/assets/alliances/alliance-justice.png",caption:"Justice"},
+    {src:"/assets/alliances/alliance-out-of-order.png",caption:"Out of Order"},
+    {src:"/assets/alliances/alliance-new-world-order.png",caption:"New World Order"},
+    {src:"/assets/alliances/alliance-300.png",caption:"300"},
+    {src:"/assets/alliances/alliance-guardians.png",caption:"Guardians"},
+    {src:"/assets/alliances/alliance-eternal-frost.png",caption:"Eternal Frost"},
+    {src:"/assets/alliances/alliance-snack-kingdom.png",caption:"Snack Kingdom"}
+  ];
+
+  const placeholder = {
+    src: "/assets/alliances/placeholder.png", 
+    caption: "Whaleslaughter says: Upload your damn alliance art."
+  };
+
+  let idx=0;
+  const carousel=document.getElementById('alliance-carousel');
+  const img=carousel.querySelector('img');
+  const caption=carousel.querySelector('.caption');
+
+  function showSlide(i){
+    idx=(i+slides.length)%slides.length;
+    const {src, caption:cap} = slides[idx];
+    img.src=src;
+    img.alt=cap+" Alliance";
+    caption.textContent=cap;
+  }
+
+  // If an image fails, swap in the snarky placeholder
+  img.onerror = () => {
+    console.warn("Missing image:", slides[idx].src, "— dropping in placeholder.");
+    img.src = placeholder.src;
+    img.alt = "Missing alliance art";
+    caption.textContent = placeholder.caption;
+  };
+
+  carousel.querySelector('.prev').onclick=()=>showSlide(idx-1);
+  carousel.querySelector('.next').onclick=()=>showSlide(idx+1);
+  setInterval(()=>showSlide(idx+1),5000);
+</script>
+
 </body>
 </html>
