@@ -311,13 +311,13 @@
             ${currentRibbon}
             <div class="grad" aria-hidden="true"></div>
             <div class="plaque">
-              <div class="name">${name.toUpperCase()}</div>
-              <div class="meta">
-                ${allianceLabel ? `<span class="badge"><span class="dot"></span> ${allianceLabel}</span> • ` : ''}
-                ${title ? `${title} • ` : ''}
-                ${termLabel}: ${termStart} ${termEnd ? `– ${termEnd}` : ''}
-              </div>
-            </div>
+  <div class="name">${name.toUpperCase()}</div>
+  <div class="meta">
+    ${allianceLabel ? `${allianceLabel}` : ''}
+    <br>
+    ${termLabel}: ${termStart} ${termEnd ? `– ${termEnd}` : ''}
+  </div>
+</div>
             <div class="controls"><button class="btn flip-btn" aria-label="${langPref==='ar' ? 'اقلب البطاقة لقراءة النبذة' : 'Flip card to read bio'}">${langPref==='ar' ? 'اقلب' : 'Flip'}</button></div>
           </div>
           <div class="face back" aria-hidden="true">
