@@ -323,7 +323,8 @@
           <div class="face back" aria-hidden="true">
             <div class="controls"><button class="btn flip-btn" aria-label="${langPref==='ar' ? 'العودة إلى الواجهة' : 'Flip card to front'}">${langPref==='ar' ? 'الواجهة' : 'Front'}</button></div>
             <h3>${name}</h3>
-            <div class="term">${allianceLabel ? `${allianceLabel} • ` : ''}${title ? `${title} • ` : ''}${termLabel}: ${termStart} ${termEnd ? `– ${termEnd}` : ''}</div>
+            <div class="term">${allianceLabel ? `${allianceLabel} • ` : ''}${title ? `${title} • ` : ''}
+            <br>${termLabel}: ${termStart} ${termEnd ? `– ${termEnd}` : ''}</div>
             <div class="scroll"><p>${bio || (langPref==='ar' ? '<em>(لا توجد نبذة متاحة بلغتك — يتم عرض الافتراضية.)</em>' : '<em>(No bio available in your language — showing default.)</em>')}</p></div>
           </div>
         </div>
