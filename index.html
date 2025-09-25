@@ -43,6 +43,18 @@
       font-size:1.1rem;list-style:none;padding:0;
     }
     .quicklinks li{display:flex;align-items:center;gap:6px}
+
+    /* Lightweight promo banner */
+    .promo{
+      margin:24px 0 0;
+      padding:14px 16px;
+      border-radius:12px;
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(0,0,0,.25));
+      box-shadow:0 6px 18px rgba(0,0,0,.35);
+      border:1px solid rgba(255,255,255,.06);
+    }
+    .promo h2{margin:0 0 6px 0;font-size:1.2rem}
+    .promo p{margin:0;color:var(--muted)}
   </style>
 </head>
 <body>
@@ -60,6 +72,18 @@
       <p>Hub for alliance news, lore, guides, and strategy. Collaborators: add anything you like, from stories to tips.</p>
     </header>
 
+    <!-- Quicklinks row -->
+    <ul class="quicklinks">
+      <li>🔥 <a href="/events/bia.html">Brothers in Arms — Event Hub</a></li>
+      <li>🎵 <a href="https://suno.com/s/F7DKbcbeRxnpaiI0" target="_blank" rel="noopener">Anthem: Brothers in Arms (Suno)</a></li>
+    </ul>
+
+    <!-- Optional tiny promo under quicklinks -->
+    <div class="promo">
+      <h2>Next Brothers in Arms Window</h2>
+      <p>Starts <strong>Sept 26, 2025 00:00 UTC</strong> • Ends <strong>Sept 28, 2025 23:59 UTC</strong> — see details on the <a href="/events/bia.html">event hub</a>.</p>
+    </div>
+
     <!-- Alliance Carousel -->
     <div class="carousel" id="alliance-carousel">
       <img src="/assets/alliances/alliance-havoc.png" alt="HAVOC Alliance" />
@@ -67,8 +91,7 @@
       <button class="prev" aria-label="Previous">&#10094;</button>
       <button class="next" aria-label="Next">&#10095;</button>
     </div>
-
- 
+  </div>
 
   <!-- shared footer -->
   <div id="footer-placeholder"></div>
@@ -79,48 +102,48 @@
   </script>
 
   <!-- Carousel Script --> 
- <script>
-  const slides = [
-    {src:"/assets/alliances/alliance-havoc-2.png",caption:"HAVOC"},
-    {src:"/assets/alliances/alliance-justice.png",caption:"Justice"}, 
-    {src:"/assets/alliances/alliance-new-world-order.png",caption:"New World Order"},
-    {src:"/assets/alliances/alliance-out-of-order.png",caption:"Out of Order"},
-    {src:"/assets/alliances/alliance-300.png",caption:"300"},
-    {src:"/assets/alliances/alliance-guardians.png",caption:"Guardians"},
-    {src:"/assets/alliances/alliance-eternal-frost.png",caption:"Eternal Frost"},
-    {src:"/assets/alliances/alliance-snack-kingdom.png",caption:"Snack Kingdom"}
-  ];
+  <script>
+    const slides = [
+      {src:"/assets/alliances/alliance-havoc-2.png",caption:"HAVOC"},
+      {src:"/assets/alliances/alliance-justice.png",caption:"Justice"}, 
+      {src:"/assets/alliances/alliance-new-world-order.png",caption:"New World Order"},
+      {src:"/assets/alliances/alliance-out-of-order.png",caption:"Out of Order"},
+      {src:"/assets/alliances/alliance-300.png",caption:"300"},
+      {src:"/assets/alliances/alliance-guardians.png",caption:"Guardians"},
+      {src:"/assets/alliances/alliance-eternal-frost.png",caption:"Eternal Frost"},
+      {src:"/assets/alliances/alliance-snack-kingdom.png",caption:"Snack Kingdom"}
+    ];
 
-  const placeholder = {
-    src: "/assets/alliances/placeholder.png", 
-    caption: "Whaleslaughter says: Upload your damn alliance art."
-  };
+    const placeholder = {
+      src: "/assets/alliances/placeholder.png", 
+      caption: "Whaleslaughter says: Upload your damn alliance art."
+    };
 
-  let idx=0;
-  const carousel=document.getElementById('alliance-carousel');
-  const img=carousel.querySelector('img');
-  const caption=carousel.querySelector('.caption');
+    let idx=0;
+    const carousel=document.getElementById('alliance-carousel');
+    const img=carousel.querySelector('img');
+    const caption=carousel.querySelector('.caption');
 
-  function showSlide(i){
-    idx=(i+slides.length)%slides.length;
-    const {src, caption:cap} = slides[idx];
-    img.src=src;
-    img.alt=cap+" Alliance";
-    caption.textContent=cap;
-  }
+    function showSlide(i){
+      idx=(i+slides.length)%slides.length;
+      const {src, caption:cap} = slides[idx];
+      img.src=src;
+      img.alt=cap+" Alliance";
+      caption.textContent=cap;
+    }
 
-  // If an image fails, swap in the snarky placeholder
-  img.onerror = () => {
-    console.warn("Missing image:", slides[idx].src, "— dropping in placeholder.");
-    img.src = placeholder.src;
-    img.alt = "Missing alliance art";
-    caption.textContent = placeholder.caption;
-  };
+    // If an image fails, swap in the snarky placeholder
+    img.onerror = () => {
+      console.warn("Missing image:", slides[idx].src, "— dropping in placeholder.");
+      img.src = placeholder.src;
+      img.alt = "Missing alliance art";
+      caption.textContent = placeholder.caption;
+    };
 
-  carousel.querySelector('.prev').onclick=()=>showSlide(idx-1);
-  carousel.querySelector('.next').onclick=()=>showSlide(idx+1);
-  setInterval(()=>showSlide(idx+1),5000);
-</script>
+    carousel.querySelector('.prev').onclick=()=>showSlide(idx-1);
+    carousel.querySelector('.next').onclick=()=>showSlide(idx+1);
+    setInterval(()=>showSlide(idx+1),5000);
+  </script>
 
 </body>
 </html>
