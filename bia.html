@@ -202,7 +202,13 @@ const PERIOD_MS = 28 * 24 * 60 * 60 * 1000;
     // =============================
     const news = [
       
- {
+{
+  date: new Date().toISOString().slice(0,10),
+  title: 'SULTAN STRIKES BACK ON TILES',
+  img: '/assets/bia/sultan-tiles.png',
+  blurb: 'This month Sultan went after gathering tiles fully reinforced — clearly still feeling the burn after Whaleslaughter set his city ablaze last month. Catty von Catacean reporting.'
+},
+      {
   date: new Date().toISOString().slice(0,10),
   title: 'CATTY VON CATACEAN CLAWS OUT — HAVOC BARES IT ALL',
   img: '/assets/bia/havoc-no-shields.png',
