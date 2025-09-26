@@ -48,11 +48,39 @@
 <body>
   <!-- Your global site header is injected above this file -->
 
-  <!-- Edge-to-edge event header -->
-  <section class="bia-hero" aria-label="Brothers in Arms banner">
-    <div class="bia-hero-inner">
-      <h1 class="bia-title">BROTHERS IN ARMS</h1>
-      <div class="bia-tag">Shields first, tears later.</div>
+
+<!-- Edge-to-edge event header -->
+<section class="bia-hero" aria-label="Brothers in Arms banner">
+  <div class="bia-hero-inner">
+    <h1 class="bia-title">BROTHERS IN ARMS</h1>
+    <div class="bia-tag">Shields first, tears later.</div>
+  </div>
+</section>
+
+<style>
+  .bia-hero {
+    width: 100%;
+    min-height: 260px;
+    display: grid;
+    place-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .bia-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: #0b1020 url('/assets/bia_banner_final_1920x500.png') center/cover no-repeat;
+    filter: contrast(1.05) saturate(1.02);
+  }
+  .bia-hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.55));
+  }
+</style>
+
       <!-- NOTE: Replace the background URL in .bia-hero::before with your banner art.
            Sora prompt idea (ultra-wide banner):
            Epic digital painting, panoramic banner, city burning in the distance under snowfall,
