@@ -144,12 +144,15 @@
   </script>
 
   <script>
-    // =============================
-    // Countdown logic
-    // =============================
-    const ANCHOR_START_UTC = Date.parse('2025-09-26T00:00:00Z');
-    const WINDOW_MS = (3*24*60*60*1000) - (1*60*1000); // 3 days minus 1 min
-    const PERIOD_MS = 28*24*60*60*1000;
+
+  // =============================
+// Brothers in Arms timing logic
+// =============================
+const ANCHOR_START_UTC = Date.parse('2025-09-26T00:00:00Z');
+// 2 days (48h) in ms:
+const WINDOW_MS = 2 * 24 * 60 * 60 * 1000; 
+const PERIOD_MS = 28 * 24 * 60 * 60 * 1000;
+
 
     function getCurrentWindow(now = Date.now()){
       const n = Math.floor((now - ANCHOR_START_UTC)/PERIOD_MS);
