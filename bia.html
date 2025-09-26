@@ -6,21 +6,21 @@
   <title>Brothers in Arms — HAVOC</title>
   <meta name="description" content="Brothers in Arms event hub: banner, countdown, anthem link, and news updates." />
   <style>
-    :root{--bg:#0b1020;--panel:#0f1724;--ink:#e6eef8;--muted:#9aa4b2;--a:#8b5cf6;--b:#06b6d4}
+    :root{--bg:#0b1020;--panel:#0f1724;--ink:#ffffff;--muted:#9aa4b2;--a:#8b5cf6;--b:#06b6d4}
     *{box-sizing:border-box}
     body{margin:0;background:linear-gradient(180deg,var(--bg),#08111f);color:var(--ink);font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
     .wrap{max-width:1040px;margin:0 auto;padding:20px}
 
     /* Edge-to-edge banner just below your site header */
     .bia-hero{width:100%;min-height:260px;display:grid;place-items:center;position:relative;overflow:hidden}
-    .bia-hero::before{content:"";position:absolute;inset:0;background:#0b1020 url('REPLACE_WITH_BANNER_URL.webp') center/cover no-repeat;filter:contrast(1.05) saturate(1.02)}
+    .bia-hero::before{content:"";position:absolute;inset:0;background:#0b1020 url('assets/bia_banner_final_1920x500.png') center/cover no-repeat;filter:contrast(1.05) saturate(1.02)}
     .bia-hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,.55))}
     .bia-hero-inner{position:relative;text-align:center;padding:48px 20px}
-    .bia-title{font-size:48px;line-height:1.05;margin:0 0 8px 0;letter-spacing:.3px}
+    .bia-title{font-size:48px;line-height:1.05;margin:0 0 8px 0;letter-spacing:.3px;color:#fff}
     .bia-tag{color:#dbeafe;font-weight:600}
 
     /* Panels */
-    .card{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(0,0,0,0.04));border:1px solid rgba(255,255,255,0.04);border-radius:14px;padding:18px}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(0,0,0,0.04));border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:18px;margin-top:18px}
 
     /* Countdown */
     .clock{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
@@ -35,10 +35,10 @@
 
     /* News cards (article style) */
     .news-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
-    .news-card{border:1px solid rgba(255,255,255,.04);border-radius:12px;overflow:hidden;background:rgba(255,255,255,.02)}
+    .news-card{border:1px solid rgba(255,255,255,.08);border-radius:12px;overflow:hidden;background:rgba(255,255,255,.02)}
     .news-thumb{width:100%;height:140px;object-fit:cover;display:block}
     .news-body{padding:12px}
-    .news-title{margin:0 0 6px 0;font-size:16px;font-weight:800}
+    .news-title{margin:0 0 6px 0;font-size:16px;font-weight:800;color:#fff}
     .news-date{font-size:12px;color:var(--muted)}
 
     @media(max-width:860px){.songs{grid-template-columns:1fr}}
@@ -46,52 +46,21 @@
   </style>
 </head>
 <body>
-  <!-- Your global site header is injected above this file -->
+  <!-- global nav auto-injected -->
 
-
-<!-- Edge-to-edge event header -->
-<section class="bia-hero" aria-label="Brothers in Arms banner">
-  <div class="bia-hero-inner">
-    <h1 class="bia-title">BROTHERS IN ARMS</h1>
-    <div class="bia-tag">Shields first, tears later.</div>
-  </div>
-</section>
-
-<style>
-  .bia-hero {
-    width: 100%;
-    min-height: 260px;
-    display: grid;
-    place-items: center;
-    position: relative;
-    overflow: hidden;
-  }
-  .bia-hero::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: #0b1020 url('/assets/bia_banner_final_1920x500.png') center/cover no-repeat;
-    filter: contrast(1.05) saturate(1.02);
-  }
-  .bia-hero::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.55));
-  }
-</style>
-
-      <!-- NOTE: Replace the background URL in .bia-hero::before with your banner art.
-           Sora prompt idea (ultra-wide banner):
-           Epic digital painting, panoramic banner, city burning in the distance under snowfall,
-           glowing embers mixing with swirling snow, marching silhouettes with ragged banners,
-           cold blues/greys vs orange firelight, high detail, cinematic, anamorphic ultra‑wide, header image. -->
- 
+  <!-- Edge-to-edge event header -->
+  <section class="bia-hero" aria-label="Brothers in Arms banner">
+    <div class="bia-hero-inner">
+      <h1 class="bia-title">BROTHERS IN ARMS</h1>
+      <div class="bia-tag">Shields first, tears later.</div>
+    </div>
+  </section>
 
   <main class="wrap" role="main">
 
     <!-- Countdown / Status -->
     <section class="card" aria-labelledby="clock-h">
+      <h2 id="clock-h">Countdown</h2>
       <div class="clock">
         <div>
           <div id="event-status" class="status">Calculating…</div>
@@ -107,8 +76,8 @@
     </section>
 
     <!-- Music / Anthem -->
-    <section class="card" aria-labelledby="music-h" style="margin-top:14px">
-      <h2 id="music-h" style="margin:0 0 10px 0">Anthem & Songs</h2>
+    <section class="card" aria-labelledby="music-h">
+      <h2 id="music-h">Anthem & Songs</h2>
       <div class="songs">
         <div>
           <a class="song-link" href="https://suno.com/s/F7DKbcbeRxnpaiI0" target="_blank" rel="noopener">▶ Play: Brothers in Arms (Suno)</a>
@@ -117,46 +86,35 @@
         <div>
           <ul style="margin:0;padding-left:18px">
             <li><strong>Flag at Dawn (edit)</strong> — placeholder</li>
-            <li><strong>Shield‑Shame Mix</strong> — placeholder</li>
+            <li><strong>Shield-Shame Mix</strong> — placeholder</li>
           </ul>
         </div>
       </div>
     </section>
 
     <!-- News / Battle Updates -->
-    <section class="card" aria-labelledby="news-h" style="margin-top:14px">
-      <h2 id="news-h" style="margin:0 0 10px 0">News & Battle Updates</h2>
+    <section class="card" aria-labelledby="news-h">
+      <h2 id="news-h">News & Battle Updates</h2>
       <div id="news" class="news-grid"></div>
     </section>
   </main>
 
-  <!-- Your global site footer is injected below this file -->
+  <!-- global footer auto-injected -->
 
   <script>
     // =============================
     // Brothers in Arms timing logic
     // =============================
-    // Given: First upcoming window
-    //   Start: 2025-09-26 00:00 UTC
-    //   End:   2025-09-28 23:59 UTC
-    // Recurs every 28 days (period = 28d)
-
     const ANCHOR_START_UTC = Date.parse('2025-09-26T00:00:00Z');
-    const WINDOW_MS = (3*24*60*60*1000) - (1*60*1000); // 3 days minus 1 minute → end at :59
+    const WINDOW_MS = (3*24*60*60*1000) - (1*60*1000); // 3 days minus 1 minute
     const PERIOD_MS = 28*24*60*60*1000;
 
     function getCurrentWindow(now = Date.now()){
-      // Find the most recent window start at/after anchor
       const n = Math.floor((now - ANCHOR_START_UTC)/PERIOD_MS);
       const prevStart = ANCHOR_START_UTC + Math.max(n,0)*PERIOD_MS;
       const prevEnd   = prevStart + WINDOW_MS;
-      if (now < prevStart){
-        // We're before the first computed window → use this as "next"
-        return { start: prevStart, end: prevEnd, state: 'before' };
-      }
-      if (now >= prevStart && now <= prevEnd){
-        return { start: prevStart, end: prevEnd, state: 'live' };
-      }
+      if (now < prevStart){ return { start: prevStart, end: prevEnd, state: 'before' }; }
+      if (now >= prevStart && now <= prevEnd){ return { start: prevStart, end: prevEnd, state: 'live' }; }
       const nextStart = prevStart + PERIOD_MS;
       const nextEnd   = nextStart + WINDOW_MS;
       return { start: nextStart, end: nextEnd, state: 'after' };
@@ -199,19 +157,18 @@
     // News (article cards)
     // =============================
     const news = [
-        {
-        date: new Date(Date.now()-86400000).toISOString().slice(0,10),
+      {
+        date: new Date(Date.now() - 86400000).toISOString().slice(0,10),
         title: 'NUT RULES UNCHANGED - BIA CONTINUES',
-       img: '/assets/bia/council.png',
-          blurb: "Council couldn't get unanimous vote to change rules!"
-      }
+        img: 'assets/bia/council.png',
+        blurb: "Council couldn't get unanimous vote to change rules!"
+      },
       {
         date: new Date().toISOString().slice(0,10),
         title: 'ETF RUNS AT FIRST SCOUT',
-        img: '/assets/bia/bia-etf1.png',
-          blurb: 'ETF Player whose name starts with P - teleported the second Whaleslaughter scouted them.'
-      },
-    
+        img: 'assets/bia/bia-etf1.png',
+        blurb: 'ETF player whose name starts with P teleported the second Whaleslaughter scouted them.'
+      }
     ];
 
     function renderNews(){
