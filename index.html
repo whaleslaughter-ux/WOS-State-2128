@@ -109,6 +109,14 @@
   <!-- News render (same format as BIA) -->
   <script>
     const news = [
+      {
+  date: new Date().toISOString().slice(0,10),
+  title: 'SEE YOU IN THE FUNNY PAPERS',
+  img: '/assets/bia/vampire-funny-papers.webp',
+  alt: 'Anime scene of Vampire lounging in his red-velvet coffin reading colorful comic strips by candlelight while a small bat hovers nearby; headline reads “See You in the Funny Papers.”',
+  blurb: 'World Chat lit up when Razorback Red took aim at Vampire, tossing words like grenades until he signed off with the immortal line, “See you in the funny papers.” Now Catty von Catacean reports that Vampire has been spotted actually reading the comics, allegedly looking for his name between Garfield and Doonesbury. Razorback Red, meanwhile, was last seen sharpening his punchlines. The newsroom anticipates casualties in the Sunday edition.'
+},
+
       { date: new Date().toISOString().slice(0,10), title: 'SNK SUFFERS WINDOW-RELATED INCIDENT', img: 'assets/bia/snkfaces.png', blurb: 'Observers report that every member of SNK’s alliance has updated their profile picture to what appears to be a close-up of someone smashing their face against a window. Analysts are unsure whether this is an artistic statement or just another bad idea from the leadership.' },
       { date: new Date().toISOString().slice(0,10), title: 'WHALES MISTAKES FIRE FOR FRIENDLY WAVE', img: 'assets/bia/saltywave.png', blurb: 'Ahmet sent a barrage of one-soldier “hi” attacks, and Whaleslaughter smiled back — until she realized he just wanted her to move. The ocean has since grown noticeably saltier.' },
       { date: new Date().toISOString().slice(0,10), title: 'Count Bubblula Joins the Zoo', img: '/assets/bia/vampire-zoo.png', blurb: 'In a shocking twist, Vampire appears to have joined the Zoo alliance — presumably to hypnotize the animals and feed on them without breaking BIA peace accords. Witnesses report a giraffe staring blankly into space and a penguin with suspicious bite marks. — <em>Catty von Catacean reporting</em>' },
