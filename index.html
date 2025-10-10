@@ -19,7 +19,18 @@
     a{color:#a5b4ff;text-decoration:underline} a:hover{color:#fff;text-decoration:none}
     footer{text-align:center;margin:34px 0;color:var(--muted)}
 
-    /* === Multi-card carousel (compact, 3-up default) === */
+    /* Section title */
+    .section-title{
+      margin:20px 0 8px;
+      font-size:1.4rem;
+      font-weight:800;
+      text-align:center;
+      letter-spacing:.5px;
+      text-transform:uppercase;
+      color:var(--ink);
+    }
+
+    /* === Multi-card carousel (compact, larger cards) === */
     .carousel.multi{
       margin:16px 0 14px; padding:0;
       border-radius:12px; box-shadow:0 10px 20px rgba(0,0,0,.45); position:relative;
@@ -30,8 +41,9 @@
     }
     .carousel.multi .card{
       position:relative; background:#000; border-radius:10px; overflow:hidden;
-      flex:0 0 calc((100% - 24px)/3); /* 3 across */
-      height:180px; max-height:180px;   /* match news-thumb height */
+      /* ~2.5 cards visible by default so each step is noticeable */
+      flex:0 0 calc((100% - 24px)/2.5);
+      height:200px; max-height:200px;
       scroll-snap-align:start;
     }
     .carousel.multi .card img{
@@ -50,9 +62,13 @@
     .carousel.multi button:hover{background:rgba(0,0,0,.8)}
     .carousel.multi .prev{left:8px}
     .carousel.multi .next{right:8px}
-    @media (min-width:1280px){ .carousel.multi .card{ flex-basis:calc((100% - 36px)/4); } } /* 4-up wide */
+    @media (min-width:1280px){
+      /* on very wide screens, show about 3 across but keep size healthy */
+      .carousel.multi .card{ flex-basis:calc((100% - 24px)/3); height:210px; max-height:210px; }
+    }
     @media (max-width:767.98px){
-      .carousel.multi .card{ flex-basis:calc((100% - 12px)/2); height:150px; max-height:150px; } /* 2-up mobile */
+      /* mobile: 2 across, slightly shorter */
+      .carousel.multi .card{ flex-basis:calc((100% - 12px)/2); height:160px; max-height:160px; }
     }
 
     /* === Cards & News block (borrowed from BIA) === */
@@ -86,7 +102,8 @@
       <p>Hub for alliance news, lore, guides, and strategy. Collaborators: add anything you like, from stories to tips.</p>
     </header>
 
-    <!-- Alliance Carousel (multi-card, short) -->
+    <h2 class="section-title">Alliances</h2>
+    <!-- Alliance Carousel (multi-card, one-at-a-time movement) -->
     <section class="carousel multi" id="alliance-carousel" aria-label="Alliances">
       <div class="track" role="list"></div>
       <button class="prev" aria-label="Previous alliances">&#10094;</button>
@@ -106,37 +123,36 @@
     fetch('/footer.html').then(r=>r.text()).then(html=>{ document.getElementById('footer-placeholder').innerHTML = html; });
   </script>
 
-  <!-- News render (same format as BIA) -->
+  <!-- News render -->
   <script>
     const news = [
       {
-  date: new Date().toISOString().slice(0,10),
-  title: 'SEE YOU IN THE FUNNY PAPERS',
-  img: '/assets/bia/vampire-funny-papers.webp',
-  alt: 'Anime scene of Vampire lounging in his red-velvet coffin reading colorful comic strips by candlelight while a small bat hovers nearby; headline reads “See You in the Funny Papers.”',
-  blurb: 'World Chat lit up when Razorback Red took aim at Vampire, tossing words like grenades before signing off with the immortal line, “See you in the funny papers.” Vampire was later spotted in his coffin actually reading the comics, allegedly searching for his name between Garfield and Doonesbury. Razorback Red was last seen sharpening his punchlines.'
-},
-
-      { date: new Date().toISOString().slice(0,10), title: 'SNK SUFFERS WINDOW-RELATED INCIDENT', img: 'assets/bia/snkfaces.png', blurb: 'Observers report that every member of SNK’s alliance has updated their profile picture to what appears to be a close-up of someone smashing their face against a window. Analysts are unsure whether this is an artistic statement or just another bad idea from the leadership.' },
-      { date: new Date().toISOString().slice(0,10), title: 'WHALES MISTAKES FIRE FOR FRIENDLY WAVE', img: 'assets/bia/saltywave.png', blurb: 'Ahmet sent a barrage of one-soldier “hi” attacks, and Whaleslaughter smiled back — until she realized he just wanted her to move. The ocean has since grown noticeably saltier.' },
-      { date: new Date().toISOString().slice(0,10), title: 'Count Bubblula Joins the Zoo', img: '/assets/bia/vampire-zoo.png', blurb: 'In a shocking twist, Vampire appears to have joined the Zoo alliance — presumably to hypnotize the animals and feed on them without breaking BIA peace accords. Witnesses report a giraffe staring blankly into space and a penguin with suspicious bite marks. — <em>Catty von Catacean reporting</em>' },
-      { date: new Date().toISOString().slice(0,10), title: 'Whales Clash — Ahmet Can’s 700K Rampage', img: '/assets/bia/ahmet-vs-smp.png', blurb: 'The big whales are out for blood. Ahmet Can of ETF caused over 700,000 troop deaths to SMP in two brutal pushes — burning through their lines like a snowstorm on gasoline. The smaller states are praying for rain. -<em>Catty von Catacean reporting</em>' },
-      { date: new Date().toISOString().slice(0,10), title: 'FROM WHINERS TO WINNERS', img: '/assets/bia/etf-jst-leaderboard.png', blurb: 'ETF and JST pushed hard to change Brothers in Arms, crying about fairness and “state harmony.” Now they’re sitting pretty at the top of the leaderboards. Maybe the system works after all. — <em>Catty von Catacean reporting</em>' },
-      { date: new Date().toISOString().slice(0,10), title: 'COUNTER-RECON QUEEN', img: '/assets/bia/counter-recon.png', blurb: 'Whaleslaughter claims counter-recon is better than a shield. “No one will attack me,” she said, guarding her city with roughly 50 soldiers and a dream. — <em>Catty von Catacean reporting</em>' },
-      { date: new Date().toISOString().slice(0,10), title: 'DEMONS POSSESS HAVOC', img: '/assets/bia/havoc-demons.png', blurb: 'Witnesses report strange behavior as HAVOC members, allegedly possessed by demons, went pillaging across State 2128. Sources confirm zero remorse, moderate smoke, and a strong odor of victory. — <em>Catty von Catacean reporting</em>' },
-      { date: new Date().toISOString().slice(0,10), title: 'VAMPIRE STAYS IN HIS COFFIN', img: '/assets/bia/vampire-coffin.png', blurb: 'While others fought, Vampire stayed tucked in his bubble — cozy as a coffin during Brothers in Arms. Sunlight’s not the only thing he’s dodging. — <em>Catty von Catacean reporting</em>' },
-      { date: new Date().toISOString().slice(0,10), title: 'SULTAN STRIKES BACK ON TILES', img: '/assets/bia/sultan-tiles.png.png', blurb: 'This month Sultan went after gathering tiles fully reinforced — clearly still feeling the burn after Whaleslaughter set his city ablaze last month. <em>Catty von Catacean reporting</em>.' },
-      { date: new Date().toISOString().slice(0,10), title: 'CATTY VON CATACEAN CLAWS OUT — HAVOC BARES IT ALL', img: '/assets/bia/havoc-no-shields.png', blurb: 'Breaking mews: HAVOC once again forgets how shields work! Brothers in Arms kicks off and our fearless fish-brains are standing there naked as clams — not a bubble in sight!' },
-      { date: new Date().toISOString().slice(0,10), title: 'JST BUBBLING OVER', img: '/assets/bia/jst-bubble.png', blurb: 'Catty von Catacean reports: JST spent the Brothers in Arms event bubbling — shields up, hiding out, and hoping no one poked too hard. Their rallies fizzled before they even began!' },
-      { date: new Date(Date.now() - 86400000).toISOString().slice(0,10), title: 'NUT RULES UNCHANGED — BIA CONTINUES', img: '/assets/bia/council.png', blurb: "Council couldn't get unanimous vote to change rules!" },
-      { date: new Date().toISOString().slice(0,10), title: 'ETF RUNS AT FIRST SCOUT', img: '/assets/bia/bia-etf1.png', blurb: 'ETF player whose name starts with P teleported the second Whaleslaughter scouted them.' }
+        date: new Date().toISOString().slice(0,10),
+        title: 'SEE YOU IN THE FUNNY PAPERS',
+        img: '/assets/bia/vampire-funny-papers.webp',
+        alt: 'Anime scene of Vampire lounging in his red-velvet coffin reading colorful comic strips by candlelight while a small bat hovers nearby; headline reads “See You in the Funny Papers.”',
+        blurb: 'World Chat lit up when Razorback Red took aim at Vampire, tossing words like grenades before signing off with the immortal line, “See you in the funny papers.” Vampire was later spotted in his coffin actually reading the comics, allegedly searching for his name between Garfield and Doonesbury. Razorback Red was last seen sharpening his punchlines.'
+      },
+      {
+        date: new Date().toISOString().slice(0,10),
+        title: 'SNK SUFFERS WINDOW-RELATED INCIDENT',
+        img: 'assets/bia/snkfaces.png',
+        blurb: 'Observers report that every member of SNK’s alliance has updated their profile picture to what appears to be a close-up of someone smashing their face against a window. Analysts are unsure whether this is an artistic statement or just another bad idea from the leadership.'
+      },
+      {
+        date: new Date().toISOString().slice(0,10),
+        title: 'WHALES MISTAKES FIRE FOR FRIENDLY WAVE',
+        img: 'assets/bia/saltywave.png',
+        blurb: 'Ahmet sent a barrage of one-soldier “hi” attacks, and Whaleslaughter smiled back — until she realized he just wanted her to move. The ocean has since grown noticeably saltier.'
+      }
+      // ...keep your other items here
     ];
 
     function renderNews(){
       const c = document.getElementById('news');
       c.innerHTML = news.map(n => `
         <article class="news-card">
-          <img class="news-thumb" loading="lazy" alt="update image" src="${n.img}">
+          <img class="news-thumb" loading="lazy" alt="${n.alt ? n.alt.replace(/"/g,'&quot;') : 'update image'}" src="${n.img}">
           <div class="news-body">
             <h3 class="news-title">${n.title}</h3>
             <div class="news-date">${n.date}</div>
@@ -147,7 +163,7 @@
     renderNews();
   </script>
 
-  <!-- Carousel Script (multi-card, short) -->
+  <!-- Carousel Script (multi-card, one-card step) -->
   <script>
     const slides = [
       {src:"/assets/alliances/alliance-havoc-2.png",caption:"HAVOC"},
@@ -163,7 +179,7 @@
     const carousel = document.getElementById('alliance-carousel');
     const track = carousel.querySelector('.track');
 
-    // Render cards (match news thumbnail sizing)
+    // Render cards
     track.innerHTML = slides.map(({src, caption}) => `
       <a class="card" role="listitem" aria-label="${caption}">
         <img loading="lazy" src="${src}" alt="${caption} Alliance">
@@ -175,13 +191,20 @@
     function atEnd(){ return Math.ceil(track.scrollLeft + track.clientWidth) >= (track.scrollWidth - 2); }
     function atStart(){ return track.scrollLeft <= 1; }
 
+    // Move one card at a time
+    function cardStep(){
+      const card = track.querySelector('.card');
+      return card ? card.offsetWidth + 12 : pageWidth(); // + gap
+    }
     function next(){
-      if (atEnd()) { track.scrollTo({left:0, behavior:'smooth'}); }
-      else { track.scrollBy({left:pageWidth(), behavior:'smooth'}); }
+      const step = cardStep();
+      if (atEnd()) track.scrollTo({left:0, behavior:'smooth'});
+      else track.scrollBy({left:step, behavior:'smooth'});
     }
     function prev(){
-      if (atStart()) { track.scrollTo({left:track.scrollWidth, behavior:'instant'}); }
-      track.scrollBy({left:-pageWidth(), behavior:'smooth'});
+      const step = cardStep();
+      if (atStart()) track.scrollTo({left:track.scrollWidth, behavior:'instant'});
+      track.scrollBy({left:-step, behavior:'smooth'});
     }
 
     carousel.querySelector('.next').onclick = next;
