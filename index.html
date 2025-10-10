@@ -53,6 +53,17 @@
 .carousel.multi button:hover{background:rgba(0,0,0,.8)}
 .carousel.multi .prev{left:8px}
 .carousel.multi .next{right:8px}
+/* tighten alliance strip height */
+.carousel.multi .card {
+  aspect-ratio: 16/9;       /* makes them shorter */
+  max-height: 180px;        /* cap height on desktop */
+}
+@media (max-width:767.98px){
+  .carousel.multi .card {
+    aspect-ratio: 4/3;      /* revert to readable ratio on small screens */
+    max-height: 140px;
+  }
+}
 
 
     /* Links in a row */
