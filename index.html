@@ -20,22 +20,40 @@
     a{color:#a5b4ff;text-decoration:underline} a:hover{color:#fff;text-decoration:none}
     footer{text-align:center;margin:34px 0;color:var(--muted)}
 
-    /* Carousel */
-    .carousel{position:relative;overflow:hidden;border-radius:12px;box-shadow:0 10px 20px rgba(0,0,0,.5);margin:40px 0;}
-    .carousel img{width:100%;display:block}
-    .carousel .caption{
-      position:absolute;bottom:0;left:0;right:0;padding:12px 16px;
-      background:linear-gradient(180deg,transparent,rgba(0,0,0,.7));
-      font-weight:700;font-size:1.1rem;text-align:center;
-    }
-    .carousel button{
-      position:absolute;top:50%;transform:translateY(-50%);
-      background:rgba(0,0,0,.5);border:none;color:#fff;font-size:1.5rem;
-      padding:8px 12px;cursor:pointer;border-radius:6px;
-    }
-    .carousel button:hover{background:rgba(0,0,0,.8)}
-    .carousel .prev{left:10px}
-    .carousel .next{right:10px}
+   /* === Multi-card carousel (Option B) === */
+.carousel.multi{margin:20px 0; padding:0; border-radius:12px; box-shadow:0 10px 20px rgba(0,0,0,.5)}
+.carousel.multi .track{
+  display:flex; gap:12px; padding:12px;
+  overflow:hidden; scroll-behavior:smooth; scroll-snap-type:x mandatory;
+}
+.carousel.multi .card{
+  position:relative; background:#000; border-radius:10px; overflow:hidden;
+  /* 3-up default */
+  flex:0 0 calc((100% - 24px)/3); /* gap*2 for 3 items */
+  aspect-ratio:4/3;               /* keeps a short strip */
+  scroll-snap-align:start;
+}
+@media (min-width:1280px){ /* 4-up on wide screens */
+  .carousel.multi .card{ flex-basis:calc((100% - 36px)/4); /* gap*3 for 4 items */ }
+}
+@media (max-width:767.98px){ /* 2-up on mobile */
+  .carousel.multi .card{ flex-basis:calc((100% - 12px)/2); /* gap*1 for 2 items */ }
+}
+.carousel.multi .card img{ width:100%; height:100%; object-fit:cover; display:block }
+.carousel.multi .label{
+  position:absolute; left:0; right:0; bottom:0; padding:8px 10px;
+  font-weight:800; text-align:center; font-size:.95rem;
+  background:linear-gradient(180deg,transparent,rgba(0,0,0,.7));
+}
+.carousel.multi button{
+  position:absolute; top:50%; transform:translateY(-50%);
+  background:rgba(0,0,0,.5); border:none; color:#fff; font-size:1.2rem;
+  padding:6px 10px; cursor:pointer; border-radius:6px; z-index:2;
+}
+.carousel.multi button:hover{background:rgba(0,0,0,.8)}
+.carousel.multi .prev{left:8px}
+.carousel.multi .next{right:8px}
+
 
     /* Links in a row */
     .quicklinks{
