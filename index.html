@@ -102,7 +102,15 @@
       <p>Hub for alliance news, lore, guides, and strategy. Collaborators: add anything you like, from stories to tips.</p>
     </header>
 
-    <h2 class="section-title">Alliances</h2>
+    <section class="card" aria-labelledby="alliances-h">
+  <h2 id="alliances-h">Alliances</h2>
+  <div class="carousel multi" id="alliance-carousel" aria-label="Alliances">
+    <div class="track" role="list"></div>
+    <button class="prev" aria-label="Previous alliances">&#10094;</button>
+    <button class="next" aria-label="Next alliances">&#10095;</button>
+  </div>
+</section>
+
     <!-- Alliance Carousel (multi-card, one-at-a-time movement) -->
     <section class="carousel multi" id="alliance-carousel" aria-label="Alliances">
       <div class="track" role="list"></div>
