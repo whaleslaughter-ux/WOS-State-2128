@@ -53,15 +53,27 @@
 .carousel.multi button:hover{background:rgba(0,0,0,.8)}
 .carousel.multi .prev{left:8px}
 .carousel.multi .next{right:8px}
-/* tighten alliance strip height */
+/* match alliance card size to news thumbnails */
 .carousel.multi .card {
-  aspect-ratio: 16/9;       /* makes them shorter */
-  max-height: 180px;        /* cap height on desktop */
+  flex:0 0 calc((100% - 24px)/3);   /* keep 3 cards across */
+  max-height:180px;                 /* match news image height */
+  height:180px;
+  background:#000;
+}
+.carousel.multi .card img{
+  width:100%;
+  height:100%;
+  object-fit:contain;               /* same as news */
+  background:#000;
+}
+@media (min-width:1280px){
+  .carousel.multi .card{ flex-basis:calc((100% - 36px)/4); }
 }
 @media (max-width:767.98px){
-  .carousel.multi .card {
-    aspect-ratio: 4/3;      /* revert to readable ratio on small screens */
-    max-height: 140px;
+  .carousel.multi .card{
+    flex-basis:calc((100% - 12px)/2);
+    max-height:150px;
+    height:150px;
   }
 }
 
