@@ -4,22 +4,19 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Brothers in Arms</title>
-  <meta name="description" content="Brothers in Arms event hub: banner, countdown, and anthem link." />
+  <meta name="description" content="Brothers in Arms event hub: banner, countdown, and lyric video." />
   <style>
     :root{--bg:#0b1020;--panel:#0f1724;--ink:#ffffff;--muted:#9aa4b2;--a:#8b5cf6;--b:#06b6d4}
     *{box-sizing:border-box}
-    body{
-      margin:0;
-      background:linear-gradient(180deg,var(--bg),#08111f);
-      color:var(--ink);
-      font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif
-    }
+    body{margin:0;background:linear-gradient(180deg,var(--bg),#08111f);color:var(--ink);
+      font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
 
-    .wrap{max-width:1040px;margin:0 auto;padding:20px}
-    @media (max-width:480px){ .wrap{padding:16px} }
+    .wrap{max-width:1040px;margin:0 auto;padding:16px 20px}
+    @media (max-width:480px){ .wrap{padding:14px 16px} }
 
-    /* Hero banner */
-    .bia-hero{width:100%;min-height:300px;display:grid;place-items:center;position:relative;overflow:hidden}
+    /* Hero (shorter, shows next section) */
+    .bia-hero{width:100%;min-height:220px;display:grid;place-items:center;position:relative;overflow:hidden}
+    @media (min-width:900px){ .bia-hero{min-height:260px} }
     .bia-hero::before{
       content:"";position:absolute;inset:0;
       background:#0b1020 url('assets/bia_banner_final_1920x500.png') center/cover no-repeat;
@@ -27,37 +24,39 @@
     }
     .bia-hero::after{
       content:"";position:absolute;inset:0;
-      background:linear-gradient(180deg,rgba(0,0,0,.35),rgba(0,0,0,.55));z-index:0
+      background:linear-gradient(180deg,rgba(0,0,0,.25),rgba(0,0,0,.6));z-index:0
     }
-    .bia-hero-inner{position:relative;z-index:1;text-align:center;padding:72px 20px 56px}
-    .bia-title{font-size:48px;margin:0 0 8px;letter-spacing:.3px;color:#fff;text-shadow:0 3px 12px rgba(0,0,0,.55)}
-    .bia-tag{color:#dbeafe;font-weight:600}
+    .bia-hero-inner{position:relative;z-index:1;text-align:center;padding:40px 20px 44px}
+    .bia-title{font-size:40px;margin:0 0 4px;letter-spacing:.3px;color:#fff;text-shadow:0 3px 12px rgba(0,0,0,.55)}
+    @media (max-width:600px){ .bia-title{font-size:32px} }
+    .bia-tag{color:#e7ecff;font-weight:700;opacity:.95}
 
     /* Panels */
     .card{
       background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(0,0,0,0.04));
       border:1px solid rgba(255,255,255,0.08);
-      border-radius:14px;padding:18px;margin-top:18px
+      border-radius:14px;padding:14px 16px;margin-top:12px
     }
+    /* Overlap the countdown slightly onto hero */
+    .card.overlap{margin-top:-20px}
 
-    /* Countdown */
-    .clock{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
-    .count{font-size:44px;font-weight:800}
-    .status{
+    /* Countdown: compact */
+    .stack{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+    .status-pill{
       padding:6px 10px;border-radius:999px;
       background:rgba(139,92,246,.18);
       border:1px solid rgba(139,92,246,.35);
-      font-weight:700
+      font-weight:800;font-size:13px;white-space:nowrap
     }
+    .timer{font-size:36px;font-weight:900;letter-spacing:.5px}
+    @media (max-width:600px){ .timer{font-size:30px} }
     .meta{color:var(--muted);font-size:13px}
+    .grow{flex:1}
 
-    /* Music */
-    .song-link{
-      display:inline-flex;align-items:center;gap:10px;font-weight:800;
-      background:linear-gradient(90deg,var(--a),var(--b));
-      color:#021124;padding:10px 14px;border-radius:10px;text-decoration:none
-    }
-    .song-note{font-size:12px;color:var(--muted)}
+    /* Video */
+    .video-wrap{height:0; padding-bottom:56.25%; position:relative; width:100%;}
+    .video-wrap iframe{position:absolute; inset:0; width:100%; height:100%; border:0}
+    h2{margin:6px 0 10px; font-size:20px}
   </style>
 </head>
 <body>
@@ -76,39 +75,31 @@
   </section>
 
   <main class="wrap" role="main">
-    <!-- Countdown -->
-    <section class="card" aria-labelledby="clock-h">
+    <!-- Countdown / Status (overlaps hero) -->
+    <section class="card overlap" aria-labelledby="clock-h">
       <h2 id="clock-h">Countdown</h2>
-      <div class="clock">
-        <div>
-          <div id="event-status" class="status">Calculating…</div>
-          <div id="count" class="count">--:--:--</div>
-          <div id="when-local" class="meta"></div>
-          <div id="when-utc" class="meta"></div>
-        </div>
-        <div style="flex:1;min-width:260px">
-          <p class="meta"><strong>Window:</strong> Starts <span id="startPretty">—</span> • Ends <span id="endPretty">—</span></p>
-          <p class="meta">Repeats every 28 days on the same UTC cycle.</p>
-        </div>
+      <div class="stack">
+        <span id="status-pill" class="status-pill">Checking…</span>
+        <div id="count" class="timer">--:--:--</div>
+        <div class="grow"></div>
+        <div class="meta" id="when-line"></div>
       </div>
+      <div class="meta" style="margin-top:6px;">Repeats every 28 days (UTC cycle).</div>
     </section>
 
-    <!-- Lyric Video -->
+    <!-- Lyric Video (should be visible above the fold now) -->
     <section class="card" aria-labelledby="video-h">
       <h2 id="video-h">Brothers in Arms — Official Lyric Video</h2>
-      <div style="height:0; padding-bottom:56.25%; position:relative; width:100%;">
+      <div class="video-wrap">
         <iframe
           allow="autoplay; gyroscope;"
           allowfullscreen
-          height="100%"
           referrerpolicy="strict-origin"
           src="https://www.kapwing.com/e/68d6233528114e6adc9c918d"
-          style="border:0; height:100%; left:0; overflow:hidden; position:absolute; top:0; width:100%;"
-          title="Brothers in Arms Lyric Video"
-          width="100%">
+          title="Brothers in Arms Lyric Video">
         </iframe>
       </div>
-      <p class="meta" style="text-align:right;">Video edited on <a href="https://www.kapwing.com/video-editor" target="_blank" rel="noopener">Kapwing</a></p>
+      <p class="meta" style="text-align:right;margin-top:6px;">Video edited on <a href="https://www.kapwing.com/video-editor" target="_blank" rel="noopener">Kapwing</a></p>
     </section>
   </main>
 
@@ -117,53 +108,50 @@
   <script>
     fetch('footer.html').then(r=>r.text()).then(h=>{ document.getElementById('footer-placeholder').innerHTML=h; });
 
-    // Countdown script
-    const ANCHOR_START_UTC = Date.parse('2025-09-26T00:00:00Z');
-    const WINDOW_MS = 2 * 24 * 60 * 60 * 1000; 
-    const PERIOD_MS = 28 * 24 * 60 * 60 * 1000;
+    // ===== Countdown logic (recurs every 28 days) =====
+    const ANCHOR_START_UTC = Date.parse('2025-09-26T00:00:00Z');   // anchor for the cycle
+    const WINDOW_MS = 2 * 24 * 60 * 60 * 1000;                      // 48 hours
+    const PERIOD_MS = 28 * 24 * 60 * 60 * 1000;                      // 28 days
 
-    function getCurrentWindow(now = Date.now()){
+    function windowFor(now = Date.now()){
       const n = Math.floor((now - ANCHOR_START_UTC)/PERIOD_MS);
-      const prevStart = ANCHOR_START_UTC + Math.max(n,0)*PERIOD_MS;
-      const prevEnd   = prevStart + WINDOW_MS;
-      if (now < prevStart) return { start: prevStart, end: prevEnd, state: 'before' };
-      if (now >= prevStart && now <= prevEnd) return { start: prevStart, end: prevEnd, state: 'live' };
-      const nextStart = prevStart + PERIOD_MS;
-      const nextEnd   = nextStart + WINDOW_MS;
-      return { start: nextStart, end: nextEnd, state: 'after' };
+      const base = ANCHOR_START_UTC + Math.max(n,0)*PERIOD_MS;
+      const start = base;
+      const end = base + WINDOW_MS;
+      if (now < start) return {state:'before', start, end};
+      if (now <= end)  return {state:'live',   start, end};
+      const nextStart = base + PERIOD_MS;
+      return {state:'after', start: nextStart, end: nextStart + WINDOW_MS};
     }
 
-    function fmtLocal(ts){ return new Date(ts).toLocaleString(); }
-    function fmtUTC(ts){ return new Date(ts).toISOString().replace('T',' ').replace(':00.000Z',' UTC'); }
-
+    const $pill  = document.getElementById('status-pill');
     const $count = document.getElementById('count');
-    const $status= document.getElementById('event-status');
-    const $whenL = document.getElementById('when-local');
-    const $whenU = document.getElementById('when-utc');
-    const $sp = document.getElementById('startPretty');
-    const $ep = document.getElementById('endPretty');
+    const $when  = document.getElementById('when-line');
+
+    function fmtHMS(ms){
+      const s = Math.floor(ms/1000);
+      const h = Math.floor(s/3600);
+      const m = Math.floor((s%3600)/60);
+      const ss= s%60;
+      return `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(ss).padStart(2,'0')}`;
+    }
+    const fmtLocal = ts => new Date(ts).toLocaleString();
+    const fmtUTC   = ts => new Date(ts).toISOString().replace('T',' ').replace(':00.000Z',' UTC');
 
     function tick(){
       const now = Date.now();
-      const w = getCurrentWindow(now);
-      $sp.textContent = fmtLocal(w.start);
-      $ep.textContent = fmtLocal(w.end);
-      $whenL.textContent = `Local: ${fmtLocal(w.start)} → ${fmtLocal(w.end)}`;
-      $whenU.textContent = `UTC: ${fmtUTC(w.start)} → ${fmtUTC(w.end)}`;
+      const w = windowFor(now);
 
-      let target, label;
-      if (w.state === 'live') { label = 'Event Live — time remaining'; target = w.end; }
-      else if (w.state === 'before') { label = 'Countdown to Clash'; target = w.start; }
-      else { label = 'Event Ended — next in 28 days'; target = w.start; }
-      $status.textContent = label;
+      let label, target;
+      if (w.state === 'live'){ label='LIVE WINDOW'; target = w.end; }
+      else { label='NEXT WINDOW'; target = w.start; }
 
-      const diff = Math.max(0, target - now);
-      const h = Math.floor(diff/3600000);
-      const m = Math.floor((diff%3600000)/60000);
-      const s = Math.floor((diff%60000)/1000);
-      $count.textContent = `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+      $pill.textContent = label;
+      $count.textContent = fmtHMS(Math.max(0, target - now));
+      $when.textContent = `Local: ${fmtLocal(w.start)} → ${fmtLocal(w.end)}  •  UTC: ${fmtUTC(w.start)} → ${fmtUTC(w.end)}`;
     }
-    tick(); setInterval(tick, 1000);
+    tick();
+    setInterval(tick, 1000);
   </script>
 </body>
 </html>
