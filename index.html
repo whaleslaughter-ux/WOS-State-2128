@@ -12,71 +12,75 @@
       font:16px/1.6 ui-sans-serif,system-ui,-apple-system,Segoe UI,Inter,Roboto,"Noto Sans",Arial;
       background: radial-gradient(1100px 560px at 50% -10%, var(--bg2) 0%, var(--bg1) 42%, #060915 100%);
     }
-    .wrap{max-width:1000px;margin:0 auto;padding:32px 20px}
-    header{text-align:center;margin:0 0 18px}
+    .wrap{max-width:1000px;margin:0 auto;padding:28px 20px}
+    header{text-align:center;margin:0 0 16px}
     header h1{margin:0 0 6px;font-size:clamp(26px,2.2vw,34px);letter-spacing:.3px;text-transform:uppercase}
     header p{margin:0;color:var(--muted);font-weight:600}
     a{color:#a5b4ff;text-decoration:underline} a:hover{color:#fff;text-decoration:none}
     footer{text-align:center;margin:34px 0;color:var(--muted)}
 
-    /* Section title */
-    .section-title{
-      margin:20px 0 8px;
-      font-size:1.4rem;
+    /* Reusable card wrapper (same look for Alliances & News) */
+    .card{
+      background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(0,0,0,.04));
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:14px;
+      padding:16px;
+      margin-top:16px;
+    }
+    .card h2{
+      margin:4px 0 10px;
+      font-size:1.25rem;
       font-weight:800;
-      text-align:center;
-      letter-spacing:.5px;
-      text-transform:uppercase;
-      color:var(--ink);
+      letter-spacing:.3px;
     }
 
-    /* === Multi-card carousel (compact, larger cards) === */
+    /* === Alliances carousel (single instance) === */
     .carousel.multi{
-      margin:16px 0 14px; padding:0;
-      border-radius:12px; box-shadow:0 10px 20px rgba(0,0,0,.45); position:relative;
+      position:relative;
+      border-radius:12px;
+      box-shadow:0 8px 18px rgba(0,0,0,.35);
+      overflow:hidden;
+      /* kill extra outside spacing */
+      margin:0;
     }
     .carousel.multi .track{
-      display:flex; gap:12px; padding:12px;
-      overflow:hidden; scroll-behavior:smooth; scroll-snap-type:x mandatory;
+      display:flex; gap:12px;
+      padding:12px 44px;              /* room for arrows inside the frame */
+      overflow:hidden;
+      scroll-behavior:smooth; scroll-snap-type:x mandatory;
     }
     .carousel.multi .card{
       position:relative; background:#000; border-radius:10px; overflow:hidden;
-      /* ~2.5 cards visible by default so each step is noticeable */
-      flex:0 0 calc((100% - 24px)/2.5);
+      flex:0 0 calc((100% - 24px)/2.5); /* ~2.5 visible */
       height:200px; max-height:200px;
       scroll-snap-align:start;
     }
-    .carousel.multi .card img{
-      width:100%; height:100%; object-fit:contain; background:#000; display:block;
-    }
+    .carousel.multi .card img{width:100%;height:100%;object-fit:contain;background:#000;display:block}
     .carousel.multi .label{
       position:absolute; left:0; right:0; bottom:0; padding:8px 10px;
       font-weight:800; text-align:center; font-size:.95rem;
       background:linear-gradient(180deg,transparent,rgba(0,0,0,.7));
     }
+    /* arrows neatly inside the frame */
     .carousel.multi button{
       position:absolute; top:50%; transform:translateY(-50%);
-      background:rgba(0,0,0,.5); border:none; color:#fff; font-size:1.2rem;
-      padding:6px 10px; cursor:pointer; border-radius:6px; z-index:2;
+      width:32px; height:36px; line-height:34px;
+      background:rgba(0,0,0,.55); border:1px solid rgba(255,255,255,.15);
+      border-radius:8px; color:#fff; font-size:1.1rem; cursor:pointer; z-index:2;
+      display:grid; place-items:center;
     }
     .carousel.multi button:hover{background:rgba(0,0,0,.8)}
     .carousel.multi .prev{left:8px}
     .carousel.multi .next{right:8px}
     @media (min-width:1280px){
-      /* on very wide screens, show about 3 across but keep size healthy */
-      .carousel.multi .card{ flex-basis:calc((100% - 24px)/3); height:210px; max-height:210px; }
+      .carousel.multi .card{ flex-basis:calc((100% - 24px)/3); height:210px; }
     }
     @media (max-width:767.98px){
-      /* mobile: 2 across, slightly shorter */
-      .carousel.multi .card{ flex-basis:calc((100% - 12px)/2); height:160px; max-height:160px; }
+      .carousel.multi .track{ padding:10px 44px; }
+      .carousel.multi .card{ flex-basis:calc((100% - 12px)/2); height:160px; }
     }
 
-    /* === Cards & News block (borrowed from BIA) === */
-    .card{
-      background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(0,0,0,0.04));
-      border:1px solid rgba(255,255,255,0.08);
-      border-radius:14px;padding:18px;margin-top:18px
-    }
+    /* === News grid (same as BIA) === */
     .news-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
     .news-card{border:1px solid rgba(255,255,255,.08);border-radius:12px;overflow:hidden;background:rgba(255,255,255,.02)}
     .news-thumb{
@@ -102,18 +106,17 @@
       <p>Hub for alliance news, lore, guides, and strategy. Collaborators: add anything you like, from stories to tips.</p>
     </header>
 
+    <!-- Alliances (single, tidy block) -->
     <section class="card" aria-labelledby="alliances-h">
-  <h2 id="alliances-h">Alliances</h2>
-  <div class="carousel multi" id="alliance-carousel" aria-label="Alliances">
-    <div class="track" role="list"></div>
-    <button class="prev" aria-label="Previous alliances">&#10094;</button>
-    <button class="next" aria-label="Next alliances">&#10095;</button>
-  </div>
-</section>
+      <h2 id="alliances-h">Alliances</h2>
+      <div class="carousel multi" id="alliance-carousel" aria-label="Alliances">
+        <div class="track" role="list"></div>
+        <button class="prev" aria-label="Previous alliances">&#10094;</button>
+        <button class="next" aria-label="Next alliances">&#10095;</button>
+      </div>
+    </section>
 
-
-
-    <!-- News / Battle Updates (Home) -->
+    <!-- News / Battle Updates -->
     <section class="card" aria-labelledby="news-h">
       <h2 id="news-h">News &amp; Battle Updates</h2>
       <div id="news" class="news-grid"></div>
@@ -130,25 +133,25 @@
   <script>
     const news = [
       {
-        date: new Date().toISOString().slice(0,10),
+        date: '2025-10-10',
         title: 'SEE YOU IN THE FUNNY PAPERS',
         img: '/assets/bia/vampire-funny-papers.webp',
         alt: 'Anime scene of Vampire lounging in his red-velvet coffin reading colorful comic strips by candlelight while a small bat hovers nearby; headline reads “See You in the Funny Papers.”',
         blurb: 'World Chat lit up when Razorback Red took aim at Vampire, tossing words like grenades before signing off with the immortal line, “See you in the funny papers.” Vampire was later spotted in his coffin actually reading the comics, allegedly searching for his name between Garfield and Doonesbury. Razorback Red was last seen sharpening his punchlines.'
       },
       {
-        date: new Date().toISOString().slice(0,10),
+        date: '2025-10-09',
         title: 'SNK SUFFERS WINDOW-RELATED INCIDENT',
-        img: 'assets/bia/snkfaces.png',
+        img: '/assets/bia/snkfaces.png',
         blurb: 'Observers report that every member of SNK’s alliance has updated their profile picture to what appears to be a close-up of someone smashing their face against a window. Analysts are unsure whether this is an artistic statement or just another bad idea from the leadership.'
       },
       {
-        date: new Date().toISOString().slice(0,10),
+        date: '2025-10-09',
         title: 'WHALES MISTAKES FIRE FOR FRIENDLY WAVE',
-        img: 'assets/bia/saltywave.png',
+        img: '/assets/bia/saltywave.png',
         blurb: 'Ahmet sent a barrage of one-soldier “hi” attacks, and Whaleslaughter smiled back — until she realized he just wanted her to move. The ocean has since grown noticeably saltier.'
       }
-      // ...keep your other items here
+      // ...your other items with manual dates
     ];
 
     function renderNews(){
@@ -166,16 +169,15 @@
     renderNews();
   </script>
 
-  <!-- Carousel Script (multi-card, one-card step) -->
+  <!-- Carousel Script (one-card step; no duplicate IDs) -->
   <script>
     const slides = [
-      {src:"/assets/alliances/alliance-havoc-2.png",caption:"HAVOC"},
-      {src:"/assets/alliances/alliance-justice.png",caption:"Justice"}, 
       {src:"/assets/alliances/alliance-new-world-order.png",caption:"New World Order"},
       {src:"/assets/alliances/alliance-out-of-order.png",caption:"Out of Order"},
-      {src:"/assets/alliances/alliance-300.png",caption:"300"},
       {src:"/assets/alliances/alliance-guardians.png",caption:"Guardians"},
       {src:"/assets/alliances/alliance-eternal-frost.png",caption:"Eternal Frost"},
+      {src:"/assets/alliances/alliance-300.png",caption:"300"},
+      {src:"/assets/alliances/alliance-havoc-2.png",caption:"HAVOC"},
       {src:"/assets/alliances/alliance-snack-kingdom.png",caption:"Snack Kingdom"}
     ];
 
@@ -190,14 +192,12 @@
       </a>
     `).join('');
 
-    function pageWidth(){ return track.clientWidth; }
     function atEnd(){ return Math.ceil(track.scrollLeft + track.clientWidth) >= (track.scrollWidth - 2); }
     function atStart(){ return track.scrollLeft <= 1; }
-
-    // Move one card at a time
     function cardStep(){
       const card = track.querySelector('.card');
-      return card ? card.offsetWidth + 12 : pageWidth(); // + gap
+      // 12px = gap set in CSS
+      return card ? (card.offsetWidth + 12) : track.clientWidth;
     }
     function next(){
       const step = cardStep();
@@ -223,6 +223,7 @@
     carousel.addEventListener('focusin', stopAuto);
     carousel.addEventListener('focusout', startAuto);
     window.addEventListener('resize', () => { stopAuto(); clearTimeout(resizeTimer); resizeTimer = setTimeout(startAuto, 300); });
+
     startAuto();
   </script>
 </body>
