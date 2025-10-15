@@ -6,28 +6,22 @@
   <title>Players — WOS State 2128</title>
   <style>
     :root{
-      --gold:#d4b06a;
-      --card-w:320px; --card-h:480px; --radius:18px;
+      --gold:#d4b06a; --card-w:320px; --card-h:480px; --radius:18px;
       --shadow:0 12px 30px rgba(0,0,0,.45);
       --transition: transform .8s cubic-bezier(.2,.7,.2,1), box-shadow .2s ease;
     }
     *{box-sizing:border-box}
-    body{
-      margin:0; color:#eef2ff;
-      font:16px/1.6 ui-sans-serif,system-ui,-apple-system,Segoe UI,Inter,Roboto,"Noto Sans",Arial;
-      background: radial-gradient(1100px 560px at 50% -10%, #1a2147 0%, #0b1030 42%, #060915 100%);
-    }
+    body{margin:0; color:#eef2ff; font:16px/1.6 system-ui, -apple-system, Segoe UI, Inter, Roboto, Arial;
+      background: radial-gradient(1100px 560px at 50% -10%, #1a2147 0%, #0b1030 42%, #060915 100%);}
     .wrap{max-width:1200px;margin:0 auto;padding:40px 16px}
     header{text-align:center;margin:0 0 24px}
     header h1{margin:0 0 6px;font-size:clamp(1.2rem,1.6vw + 1rem,2rem);letter-spacing:.5px;text-transform:uppercase}
     header p{margin:0;opacity:.85}
-
+    .status{margin:8px 0 18px; text-align:center; font-size:.95rem; color:#cbd5ff; opacity:.9}
     .grid{display:grid;gap:22px;grid-template-columns:repeat(auto-fit,minmax(var(--card-w),1fr));justify-items:center}
     .card-outer{perspective:1400px}
-    .card{
-      width:var(--card-w);height:var(--card-h);position:relative;transform-style:preserve-3d;
-      border-radius:var(--radius);transition:var(--transition);box-shadow:var(--shadow)
-    }
+    .card{width:var(--card-w);height:var(--card-h);position:relative;transform-style:preserve-3d;
+      border-radius:var(--radius);transition:var(--transition);box-shadow:var(--shadow)}
     .card-outer:hover .card{transform:rotateY(180deg)}
     .card-outer:focus-within .card{transform:rotateY(180deg)}
     .card:focus{outline:4px solid #88a2ff;outline-offset:6px}
@@ -37,31 +31,111 @@
       .card.is-flipped{transform:rotateY(180deg)}
     }
     .face{position:absolute;inset:0;backface-visibility:hidden;border-radius:var(--radius);overflow:hidden}
-    .front{
-      background:linear-gradient(180deg,#0e1433 0%,#0a0f24 60%,#070b1a 100%);
-      border:1px solid rgba(212,176,106,.35);
-    }
-    .front::before{
-      content:"";position:absolute;inset:12px;border-radius:calc(var(--radius) - 10px);
-      border:2px solid var(--gold);
-      box-shadow:inset 0 0 0 2px rgba(255,255,255,.06),0 0 30px rgba(212,176,106,.15);
-    }
-    .art{
-      position:absolute;inset:12px;border-radius:calc(var(--radius) - 10px);
-      background:center/cover no-repeat;outline:1px solid rgba(255,255,255,.06);
-      box-shadow:inset 0 0 40px rgba(0,0,0,.55);
-    }
-    .back{
-      transform:rotateY(180deg);
-      background:linear-gradient(180deg,#0c122f 0%,#070b1a 80%);
-      border:1px solid rgba(212,176,106,.35);
-    }
-    .back::before{
-      content:"";position:absolute;inset:12px;border-radius:calc(var(--radius) - 10px);
-      border:2px solid var(--gold);
-      box-shadow:inset 0 0 0 2px rgba(255,255,255,.06),0 0 30px rgba(212,176,106,.15);
-    }
+    .front{background:linear-gradient(180deg,#0e1433 0%,#0a0f24 60%,#070b1a 100%);border:1px solid rgba(212,176,106,.35)}
+    .front::before{content:"";position:absolute;inset:12px;border-radius:calc(var(--radius) - 10px);
+      border:2px solid var(--gold);box-shadow:inset 0 0 0 2px rgba(255,255,255,.06),0 0 30px rgba(212,176,106,.15)}
+    .art{position:absolute;inset:12px;border-radius:calc(var(--radius) - 10px);background:center/cover no-repeat;
+      outline:1px solid rgba(255,255,255,.06);box-shadow:inset 0 0 40px rgba(0,0,0,.55)}
+    .back{transform:rotateY(180deg);background:linear-gradient(180deg,#0c122f 0%,#070b1a 80%);border:1px solid rgba(212,176,106,.35)}
+    .back::before{content:"";position:absolute;inset:12px;border-radius:calc(var(--radius) - 10px);
+      border:2px solid var(--gold);box-shadow:inset 0 0 0 2px rgba(255,255,255,.06),0 0 30px rgba(212,176,106,.15)}
     .back-fill{position:absolute;inset:12px;border-radius:calc(var(--radius) - 10px);background:center/cover no-repeat}
+    .flip-btn{position:absolute;right:10px;top:10px;background:rgba(10,15,36,.6);color:#fff;border:1px solid rgba(255,255,255,.2);
+      border-radius:999px;padding:6px 10px;font-size:.8rem;backdrop-filter:blur(4px);cursor:pointer}
+    .flip-btn:focus{outline:3px solid #88a2ff}
+    .tip{color:#cbd5ff;opacity:.85;font-size:.95rem;text-align:center;margin-top:12px}
+    .sr-only{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}
+  </style>
+</head>
+<body>
+  <div id="nav-placeholder"></div>
 
-    .flip-btn{
-      position:absolute;right:10px;top:10px;background:rgba(10,15,36,
+  <div class="wrap">
+    <header>
+      <h1>WOS STATE 2128 — Player Cards</h1>
+      <p>Hover (desktop) or tap <strong>Flip</strong> (mobile / reduced-motion) to see the back.</p>
+      <div id="status" class="status">Loading cards…</div>
+    </header>
+
+    <section class="grid" aria-label="Player card gallery" id="card-grid">
+      <!-- CTA Card (always visible) -->
+      <article class="card-outer no-flip" aria-label="Get your own Player Card">
+        <div class="card noflip" style="cursor:pointer;">
+          <a href="https://forms.gle/StCbCzoMK8Fv6yAZ6" target="_blank" rel="noopener"
+             style="display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;height:100%;text-align:center;padding:30px 20px;color:#fff;text-decoration:none;">
+            <span style="font-size:1.3rem;font-weight:600;">✨ Want your own<br>Player Card?</span>
+            <span style="margin-top:12px;font-size:1rem;opacity:.9;">Click here to fill out the form</span>
+          </a>
+        </div>
+      </article>
+    </section>
+
+    <p class="tip">Tip: upload images to <code>assets/players/</code> and keep filenames lowercase.</p>
+  </div>
+
+  <div id="footer-placeholder"></div>
+
+  <noscript><p class="status">JavaScript is required to load cards.</p></noscript>
+
+  <script>
+    // Helper to set status text
+    const setStatus = (msg) => { const el = document.getElementById('status'); if (el) el.textContent = msg; };
+
+    // Load shared nav/footer safely
+    fetch('/nav.html').then(r=>r.ok?r.text():Promise.reject(r.status)).then(h=>{
+      document.getElementById('nav-placeholder').innerHTML = h;
+    }).catch(e=>console.warn('Nav load failed:', e));
+
+    fetch('/footer.html').then(r=>r.ok?r.text():Promise.reject(r.status)).then(h=>{
+      document.getElementById('footer-placeholder').innerHTML = h;
+    }).catch(e=>console.warn('Footer load failed:', e));
+
+    // Flip logic (robust)
+    document.addEventListener('click', e => {
+      const btn = e.target.closest('.flip-btn');
+      if (!btn) return;
+      const card = btn.closest('.card');
+      const flipped = card.classList.toggle('is-flipped');
+      btn.setAttribute('aria-pressed', flipped ? 'true' : 'false');
+    });
+
+    // Fetch cards JSON with hard error handling
+    (async () => {
+      try {
+        const url = 'https://script.google.com/macros/s/AKfycbybmxe-dbKeru59gp0fmiaH_j8_fofOIju_wFOCWV2SaGfd8D1KiIMxVI53uAKqbPm8/exec';
+        const res = await fetch(url, { method:'GET', headers: { 'Accept': 'application/json' }});
+        if (!res.ok) throw new Error('Feed HTTP ' + res.status);
+        const cards = await res.json();
+        if (!Array.isArray(cards)) throw new Error('Feed not an array');
+
+        const grid = document.getElementById('card-grid');
+        let count = 0;
+
+        cards.forEach(c => {
+          const name = (c.name || '').trim();
+          if (!name) return; // skip empty
+          const alt = c.alt || (name + ' card');
+          const front = c.front || 'assets/players/placeholder-front.png';
+          const back  = c.back  || 'assets/players/placeholder-back.png';
+
+          const html = `
+          <article class="card-outer" tabindex="0" aria-label="${alt.replace(/"/g,'&quot;')}">
+            <div class="card" role="img" aria-roledescription="flip card">
+              <button class="flip-btn" aria-pressed="false" aria-label="Flip card">Flip</button>
+              <div class="face front"><div class="art" style="background-image:url('${front}');"></div></div>
+              <div class="face back"><div class="back-fill" style="background-image:url('${back}');"></div></div>
+            </div>
+          </article>`;
+          grid.insertAdjacentHTML('beforeend', html);
+          count++;
+        });
+
+        setStatus(count ? `Loaded ${count} card${count>1?'s':''}.` : 'No cards yet — add a row in the sheet to test.');
+      } catch (err) {
+        console.error(err);
+        setStatus('Could not load cards. Check console for details.');
+      }
+    })();
+  </script>
+</body>
+</html>
