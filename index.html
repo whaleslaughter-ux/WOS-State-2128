@@ -637,7 +637,7 @@
     startAuto();
   </script>
 
-  <!-- Gate Script: alliance-only entry + ETF escalating 404 -->
+  <!-- Gate Script: alliance-only entry + ETF escalating 404 (shows every visit) -->
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       const overlay = document.getElementById('gate-overlay');
@@ -655,18 +655,6 @@
         '/why-are-you-like-this',
         '/stop-being-desperate'
       ];
-
-      // Skip gate for returning visitors
-      try {
-        const status = localStorage.getItem('havocPressGate');
-        if (status === 'ok') {
-          overlay.style.display = 'none';
-          overlay.setAttribute('aria-hidden', 'true');
-          return;
-        }
-      } catch (e) {
-        // ignore storage errors
-      }
 
       allianceButtons.forEach(function (btn) {
         btn.addEventListener('click', function () {
@@ -697,19 +685,13 @@
             return;
           }
 
-          // Everyone else: enter the site, remember access
+          // Everyone else: enter the site (no persistence)
           overlay.style.display = 'none';
           overlay.setAttribute('aria-hidden', 'true');
-
-          try {
-            localStorage.setItem('havocPressGate', 'ok');
-            localStorage.setItem('havocAlliance', alliance);
-          } catch (e) {
-            // ignore storage errors
-          }
         });
       });
     });
   </script>
+
 </body>
 </html>
