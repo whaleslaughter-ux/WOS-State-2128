@@ -100,9 +100,158 @@
     .news-body{padding:12px}
     .news-title{margin:0 0 6px;font-size:16px;font-weight:800;color:#fff}
     .news-date{font-size:12px;color:var(--muted)}
+
+    /* === Entry Gate Overlay === */
+    .gate-overlay{
+      position:fixed;
+      inset:0;
+      z-index:9999;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:20px;
+      background:radial-gradient(circle at top,#111827 0,#020617 55%,#000 100%);
+      color:#e5e7eb;
+    }
+    .gate-panel{
+      max-width:640px;
+      width:100%;
+      background:rgba(15,23,42,0.96);
+      border-radius:18px;
+      padding:20px 18px 16px;
+      border:1px solid rgba(148,163,184,0.5);
+      box-shadow:0 22px 60px rgba(0,0,0,0.8);
+      font-size:14px;
+    }
+    .gate-header{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      margin-bottom:10px;
+    }
+    .gate-logo{
+      width:40px;height:40px;border-radius:12px;
+      background:conic-gradient(from 160deg,#0ea5e9,#a855f7,#ec4899,#0ea5e9);
+      display:flex;align-items:center;justify-content:center;
+      font-weight:700;font-size:.9rem;
+    }
+    .gate-header h1{
+      margin:0;
+      font-size:1.05rem;
+      text-transform:uppercase;
+      letter-spacing:.1em;
+    }
+    .gate-header p{
+      margin:2px 0 0;
+      color:#9ca3af;
+      font-size:.8rem;
+    }
+    .gate-body p{margin:4px 0}
+    .gate-muted{color:#9ca3af;font-size:.85rem}
+    .gate-warning{
+      margin-top:10px;
+      padding:8px 10px;
+      border-radius:10px;
+      background:rgba(127,29,29,0.2);
+      border:1px solid rgba(248,113,113,0.7);
+      display:flex;
+      gap:8px;
+      font-size:.85rem;
+      color:#fecaca;
+    }
+    .gate-warning-icon{margin-top:1px}
+    .gate-actions{
+      margin-top:12px;
+    }
+    .gate-alliance-grid{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      margin-top:4px;
+    }
+    .gate-btn{
+      border-radius:999px;
+      padding:8px 14px;
+      border:1px solid transparent;
+      background:transparent;
+      color:#e5e7eb;
+      cursor:pointer;
+      font-size:.85rem;
+      font-weight:600;
+    }
+    .gate-btn.primary{
+      background:linear-gradient(90deg,#a855f7,#4c1d95);
+      border-color:rgba(248,250,252,0.08);
+      box-shadow:0 8px 20px rgba(15,23,42,0.9);
+    }
+    .gate-btn.ghost{
+      border-color:rgba(148,163,184,0.6);
+      color:#9ca3af;
+    }
+    .gate-btn.danger{
+      border-color:rgba(248,113,113,0.7);
+      color:#fecaca;
+    }
+    .gate-footer{
+      margin-top:10px;
+      text-align:right;
+      font-size:.75rem;
+      color:#9ca3af;
+    }
+    @media (max-width:600px){
+      .gate-panel{padding:16px 14px 12px;}
+    }
   </style>
 </head>
 <body>
+  <!-- HAVOC Press / Entry Gate -->
+  <div id="gate-overlay" class="gate-overlay" role="dialog" aria-modal="true" aria-labelledby="gate-title">
+    <div class="gate-panel">
+      <header class="gate-header">
+        <div class="gate-logo">HV</div>
+        <div>
+          <h1 id="gate-title">Enter State 2128 News</h1>
+          <p>Creative content, satire, and occasional emotional shrapnel ahead.</p>
+        </div>
+      </header>
+
+      <section class="gate-body">
+        <p>
+          This site chronicles the legends, scandals, and blizzards of State 2128.
+          It’s part satire, part history, and entirely unauthorized.
+        </p>
+
+        <div class="gate-warning">
+          <span class="gate-warning-icon" aria-hidden="true">⚠️</span>
+          <span>
+            You’re about to enter a zone of biased commentary, heroic exaggeration, and friendly propaganda.
+          </span>
+        </div>
+
+        <div class="gate-actions">
+          <p class="gate-muted" style="margin-bottom:4px;">
+            Choose your alliance to enter 2128:
+          </p>
+          <div class="gate-alliance-grid">
+            <button class="gate-btn alliance-btn primary" data-alliance="HAV">HAV</button>
+            <button id="gate-etf" class="gate-btn alliance-btn danger" data-alliance="ETF">ETF</button>
+            <button class="gate-btn alliance-btn ghost" data-alliance="SNK">SNK</button>
+            <button class="gate-btn alliance-btn ghost" data-alliance="JST">JST</button>
+            <button class="gate-btn alliance-btn ghost" data-alliance="300">300</button>
+            <button class="gate-btn alliance-btn ghost" data-alliance="000">000</button>
+            <button class="gate-btn alliance-btn ghost" data-alliance="NLO">NLO</button>
+            <button class="gate-btn alliance-btn ghost" data-alliance="GUEST">GUEST</button>
+          </div>
+        </div>
+      </section>
+
+      <footer class="gate-footer">
+        All stories here are creative work. Feedback is welcome; approval is optional.
+      </footer>
+    </div>
+  </div>
+  <!-- end gate -->
+
   <!-- shared nav -->
   <div id="nav-placeholder"></div>
   <script>
@@ -485,6 +634,81 @@
     window.addEventListener('resize', () => { stopAuto(); clearTimeout(resizeTimer); resizeTimer = setTimeout(startAuto, 300); });
 
     startAuto();
+  </script>
+
+  <!-- Gate Script: alliance-only entry + ETF escalating 404 -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const overlay = document.getElementById('gate-overlay');
+      if (!overlay) return;
+
+      const allianceButtons = overlay.querySelectorAll('.alliance-btn');
+
+      // ETF escalation ladder
+      const etfPaths = [
+        '/nope',
+        '/still-nope',
+        '/not-happening',
+        '/stop-trying',
+        '/error-you',
+        '/why-are-you-like-this',
+        '/stop-being-desperate'
+      ];
+
+      // Skip gate for returning visitors
+      try {
+        const status = localStorage.getItem('havocPressGate');
+        if (status === 'ok') {
+          overlay.style.display = 'none';
+          overlay.setAttribute('aria-hidden', 'true');
+          return;
+        }
+      } catch (e) {
+        // ignore storage errors
+      }
+
+      allianceButtons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          const alliance = btn.getAttribute('data-alliance') || 'UNKNOWN';
+
+          // ETF = ride the escalating 404 ladder
+          if (alliance === 'ETF') {
+            let index = 0;
+            try {
+              const stored = parseInt(localStorage.getItem('etfClickIndex') || '0', 10);
+              if (!isNaN(stored) && stored >= 0) {
+                index = stored;
+              }
+            } catch (e) {}
+
+            const path = etfPaths[Math.min(index, etfPaths.length - 1)];
+
+            try {
+              if (index < etfPaths.length - 1) {
+                localStorage.setItem('etfClickIndex', String(index + 1));
+              } else {
+                // stay stuck at final insult
+                localStorage.setItem('etfClickIndex', String(etfPaths.length - 1));
+              }
+            } catch (e) {}
+
+            window.location.href = path;
+            return;
+          }
+
+          // Everyone else: enter the site, remember access
+          overlay.style.display = 'none';
+          overlay.setAttribute('aria-hidden', 'true');
+
+          try {
+            localStorage.setItem('havocPressGate', 'ok');
+            localStorage.setItem('havocAlliance', alliance);
+          } catch (e) {
+            // ignore storage errors
+          }
+        });
+      });
+    });
   </script>
 </body>
 </html>
