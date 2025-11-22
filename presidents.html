@@ -358,13 +358,13 @@
       });
 
       // Flip controls for touch devices only
-      if (window.matchMedia('(hover: none)').matches) {
-        grid.addEventListener('click', (e)=>{
-          const btn = e.target.closest('.flip-btn');
-          if (!btn) return;
-          const card = btn.closest('.card');
-          card.classList.toggle('is-flipped');
-        });
+  grid.addEventListener('click', (e)=>{
+  const btn = e.target.closest('.flip-btn');
+  if (!btn) return;
+  const card = btn.closest('.card');
+  card.classList.toggle('is-flipped');
+});
+
       }
 
       // Fade that auto-disappears at bottom
