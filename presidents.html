@@ -157,10 +157,6 @@
     <section class="grid" aria-label="Presidential portraits" id="cards">
       <p style="opacity:.85">Loading presidents…</p>
     </section>
-
-   
-   
- 
   </main>
 
   <!-- shared footer -->
@@ -357,15 +353,13 @@
         grid.insertAdjacentHTML('beforeend', cardHTML(r, isFeatured));
       });
 
-      // Flip controls for touch devices only
-  grid.addEventListener('click', (e)=>{
-  const btn = e.target.closest('.flip-btn');
-  if (!btn) return;
-  const card = btn.closest('.card');
-  card.classList.toggle('is-flipped');
-});
-
-      }
+      // Flip controls: click works on all devices (hover still works via CSS on desktop)
+      grid.addEventListener('click', (e)=>{
+        const btn = e.target.closest('.flip-btn');
+        if (!btn) return;
+        const card = btn.closest('.card');
+        card.classList.toggle('is-flipped');
+      });
 
       // Fade that auto-disappears at bottom
       document.querySelectorAll('.back .scroll').forEach(el => {
