@@ -212,9 +212,56 @@
     @media (max-width:600px){
       .gate-panel{padding:16px 14px 12px;}
     }
+   /* 🎄 ROOF HOLIDAY LIGHTS */
+body.holiday-mode .holiday-lights {
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  height:60px;
+  z-index:1100;
+  pointer-events:none;
+
+  background-image:
+    radial-gradient(circle, #ff4d4d 6%, transparent 8%),
+    radial-gradient(circle, #ffd350 6%, transparent 8%),
+    radial-gradient(circle, #4dff91 6%, transparent 8%),
+    radial-gradient(circle, #4da6ff 6%, transparent 8%);
+
+  background-size: 50px 32px;
+  background-repeat: repeat-x;
+  animation: twinkle 1.7s infinite alternate ease-in-out;
+  filter: drop-shadow(0 0 4px rgba(255,255,255,.3));
+  opacity:.7;
+}
+
+@keyframes twinkle {
+  from { opacity:.5; }
+  to   { opacity:.9; }
+}
+
+/* thin wire behind bulbs */
+body.holiday-mode .holiday-lights::after {
+  content:"";
+  position:absolute;
+  top:20px;
+  left:0;
+  right:0;
+  height:4px;
+  background: repeating-linear-gradient(
+    to right,
+    rgba(120,120,160,.6),
+    rgba(120,120,160,.6) 8px,
+    transparent 8px,
+    transparent 16px
+  );
+}
+
   </style>
 </head>
 <body class="holiday-mode">
+ <div class="holiday-lights" aria-hidden="true"></div>
+
   <!-- HAVOC Press / Entry Gate -->
   <div id="gate-overlay" class="gate-overlay" role="dialog" aria-modal="true" aria-labelledby="gate-title">
     <div class="gate-panel">
