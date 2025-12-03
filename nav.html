@@ -54,6 +54,15 @@ body.holiday-mode .site-nav::after {
   filter: drop-shadow(0 0 6px rgba(0,0,0,.75))
           drop-shadow(0 0 8px rgba(255,255,255,.35));
 }
+/* ---------- NAV LIGHT TWINKLE ---------- */
+body.holiday-mode .site-nav::after {
+  animation: nav-twinkle 1.8s ease-in-out infinite alternate;
+}
+
+@keyframes nav-twinkle {
+  from { opacity: .55; }
+  to   { opacity: 1; }
+}
 
 
 /* ---------- ICICLES (real pointy triangles) ---------- */
