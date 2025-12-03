@@ -38,7 +38,7 @@ body.holiday-mode .site-nav::after {
   position: absolute;
   left: 0;
   right: 0;
-  top: 100%;
+top: calc(100% - 26px);
   height: 42px;                 /* taller strip = room for bigger bulbs */
   pointer-events: none;
 
@@ -71,7 +71,8 @@ body.holiday-mode .site-nav::before {
   position: absolute;
   left: 0;
   right: 0;
-  top: calc(100% + 36px); /* hangs below light bulbs */
+ top: calc(100% + 8px);
+ /* hangs below light bulbs */
   height: 70px;
   pointer-events: none;
   z-index: 999;
