@@ -1,16 +1,16 @@
 <style>
+/* ========== NAV BASE ========== */
 .site-nav {
   position: fixed;
   left: 0; right: 0; top: 0;
-  z-index: 1000;
+  z-index: 3000;
   background: rgba(8,12,32,.75);
   backdrop-filter: blur(8px);
-  padding: 12px 20px 52px; /* extra space for lights + icicles */
-  border-bottom: none;
+  padding: 12px 20px 60px;
 }
 
-/* links */
-.site-nav a{
+/* Links */
+.site-nav a {
   color:#fffdf6;
   text-decoration:none;
   font-weight:600;
@@ -18,121 +18,138 @@
   border-bottom:2px solid transparent;
   opacity:.95;
 }
-.site-nav a:hover{
+.site-nav a:hover,
+.site-nav a.active {
   border-bottom-color: #f6d36b;
-  opacity:1;
-}
-.site-nav a.active{
-  border-bottom-color:#f6d36b;
   color:#fff8dc;
 }
 
-/* push page down enough */
-body { padding-top: 110px; }
-@media (max-width:480px){ body { padding-top: 130px; } }
+/* Push content down */
+body { padding-top: 150px; }
+@media (max-width:480px){ body { padding-top: 170px; } }
 
-/* ---------- STRING LIGHTS (bigger + multi-color) ---------- */
-
+/* ========== CHRISTMAS LIGHTS ========== */
 body.holiday-mode .site-nav::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: calc(100% - 36px);
-  height: 42px;                 /* taller strip = room for bigger bulbs */
-  pointer-events: none;
+  content:"";
+  position:absolute;
+  left:0; right:0;
+  top: calc(100% - 44px);
+  height:46px;
+  pointer-events:none;
+  animation: nav-twinkle 2s ease-in-out infinite alternate;
 
-  /* five colors: red, gold, green, blue, purple */
   background:
-    radial-gradient(circle, #ff5f5f 0 7px, transparent 8px) 10px 10px / 90px 32px repeat-x,
-    radial-gradient(circle, #ffd85e 0 7px, transparent 8px) 28px 10px / 90px 32px repeat-x,
-    radial-gradient(circle, #5eff9a 0 7px, transparent 8px) 46px 10px / 90px 32px repeat-x,
-    radial-gradient(circle, #5eaaff 0 7px, transparent 8px) 64px 10px / 90px 32px repeat-x,
-    radial-gradient(circle, #c77dff 0 7px, transparent 8px) 82px 10px / 90px 32px repeat-x;
+    radial-gradient(circle, #ff5f5f 0 7px, transparent 8px) 12px 12px / 95px 34px repeat-x,
+    radial-gradient(circle, #ffd85e 0 7px, transparent 8px) 32px 12px / 95px 34px repeat-x,
+    radial-gradient(circle, #5eff9a 0 7px, transparent 8px) 52px 12px / 95px 34px repeat-x,
+    radial-gradient(circle, #5eaaff 0 7px, transparent 8px) 72px 12px / 95px 34px repeat-x,
+    radial-gradient(circle, #c77dff 0 7px, transparent 8px) 92px 12px / 95px 34px repeat-x;
 
-  opacity: .95;
-  filter: drop-shadow(0 0 6px rgba(0,0,0,.75))
-          drop-shadow(0 0 8px rgba(255,255,255,.35));
-}
-
-/* ---------- NAV LIGHT TWINKLE ---------- */
-body.holiday-mode .site-nav::after {
-  animation: nav-twinkle 1.8s ease-in-out infinite alternate;
+  filter:
+    drop-shadow(0 0 6px rgba(0,0,0,.8))
+    drop-shadow(0 0 8px rgba(255,255,255,.4));
 }
 
 @keyframes nav-twinkle {
-  from { opacity: .55; }
-  to   { opacity: 1; }
+  from { opacity:.55; }
+  to   { opacity:1; }
 }
 
-/* ---------- ICICLES (real pointy triangles) ---------- */
+/* ========== ICICLES ========== */
 body.holiday-mode .site-nav::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 100%; /* hangs right under the bulbs */
-  height: 70px;
-  pointer-events: none;
-  z-index: 999;
+  content:"";
+  position:absolute;
+  left:0; right:0;
+  top: calc(100% - 2px);
+  height:62px;
+  pointer-events:none;
 
   background:
-    linear-gradient(-65deg, transparent 75%, rgba(210,230,255,.85) 76%) 0 0 / 28px 60px repeat-x,
-    linear-gradient(65deg,  transparent 75%, rgba(210,230,255,.85) 76%) 14px 0 / 28px 45px repeat-x,
-    linear-gradient(-70deg, transparent 75%, rgba(235,245,255,.9) 76%) 40px 0 / 36px 65px repeat-x,
-    linear-gradient(70deg,  transparent 75%, rgba(235,245,255,.9) 76%) 58px 0 / 36px 50px repeat-x;
+    linear-gradient(-65deg, transparent 75%, rgba(220,240,255,.9) 76%) 0 0 / 30px 58px repeat-x,
+    linear-gradient(65deg,  transparent 75%, rgba(200,230,255,.9) 76%) 15px 0 / 30px 40px repeat-x,
+    linear-gradient(-70deg, transparent 76%, rgba(235,245,255,.95) 77%) 40px 0 / 40px 65px repeat-x,
+    linear-gradient(70deg,  transparent 76%, rgba(235,245,255,.95) 77%) 60px 0 / 40px 46px repeat-x;
 
   filter:
-    drop-shadow(0 2px 3px rgba(0,0,0,.35))
-    drop-shadow(0 0 8px rgba(200,230,255,.6));
-
-  opacity: .95;
+    drop-shadow(0 2px 4px rgba(0,0,0,.45))
+    drop-shadow(0 0 10px rgba(200,230,255,.7));
 }
 
-/* ---------- CLICKABLE BULB SPARKLE LAYER ---------- */
-
+/* ========== CLICKABLE BULB SPARKLE ========== */
 .nav-bulb-layer {
-  position: absolute;
-  inset: 0;
-  pointer-events: none; /* don’t block links */
-  z-index: 5;           /* above lights/icicles visuals */
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index:6;
 }
 
 .nav-bulb-hit {
-  position: absolute;
-  top: calc(100% - 22px); /* vertical center of bulb strip */
-  width: 44px;
-  height: 44px;
-  margin-left: -22px; /* center on click x */
-  border-radius: 999px;
-  pointer-events: none;
-
-  background:
-    radial-gradient(circle, rgba(255,255,255,.95) 0, rgba(255,255,255,0) 60%);
+  position:absolute;
+  top: calc(100% - 22px);
+  width:46px;
+  height:46px;
+  margin-left:-23px;
+  border-radius:999px;
+  background: radial-gradient(circle, rgba(255,255,255,.95), transparent 65%);
   mix-blend-mode: screen;
   opacity: 0;
-
-  animation: bulb-pop 0.6s ease-out forwards;
+  animation: bulb-pop .6s ease-out forwards;
 }
 
 @keyframes bulb-pop {
-  0% {
-    transform: translateY(0) scale(.4);
-    opacity: .9;
-  }
-  60% {
-    transform: translateY(-4px) scale(1);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(0) scale(1.2);
-    opacity: 0;
-  }
+  0%   { transform: scale(.4); opacity:.8; }
+  70%  { transform: scale(1);  opacity:1; }
+  100% { transform: scale(1.2);opacity:0; }
 }
+
+/* ========== BACKGROUND CHAOTIC SNOW ========== */
+.background-snow {
+  position:fixed;
+  inset:0;
+  z-index:1;
+  pointer-events:none;
+  opacity:0;
+}
+body.holiday-mode .background-snow { opacity:1; }
+
+.background-snow::before,
+.background-snow::after {
+  content:"";
+  position:absolute;
+  inset:-20%;
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,.9) 0 1px, transparent 2px),
+    radial-gradient(circle, rgba(255,255,255,.6) 0 1px, transparent 2px),
+    radial-gradient(circle, rgba(255,255,255,.4) 0 2px, transparent 3px);
+  background-size: 120px 120px, 200px 200px, 300px 300px;
+  animation: snow-chaos 12s linear infinite;
+}
+
+.background-snow::after {
+  opacity:.5;
+  filter: blur(1px);
+  animation-duration: 22s;
+  animation-direction: reverse;
+}
+
+@keyframes snow-chaos {
+  0%   { transform: translate(0,-140px); }
+  25%  { transform: translate(-40px,10px); }
+  50%  { transform: translate(60px,120px); }
+  75%  { transform: translate(-30px,200px); }
+  100% { transform: translate(40px,320px); }
+}
+
+/* Layer safety */
+.site-nav { z-index:3000; }
+.gate-overlay { z-index:9999; }
 </style>
+
+<div class="background-snow" aria-hidden="true"></div>
 
 <nav class="site-nav" aria-label="Main navigation">
   <div class="nav-bulb-layer" aria-hidden="true"></div>
+
   <a href="/index.html">Home</a>
   <a href="/players.html">Players</a>
   <a href="/nut-rules.html">NUT Rules</a>
@@ -141,34 +158,29 @@ body.holiday-mode .site-nav::before {
 </nav>
 
 <script>
-  // highlight current page link
-  (function(){
-    const path = location.pathname.replace(/\/+$/,'') || '/index.html';
-    document.querySelectorAll('.site-nav a').forEach(a => {
-      const href = a.getAttribute('href');
-      if (href === path || (path === '/' && href === '/index.html')) {
-        a.classList.add('active');
-      }
-    });
-  })();
+/* Highlight active page + turn on holiday mode */
+(function(){
+  const path = location.pathname.replace(/\/+$/,'') || '/index.html';
+  document.querySelectorAll('.site-nav a').forEach(a => {
+    if (a.getAttribute('href') === path) a.classList.add('active');
+  });
 
-  // click ANYWHERE on the nav: make the nearest bulb "sparkle"
-  (function(){
-    const nav = document.querySelector('.site-nav');
-    if (!nav) return;
-    const layer = nav.querySelector('.nav-bulb-layer');
-    if (!layer) return;
+  document.body.classList.add('holiday-mode');
+})();
 
-    nav.addEventListener('click', function(ev){
-      const rect = nav.getBoundingClientRect();
-      const x = ev.clientX - rect.left;
+/* Click ANYWHERE on nav to sparkle */
+(function(){
+  const nav = document.querySelector('.site-nav');
+  const layer = nav?.querySelector('.nav-bulb-layer');
+  if(!nav || !layer) return;
 
-      const hit = document.createElement('span');
-      hit.className = 'nav-bulb-hit';
-      hit.style.left = x + 'px';
-      layer.appendChild(hit);
-
-      setTimeout(() => hit.remove(), 650);
-    });
-  })();
+  nav.addEventListener('click', (e)=>{
+    const r = nav.getBoundingClientRect();
+    const hit = document.createElement('span');
+    hit.className = 'nav-bulb-hit';
+    hit.style.left = (e.clientX - r.left) + 'px';
+    layer.appendChild(hit);
+    setTimeout(()=>hit.remove(),650);
+  });
+})();
 </script>
