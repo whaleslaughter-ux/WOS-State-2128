@@ -212,59 +212,12 @@
     @media (max-width:600px){
       .gate-panel{padding:16px 14px 12px;}
     }
- /* 🎄 ROOF HOLIDAY LIGHTS — CLEAN FIX */
-body.holiday-mode .holiday-lights {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 80px;
-  z-index: 99999;        /* forces it above nav */
-  pointer-events: none;
 
-  background-image:
-    radial-gradient(circle at 10% 48%, #ff5f5f 8px, transparent 9px),
-    radial-gradient(circle at 30% 52%, #ffd85e 8px, transparent 9px),
-    radial-gradient(circle at 50% 48%, #5eff9a 8px, transparent 9px),
-    radial-gradient(circle at 70% 52%, #5eaaff 8px, transparent 9px),
-    radial-gradient(circle at 90% 48%, #c77dff 8px, transparent 9px);
-
-  background-size: 220px 52px;
-  background-repeat: repeat-x;
-  animation: twinkle 1.6s infinite alternate ease-in-out;
-  filter: drop-shadow(0 0 6px rgba(255,255,255,.45));
-  opacity: .95;
-}
-
-/* thin wire behind bulbs */
-body.holiday-mode .holiday-lights::after {
-  content: "";
-  position: absolute;
-  top: 34px;
-  left: 0;
-  right: 0;
-  height: 4px;
-  z-index: -1;
-
-  background: repeating-linear-gradient(
-    to right,
-    rgba(90,90,120,.9),
-    rgba(90,90,120,.9) 18px,
-    transparent 18px,
-    transparent 36px
-  );
-}
-
-/* twinkle */
-@keyframes twinkle {
-  from { opacity: .6; }
-  to   { opacity: .95; }
-}
 
   </style>
 </head>
 <body class="holiday-mode">
- <div class="holiday-lights" aria-hidden="true"></div>
+
 
   <!-- HAVOC Press / Entry Gate -->
   <div id="gate-overlay" class="gate-overlay" role="dialog" aria-modal="true" aria-labelledby="gate-title">
