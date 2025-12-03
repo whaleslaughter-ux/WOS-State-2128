@@ -1,12 +1,14 @@
 <style>
+/* ===== FIXED NAV BASE ===== */
 .site-nav {
   position: fixed;
-  left: 0; right: 0; top: 0;
-  z-index: 1000;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 3000;
   background: rgba(8,12,32,.75);
   backdrop-filter: blur(8px);
-  padding: 12px 20px 52px; /* extra space for lights + icicles */
-  border-bottom: none;
+  padding: 12px 20px 60px; /* room for lights + icicles */
 }
 
 /* links */
@@ -18,78 +20,106 @@
   border-bottom:2px solid transparent;
   opacity:.95;
 }
-.site-nav a:hover{
-  border-bottom-color: #f6d36b;
-  opacity:1;
-}
+.site-nav a:hover,
 .site-nav a.active{
-  border-bottom-color:#f6d36b;
+  border-bottom-color: #f6d36b;
   color:#fff8dc;
 }
 
-/* push page down enough */
-body { padding-top: 110px; }
-@media (max-width:480px){ body { padding-top: 130px; } }
+/* push page down */
+body { padding-top: 150px; }
+@media (max-width:480px){ body { padding-top: 170px; } }
 
-/* ---------- STRING LIGHTS (bigger + multi-color) ---------- */
-
+/* ===== CHRISTMAS LIGHT STRIP ===== */
 body.holiday-mode .site-nav::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-top: calc(100% - 36px);
-  height: 42px;                 /* taller strip = room for bigger bulbs */
-  pointer-events: none;
-
-  /* five colors: red, gold, green, blue, purple */
-  background:
-    radial-gradient(circle, #ff5f5f 0 7px, transparent 8px) 10px 10px / 90px 32px repeat-x,
-    radial-gradient(circle, #ffd85e 0 7px, transparent 8px) 28px 10px / 90px 32px repeat-x,
-    radial-gradient(circle, #5eff9a 0 7px, transparent 8px) 46px 10px / 90px 32px repeat-x,
-    radial-gradient(circle, #5eaaff 0 7px, transparent 8px) 64px 10px / 90px 32px repeat-x,
-    radial-gradient(circle, #c77dff 0 7px, transparent 8px) 82px 10px / 90px 32px repeat-x;
-
-  opacity: .95;
-  filter: drop-shadow(0 0 6px rgba(0,0,0,.75))
-          drop-shadow(0 0 8px rgba(255,255,255,.35));
-}
-/* ---------- NAV LIGHT TWINKLE ---------- */
-body.holiday-mode .site-nav::after {
-  animation: nav-twinkle 1.8s ease-in-out infinite alternate;
-}
-
-@keyframes nav-twinkle {
-  from { opacity: .55; }
-  to   { opacity: 1; }
-}
-
-
-/* ---------- ICICLES (real pointy triangles) ---------- */
-body.holiday-mode .site-nav::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
- top: calc(100%);
- /* hangs below light bulbs */
-  height: 70px;
-  pointer-events: none;
-  z-index: 999;
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  top: calc(100% - 44px);
+  height:46px;
+  pointer-events:none;
+  animation: nav-twinkle 2s ease-in-out infinite alternate;
 
   background:
-    linear-gradient(-65deg, transparent 75%, rgba(210,230,255,.85) 76%) 0 0 / 28px 60px repeat-x,
-    linear-gradient(65deg,  transparent 75%, rgba(210,230,255,.85) 76%) 14px 0 / 28px 45px repeat-x,
-    linear-gradient(-70deg, transparent 75%, rgba(235,245,255,.9) 76%) 40px 0 / 36px 65px repeat-x,
-    linear-gradient(70deg,  transparent 75%, rgba(235,245,255,.9) 76%) 58px 0 / 36px 50px repeat-x;
+    radial-gradient(circle, #ff5f5f 0 7px, transparent 8px) 12px 12px / 95px 34px repeat-x,
+    radial-gradient(circle, #ffd85e 0 7px, transparent 8px) 32px 12px / 95px 34px repeat-x,
+    radial-gradient(circle, #5eff9a 0 7px, transparent 8px) 52px 12px / 95px 34px repeat-x,
+    radial-gradient(circle, #5eaaff 0 7px, transparent 8px) 72px 12px / 95px 34px repeat-x,
+    radial-gradient(circle, #c77dff 0 7px, transparent 8px) 92px 12px / 95px 34px repeat-x;
 
   filter:
-    drop-shadow(0 2px 3px rgba(0,0,0,.35))
-    drop-shadow(0 0 8px rgba(200,230,255,.6));
-
-  opacity: .95;
+    drop-shadow(0 0 6px rgba(0,0,0,.8))
+    drop-shadow(0 0 8px rgba(255,255,255,.4));
 }
+
+/* twinkle */
+@keyframes nav-twinkle {
+  from { opacity:.55; }
+  to   { opacity:1; }
+}
+
+/* ===== ICICLES ===== */
+body.holiday-mode .site-nav::before {
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  top: calc(100% - 2px);
+  height:62px;
+  pointer-events:none;
+
+  background:
+    linear-gradient(-65deg, transparent 75%, rgba(220,240,255,.9) 76%) 0 0 / 30px 58px repeat-x,
+    linear-gradient(65deg,  transparent 75%, rgba(200,230,255,.9) 76%) 15px 0 / 30px 40px repeat-x,
+    linear-gradient(-70deg, transparent 76%, rgba(235,245,255,.95) 77%) 40px 0 / 40px 65px repeat-x,
+    linear-gradient(70deg,  transparent 76%, rgba(235,245,255,.95) 77%) 60px 0 / 40px 46px repeat-x;
+
+  filter:
+    drop-shadow(0 2px 4px rgba(0,0,0,.45))
+    drop-shadow(0 0 10px rgba(200,230,255,.7));
+}
+
+/* ===== BACKGROUND SNOW (behind gate + site) ===== */
+.background-snow {
+  position:fixed;
+  inset:0;
+  z-index:1;
+  pointer-events:none;
+  opacity:0;
+}
+
+body.holiday-mode .background-snow { opacity:1; }
+
+.background-snow::before,
+.background-snow::after {
+  content:"";
+  position:absolute;
+  inset:0;
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,.9) 0 1px, transparent 2px);
+  background-size: 200px 200px;
+  animation: snow-fall 30s linear infinite;
+}
+
+.background-snow::after {
+  background-size: 320px 320px;
+  opacity:.5;
+  animation-duration: 50s;
+}
+
+@keyframes snow-fall {
+  from { transform: translateY(-120px); }
+  to   { transform: translateY(120px); }
+}
+
+/* ensure gate and nav stay above snow */
+.site-nav { z-index:3000; }
+.gate-overlay { z-index:9999; }
+
 </style>
+
+<div class="background-snow" aria-hidden="true"></div>
 
 <nav class="site-nav" aria-label="Main navigation">
   <a href="/index.html">Home</a>
@@ -98,3 +128,14 @@ body.holiday-mode .site-nav::before {
   <a href="/presidents.html">Presidents</a>
   <a href="/bia.html">Brothers in Arms</a>
 </nav>
+
+<script>
+/* highlight current link + turn on holiday mode */
+(function(){
+  const path = location.pathname.replace(/\/+$/,'') || '/index.html';
+  document.querySelectorAll('.site-nav a').forEach(a => {
+    if (a.getAttribute('href') === path) a.classList.add('active');
+  });
+  document.body.classList.add('holiday-mode');
+})();
+</script>
