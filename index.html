@@ -101,117 +101,148 @@
     .news-title{margin:0 0 6px;font-size:16px;font-weight:800;color:#fff}
     .news-date{font-size:12px;color:var(--muted)}
 
-    /* === Entry Gate Overlay === */
-    .gate-overlay{
-      position:fixed;
-      inset:0;
-      z-index:9999;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:20px;
-      background:radial-gradient(circle at top,#111827 0,#020617 55%,#000 100%);
-      color:#e5e7eb;
-    }
-     .gate-panel{
-      max-width:640px;
-      width:100%;
-      background:rgba(15,23,42,0.96);
-      border-radius:18px;
-      padding:24px 22px 20px;
-      border:1px solid rgba(148,163,184,0.5);
-      box-shadow:0 22px 60px rgba(0,0,0,0.8);
-      font-size:14px;
+   /* === Entry Gate Overlay === */
+.gate-overlay{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  background:radial-gradient(circle at top,#111827 0,#020617 55%,#000 100%);
+  color:#e5e7eb;
+}
 
-      /* center content inside the panel */
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      text-align:center;
-    }
+.gate-panel{
+  max-width:640px;
+  width:100%;
+  background:rgba(15,23,42,0.96);
+  border-radius:18px;
+  padding:24px 22px 20px;
+  border:1px solid rgba(148,163,184,0.5);
+  box-shadow:0 22px 60px rgba(0,0,0,0.8);
+  font-size:14px;
 
+  /* center content inside the panel */
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
 
-    .gate-header{
-      margin-bottom:12px;
-    }
+  /* needed for light border */
+  position: relative;
+  overflow: visible;
+}
 
-    .gate-logo{
-      width:40px;height:40px;border-radius:12px;
-      background:conic-gradient(from 160deg,#0ea5e9,#a855f7,#ec4899,#0ea5e9);
-      display:flex;align-items:center;justify-content:center;
-      font-weight:700;font-size:.9rem;
-    }
-    .gate-header h1{
-      margin:0;
-      font-size:1.05rem;
-      text-transform:uppercase;
-      letter-spacing:.1em;
-    }
-    .gate-header p{
-      margin:2px 0 0;
-      color:#9ca3af;
-      font-size:.8rem;
-    }
-    .gate-body p{margin:4px 0}
-    .gate-muted{color:#9ca3af;font-size:.85rem}
-    .gate-warning{
-      margin-top:10px;
-      padding:8px 10px;
-      border-radius:10px;
-      background:rgba(127,29,29,0.2);
-      border:1px solid rgba(248,113,113,0.7);
-      display:flex;
-      gap:8px;
-      font-size:.85rem;
-      color:#fecaca;
-    }
-    .gate-warning-icon{margin-top:1px}
-        .gate-actions{
-      margin-top:14px;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-    }
+/* 🎄 Light-bulb border around gate panel */
+body.holiday-mode .gate-panel::after {
+  content: "";
+  position: absolute;
+  inset: -10px;              /* distance of bulbs from box */
+  pointer-events: none;
+  border-radius: 22px;
 
-    .gate-alliance-grid{
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
-      margin-top:4px;
-    }
-    .gate-btn{
-      border-radius:999px;
-      padding:8px 14px;
-      border:1px solid transparent;
-      background:transparent;
-      color:#e5e7eb;
-      cursor:pointer;
-      font-size:.85rem;
-      font-weight:600;
-    }
-    .gate-btn.primary{
-      background:linear-gradient(90deg,#a855f7,#4c1d95);
-      border-color:rgba(248,250,252,0.08);
-      box-shadow:0 8px 20px rgba(15,23,42,0.9);
-    }
-    .gate-btn.ghost{
-      border-color:rgba(148,163,184,0.6);
-      color:#9ca3af;
-    }
-    .gate-btn.danger{
-      border-color:rgba(248,113,113,0.7);
-      color:#fecaca;
-    }
-     .gate-footer{
-      margin-top:10px;
-      text-align:center;
-      font-size:.75rem;
-      color:#9ca3af;
-    }
+  /* top, right, bottom, left edges */
+  background:
+    radial-gradient(circle, #ff5f5f 0 5px, transparent 6px) top    / 40px 14px repeat-x,
+    radial-gradient(circle, #ffd85e 0 5px, transparent 6px) right  / 14px 40px repeat-y,
+    radial-gradient(circle, #5eff9a 0 5px, transparent 6px) bottom / 40px 14px repeat-x,
+    radial-gradient(circle, #5eaaff 0 5px, transparent 6px) left   / 14px 40px repeat-y;
 
-    @media (max-width:600px){
-      .gate-panel{padding:16px 14px 12px;}
-    }
+  filter: drop-shadow(0 0 6px rgba(255,255,255,.55));
+  animation: gate-twinkle 1.6s ease-in-out infinite alternate;
+  opacity: .9;
+}
+
+/* twinkle animation */
+@keyframes gate-twinkle {
+  from { opacity: .55; }
+  to   { opacity: 1; }
+}
+
+.gate-header{
+  margin-bottom:12px;
+}
+
+.gate-logo{
+  width:40px;height:40px;border-radius:12px;
+  background:conic-gradient(from 160deg,#0ea5e9,#a855f7,#ec4899,#0ea5e9);
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;font-size:.9rem;
+}
+.gate-header h1{
+  margin:0;
+  font-size:1.05rem;
+  text-transform:uppercase;
+  letter-spacing:.1em;
+}
+.gate-header p{
+  margin:2px 0 0;
+  color:#9ca3af;
+  font-size:.8rem;
+}
+.gate-body p{margin:4px 0}
+.gate-muted{color:#9ca3af;font-size:.85rem}
+.gate-warning{
+  margin-top:10px;
+  padding:8px 10px;
+  border-radius:10px;
+  background:rgba(127,29,29,0.2);
+  border:1px solid rgba(248,113,113,0.7);
+  display:flex;
+  gap:8px;
+  font-size:.85rem;
+  color:#fecaca;
+}
+.gate-warning-icon{margin-top:1px}
+.gate-actions{
+  margin-top:14px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+
+.gate-alliance-grid{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:4px;
+}
+.gate-btn{
+  border-radius:999px;
+  padding:8px 14px;
+  border:1px solid transparent;
+  background:transparent;
+  color:#e5e7eb;
+  cursor:pointer;
+  font-size:.85rem;
+  font-weight:600;
+}
+.gate-btn.primary{
+  background:linear-gradient(90deg,#a855f7,#4c1d95);
+  border-color:rgba(248,250,252,0.08);
+  box-shadow:0 8px 20px rgba(15,23,42,0.9);
+}
+.gate-btn.ghost{
+  border-color:rgba(148,163,184,0.6);
+  color:#9ca3af;
+}
+.gate-btn.danger{
+  border-color:rgba(248,113,113,0.7);
+  color:#fecaca;
+}
+.gate-footer{
+  margin-top:10px;
+  text-align:center;
+  font-size:.75rem;
+  color:#9ca3af;
+}
+
+@media (max-width:600px){
+  .gate-panel{padding:16px 14px 12px;}
+}
+
 
 
   </style>
