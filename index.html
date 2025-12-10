@@ -288,6 +288,23 @@ body.holiday-mode .gate-panel::after {
   <button class="gate-btn alliance-btn ghost" data-alliance="NLO">NLO</button>
   <button class="gate-btn alliance-btn ghost" data-alliance="GUEST">GUEST</button>
 </div>
+<div
+  id="etf-message"
+  class="gate-warning"
+  style="display:none; margin-top:12px; cursor:pointer;"
+>
+  <span class="gate-warning-icon" aria-hidden="true">🔒</span>
+  <span>
+    The ETF gate is stuck. Knock harder to enter.
+    <button
+      type="button"
+      class="gate-btn danger"
+      style="margin-left:6px; padding:4px 10px; font-size:.8rem;"
+    >
+      Knock harder
+    </button>
+  </span>
+</div>
 
         </div>
       </section>
@@ -1032,61 +1049,57 @@ body.holiday-mode .gate-panel::after {
     startAuto();
   </script>
 
-  <!-- Gate Script: alliance-only entry + ETF escalating 404 (shows every visit) -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const overlay = document.getElementById('gate-overlay');
-      if (!overlay) return;
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const overlay = document.getElementById('gate-overlay');
+    if (!overlay) return;
 
-      const allianceButtons = overlay.querySelectorAll('.alliance-btn');
+    const allianceButtons = overlay.querySelectorAll('.alliance-btn');
+    const etfMessage = document.getElementById('etf-message');
 
-      // ETF escalation ladder
-      const etfPaths = [
-        '/nope',
-        '/still-nope',
-        '/not-happening',
-        '/stop-trying',
-        '/error-you',
-        '/why-are-you-like-this',
-        '/stop-being-desperate'
-      ];
+    // 0 = not clicked yet, 1 = showed message, 2 = allowed in
+    let etfKnockStage = 0;
 
-      allianceButtons.forEach(function (btn) {
-        btn.addEventListener('click', function () {
-          const alliance = btn.getAttribute('data-alliance') || 'UNKNOWN';
+    function enterSite() {
+      overlay.style.display = 'none';
+      overlay.setAttribute('aria-hidden', 'true');
+    }
 
-          // ETF = ride the escalating 404 ladder
-          if (alliance === 'ETF') {
-            let index = 0;
-            try {
-              const stored = parseInt(localStorage.getItem('etfClickIndex') || '0', 10);
-              if (!isNaN(stored) && stored >= 0) {
-                index = stored;
-              }
-            } catch (e) {}
+    allianceButtons.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        const alliance = btn.getAttribute('data-alliance') || 'UNKNOWN';
 
-            const path = etfPaths[Math.min(index, etfPaths.length - 1)];
-
-            try {
-              if (index < etfPaths.length - 1) {
-                localStorage.setItem('etfClickIndex', String(index + 1));
-              } else {
-                // stay stuck at final insult
-                localStorage.setItem('etfClickIndex', String(etfPaths.length - 1));
-              }
-            } catch (e) {}
-
-            window.location.href = path;
+        // Special behavior for ETF
+        if (alliance === 'ETF') {
+          if (etfKnockStage === 0) {
+            etfKnockStage = 1;
+            if (etfMessage) etfMessage.style.display = 'flex';
+            return; // stay on gate, make them "knock harder"
+          } else {
+            // Second ETF click: let them in
+            etfKnockStage = 2;
+            enterSite();
             return;
           }
+        }
 
-          // Everyone else: enter the site (no persistence)
-          overlay.style.display = 'none';
-          overlay.setAttribute('aria-hidden', 'true');
-        });
+        // Everyone else: normal entry
+        enterSite();
       });
     });
-  </script>
+
+    // Clicking the message (or its button) also counts as "knock harder"
+    if (etfMessage) {
+      etfMessage.addEventListener('click', function () {
+        if (etfKnockStage === 1) {
+          etfKnockStage = 2;
+          enterSite();
+        }
+      });
+    }
+  });
+</script>
+
 
 </body>
 </html>
