@@ -1055,10 +1055,6 @@ body.holiday-mode .gate-panel::after {
     if (!overlay) return;
 
     const allianceButtons = overlay.querySelectorAll('.alliance-btn');
-    const etfMessage = document.getElementById('etf-message');
-
-    // 0 = not clicked yet, 1 = showed message, 2 = allowed in
-    let etfKnockStage = 0;
 
     function enterSite() {
       overlay.style.display = 'none';
@@ -1069,36 +1065,19 @@ body.holiday-mode .gate-panel::after {
       btn.addEventListener('click', function () {
         const alliance = btn.getAttribute('data-alliance') || 'UNKNOWN';
 
-        // Special behavior for ETF
-        if (alliance === 'ETF') {
-          if (etfKnockStage === 0) {
-            etfKnockStage = 1;
-            if (etfMessage) etfMessage.style.display = 'flex';
-            return; // stay on gate, make them "knock harder"
-          } else {
-            // Second ETF click: let them in
-            etfKnockStage = 2;
-            enterSite();
-            return;
-          }
+        // HAV + GUEST get in
+        if (alliance === 'HAV' || alliance === 'GUEST') {
+          enterSite();
+          return;
         }
 
-        // Everyone else: normal entry
-        enterSite();
+        // Everyone else gets the pout message
+        alert('Whales is annoyed. Please try again tomorrow.');
       });
     });
-
-    // Clicking the message (or its button) also counts as "knock harder"
-    if (etfMessage) {
-      etfMessage.addEventListener('click', function () {
-        if (etfKnockStage === 1) {
-          etfKnockStage = 2;
-          enterSite();
-        }
-      });
-    }
   });
 </script>
+
 
 
 </body>
