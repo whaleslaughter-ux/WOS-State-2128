@@ -1089,24 +1089,23 @@ body.holiday-mode .gate-panel::after {
     function enterSite() {
       overlay.style.display = 'none';
       overlay.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('no-scroll');
     }
+
+    // Optional: prevent background scroll while gate is up
+    document.body.classList.add('no-scroll');
 
     allianceButtons.forEach(function (btn) {
       btn.addEventListener('click', function () {
-        const alliance = btn.getAttribute('data-alliance') || 'UNKNOWN';
-
-        // HAV + GUEST get in
-        if (alliance === 'HAV' || alliance === 'GUEST') {
-          enterSite();
-          return;
-        }
-
-        // Everyone else gets the pout message
-        alert('Whales is annoyed. Please try again tomorrow.');
+        // If you want to store the choice for later:
+        const alliance = (btn.getAttribute('data-alliance') || 'GUEST').trim().toUpperCase();
+        try { localStorage.setItem('wos_alliance', alliance); } catch (e) {}
+        enterSite();
       });
     });
   });
 </script>
+
 
 
 
