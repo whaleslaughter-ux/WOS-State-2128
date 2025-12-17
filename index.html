@@ -1159,62 +1159,107 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { once: true });
   }
 
-  // 💩 NLO POOP STORM
-  function poopStorm({
-  count = 220,          // MORE
-  durationMs = 4200,    // SLOWER
-  symbols = ["💩"],
-  startTopMin = -35,    // start higher
-  startTopMax = -5,
-  driftMin = -18,       // less sideways chaos, more “fall”
-  driftMax = 18,
-  endMin = 130,         // how far down they travel
-  endMax = 210,
-  delayMax = 900        // spread the start times
-} = {}) {
-  const layer = document.createElement("div");
-  layer.setAttribute("aria-hidden", "true");
-  Object.assign(layer.style, {
-    position: "fixed",
-    inset: "0",
-    pointerEvents: "none",
-    zIndex: "100000"
-  });
-  document.body.appendChild(layer);
+  // =========================
+  // 💩 PERMANENT NLO POOP MODE
+  // =========================
+  let poopLayer = null;
+  let poopTimer = null;
+  let poopCount = 0;
+  const POOP_MAX_ON_SCREEN = 450;      // cap for performance
+  const POOP_SPAWN_EVERY_MS = 80;     // drizzle rate (lower = more)
+  const POOP_LIFETIME_MS = 12000;       // each poop lives this long
 
   const rand = (a, b) => a + Math.random() * (b - a);
 
-  for (let i = 0; i < count; i++) {
-    const el = document.createElement("div");
-    el.textContent = symbols[Math.floor(Math.random() * symbols.length)];
-    Object.assign(el.style, {
-      position: "absolute",
-      left: rand(0, 100) + "vw",
-      top: rand(startTopMin, startTopMax) + "vh",
-      fontSize: rand(20, 70) + "px",
-      opacity: rand(0.75, 1),
-      transform: `rotate(${rand(-25, 25)}deg)`
+  function ensurePoopLayer() {
+    if (poopLayer) return poopLayer;
+    poopLayer = document.createElement('div');
+    poopLayer.id = 'nlo-poop-layer';
+    poopLayer.setAttribute('aria-hidden', 'true');
+    Object.assign(poopLayer.style, {
+      position: 'fixed',
+      inset: '0',
+      pointerEvents: 'none',
+      zIndex: '100000'
     });
-    layer.appendChild(el);
+    document.body.appendChild(poopLayer);
+    return poopLayer;
+  }
 
-    el.animate(
+  function spawnOnePoop() {
+    if (!poopLayer) return;
+    if (poopCount >= POOP_MAX_ON_SCREEN) return;
+
+    const el = document.createElement('div');
+    el.textContent = "💩";
+    poopCount++;
+
+    const size = rand(18, 54);
+    const startX = rand(0, 100);
+    const startY = rand(-12, -2);
+    const driftX = rand(-10, 10);
+    const endY = rand(115, 155);
+
+    Object.assign(el.style, {
+      position: 'absolute',
+      left: startX + 'vw',
+      top: startY + 'vh',
+      fontSize: size + 'px',
+      opacity: rand(0.85, 1),
+      transform: `rotate(${rand(-20, 20)}deg)`
+    });
+
+    poopLayer.appendChild(el);
+
+    const anim = el.animate(
       [
         { transform: `translate(0,0) rotate(0deg)`, opacity: 1 },
-        { transform: `translate(${rand(driftMin, driftMax)}vw, ${rand(endMin, endMax)}vh) rotate(${rand(-540, 540)}deg)`, opacity: 0.15 }
+        { transform: `translate(${driftX}vw, ${endY * 0.6}vh) rotate(${rand(-240, 240)}deg)`, opacity: 1 },
+        { transform: `translate(${driftX}vw, ${endY}vh) rotate(${rand(-420, 420)}deg)`, opacity: 0.9 }
       ],
       {
-        duration: durationMs,
-        delay: rand(0, delayMax),
-        easing: "cubic-bezier(.12,.75,.18,1)", // slower “gravity”
+        duration: POOP_LIFETIME_MS,
+        easing: "cubic-bezier(.12,.75,.18,1)",
         fill: "forwards"
       }
     );
+
+    anim.onfinish = () => {
+      try { el.remove(); } catch(e) {}
+      poopCount = Math.max(0, poopCount - 1);
+    };
   }
 
-  setTimeout(() => layer.remove(), durationMs + delayMax + 800);
-}
+  function startNloPoop() {
+    document.body.classList.add('nlo-poop-mode');
+    ensurePoopLayer();
+    if (poopTimer) return;
 
+    // quick “arrival burst”
+    for (let i = 0; i < 40; i++) spawnOnePoop();
 
+    poopTimer = setInterval(spawnOnePoop, POOP_SPAWN_EVERY_MS);
+  }
+
+  function stopNloPoop() {
+    document.body.classList.remove('nlo-poop-mode');
+    if (poopTimer) { clearInterval(poopTimer); poopTimer = null; }
+
+    // remove layer + reset counters
+    if (poopLayer) {
+      try { poopLayer.remove(); } catch(e) {}
+      poopLayer = null;
+    }
+    poopCount = 0;
+  }
+
+  // Auto-enable on page load if last alliance was NLO
+  try {
+    const saved = (localStorage.getItem('wos_alliance') || '').trim().toUpperCase();
+    if (saved === 'NLO') startNloPoop();
+  } catch (e) {}
+
+  // Gate buttons
   allianceButtons.forEach((btn) => {
     btn.type = 'button';
     btn.addEventListener('click', () => {
@@ -1222,16 +1267,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (alliance === 'ETF') { showEtfMessage(); return; }
 
-      // ✅ keep the poop: only on NLO click
-      if (alliance === 'NLO') poopStorm();
-
+      // persist selection
       try { localStorage.setItem('wos_alliance', alliance); } catch (e) {}
+
+      // start/stop poop based on alliance
+      if (alliance === 'NLO') startNloPoop();
+      else stopNloPoop();
+
       enterSite();
     });
   });
 });
 </script>
-
 
 
 
