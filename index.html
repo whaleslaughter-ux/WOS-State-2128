@@ -1160,43 +1160,60 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // 💩 NLO POOP STORM
-  function poopStorm({ count = 90, durationMs = 1800, symbols = ["💩"] } = {}) {
-    const layer = document.createElement("div");
-    layer.setAttribute("aria-hidden", "true");
-    Object.assign(layer.style, {
-      position: "fixed",
-      inset: "0",
-      pointerEvents: "none",
-      zIndex: "100000"
+  function poopStorm({
+  count = 220,          // MORE
+  durationMs = 4200,    // SLOWER
+  symbols = ["💩"],
+  startTopMin = -35,    // start higher
+  startTopMax = -5,
+  driftMin = -18,       // less sideways chaos, more “fall”
+  driftMax = 18,
+  endMin = 130,         // how far down they travel
+  endMax = 210,
+  delayMax = 900        // spread the start times
+} = {}) {
+  const layer = document.createElement("div");
+  layer.setAttribute("aria-hidden", "true");
+  Object.assign(layer.style, {
+    position: "fixed",
+    inset: "0",
+    pointerEvents: "none",
+    zIndex: "100000"
+  });
+  document.body.appendChild(layer);
+
+  const rand = (a, b) => a + Math.random() * (b - a);
+
+  for (let i = 0; i < count; i++) {
+    const el = document.createElement("div");
+    el.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+    Object.assign(el.style, {
+      position: "absolute",
+      left: rand(0, 100) + "vw",
+      top: rand(startTopMin, startTopMax) + "vh",
+      fontSize: rand(20, 70) + "px",
+      opacity: rand(0.75, 1),
+      transform: `rotate(${rand(-25, 25)}deg)`
     });
-    document.body.appendChild(layer);
+    layer.appendChild(el);
 
-    const rand = (a, b) => a + Math.random() * (b - a);
-
-    for (let i = 0; i < count; i++) {
-      const el = document.createElement("div");
-      el.textContent = symbols[Math.floor(Math.random() * symbols.length)];
-      Object.assign(el.style, {
-        position: "absolute",
-        left: rand(0, 100) + "vw",
-        top: rand(-25, -5) + "vh",
-        fontSize: rand(22, 56) + "px",
-        opacity: rand(0.85, 1),
-        transform: `rotate(${rand(-30, 30)}deg)`
-      });
-      layer.appendChild(el);
-
-      el.animate(
-        [
-          { transform: `translate(0,0) rotate(0deg)`, opacity: 1 },
-          { transform: `translate(${rand(-20, 20)}vw, ${rand(120, 170)}vh) rotate(${rand(-720, 720)}deg)`, opacity: 0 }
-        ],
-        { duration: durationMs, delay: rand(0, 300), easing: "cubic-bezier(.2,.8,.2,1)", fill: "forwards" }
-      );
-    }
-
-    setTimeout(() => layer.remove(), durationMs + 600);
+    el.animate(
+      [
+        { transform: `translate(0,0) rotate(0deg)`, opacity: 1 },
+        { transform: `translate(${rand(driftMin, driftMax)}vw, ${rand(endMin, endMax)}vh) rotate(${rand(-540, 540)}deg)`, opacity: 0.15 }
+      ],
+      {
+        duration: durationMs,
+        delay: rand(0, delayMax),
+        easing: "cubic-bezier(.12,.75,.18,1)", // slower “gravity”
+        fill: "forwards"
+      }
+    );
   }
+
+  setTimeout(() => layer.remove(), durationMs + delayMax + 800);
+}
+
 
   allianceButtons.forEach((btn) => {
     btn.type = 'button';
