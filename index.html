@@ -1136,103 +1136,83 @@ body.holiday-mode .gate-panel::after {
   </script>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const overlay = document.getElementById('gate-overlay');
-    if (!overlay) return;
+document.addEventListener('DOMContentLoaded', () => {
+  const overlay = document.getElementById('gate-overlay');
+  if (!overlay) return;
 
-    const allianceButtons = overlay.querySelectorAll('.alliance-btn');
+  const allianceButtons = overlay.querySelectorAll('.alliance-btn');
+  const etfMessage = document.getElementById('etf-message');
 
-    function enterSite() {
-      overlay.style.display = 'none';
-      overlay.setAttribute('aria-hidden', 'true');
-      document.body.classList.remove('no-scroll');
-    }
+  function enterSite() {
+    overlay.style.display = 'none';
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('no-scroll');
+  }
 
-    // Optional: prevent background scroll while gate is up
-    document.body.classList.add('no-scroll');
-<script>
-  document.addEventListener('DOMContentLoaded', function () {
-    const overlay = document.getElementById('gate-overlay');
-    if (!overlay) return;
+  document.body.classList.add('no-scroll');
 
-    const allianceButtons = overlay.querySelectorAll('.alliance-btn');
+  function showEtfMessage() {
+    if (!etfMessage) return;
+    etfMessage.style.display = 'flex';
+    etfMessage.addEventListener('click', () => {
+      etfMessage.style.display = 'none';
+    }, { once: true });
+  }
 
-    function enterSite() {
-      overlay.style.display = 'none';
-      overlay.setAttribute('aria-hidden', 'true');
-      document.body.classList.remove('no-scroll');
-    }
+  // 💩 NLO POOP STORM
+  function poopStorm({ count = 90, durationMs = 1800, symbols = ["💩"] } = {}) {
+    const layer = document.createElement("div");
+    layer.setAttribute("aria-hidden", "true");
+    Object.assign(layer.style, {
+      position: "fixed",
+      inset: "0",
+      pointerEvents: "none",
+      zIndex: "100000"
+    });
+    document.body.appendChild(layer);
 
-    // Optional: prevent background scroll while gate is up
-    document.body.classList.add('no-scroll');
+    const rand = (a, b) => a + Math.random() * (b - a);
 
-    // 💩 NLO POOP STORM
-    function poopStorm({ count = 90, durationMs = 1800, symbols = ["💩","💩","💩","💩","💩"] } = {}) {
-      const layer = document.createElement("div");
-      layer.setAttribute("aria-hidden", "true");
-      Object.assign(layer.style, {
-        position: "fixed",
-        inset: "0",
-        pointerEvents: "none",
-        zIndex: "100000"
+    for (let i = 0; i < count; i++) {
+      const el = document.createElement("div");
+      el.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+      Object.assign(el.style, {
+        position: "absolute",
+        left: rand(0, 100) + "vw",
+        top: rand(-25, -5) + "vh",
+        fontSize: rand(22, 56) + "px",
+        opacity: rand(0.85, 1),
+        transform: `rotate(${rand(-30, 30)}deg)`
       });
-      document.body.appendChild(layer);
+      layer.appendChild(el);
 
-      const rand = (a, b) => a + Math.random() * (b - a);
-
-      for (let i = 0; i < count; i++) {
-        const el = document.createElement("div");
-        el.textContent = symbols[Math.floor(Math.random() * symbols.length)];
-        Object.assign(el.style, {
-          position: "absolute",
-          left: rand(0, 100) + "vw",
-          top: rand(-25, -5) + "vh",
-          fontSize: rand(22, 56) + "px",
-          opacity: rand(0.85, 1),
-          transform: `rotate(${rand(-30, 30)}deg)`
-        });
-        layer.appendChild(el);
-
-        el.animate(
-          [
-            { transform: `translate(0,0) rotate(0deg)`, opacity: 1 },
-            { transform: `translate(${rand(-20, 20)}vw, ${rand(120, 170)}vh) rotate(${rand(-720, 720)}deg)`, opacity: 0 }
-          ],
-          {
-            duration: durationMs,
-            delay: rand(0, 300),
-            easing: "cubic-bezier(.2,.8,.2,1)",
-            fill: "forwards"
-          }
-        );
-      }
-
-      setTimeout(() => layer.remove(), durationMs + 600);
+      el.animate(
+        [
+          { transform: `translate(0,0) rotate(0deg)`, opacity: 1 },
+          { transform: `translate(${rand(-20, 20)}vw, ${rand(120, 170)}vh) rotate(${rand(-720, 720)}deg)`, opacity: 0 }
+        ],
+        { duration: durationMs, delay: rand(0, 300), easing: "cubic-bezier(.2,.8,.2,1)", fill: "forwards" }
+      );
     }
 
-    allianceButtons.forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        const alliance = (btn.getAttribute('data-alliance') || 'GUEST').trim().toUpperCase();
+    setTimeout(() => layer.remove(), durationMs + 600);
+  }
 
-        // ✅ trigger storm on NLO click (before gate closes)
-        if (alliance === 'NLO') poopStorm();
+  allianceButtons.forEach((btn) => {
+    btn.type = 'button';
+    btn.addEventListener('click', () => {
+      const alliance = (btn.dataset.alliance || 'GUEST').trim().toUpperCase();
 
-        try { localStorage.setItem('wos_alliance', alliance); } catch (e) {}
-        enterSite();
-      });
+      if (alliance === 'ETF') { showEtfMessage(); return; }
+
+      // ✅ keep the poop: only on NLO click
+      if (alliance === 'NLO') poopStorm();
+
+      try { localStorage.setItem('wos_alliance', alliance); } catch (e) {}
+      enterSite();
     });
   });
-</script>
-
-    allianceButtons.forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        // If you want to store the choice for later:
-        const alliance = (btn.getAttribute('data-alliance') || 'GUEST').trim().toUpperCase();
-        try { localStorage.setItem('wos_alliance', alliance); } catch (e) {}
-        enterSite();
-      });
-    });
-  });
+});
 </script>
 
 
