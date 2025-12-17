@@ -1141,7 +1141,9 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!overlay) return;
 
   const allianceButtons = overlay.querySelectorAll('.alliance-btn');
-  const etfMessage = document.getElementById('etf-message');
+
+  // Prevent scroll while gate is visible
+  document.body.classList.add('no-scroll');
 
   function enterSite() {
     overlay.style.display = 'none';
@@ -1149,136 +1151,124 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.classList.remove('no-scroll');
   }
 
-  document.body.classList.add('no-scroll');
-
-  function showEtfMessage() {
-    if (!etfMessage) return;
-    etfMessage.style.display = 'flex';
-    etfMessage.addEventListener('click', () => {
-      etfMessage.style.display = 'none';
-    }, { once: true });
-  }
-
   // =========================
-  // 💩 PERMANENT NLO POOP MODE
+  // 💩 NLO PERMANENT BLIZZARD
   // =========================
-  let poopLayer = null;
-  let poopTimer = null;
-  let poopCount = 0;
-  const POOP_MAX_ON_SCREEN = 450;      // cap for performance
-  const POOP_SPAWN_EVERY_MS = 80;     // drizzle rate (lower = more)
-  const POOP_LIFETIME_MS = 12000;       // each poop lives this long
+  let poopInterval = null;
 
-  const rand = (a, b) => a + Math.random() * (b - a);
-
-  function ensurePoopLayer() {
-    if (poopLayer) return poopLayer;
-    poopLayer = document.createElement('div');
-    poopLayer.id = 'nlo-poop-layer';
-    poopLayer.setAttribute('aria-hidden', 'true');
-    Object.assign(poopLayer.style, {
-      position: 'fixed',
-      inset: '0',
-      pointerEvents: 'none',
-      zIndex: '100000'
+  function poopStorm({
+    count = 220,
+    durationMs = 7000,
+    symbols = ["💩"],
+    startTopMin = -25,
+    startTopMax = -5,
+    driftMin = -12,
+    driftMax = 12,
+    endMin = 120,
+    endMax = 165,
+    delayMax = 1800
+  } = {}) {
+    const layer = document.createElement("div");
+    layer.className = "nlo-poop-layer";
+    layer.setAttribute("aria-hidden", "true");
+    Object.assign(layer.style, {
+      position: "fixed",
+      inset: "0",
+      pointerEvents: "none",
+      zIndex: "100000"
     });
-    document.body.appendChild(poopLayer);
-    return poopLayer;
-  }
+    document.body.appendChild(layer);
 
-  function spawnOnePoop() {
-    if (!poopLayer) return;
-    if (poopCount >= POOP_MAX_ON_SCREEN) return;
+    const rand = (a, b) => a + Math.random() * (b - a);
 
-    const el = document.createElement('div');
-    el.textContent = "💩";
-    poopCount++;
+    for (let i = 0; i < count; i++) {
+      const el = document.createElement("div");
+      el.textContent = symbols[0];
+      Object.assign(el.style, {
+        position: "absolute",
+        left: rand(0, 100) + "vw",
+        top: rand(startTopMin, startTopMax) + "vh",
+        fontSize: rand(22, 60) + "px",
+        opacity: rand(0.9, 1),
+        transform: `rotate(${rand(-20, 20)}deg)`
+      });
+      layer.appendChild(el);
 
-    const size = rand(18, 54);
-    const startX = rand(0, 100);
-    const startY = rand(-12, -2);
-    const driftX = rand(-10, 10);
-    const endY = rand(115, 155);
+      el.animate(
+        [
+          { transform: `translate(0,0) rotate(0deg)`, opacity: 1 },
+          {
+            transform: `translate(${rand(driftMin, driftMax)}vw, ${rand(endMin, endMax)}vh)
+                         rotate(${rand(-360, 360)}deg)`,
+            opacity: 0.9
+          }
+        ],
+        {
+          duration: durationMs,
+          delay: rand(0, delayMax),
+          easing: "cubic-bezier(.12,.75,.18,1)",
+          fill: "forwards"
+        }
+      );
+    }
 
-    Object.assign(el.style, {
-      position: 'absolute',
-      left: startX + 'vw',
-      top: startY + 'vh',
-      fontSize: size + 'px',
-      opacity: rand(0.85, 1),
-      transform: `rotate(${rand(-20, 20)}deg)`
-    });
-
-    poopLayer.appendChild(el);
-
-    const anim = el.animate(
-      [
-        { transform: `translate(0,0) rotate(0deg)`, opacity: 1 },
-        { transform: `translate(${driftX}vw, ${endY * 0.6}vh) rotate(${rand(-240, 240)}deg)`, opacity: 1 },
-        { transform: `translate(${driftX}vw, ${endY}vh) rotate(${rand(-420, 420)}deg)`, opacity: 0.9 }
-      ],
-      {
-        duration: POOP_LIFETIME_MS,
-        easing: "cubic-bezier(.12,.75,.18,1)",
-        fill: "forwards"
-      }
-    );
-
-    anim.onfinish = () => {
-      try { el.remove(); } catch(e) {}
-      poopCount = Math.max(0, poopCount - 1);
-    };
+    setTimeout(() => layer.remove(), durationMs + delayMax + 500);
   }
 
   function startNloPoop() {
-    document.body.classList.add('nlo-poop-mode');
-    ensurePoopLayer();
-    if (poopTimer) return;
-
-    // quick “arrival burst”
-    for (let i = 0; i < 40; i++) spawnOnePoop();
-
-    poopTimer = setInterval(spawnOnePoop, POOP_SPAWN_EVERY_MS);
+    stopNloPoop();           // safety
+    poopStorm();             // immediate hit
+    poopInterval = setInterval(poopStorm, 1800); // blizzard sustain
   }
 
   function stopNloPoop() {
-    document.body.classList.remove('nlo-poop-mode');
-    if (poopTimer) { clearInterval(poopTimer); poopTimer = null; }
-
-    // remove layer + reset counters
-    if (poopLayer) {
-      try { poopLayer.remove(); } catch(e) {}
-      poopLayer = null;
+    if (poopInterval) {
+      clearInterval(poopInterval);
+      poopInterval = null;
     }
-    poopCount = 0;
+    document.querySelectorAll('.nlo-poop-layer').forEach(el => el.remove());
   }
 
-  // Auto-enable on page load if last alliance was NLO
-  try {
-    const saved = (localStorage.getItem('wos_alliance') || '').trim().toUpperCase();
-    if (saved === 'NLO') startNloPoop();
-  } catch (e) {}
+  function applyAllianceEffects(alliance) {
+    if (alliance === 'NLO') startNloPoop();
+    else stopNloPoop();
+  }
 
-  // Gate buttons
+  // =========================
+  // Gate button behavior
+  // =========================
   allianceButtons.forEach((btn) => {
     btn.type = 'button';
     btn.addEventListener('click', () => {
       const alliance = (btn.dataset.alliance || 'GUEST').trim().toUpperCase();
 
-      if (alliance === 'ETF') { showEtfMessage(); return; }
-
-      // persist selection
       try { localStorage.setItem('wos_alliance', alliance); } catch (e) {}
 
-      // start/stop poop based on alliance
-      if (alliance === 'NLO') startNloPoop();
-      else stopNloPoop();
-
+      // Close gate first
       enterSite();
+
+      // Apply effects AFTER gate is gone
+      setTimeout(() => applyAllianceEffects(alliance), 50);
     });
   });
+
+  // If gate is ever skipped in the future, this will reapply effects
+  try {
+    const saved = (localStorage.getItem('wos_alliance') || '').trim().toUpperCase();
+    if (saved === 'NLO') {
+      // Wait until overlay is gone (in case you auto-hide it later)
+      const observer = new MutationObserver(() => {
+        if (overlay.style.display === 'none') {
+          startNloPoop();
+          observer.disconnect();
+        }
+      });
+      observer.observe(overlay, { attributes: true, attributeFilter: ['style'] });
+    }
+  } catch (e) {}
 });
 </script>
+
 
 
 
