@@ -1162,37 +1162,26 @@ body.holiday-mode .gate-panel::after {
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-  const overlay = document.getElementById('gate-overlay');
-  if (!overlay) return;
-
-  const allianceButtons = overlay.querySelectorAll('.alliance-btn');
-
-  // Prevent scroll while gate is visible
-  document.body.classList.add('no-scroll');
-
-  function enterSite() {
-    overlay.style.display = 'none';
-    overlay.setAttribute('aria-hidden', 'true');
-    document.body.classList.remove('no-scroll');
-  }
-
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  // =========================
-  // ❄️ SETTINGS
-  // =========================
-  const OVERLAY_ID = 'gate-overlay'; // matches your HTML
+  const OVERLAY_ID = 'gate-overlay';
   const STORAGE_ALLIANCE = 'wos_alliance';
   const STORAGE_SYMBOL   = 'wos_symbol';
 
   const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // =========================
-  // ❄️ EMOJI BLIZZARD ENGINE
-  // =========================
+  // ===== Gate overlay =====
+  const overlay = document.getElementById(OVERLAY_ID);
+  if (overlay) document.body.classList.add('no-scroll');
+
+  function enterSite() {
+    if (!overlay) return;
+    overlay.style.display = 'none';
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('no-scroll');
+  }
+
+  // ===== Emoji Blizzard Engine =====
   let blizzardInterval = null;
   let activeSymbol = "🎁";
-
   const rand = (a, b) => a + Math.random() * (b - a);
 
   function emojiBlizzard({
@@ -1263,22 +1252,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('.emoji-blizzard-layer').forEach(el => el.remove());
   }
 
-  // =========================
-  // 🚪 GATE HANDLING
-  // =========================
-  const overlay = document.getElementById(OVERLAY_ID);
-
-  function enterSite() {
-    if (!overlay) return;
-    overlay.style.display = 'none';
-    overlay.setAttribute('aria-hidden', 'true');
-    document.body.classList.remove('no-scroll');
-  }
-
-  // If gate exists, lock scroll until entry
-  if (overlay) document.body.classList.add('no-scroll');
-
-  // Hook alliance buttons (gate buttons)
+  // ===== Button click wiring =====
   document.querySelectorAll('.alliance-btn[data-alliance]').forEach(btn => {
     btn.type = 'button';
     btn.addEventListener('click', () => {
@@ -1291,23 +1265,17 @@ document.addEventListener('DOMContentLoaded', () => {
       } catch (e) {}
 
       enterSite();
-      // start effects after gate closes
       setTimeout(() => startBlizzard(symbol), 50);
     });
   });
 
-  // =========================
-  // 🔁 RUN ON EVERY PAGE LOAD
-  // =========================
-  // If there is NO gate on this page, just start immediately from saved symbol.
-  // If there IS a gate, wait until it's dismissed (either by click or if you auto-dismiss later).
+  // ===== Resume effect on reload (after gate closes) =====
   let savedSymbol = null;
   try { savedSymbol = localStorage.getItem(STORAGE_SYMBOL); } catch(e) {}
 
   if (!overlay) {
     if (savedSymbol) startBlizzard(savedSymbol);
   } else {
-    // If you ever auto-hide the gate based on a stored choice, this also handles it.
     const obs = new MutationObserver(() => {
       if (overlay.style.display === 'none') {
         if (savedSymbol) startBlizzard(savedSymbol);
@@ -1318,5 +1286,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 </script>
+
 </body>
 </html>
