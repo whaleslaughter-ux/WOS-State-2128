@@ -1174,15 +1174,18 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.classList.remove('no-scroll');
   }
 
-  // =========================
-  // 💩 NLO PERMANENT BLIZZARD
-  // =========================
-  let poopInterval = null;
+  <script>
+document.addEventListener('DOMContentLoaded', () => {
 
-  function poopStorm({
+  // =========================
+  // ❄️ EMOJI BLIZZARD ENGINE
+  // =========================
+  let blizzardInterval = null;
+  let activeSymbol = "🎁";
+
+  function emojiBlizzard({
     count = 220,
     durationMs = 7000,
-    symbols = ["🎁"],
     startTopMin = -25,
     startTopMax = -5,
     driftMin = -12,
@@ -1191,8 +1194,9 @@ document.addEventListener('DOMContentLoaded', () => {
     endMax = 165,
     delayMax = 1800
   } = {}) {
+
     const layer = document.createElement("div");
-    layer.className = "nlo-poop-layer";
+    layer.className = "emoji-blizzard-layer";
     layer.setAttribute("aria-hidden", "true");
     Object.assign(layer.style, {
       position: "fixed",
@@ -1206,7 +1210,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     for (let i = 0; i < count; i++) {
       const el = document.createElement("div");
-      el.textContent = symbols[0];
+      el.textContent = activeSymbol;
       Object.assign(el.style, {
         position: "absolute",
         left: rand(0, 100) + "vw",
@@ -1219,11 +1223,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
       el.animate(
         [
-          { transform: `translate(0,0) rotate(0deg)`, opacity: 1 },
+          { transform: `translate(0,0) rotate(0deg)` },
           {
             transform: `translate(${rand(driftMin, driftMax)}vw, ${rand(endMin, endMax)}vh)
-                         rotate(${rand(-360, 360)}deg)`,
-            opacity: 0.9
+                         rotate(${rand(-360, 360)}deg)`
           }
         ],
         {
@@ -1238,57 +1241,63 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => layer.remove(), durationMs + delayMax + 500);
   }
 
-  function startNloPoop() {
-    stopNloPoop();           // safety
-    poopStorm();             // immediate hit
-    poopInterval = setInterval(poopStorm, 1800); // blizzard sustain
+  function startBlizzard(symbol) {
+    stopBlizzard();
+    activeSymbol = symbol || "🎁";
+    emojiBlizzard();
+    blizzardInterval = setInterval(emojiBlizzard, 1800);
   }
 
-  function stopNloPoop() {
-    if (poopInterval) {
-      clearInterval(poopInterval);
-      poopInterval = null;
+  function stopBlizzard() {
+    if (blizzardInterval) {
+      clearInterval(blizzardInterval);
+      blizzardInterval = null;
     }
-    document.querySelectorAll('.nlo-poop-layer').forEach(el => el.remove());
-  }
-
-  function applyAllianceEffects(alliance) {
-    if (alliance === 'NLO') startNloPoop();
-    else stopNloPoop();
+    document.querySelectorAll('.emoji-blizzard-layer').forEach(el => el.remove());
   }
 
   // =========================
-  // Gate button behavior
+  // 🚪 GATE BUTTON HANDLING
   // =========================
-  allianceButtons.forEach((btn) => {
+  const allianceButtons = document.querySelectorAll('[data-alliance]');
+  const overlay = document.getElementById('overlay');
+
+  allianceButtons.forEach(btn => {
     btn.type = 'button';
+
     btn.addEventListener('click', () => {
       const alliance = (btn.dataset.alliance || 'GUEST').trim().toUpperCase();
+      const symbol = btn.dataset.symbol || "🎁";
 
-      try { localStorage.setItem('wos_alliance', alliance); } catch (e) {}
+      try {
+        localStorage.setItem('wos_alliance', alliance);
+        localStorage.setItem('wos_symbol', symbol);
+      } catch (e) {}
 
-      // Close gate first
       enterSite();
 
-      // Apply effects AFTER gate is gone
-      setTimeout(() => applyAllianceEffects(alliance), 50);
+      setTimeout(() => startBlizzard(symbol), 50);
     });
   });
 
-  // If gate is ever skipped in the future, this will reapply effects
+  // =========================
+  // 🔁 REAPPLY ON REFRESH
+  // =========================
   try {
-    const saved = (localStorage.getItem('wos_alliance') || '').trim().toUpperCase();
-    if (saved === 'NLO') {
-      // Wait until overlay is gone (in case you auto-hide it later)
+    const savedSymbol = localStorage.getItem('wos_symbol');
+    const savedAlliance = localStorage.getItem('wos_alliance');
+
+    if (savedAlliance && savedSymbol) {
       const observer = new MutationObserver(() => {
-        if (overlay.style.display === 'none') {
-          startNloPoop();
+        if (overlay && overlay.style.display === 'none') {
+          startBlizzard(savedSymbol);
           observer.disconnect();
         }
       });
       observer.observe(overlay, { attributes: true, attributeFilter: ['style'] });
     }
   } catch (e) {}
+
 });
 </script>
 
