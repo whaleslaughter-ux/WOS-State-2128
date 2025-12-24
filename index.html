@@ -1174,8 +1174,16 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.classList.remove('no-scroll');
   }
 
-  <script>
+<script>
 document.addEventListener('DOMContentLoaded', () => {
+  // =========================
+  // ❄️ SETTINGS
+  // =========================
+  const OVERLAY_ID = 'gate-overlay'; // matches your HTML
+  const STORAGE_ALLIANCE = 'wos_alliance';
+  const STORAGE_SYMBOL   = 'wos_symbol';
+
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   // =========================
   // ❄️ EMOJI BLIZZARD ENGINE
@@ -1183,18 +1191,19 @@ document.addEventListener('DOMContentLoaded', () => {
   let blizzardInterval = null;
   let activeSymbol = "🎁";
 
+  const rand = (a, b) => a + Math.random() * (b - a);
+
   function emojiBlizzard({
-    count = 220,
-    durationMs = 7000,
+    count = 160,
+    durationMs = 6500,
+    delayMax = 1600,
     startTopMin = -25,
     startTopMax = -5,
     driftMin = -12,
     driftMax = 12,
     endMin = 120,
-    endMax = 165,
-    delayMax = 1800
+    endMax = 165
   } = {}) {
-
     const layer = document.createElement("div");
     layer.className = "emoji-blizzard-layer";
     layer.setAttribute("aria-hidden", "true");
@@ -1206,8 +1215,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     document.body.appendChild(layer);
 
-    const rand = (a, b) => a + Math.random() * (b - a);
-
     for (let i = 0; i < count; i++) {
       const el = document.createElement("div");
       el.textContent = activeSymbol;
@@ -1215,8 +1222,8 @@ document.addEventListener('DOMContentLoaded', () => {
         position: "absolute",
         left: rand(0, 100) + "vw",
         top: rand(startTopMin, startTopMax) + "vh",
-        fontSize: rand(22, 60) + "px",
-        opacity: rand(0.9, 1),
+        fontSize: rand(18, 54) + "px",
+        opacity: rand(0.75, 1),
         transform: `rotate(${rand(-20, 20)}deg)`
       });
       layer.appendChild(el);
@@ -1225,8 +1232,7 @@ document.addEventListener('DOMContentLoaded', () => {
         [
           { transform: `translate(0,0) rotate(0deg)` },
           {
-            transform: `translate(${rand(driftMin, driftMax)}vw, ${rand(endMin, endMax)}vh)
-                         rotate(${rand(-360, 360)}deg)`
+            transform: `translate(${rand(driftMin, driftMax)}vw, ${rand(endMin, endMax)}vh) rotate(${rand(-360, 360)}deg)`
           }
         ],
         {
@@ -1238,71 +1244,77 @@ document.addEventListener('DOMContentLoaded', () => {
       );
     }
 
-    setTimeout(() => layer.remove(), durationMs + delayMax + 500);
+    setTimeout(() => layer.remove(), durationMs + delayMax + 400);
   }
 
   function startBlizzard(symbol) {
+    if (prefersReduced) return;
     stopBlizzard();
     activeSymbol = symbol || "🎁";
     emojiBlizzard();
-    blizzardInterval = setInterval(emojiBlizzard, 1800);
+    blizzardInterval = setInterval(() => emojiBlizzard(), 1800);
   }
 
   function stopBlizzard() {
-    if (blizzardInterval) {
-      clearInterval(blizzardInterval);
-      blizzardInterval = null;
-    }
+    if (blizzardInterval) clearInterval(blizzardInterval);
+    blizzardInterval = null;
     document.querySelectorAll('.emoji-blizzard-layer').forEach(el => el.remove());
   }
 
   // =========================
-  // 🚪 GATE BUTTON HANDLING
+  // 🚪 GATE HANDLING
   // =========================
-  const allianceButtons = document.querySelectorAll('[data-alliance]');
-  const overlay = document.getElementById('overlay');
+  const overlay = document.getElementById(OVERLAY_ID);
 
-  allianceButtons.forEach(btn => {
+  function enterSite() {
+    if (!overlay) return;
+    overlay.style.display = 'none';
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('no-scroll');
+  }
+
+  // If gate exists, lock scroll until entry
+  if (overlay) document.body.classList.add('no-scroll');
+
+  // Hook alliance buttons (gate buttons)
+  document.querySelectorAll('.alliance-btn[data-alliance]').forEach(btn => {
     btn.type = 'button';
-
     btn.addEventListener('click', () => {
       const alliance = (btn.dataset.alliance || 'GUEST').trim().toUpperCase();
-      const symbol = btn.dataset.symbol || "🎁";
+      const symbol   = btn.dataset.symbol || "🎁";
 
       try {
-        localStorage.setItem('wos_alliance', alliance);
-        localStorage.setItem('wos_symbol', symbol);
+        localStorage.setItem(STORAGE_ALLIANCE, alliance);
+        localStorage.setItem(STORAGE_SYMBOL, symbol);
       } catch (e) {}
 
       enterSite();
-
+      // start effects after gate closes
       setTimeout(() => startBlizzard(symbol), 50);
     });
   });
 
   // =========================
-  // 🔁 REAPPLY ON REFRESH
+  // 🔁 RUN ON EVERY PAGE LOAD
   // =========================
-  try {
-    const savedSymbol = localStorage.getItem('wos_symbol');
-    const savedAlliance = localStorage.getItem('wos_alliance');
+  // If there is NO gate on this page, just start immediately from saved symbol.
+  // If there IS a gate, wait until it's dismissed (either by click or if you auto-dismiss later).
+  let savedSymbol = null;
+  try { savedSymbol = localStorage.getItem(STORAGE_SYMBOL); } catch(e) {}
 
-    if (savedAlliance && savedSymbol) {
-      const observer = new MutationObserver(() => {
-        if (overlay && overlay.style.display === 'none') {
-          startBlizzard(savedSymbol);
-          observer.disconnect();
-        }
-      });
-      observer.observe(overlay, { attributes: true, attributeFilter: ['style'] });
-    }
-  } catch (e) {}
-
+  if (!overlay) {
+    if (savedSymbol) startBlizzard(savedSymbol);
+  } else {
+    // If you ever auto-hide the gate based on a stored choice, this also handles it.
+    const obs = new MutationObserver(() => {
+      if (overlay.style.display === 'none') {
+        if (savedSymbol) startBlizzard(savedSymbol);
+        obs.disconnect();
+      }
+    });
+    obs.observe(overlay, { attributes: true, attributeFilter: ['style'] });
+  }
 });
 </script>
-
-
-
-
 </body>
 </html>
