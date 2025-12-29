@@ -1169,14 +1169,9 @@ body.holiday-mode .gate-panel::after {
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-  const OVERLAY_ID = 'gate-overlay';
-  const STORAGE_ALLIANCE = 'wos_alliance';
-  const STORAGE_SYMBOL   = 'wos_symbol';
+  const overlay = document.getElementById('gate-overlay');
 
-  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  // ===== Gate overlay =====
-  const overlay = document.getElementById(OVERLAY_ID);
+  // If the overlay exists, lock scroll until they enter.
   if (overlay) document.body.classList.add('no-scroll');
 
   function enterSite() {
@@ -1186,113 +1181,26 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.classList.remove('no-scroll');
   }
 
-  // ===== Emoji Blizzard Engine =====
-  let blizzardInterval = null;
-  let activeSymbol = "🎁";
-  const rand = (a, b) => a + Math.random() * (b - a);
-
-  function emojiBlizzard({
-    count = 160,
-    durationMs = 6500,
-    delayMax = 1600,
-    startTopMin = -25,
-    startTopMax = -5,
-    driftMin = -12,
-    driftMax = 12,
-    endMin = 120,
-    endMax = 165
-  } = {}) {
-    const layer = document.createElement("div");
-    layer.className = "emoji-blizzard-layer";
-    layer.setAttribute("aria-hidden", "true");
-    Object.assign(layer.style, {
-      position: "fixed",
-      inset: "0",
-      pointerEvents: "none",
-      zIndex: "100000"
-    });
-    document.body.appendChild(layer);
-
-    for (let i = 0; i < count; i++) {
-      const el = document.createElement("div");
-      el.textContent = activeSymbol;
-      Object.assign(el.style, {
-        position: "absolute",
-        left: rand(0, 100) + "vw",
-        top: rand(startTopMin, startTopMax) + "vh",
-        fontSize: rand(18, 54) + "px",
-        opacity: rand(0.75, 1),
-        transform: `rotate(${rand(-20, 20)}deg)`
-      });
-      layer.appendChild(el);
-
-      el.animate(
-        [
-          { transform: `translate(0,0) rotate(0deg)` },
-          {
-            transform: `translate(${rand(driftMin, driftMax)}vw, ${rand(endMin, endMax)}vh) rotate(${rand(-360, 360)}deg)`
-          }
-        ],
-        {
-          duration: durationMs,
-          delay: rand(0, delayMax),
-          easing: "cubic-bezier(.12,.75,.18,1)",
-          fill: "forwards"
-        }
-      );
-    }
-
-    setTimeout(() => layer.remove(), durationMs + delayMax + 400);
-  }
-
-  function startBlizzard(symbol) {
-    if (prefersReduced) return;
-    stopBlizzard();
-    activeSymbol = symbol || "🎁";
-    emojiBlizzard();
-    blizzardInterval = setInterval(() => emojiBlizzard(), 1800);
-  }
-
-  function stopBlizzard() {
-    if (blizzardInterval) clearInterval(blizzardInterval);
-    blizzardInterval = null;
-    document.querySelectorAll('.emoji-blizzard-layer').forEach(el => el.remove());
-  }
-
-  // ===== Button click wiring =====
+  // Any alliance button = enter immediately (no effects, no reroutes).
   document.querySelectorAll('.alliance-btn[data-alliance]').forEach(btn => {
     btn.type = 'button';
-    btn.addEventListener('click', () => {
-      const alliance = (btn.dataset.alliance || 'GUEST').trim().toUpperCase();
-      const symbol   = btn.dataset.symbol || "🎁";
-
-      try {
-        localStorage.setItem(STORAGE_ALLIANCE, alliance);
-        localStorage.setItem(STORAGE_SYMBOL, symbol);
-      } catch (e) {}
-
-      enterSite();
-      setTimeout(() => startBlizzard(symbol), 50);
-    });
+    btn.addEventListener('click', () => enterSite());
   });
 
-  // ===== Resume effect on reload (after gate closes) =====
-  let savedSymbol = null;
-  try { savedSymbol = localStorage.getItem(STORAGE_SYMBOL); } catch(e) {}
+  // Optional: click outside panel closes gate (normal modal behavior).
+  // If you DON'T want this, delete this block.
+  overlay?.addEventListener('click', (e) => {
+    if (e.target === overlay) enterSite();
+  });
 
-  if (!overlay) {
-    if (savedSymbol) startBlizzard(savedSymbol);
-  } else {
-    const obs = new MutationObserver(() => {
-      if (overlay.style.display === 'none') {
-        if (savedSymbol) startBlizzard(savedSymbol);
-        obs.disconnect();
-      }
-    });
-    obs.observe(overlay, { attributes: true, attributeFilter: ['style'] });
-  }
+  // Optional: Escape key closes gate (accessibility win).
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') enterSite();
+  });
 });
 </script>
+
+
 
 </body>
 </html>
