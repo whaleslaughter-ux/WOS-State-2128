@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6LN9JCF6JC"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-6LN9JCF6JC');
+  </script>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HAVOC! On the Rocks — WOS State 2128</title>
+
+  <link rel="stylesheet" href="/style.css">
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      color: #eef2ff;
+      font: 16px/1.6 ui-sans-serif, system-ui, -apple-system, Segoe UI, Inter, Roboto, "Noto Sans", Arial;
+      background: radial-gradient(1100px 560px at 50% -10%, #2a1a47 0%, #120b30 42%, #060915 100%);
+    }
+
+    .wrap {
+      width: min(1000px, 95%);
+      margin: 0 auto;
+      padding: 40px 20px 48px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    header h1 {
+      margin: 0 0 .4rem;
+      font-size: clamp(1.6rem, 1.8vw + 1rem, 2.5rem);
+      letter-spacing: .6px;
+      text-transform: uppercase;
+    }
+
+    header p {
+      margin: 0;
+      font-size: 1rem;
+      opacity: .9;
+    }
+
+    .player-shell {
+      max-width: 640px;
+      margin: 2rem auto 2.5rem;
+      padding: 24px 24px 28px;
+      border-radius: 24px;
+      background: radial-gradient(circle at top, rgba(15,23,42,.96), rgba(2,6,23,1));
+      box-shadow: 0 22px 60px rgba(0,0,0,0.85);
+    }
+
+    .player-shell iframe {
+      width: 100%;
+      border-radius: 18px;
+      border: 0;
+      display: block;
+    }
+
+    .player-note {
+      margin-top: .75rem;
+      font-size: .9rem;
+      opacity: .85;
+      text-align: center;
+    }
+
+    .player-note a {
+      color: #a5b4ff;
+      text-decoration: underline;
+    }
+
+    .player-note a:hover {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .button-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 14px;
+      max-width: 640px;
+      margin: 0 auto 3rem;
+    }
+
+    .out-button {
+      display: block;
+      padding: 14px 16px;
+      border-radius: 14px;
+      text-align: center;
+      text-decoration: none;
+      font-weight: 600;
+      letter-spacing: .3px;
+      background: linear-gradient(135deg, #6366f1, #9333ea);
+      color: #fff;
+      box-shadow: 0 10px 30px rgba(0,0,0,.4);
+      transition: transform .15s ease, box-shadow .15s ease, opacity .15s ease;
+    }
+
+    .out-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 36px rgba(0,0,0,.55);
+      opacity: .95;
+    }
+
+    .out-button.secondary {
+      background: linear-gradient(135deg, #0ea5e9, #22c55e);
+    }
+
+    .out-button.ghost {
+      background: linear-gradient(135deg, #475569, #1f2933);
+    }
+
+    footer {
+      text-align: center;
+      margin: 0 0 24px;
+      opacity: .8;
+      font-size: .9rem;
+    }
+  </style>
+</head>
+
+<body class="album-drop">
+  <!-- shared nav -->
+  <div id="nav-placeholder"></div>
+  <script>
+    fetch('/nav.html')
+      .then(r => r.text())
+      .then(h => { document.getElementById('nav-placeholder').innerHTML = h; });
+  </script>
+
+  <main id="main" class="wrap">
+    <header>
+      <h1>HAVOC! On the Rocks</h1>
+      <p>The official album + playlist drop from State 2128. Pour accordingly.</p>
+    </header>
+
+    <section class="player-shell" aria-label="HAVOC! On the Rocks Spotify playlist">
+      <iframe
+        src="https://open.spotify.com/embed/playlist/1mWPDiFKTFQgcRBnrUbn76?utm_source=generator"
+        height="352"
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+        loading="lazy">
+      </iframe>
+
+      <p class="player-note">
+        For full blast mode, open this in
+        <a href="https://open.spotify.com/playlist/1mWPDiFKTFQgcRBnrUbn76" target="_blank" rel="noopener noreferrer">
+          Spotify
+        </a>.
+      </p>
+    </section>
+
+    <section class="button-row" aria-label="Listen on other platforms">
+      <a class="out-button" href="https://suno.com/playlist/a98d0e9c-e5e9-4f9a-932d-eea95f76510a" target="_blank" rel="noopener noreferrer">
+        Suno Playlist
+      </a>
+
+      <a class="out-button secondary" href="https://music.apple.com/us/artist/whaleslaughter/1847094318" target="_blank" rel="noopener noreferrer">
+        Apple Music
+      </a>
+
+      <a class="out-button ghost" href="#" aria-disabled="true" title="YouTube link coming soon">
+        YouTube (coming soon)
+      </a>
+    </section>
+
+    <footer>
+      © 2026 WOS State 2128 — Site created &amp; maintained by WHALESLAUGHTER.
+    </footer>
+  </main>
+
+  <!-- shared footer -->
+  <div id="footer-placeholder"></div>
+  <script>
+    fetch('/footer.html')
+      .then(r => r.text())
+      .then(h => { document.getElementById('footer-placeholder').innerHTML = h; });
+  </script>
+</body>
+</html>
