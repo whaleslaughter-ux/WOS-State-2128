@@ -19,7 +19,7 @@
 </style>
 
 <footer class="site-footer">
-  &copy; <span id="footer-year"></span> WOS State 2128 — Site created &amp; maintained by
+  &copy; {{ site.time | date: "%Y" }} WOS State 2128 — Site created &amp; maintained by
   <a href="https://whaleslaughter.com" target="_blank" rel="noopener">
     WHALESLAUGHTER
   </a>
@@ -28,12 +28,3 @@
     Legacy site
   </a>
 </footer>
-
-<script>
-  (function () {
-    const year = document.getElementById('footer-year');
-    if (year) {
-      year.textContent = new Date().getFullYear();
-    }
-  })();
-</script>
