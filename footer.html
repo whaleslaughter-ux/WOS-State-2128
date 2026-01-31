@@ -1,16 +1,39 @@
 <style>
-  .site-footer{
-    text-align:center; margin:34px 0; color:#b9c3ff;
-    font:16px/1.6 ui-sans-serif,system-ui,-apple-system,Segoe UI,Inter,Roboto,"Noto Sans",Arial;
+  .site-footer {
+    text-align: center;
+    margin: 34px 0;
+    color: #b9c3ff;
+    font: 16px/1.6 ui-sans-serif, system-ui, -apple-system,
+          Segoe UI, Inter, Roboto, "Noto Sans", Arial;
   }
-  .site-footer a{ color:#a5b4ff; text-decoration:underline }
-  .site-footer a:hover{ color:#fff; text-decoration:none }
+
+  .site-footer a {
+    color: #a5b4ff;
+    text-decoration: underline;
+  }
+
+  .site-footer a:hover {
+    color: #fff;
+    text-decoration: none;
+  }
 </style>
 
 <footer class="site-footer">
   &copy; <span id="footer-year"></span> WOS State 2128 — Site created &amp; maintained by
-  <a href="https://whaleslaughter.com" target="_blank" rel="noopener">WHALESLAUGHTER</a>
-  ·
-  <a href="https://state2128.github.io/wos/" target="_blank" rel="noopener">Legacy site</a>
+  <a href="https://whaleslaughter.com" target="_blank" rel="noopener">
+    WHALESLAUGHTER
+  </a>
+  &middot;
+  <a href="https://state2128.github.io/wos/" target="_blank" rel="noopener">
+    Legacy site
+  </a>
 </footer>
 
+<script>
+  (function () {
+    const year = document.getElementById('footer-year');
+    if (year) {
+      year.textContent = new Date().getFullYear();
+    }
+  })();
+</script>
