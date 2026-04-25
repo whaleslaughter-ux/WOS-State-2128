@@ -135,15 +135,17 @@
       .then(h => { document.getElementById('nav-placeholder').innerHTML = h; });
   </script>
 
-  <main id="main" class="wrap">
+  <main class="wrap">
     <header>
       <h1>HAVOC! Throat of the Frost</h1>
       <p>The official metal chronicle of the State 2128 blizzards. Listen or be left in the snow.</p>
     </header>
 
     <section class="player-shell" aria-label="Spotify player">
+
+      <!-- 🔴 REPLACE THIS SRC WITH YOUR WORKING SPOTIFY EMBED LINK -->
       <iframe
-        src="https://open.spotify.com/embed/album/35XlO6DqN66oA4vOltM098"
+        src="PASTE_WORKING_SPOTIFY_EMBED_LINK_HERE"
         width="100%"
         height="352"
         style="border-radius:12px"
@@ -154,22 +156,20 @@
 
       <p class="player-note">
         For the full sub-zero experience, open this in
-        <a href="https://open.spotify.com/album/35XlO6DqN66oA4vOltM098" target="_blank" rel="noopener noreferrer">
-          Spotify
-        </a>.
+        <a href="#" target="_blank" rel="noopener noreferrer">Spotify</a>.
       </p>
     </section>
 
-    <section class="button-row" aria-label="Listen on other platforms">
-      <a class="out-button" href="https://suno.com/playlist/4b182548-7dd7-42e2-8a57-a8d594f0fa69" target="_blank" rel="noopener noreferrer">
+    <section class="button-row">
+      <a class="out-button" href="https://suno.com/playlist/4b182548-7dd7-42e2-8a57-a8d594f0fa69" target="_blank">
         Suno Playlist
       </a>
 
-      <a class="out-button secondary" href="https://music.apple.com/us/artist/whaleslaughter/1847094318" target="_blank" rel="noopener noreferrer">
+      <a class="out-button secondary" href="https://music.apple.com/us/artist/whaleslaughter/1847094318" target="_blank">
         Apple Music
       </a>
 
-      <a class="out-button ghost" href="#" aria-disabled="true">
+      <a class="out-button ghost" href="#">
         YouTube (coming soon)
       </a>
     </section>
