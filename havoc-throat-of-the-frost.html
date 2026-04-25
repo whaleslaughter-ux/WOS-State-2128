@@ -13,8 +13,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>HAVOC! Throat of the Frost — WOS State 2128</title>
 
-  <link rel="stylesheet" href="/style.css">
-
   <style>
     * { box-sizing: border-box; }
 
@@ -22,8 +20,11 @@
       margin: 0;
       color: #eef2ff;
       font: 16px/1.6 ui-sans-serif, system-ui, -apple-system, Segoe UI, Inter, Roboto, "Noto Sans", Arial;
-      /* Updated gradient to a colder, "Frost" inspired palette */
+      /* Colder "Frost" palette */
       background: radial-gradient(1100px 560px at 50% -10%, #1e3a8a 0%, #0f172a 42%, #020617 100%);
+      background-attachment: fixed;
+      /* Padding to prevent Nav overlap */
+      padding-top: 120px;
     }
 
     .wrap {
@@ -42,12 +43,14 @@
       font-size: clamp(1.6rem, 1.8vw + 1rem, 2.5rem);
       letter-spacing: .6px;
       text-transform: uppercase;
+      color: #fff;
     }
 
     header p {
       margin: 0;
       font-size: 1rem;
       opacity: .9;
+      color: #b9c3ff;
     }
 
     .player-shell {
@@ -57,11 +60,12 @@
       border-radius: 24px;
       background: radial-gradient(circle at top, rgba(15,23,42,.96), rgba(2,6,23,1));
       box-shadow: 0 22px 60px rgba(0,0,0,0.85);
+      border: 1px solid rgba(255,255,255,0.1);
     }
 
     .player-shell iframe {
       width: 100%;
-      border-radius: 18px;
+      border-radius: 12px;
       border: 0;
       display: block;
     }
@@ -76,11 +80,6 @@
     .player-note a {
       color: #a5b4ff;
       text-decoration: underline;
-    }
-
-    .player-note a:hover {
-      color: #fff;
-      text-decoration: none;
     }
 
     .button-row {
@@ -99,16 +98,14 @@
       text-decoration: none;
       font-weight: 600;
       letter-spacing: .3px;
-      /* Updated to a "Chilled" blue/indigo gradient */
       background: linear-gradient(135deg, #3b82f6, #6366f1);
       color: #fff;
       box-shadow: 0 10px 30px rgba(0,0,0,.4);
-      transition: transform .15s ease, box-shadow .15s ease, opacity .15s ease;
+      transition: transform .15s ease, opacity .15s ease;
     }
 
     .out-button:hover {
       transform: translateY(-2px);
-      box-shadow: 0 14px 36px rgba(0,0,0,.55);
       opacity: .95;
     }
 
@@ -118,11 +115,13 @@
 
     .out-button.ghost {
       background: linear-gradient(135deg, #475569, #1f2933);
+      color: #9ca3af;
     }
 
     footer {
       text-align: center;
-      margin: 0 0 24px;
+      margin: 34px 0;
+      color: #b9c3ff;
       opacity: .8;
       font-size: .9rem;
     }
@@ -130,6 +129,7 @@
 </head>
 
 <body class="album-drop">
+
   <div id="nav-placeholder"></div>
   <script>
     fetch('/nav.html')
@@ -140,27 +140,22 @@
   <main id="main" class="wrap">
     <header>
       <h1>HAVOC! Throat of the Frost</h1>
-      <p>The latest sub-zero soundscape from State 2128. Brace for impact.</p>
+      <p>The official metal chronicle of the State 2128 blizzards. Listen or be left in the snow.</p>
     </header>
 
-    <section class="player-shell" aria-label="HAVOC! Throat of the Frost Spotify playlist">
-      <iframe
-        src="https://open.spotify.com/embed/playlist/YOUR_NEW_PLAYLIST_ID"
-        height="352"
-        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-        loading="lazy">
-      </iframe>
+    <section class="player-shell" aria-label="HAVOC! Throat of the Frost Spotify player">
+      <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/album/10S0CqD8qZk667T0O8V0Y8" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
 
       <p class="player-note">
-        For the full sub-zero experience, open this in
-        <a href="https://open.spotify.com/playlist/YOUR_NEW_PLAYLIST_ID" target="_blank" rel="noopener noreferrer">
+        For the full sub-zero experience, open this in 
+        <a href="https://open.spotify.com/album/10S0CqD8qZk667T0O8V0Y8" target="_blank" rel="noopener noreferrer">
           Spotify
         </a>.
       </p>
     </section>
 
     <section class="button-row" aria-label="Listen on other platforms">
-      <a class="out-button" href="YOUR_SUNO_LINK" target="_blank" rel="noopener noreferrer">
+      <a class="out-button" href="https://suno.com/playlist/4b182548-7dd7-42e2-8a57-a8d594f0fa69" target="_blank" rel="noopener noreferrer">
         Suno Playlist
       </a>
 
@@ -172,7 +167,6 @@
         YouTube (coming soon)
       </a>
     </section>
-
   </main>
 
   <div id="footer-placeholder"></div>
@@ -181,5 +175,6 @@
       .then(r => r.text())
       .then(h => { document.getElementById('footer-placeholder').innerHTML = h; });
   </script>
+
 </body>
 </html>
