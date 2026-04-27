@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6LN9JCF6JC"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-6LN9JCF6JC');
+  </script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Loading… — WOS State 2128</title>
+  <meta name="description" content="WOS State 2128 news article" />
+
+  <style>
+    :root {
+      --bg1: #0b1030;
+      --bg2: #1a2147;
+      --ink: #eef2ff;
+      --muted: #b9c3ff;
+      --gold: #d4b06a;
+      --accent: #a5b4ff;
+      --border: rgba(255,255,255,.08);
+      --card-bg: linear-gradient(180deg,rgba(255,255,255,.02),rgba(0,0,0,.04));
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: radial-gradient(1100px 560px at 50% -10%, var(--bg2) 0%, var(--bg1) 42%, #060915 100%);
+      font: 16px/1.7 ui-sans-serif, system-ui, -apple-system, Segoe UI, Inter, Roboto, "Noto Sans", Arial;
+      min-height: 100vh;
+    }
+
+    a { color: var(--accent); text-decoration: underline; }
+    a:hover { color: #fff; text-decoration: none; }
+
+    .skip-link {
+      position: absolute;
+      top: -50px;
+      left: 10px;
+      background: var(--bg1);
+      color: var(--ink);
+      padding: 10px 14px;
+      border: 2px solid var(--accent);
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.875rem;
+      z-index: 9999;
+      text-decoration: none;
+      transition: top 0.15s;
+    }
+    .skip-link:focus { top: 10px; }
+
+    .wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 28px 20px 60px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      margin-bottom: 28px;
+      transition: color 0.15s;
+    }
+    .back-link:hover { color: var(--ink); text-decoration: none; }
+    .back-link::before { content: "←"; font-size: 1rem; }
+
+    .article-hero {
+      width: 100%;
+      max-height: 480px;
+      object-fit: cover;
+      border-radius: 14px;
+      display: block;
+      background: #000;
+      margin-bottom: 28px;
+    }
+
+    .article-header { margin-bottom: 24px; }
+
+    .article-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 14px;
+    }
+
+    .tag {
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: rgba(165,180,255,.12);
+      color: var(--muted);
+      border: 1px solid rgba(165,180,255,.2);
+    }
+    .tag.alliance {
+      background: rgba(212,176,106,.12);
+      color: var(--gold);
+      border-color: rgba(212,176,106,.25);
+    }
+
+    .article-title {
+      font-size: clamp(1.5rem, 4vw, 2.2rem);
+      font-weight: 900;
+      line-height: 1.2;
+      margin: 0 0 16px;
+      color: #fff;
+    }
+
+    .article-byline {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.82rem;
+      color: var(--muted);
+      flex-wrap: wrap;
+    }
+    .article-byline .reporter {
+      font-weight: 700;
+      color: var(--gold);
+    }
+    .article-byline .sep { opacity: 0.4; }
+
+    .article-body {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--ink);
+      margin-bottom: 40px;
+    }
+    .article-body p { margin: 0 0 1.2em; }
+    .article-body a { color: var(--accent); }
+    .article-body a:hover { color: #fff; }
+
+    .share-bar {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      padding: 16px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 40px;
+    }
+    .share-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-right: 4px;
+    }
+    .share-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.03);
+      color: var(--ink);
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .share-btn:hover {
+      background: rgba(255,255,255,.08);
+      border-color: rgba(255,255,255,.18);
+      color: #fff;
+      text-decoration: none;
+    }
+    .share-btn.copied {
+      color: #86efac;
+      border-color: rgba(134,239,172,.3);
+    }
+
+    .related-section { margin-bottom: 48px; }
+    .section-heading {
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 0 0 16px;
+    }
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+    }
+    .related-card {
+      display: block;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--card-bg);
+      text-decoration: none;
+      color: var(--ink);
+      transition: border-color 0.15s, transform 0.15s;
+    }
+    .related-card:hover {
+      border-color: rgba(165,180,255,.25);
+      transform: translateY(-2px);
+      text-decoration: none;
+      color: var(--ink);
+    }
+    .related-card img {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+      background: #000;
+      display: block;
+    }
+    .related-card-body { padding: 10px 12px; }
+    .related-card-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      line-height: 1.35;
+      margin: 0 0 4px;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .related-card-date { font-size: 0.72rem; color: var(--muted); }
+
+    .comments-section {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+    }
+    .comments-section .section-heading { margin-bottom: 20px; }
+
+    .comment-login { margin-bottom: 28px; }
+    .login-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      align-items: flex-end;
+    }
+    .login-field { flex: 1; min-width: 180px; }
+    .login-field label {
+      display: block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .login-field input {
+      width: 100%;
+      padding: 9px 12px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: rgba(0,0,0,.3);
+      color: var(--ink);
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .login-field input:focus { border-color: rgba(165,180,255,.4); }
+    .login-field input::placeholder { color: rgba(185,195,255,.35); }
+
+    .btn-primary {
+      padding: 9px 18px;
+      border-radius: 8px;
+      border: none;
+      background: var(--accent);
+      color: #0b1030;
+      font-size: 0.85rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: opacity 0.15s;
+      white-space: nowrap;
+    }
+    .btn-primary:hover { opacity: 0.85; }
+    .btn-primary:disabled { opacity: 0.4; cursor: not-allowed; }
+
+    .player-card {
+      display: none;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 14px;
+      border: 1px solid rgba(165,180,255,.15);
+      border-radius: 10px;
+      background: rgba(165,180,255,.05);
+      margin-bottom: 20px;
+    }
+    .player-card.visible { display: flex; }
+    .player-card img {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: var(--bg2);
+      border: 2px solid rgba(165,180,255,.2);
+      flex-shrink: 0;
+    }
+    .player-card-name { font-weight: 700; font-size: 0.9rem; }
+    .player-card-id { font-size: 0.75rem; color: var(--muted); }
+    .player-card-logout {
+      margin-left: auto;
+      font-size: 0.72rem;
+      color: var(--muted);
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-decoration: underline;
+      padding: 0;
+    }
+    .player-card-logout:hover { color: var(--ink); }
+
+    .comment-composer { display: none; margin-bottom: 28px; }
+    .comment-composer.visible { display: block; }
+    .comment-composer textarea {
+      width: 100%;
+      min-height: 90px;
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: rgba(0,0,0,.3);
+      color: var(--ink);
+      font: inherit;
+      font-size: 0.9rem;
+      resize: vertical;
+      outline: none;
+      transition: border-color 0.15s;
+      margin-bottom: 8px;
+    }
+    .comment-composer textarea:focus { border-color: rgba(165,180,255,.4); }
+    .comment-composer textarea::placeholder { color: rgba(185,195,255,.35); }
+    .composer-footer {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 10px;
+    }
+    .char-count { font-size: 0.72rem; color: var(--muted); }
+    .char-count.warn { color: #fca5a5; }
+
+    .comments-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .comment-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .comment-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: var(--bg2);
+      border: 1px solid rgba(255,255,255,.1);
+      flex-shrink: 0;
+    }
+    .comment-bubble { flex: 1; min-width: 0; }
+    .comment-meta {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 4px;
+      flex-wrap: wrap;
+    }
+    .comment-name { font-weight: 700; font-size: 0.85rem; }
+    .comment-time { font-size: 0.72rem; color: var(--muted); }
+    .comment-text {
+      font-size: 0.88rem;
+      line-height: 1.55;
+      color: var(--ink);
+      word-break: break-word;
+    }
+
+    .comments-empty {
+      text-align: center;
+      padding: 28px 0;
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+    .comments-loading {
+      text-align: center;
+      padding: 20px 0;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+    .error-msg {
+      color: #fca5a5;
+      font-size: 0.82rem;
+      margin-top: 6px;
+    }
+
+    .not-found {
+      text-align: center;
+      padding: 80px 20px;
+      color: var(--muted);
+    }
+    .not-found h1 { color: var(--ink); font-size: 2rem; margin-bottom: 12px; }
+
+    @keyframes shimmer {
+      0%   { background-position: -600px 0; }
+      100% { background-position: 600px 0; }
+    }
+    .skeleton {
+      background: linear-gradient(90deg, rgba(255,255,255,.04) 25%, rgba(255,255,255,.08) 50%, rgba(255,255,255,.04) 75%);
+      background-size: 600px 100%;
+      animation: shimmer 1.4s infinite;
+      border-radius: 6px;
+    }
+    .skel-img  { width: 100%; height: 360px; border-radius: 14px; margin-bottom: 28px; }
+    .skel-tag  { height: 20px; width: 60px; border-radius: 999px; }
+    .skel-h1   { height: 36px; margin: 14px 0 10px; border-radius: 8px; }
+    .skel-h1-2 { height: 36px; width: 70%; border-radius: 8px; margin-bottom: 16px; }
+    .skel-by   { height: 16px; width: 220px; border-radius: 4px; margin-bottom: 28px; }
+    .skel-p    { height: 14px; border-radius: 4px; margin-bottom: 10px; }
+    .skel-p-s  { height: 14px; width: 60%; border-radius: 4px; }
+
+    @media (max-width: 600px) {
+      .article-hero { max-height: 260px; }
+      .comments-section { padding: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="#main-content" class="skip-link">Skip to content</a>
+
+  <div id="nav-placeholder"></div>
+  <script>
+    fetch('/nav.html').then(r=>r.text()).then(h=>{ document.getElementById('nav-placeholder').innerHTML = h; });
+  </script>
+
+  <main class="wrap" id="main-content">
+    <div id="skeleton" aria-hidden="true">
+      <div class="skeleton skel-img"></div>
+      <div style="display:flex;gap:6px;margin-bottom:14px">
+        <div class="skeleton skel-tag"></div>
+        <div class="skeleton skel-tag"></div>
+      </div>
+      <div class="skeleton skel-h1"></div>
+      <div class="skeleton skel-h1-2"></div>
+      <div class="skeleton skel-by"></div>
+      <div class="skeleton skel-p"></div>
+      <div class="skeleton skel-p"></div>
+      <div class="skeleton skel-p"></div>
+      <div class="skeleton skel-p-s"></div>
+    </div>
+    <div id="article-root" aria-live="polite"></div>
+  </main>
+
+  <div id="footer-placeholder"></div>
+  <script>
+    fetch('/footer.html').then(r=>r.text()).then(html=>{ document.getElementById('footer-placeholder').innerHTML = html; });
+  </script>
+
+  <script>
+  (() => {
+    const SUPABASE_URL = 'https://pfjepcvqvsloasdhjukp.supabase.co';
+    const SUPABASE_KEY = 'sb_publishable_NR4aY2L5dwsbn7JvS-mh3w_lM8jwECc';
+    const WOS_CDN      = 'https://wos-gamesupport.seagroup.com/game/user/info?fid=';
+    const MAX_COMMENT  = 500;
+
+    let articleId   = null;
+    let allNews     = [];
+    let currentUser = null;
+
+    function qs(sel, ctx = document) { return ctx.querySelector(sel); }
+
+    function formatDate(iso) {
+      const d = new Date(iso + 'T00:00:00');
+      return d.toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' });
+    }
+
+    function timeAgo(iso) {
+      const diff = Date.now() - new Date(iso).getTime();
+      const m = Math.floor(diff / 60000);
+      if (m < 1)  return 'just now';
+      if (m < 60) return `${m}m ago`;
+      const h = Math.floor(m / 60);
+      if (h < 24) return `${h}h ago`;
+      return `${Math.floor(h / 24)}d ago`;
+    }
+
+    function escHtml(str) {
+      return String(str)
+        .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+        .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    async function fetchPlayer(playerId) {
+      try {
+        const r = await fetch(WOS_CDN + encodeURIComponent(playerId));
+        if (!r.ok) return null;
+        const data = await r.json();
+        if (data.code !== 0 || !data.data) return null;
+        const p = data.data;
+        return { playerId, username: p.nickname || `Player ${playerId}`, avatarUrl: p.avatar_image || null };
+      } catch { return null; }
+    }
+
+    async function loadComments(aid) {
+      const list = qs('#comments-list');
+      if (!list) return;
+      list.innerHTML = '<div class="comments-loading" aria-live="polite">Loading comments…</div>';
+      try {
+        const r = await fetch(
+          `${SUPABASE_URL}/rest/v1/comments?article_id=eq.${encodeURIComponent(aid)}&order=created_at.asc`,
+          { headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` } }
+        );
+        if (!r.ok) throw new Error();
+        const comments = await r.json();
+        if (!comments.length) {
+          list.innerHTML = '<div class="comments-empty">No comments yet. Be the first!</div>';
+          return;
+        }
+        list.innerHTML = comments.map(c => `
+          <div class="comment-item" role="article" aria-label="Comment by ${escHtml(c.username)}">
+            <img class="comment-avatar"
+                 src="${c.avatar_url ? escHtml(c.avatar_url) : '/assets/default-avatar.webp'}"
+                 alt="${escHtml(c.username)} avatar"
+                 onerror="this.src='/assets/default-avatar.webp'">
+            <div class="comment-bubble">
+              <div class="comment-meta">
+                <span class="comment-name">${escHtml(c.username)}</span>
+                <time class="comment-time" datetime="${escHtml(c.created_at)}">${timeAgo(c.created_at)}</time>
+              </div>
+              <p class="comment-text">${escHtml(c.comment)}</p>
+            </div>
+          </div>`).join('');
+      } catch {
+        list.innerHTML = '<div class="error-msg">Could not load comments. Try refreshing.</div>';
+      }
+    }
+
+    async function postComment(comment) {
+      const r = await fetch(`${SUPABASE_URL}/rest/v1/comments`, {
+        method: 'POST',
+        headers: {
+          'apikey': SUPABASE_KEY,
+          'Authorization': `Bearer ${SUPABASE_KEY}`,
+          'Content-Type': 'application/json',
+          'Prefer': 'return=minimal'
+        },
+        body: JSON.stringify({
+          article_id: articleId,
+          player_id:  currentUser.playerId,
+          username:   currentUser.username,
+          avatar_url: currentUser.avatarUrl,
+          comment
+        })
+      });
+      if (!r.ok) throw new Error();
+    }
+
+    function saveSession(user) { try { localStorage.setItem('wos_player', JSON.stringify(user)); } catch {} }
+    function loadSession()     { try { const s = localStorage.getItem('wos_player'); return s ? JSON.parse(s) : null; } catch { return null; } }
+    function clearSession()    { try { localStorage.removeItem('wos_player'); } catch {} }
+
+    function showPlayerCard(user) {
+      const card = qs('#player-card');
+      if (!card) return;
+      qs('#player-avatar', card).src = user.avatarUrl || '/assets/default-avatar.webp';
+      qs('#player-name', card).textContent = user.username;
+      qs('#player-id-display', card).textContent = `ID: ${user.playerId}`;
+      card.classList.add('visible');
+      const login = qs('#comment-login');
+      const composer = qs('#comment-composer');
+      if (login) login.style.display = 'none';
+      if (composer) composer.classList.add('visible');
+    }
+
+    function buildComments() {
+      return `
+        <section class="comments-section" aria-labelledby="comments-heading">
+          <h2 class="section-heading" id="comments-heading">Comments</h2>
+          <div id="comment-login" class="comment-login">
+            <p style="font-size:.85rem;color:var(--muted);margin:0 0 12px">
+              Log in with your WOS Player ID to comment. Your username and avatar are pulled from the game.
+            </p>
+            <div class="login-row">
+              <div class="login-field">
+                <label for="player-id-input">WOS Player ID</label>
+                <input type="text" id="player-id-input" placeholder="e.g. 123456789"
+                       inputmode="numeric" autocomplete="off" aria-describedby="login-error" />
+              </div>
+              <button class="btn-primary" id="login-btn" type="button">Log In</button>
+            </div>
+            <div id="login-error" class="error-msg" role="alert" aria-live="polite"></div>
+          </div>
+          <div id="player-card" class="player-card" aria-label="Logged in player">
+            <img id="player-avatar" src="/assets/default-avatar.webp" alt="Your avatar" width="44" height="44">
+            <div>
+              <div id="player-name" class="player-card-name"></div>
+              <div id="player-id-display" class="player-card-id"></div>
+            </div>
+            <button class="player-card-logout" id="logout-btn" type="button">Log out</button>
+          </div>
+          <div id="comment-composer" class="comment-composer" aria-label="Write a comment">
+            <label for="comment-textarea" style="display:block;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:6px">
+              Your comment
+            </label>
+            <textarea id="comment-textarea" placeholder="Say something about this article…"
+                      maxlength="${MAX_COMMENT}" aria-describedby="char-count post-error"></textarea>
+            <div class="composer-footer">
+              <span id="char-count" class="char-count" aria-live="polite">${MAX_COMMENT} remaining</span>
+              <button class="btn-primary" id="post-btn" type="button">Post</button>
+            </div>
+            <div id="post-error" class="error-msg" role="alert" aria-live="polite"></div>
+          </div>
+          <div id="comments-list" class="comments-list" aria-label="Comments" aria-live="polite">
+            <div class="comments-loading">Loading comments…</div>
+          </div>
+        </section>`;
+    }
+
+    function wireComments() {
+      const loginBtn   = qs('#login-btn');
+      const loginInput = qs('#player-id-input');
+      const loginError = qs('#login-error');
+
+      if (loginBtn) {
+        loginBtn.addEventListener('click', async () => {
+          const pid = loginInput.value.trim();
+          if (!pid) { loginError.textContent = 'Please enter your Player ID.'; return; }
+          loginBtn.disabled = true;
+          loginBtn.textContent = 'Looking up…';
+          loginError.textContent = '';
+          const user = await fetchPlayer(pid);
+          loginBtn.disabled = false;
+          loginBtn.textContent = 'Log In';
+          if (!user) { loginError.textContent = 'Player not found. Check your ID and try again.'; return; }
+          currentUser = user;
+          saveSession(user);
+          showPlayerCard(user);
+        });
+        loginInput.addEventListener('keydown', e => { if (e.key === 'Enter') loginBtn.click(); });
+      }
+
+      const logoutBtn = qs('#logout-btn');
+      if (logoutBtn) {
+        logoutBtn.addEventListener('click', () => {
+          currentUser = null;
+          clearSession();
+          qs('#player-card').classList.remove('visible');
+          qs('#comment-composer').classList.remove('visible');
+          qs('#comment-login').style.display = '';
+          loginInput.value = '';
+        });
+      }
+
+      const textarea  = qs('#comment-textarea');
+      const charCount = qs('#char-count');
+      if (textarea && charCount) {
+        textarea.addEventListener('input', () => {
+          const rem = MAX_COMMENT - textarea.value.length;
+          charCount.textContent = `${rem} remaining`;
+          charCount.classList.toggle('warn', rem < 50);
+        });
+      }
+
+      const postBtn   = qs('#post-btn');
+      const postError = qs('#post-error');
+      if (postBtn) {
+        postBtn.addEventListener('click', async () => {
+          const text = textarea.value.trim();
+          if (!text) { postError.textContent = 'Write something first!'; return; }
+          if (!currentUser) { postError.textContent = 'Please log in first.'; return; }
+          postBtn.disabled = true;
+          postBtn.textContent = 'Posting…';
+          postError.textContent = '';
+          try {
+            await postComment(text);
+            textarea.value = '';
+            charCount.textContent = `${MAX_COMMENT} remaining`;
+            charCount.classList.remove('warn');
+            await loadComments(articleId);
+          } catch {
+            postError.textContent = 'Failed to post. Try again.';
+          } finally {
+            postBtn.disabled = false;
+            postBtn.textContent = 'Post';
+          }
+        });
+      }
+
+      const saved = loadSession();
+      if (saved) { currentUser = saved; showPlayerCard(saved); }
+    }
+
+    function getRelated(article, all) {
+      const tags      = new Set(article.tags || []);
+      const alliances = new Set(article.alliances || []);
+      const chars     = new Set(article.characters || []);
+      return all
+        .filter(n => n.id !== article.id)
+        .map(n => {
+          let score = 0;
+          (n.tags || []).forEach(t => { if (tags.has(t)) score += 2; });
+          (n.alliances || []).forEach(a => { if (alliances.has(a)) score += 3; });
+          (n.characters || []).forEach(c => { if (chars.has(c)) score += 4; });
+          return { ...n, score };
+        })
+        .filter(n => n.score > 0)
+        .sort((a, b) => b.score - a.score)
+        .slice(0, 3);
+    }
+
+    function renderArticle(article, related) {
+      document.title = `${article.title} — WOS State 2128`;
+
+      const tagsHtml = [
+        ...(article.alliances || []).map(a => `<span class="tag alliance">${escHtml(a)}</span>`),
+        ...(article.tags || []).map(t => `<span class="tag">${escHtml(t)}</span>`)
+      ].join('');
+
+      const relatedHtml = related.length ? `
+        <section class="related-section" aria-labelledby="related-heading">
+          <h2 class="section-heading" id="related-heading">Related Stories</h2>
+          <div class="related-grid">
+            ${related.map(r => `
+              <a class="related-card" href="/article.html?id=${encodeURIComponent(r.id)}" aria-label="${escHtml(r.title)}">
+                <img src="${escHtml(r.img)}" alt="${escHtml(r.alt || '')}" loading="lazy">
+                <div class="related-card-body">
+                  <div class="related-card-title">${escHtml(r.title)}</div>
+                  <div class="related-card-date">${formatDate(r.date)}</div>
+                </div>
+              </a>`).join('')}
+          </div>
+        </section>` : '';
+
+      qs('#article-root').innerHTML = `
+        <a href="/index.html" class="back-link">Back to home</a>
+        <article aria-labelledby="article-title">
+          ${article.img ? `<img class="article-hero" src="${escHtml(article.img)}" alt="${escHtml(article.alt || '')}" fetchpriority="high">` : ''}
+          <header class="article-header">
+            ${tagsHtml ? `<div class="article-tags" aria-label="Tags">${tagsHtml}</div>` : ''}
+            <h1 class="article-title" id="article-title">${escHtml(article.title)}</h1>
+            <div class="article-byline">
+              <span>By <span class="reporter">${escHtml(article.reporter)}</span></span>
+              <span class="sep">·</span>
+              <time datetime="${escHtml(article.date)}">${formatDate(article.date)}</time>
+            </div>
+          </header>
+          <div class="article-body">${article.blurb}</div>
+        </article>
+        <div class="share-bar" role="complementary" aria-label="Share this article">
+          <span class="share-label">Share</span>
+          <button class="share-btn" id="copy-link-btn" type="button" aria-label="Copy link to clipboard">🔗 Copy link</button>
+        </div>
+        ${relatedHtml}
+        ${buildComments()}`;
+
+      qs('#copy-link-btn').addEventListener('click', () => {
+        navigator.clipboard.writeText(window.location.href).then(() => {
+          const btn = qs('#copy-link-btn');
+          btn.textContent = '✓ Copied!';
+          btn.classList.add('copied');
+          setTimeout(() => { btn.textContent = '🔗 Copy link'; btn.classList.remove('copied'); }, 2000);
+        });
+      });
+
+      wireComments();
+      loadComments(articleId);
+    }
+
+    const params = new URLSearchParams(window.location.search);
+    articleId = params.get('id');
+
+    if (!articleId) {
+      qs('#skeleton').style.display = 'none';
+      qs('#article-root').innerHTML = `<div class="not-found"><h1>Article not found</h1><p>No article ID specified. <a href="/index.html">Return home</a>.</p></div>`;
+    } else {
+      fetch('/news.json')
+        .then(r => r.json())
+        .then(data => {
+          allNews = data;
+          const article = data.find(n => n.id === articleId);
+          qs('#skeleton').style.display = 'none';
+          if (!article) {
+            qs('#article-root').innerHTML = `<div class="not-found"><h1>Article not found</h1><p>We couldn't find that story. <a href="/index.html">Return home</a>.</p></div>`;
+            return;
+          }
+          renderArticle(article, getRelated(article, allNews));
+        })
+        .catch(() => {
+          qs('#skeleton').style.display = 'none';
+          qs('#article-root').innerHTML = `<div class="not-found"><h1>Something went wrong</h1><p>Couldn't load articles. <a href="/index.html">Return home</a>.</p></div>`;
+        });
+    }
+  })();
+  </script>
+
+</body>
+</html>
