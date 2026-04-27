@@ -442,7 +442,8 @@
       const focusableEls = Array.from(overlay.querySelectorAll('button, [href], input, [tabindex]:not([tabindex="-1"])'));
       const firstEl = focusableEls[0];
       const lastEl = focusableEls[focusableEls.length - 1];
-      if (firstEl) firstEl.focus();
+      overlay.querySelector('.gate-panel').setAttribute('tabindex', '-1');
+      overlay.querySelector('.gate-panel').focus();
 
       overlay.addEventListener('keydown', function (e) {
         if (e.key !== 'Tab') return;
