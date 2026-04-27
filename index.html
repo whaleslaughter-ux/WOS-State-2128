@@ -366,8 +366,8 @@
     const slides = [
       {src:"/assets/alliances/alliance-300.png", caption:"300"},
       {src:"/assets/alliances/alliance-eternal-frost.png", caption:"ETF"},
-      {src:"/assets/alliances/alliance-havoc-2.png", caption:"HAVOC"},
       {src:"/assets/alliances/new-lab-order.webp", caption:"New Lab Order"},
+      {src:"/assets/alliances/alliance-havoc-2.png", caption:"HAVOC"},
       {src:"/assets/alliances/alliance-out-of-order.png", caption:"Out of Order"},
       {src:"/assets/alliances/alliance-snack-kingdom.png", caption:"Snack Kingdom"}
     ];
@@ -429,14 +429,6 @@
         '/stop-being-desperate'
       ];
 
-      try {
-        if (localStorage.getItem('havocPressGate') === 'ok') {
-          overlay.style.display = 'none';
-          overlay.setAttribute('aria-hidden', 'true');
-          return;
-        }
-      } catch (e) {}
-
       document.body.classList.add('no-scroll');
 
       const focusableEls = Array.from(overlay.querySelectorAll('button, [href], input, [tabindex]:not([tabindex="-1"])'));
@@ -464,10 +456,6 @@
         document.body.classList.remove('no-scroll');
         const main = document.getElementById('main-content');
         if (main) { main.setAttribute('tabindex', '-1'); main.focus(); }
-        try {
-          localStorage.setItem('havocPressGate', 'ok');
-          localStorage.setItem('havocAlliance', alliance);
-        } catch (e) {}
       }
 
       overlay.querySelectorAll('.gate-btn[data-alliance]').forEach(function (btn) {
