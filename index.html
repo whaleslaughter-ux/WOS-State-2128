@@ -13,259 +13,265 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>WOS State 2128</title>
   <style>
-    :root{--bg1:#0b1030;--bg2:#1a2147;--ink:#eef2ff;--muted:#b9c3ff}
+    :root{--bg1:#0b1030;--bg2:#1a2147;--ink:#eef2ff;--muted:#b9c3ff;--gold:#d4b06a;--accent:#a5b4ff;--border:rgba(255,255,255,.08)}
     *{box-sizing:border-box}
 
     body{
       margin:0; color:var(--ink);
       font:16px/1.6 ui-sans-serif,system-ui,-apple-system,Segoe UI,Inter,Roboto,"Noto Sans",Arial;
-      background: radial-gradient(1100px 560px at 50% -10%, var(--bg2) 0%, var(--bg1) 42%, #060915 100%);
+      background:radial-gradient(1100px 560px at 50% -10%,var(--bg2) 0%,var(--bg1) 42%,#060915 100%);
     }
     .wrap{max-width:1000px;margin:0 auto;padding:28px 20px}
-    header{text-align:center;margin:0 0 16px}
-    header h1{margin:0 0 6px;font-size:clamp(26px,2.2vw,34px);letter-spacing:.3px;text-transform:uppercase}
-    header p{margin:0;color:var(--muted);font-weight:600}
-    a{color:#a5b4ff;text-decoration:underline} a:hover{color:#fff;text-decoration:none}
-    footer{text-align:center;margin:34px 0;color:var(--muted)}
+    a{color:var(--accent);text-decoration:underline} a:hover{color:#fff;text-decoration:none}
 
-    .card{
+    /* === Skip link === */
+    .skip-link{
+      position:absolute;top:-50px;left:10px;
+      background:var(--bg1);color:var(--ink);
+      padding:10px 14px;border:2px solid var(--accent);
+      border-radius:8px;font-weight:700;font-size:.875rem;
+      z-index:9999;text-decoration:none;transition:top .15s;
+    }
+    .skip-link:focus{top:10px}
+
+    /* === Gate overlay === */
+    .no-scroll{overflow:hidden}
+    .gate-overlay{
+      position:fixed;inset:0;z-index:9000;
+      display:flex;align-items:center;justify-content:center;padding:20px;
+      background:radial-gradient(circle at 50% 0%,#1a2147 0%,#0b1030 45%,#060915 100%);
+      color:#eef2ff;
+    }
+    .gate-panel{
+      max-width:600px;width:100%;
+      background:rgba(11,16,48,.95);border-radius:20px;
+      padding:28px 24px 22px;border:1px solid rgba(165,180,255,.18);
+      box-shadow:0 0 0 1px rgba(165,180,255,.06),0 32px 80px rgba(0,0,0,.8),inset 0 1px 0 rgba(255,255,255,.04);
+      position:relative;overflow:visible;
+      display:flex;flex-direction:column;align-items:center;text-align:center;
+    }
+    .gate-panel::before{
+      content:"";position:absolute;inset:-1px;border-radius:21px;
+      background:linear-gradient(135deg,rgba(168,85,247,.25),rgba(14,165,233,.12),rgba(212,176,106,.2));
+      z-index:-1;pointer-events:none;
+    }
+    .gate-dateline{font-size:.65rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#d4b06a;margin:0 0 10px}
+    .gate-title{font-size:clamp(2rem,5vw,3rem);font-weight:900;letter-spacing:.05em;text-transform:uppercase;margin:0 0 8px;color:#eef2ff;line-height:1.1}
+    .gate-sub{font-size:.82rem;color:#b9c3ff;margin:0 0 18px;line-height:1.5;max-width:480px}
+    .gate-warning{
+      display:flex;gap:10px;align-items:flex-start;
+      background:rgba(127,29,29,.2);border:1px solid rgba(248,113,113,.4);
+      border-radius:10px;padding:10px 14px;font-size:.8rem;color:#fecaca;
+      margin-bottom:14px;text-align:left;width:100%;
+    }
+    .gate-cookie{font-size:.72rem;color:rgba(185,195,255,.6);line-height:1.5;margin:0 0 18px;max-width:480px}
+    .gate-prompt{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#b9c3ff;margin:0 0 12px}
+    .gate-alliance-grid{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:20px}
+    .gate-btn{
+      border-radius:999px;padding:9px 18px;
+      border:1px solid rgba(165,180,255,.28);background:rgba(165,180,255,.05);
+      color:#eef2ff;cursor:pointer;font-size:.82rem;font-weight:700;letter-spacing:.06em;
+      transition:background .15s,border-color .15s,color .15s;min-width:64px;
+    }
+    .gate-btn:hover{background:rgba(165,180,255,.14);border-color:rgba(165,180,255,.55);color:#fff}
+    .gate-btn:focus-visible{outline:2px solid #a5b4ff;outline-offset:3px}
+    .gate-btn:active{transform:scale(.97)}
+    .gate-footer{font-size:.68rem;color:rgba(185,195,255,.35);border-top:1px solid rgba(165,180,255,.08);padding-top:14px;width:100%}
+    @media(max-width:480px){
+      .gate-panel{padding:22px 16px 18px}
+      .gate-btn{padding:8px 14px;font-size:.78rem}
+    }
+
+    /* === Section headings === */
+    .section-label{
+      font-size:.68rem;font-weight:800;letter-spacing:.18em;
+      text-transform:uppercase;color:var(--muted);
+      margin:0 0 16px;display:block;
+    }
+
+    /* === Hero article === */
+    .hero-section{margin-bottom:12px}
+    .hero-card{
+      position:relative;border-radius:16px;overflow:hidden;
+      background:#000;border:1px solid var(--border);
+      display:block;text-decoration:none;color:var(--ink);
+      min-height:340px;
+    }
+    .hero-card:hover{text-decoration:none;color:var(--ink)}
+    .hero-card:hover .hero-img{transform:scale(1.02)}
+    .hero-img{
+      width:100%;height:420px;object-fit:cover;
+      display:block;background:#000;
+      transition:transform .4s ease;
+    }
+    .hero-overlay{
+      position:absolute;inset:0;
+      background:linear-gradient(to top,rgba(6,9,21,.95) 0%,rgba(6,9,21,.6) 45%,transparent 100%);
+    }
+    .hero-body{
+      position:absolute;bottom:0;left:0;right:0;
+      padding:28px 28px 24px;
+    }
+    .hero-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+    .tag{
+      font-size:.65rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+      padding:3px 8px;border-radius:999px;
+      background:rgba(165,180,255,.15);color:var(--muted);
+      border:1px solid rgba(165,180,255,.2);
+    }
+    .tag.alliance{background:rgba(212,176,106,.15);color:var(--gold);border-color:rgba(212,176,106,.28)}
+    .hero-title{
+      font-size:clamp(1.3rem,3vw,1.9rem);font-weight:900;
+      line-height:1.2;margin:0 0 10px;color:#fff;
+    }
+    .hero-byline{
+      font-size:.78rem;color:rgba(185,195,255,.8);
+      margin-bottom:18px;
+    }
+    .hero-byline .reporter{color:var(--gold);font-weight:700}
+    .hero-blurb{
+      font-size:.88rem;line-height:1.6;
+      color:rgba(238,242,255,.75);
+      margin:0 0 20px;
+      display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+    }
+    .read-more{
+      display:inline-flex;align-items:center;gap:6px;
+      padding:9px 20px;border-radius:8px;
+      background:var(--accent);color:#0b1030;
+      font-size:.82rem;font-weight:800;
+      text-decoration:none;border:none;cursor:pointer;
+      transition:opacity .15s;
+    }
+    .read-more:hover{opacity:.85;text-decoration:none;color:#0b1030}
+    .read-more::after{content:"→"}
+
+    /* skeleton for hero */
+    @keyframes shimmer{0%{background-position:-600px 0}100%{background-position:600px 0}}
+    .skeleton{
+      background:linear-gradient(90deg,rgba(255,255,255,.04) 25%,rgba(255,255,255,.08) 50%,rgba(255,255,255,.04) 75%);
+      background-size:600px 100%;animation:shimmer 1.4s infinite;border-radius:8px;
+    }
+    .skel-hero{width:100%;height:420px;border-radius:16px;margin-bottom:12px}
+    .skel-card{height:280px;border-radius:14px}
+    .skel-hl{height:18px;border-radius:4px;margin-bottom:10px}
+    .skel-hl-s{height:18px;width:55%;border-radius:4px}
+
+    /* === Secondary cards === */
+    .secondary-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:12px;
+      margin-bottom:12px;
+    }
+    @media(max-width:720px){.secondary-grid{grid-template-columns:1fr 1fr}}
+    @media(max-width:480px){.secondary-grid{grid-template-columns:1fr}}
+
+    .story-card{
+      display:block;text-decoration:none;color:var(--ink);
+      border:1px solid var(--border);border-radius:14px;overflow:hidden;
       background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(0,0,0,.04));
-      border:1px solid rgba(255,255,255,.08);
-      border-radius:14px;
-      padding:16px;
-      margin-top:16px;
+      transition:border-color .15s,transform .15s;
     }
-    .card h2{
-      margin:4px 0 10px;
-      font-size:1.25rem;
-      font-weight:800;
-      letter-spacing:.3px;
+    .story-card:hover{
+      border-color:rgba(165,180,255,.25);
+      transform:translateY(-2px);
+      text-decoration:none;color:var(--ink);
     }
+    .story-card img{
+      width:100%;height:160px;object-fit:cover;
+      background:#000;display:block;
+      border-bottom:1px solid var(--border);
+    }
+    .story-card-body{padding:12px 14px 16px}
+    .story-card-tags{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px}
+    .story-card-title{
+      font-size:.92rem;font-weight:800;line-height:1.35;
+      margin:0 0 6px;
+      display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;
+    }
+    .story-card-byline{font-size:.72rem;color:var(--muted)}
+    .story-card-byline .reporter{color:var(--gold);font-weight:700}
 
+    /* === Headlines strip === */
+    .headlines-section{
+      background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(0,0,0,.04));
+      border:1px solid var(--border);border-radius:14px;
+      padding:18px 20px;margin-bottom:12px;
+    }
+    .headline-item{
+      display:flex;align-items:baseline;gap:10px;
+      padding:9px 0;border-bottom:1px solid rgba(255,255,255,.05);
+      text-decoration:none;color:var(--ink);
+      transition:color .12s;
+    }
+    .headline-item:last-child{border-bottom:none;padding-bottom:0}
+    .headline-item:first-of-type{padding-top:0}
+    .headline-item:hover{color:#fff;text-decoration:none}
+    .headline-item:hover .hl-title{color:#fff}
+    .hl-tag{
+      font-size:.6rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+      padding:2px 7px;border-radius:999px;flex-shrink:0;
+      background:rgba(165,180,255,.1);color:var(--muted);
+      border:1px solid rgba(165,180,255,.18);
+    }
+    .hl-tag.alliance{background:rgba(212,176,106,.1);color:var(--gold);border-color:rgba(212,176,106,.22)}
+    .hl-title{
+      font-size:.88rem;font-weight:700;flex:1;
+      display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden;
+      color:var(--ink);transition:color .12s;
+    }
+    .hl-date{font-size:.7rem;color:var(--muted);flex-shrink:0;white-space:nowrap}
+
+    /* === Alliances carousel === */
+    .alliances-section{margin-bottom:8px}
     .carousel.multi{
-      position:relative;
-      border-radius:12px;
-      box-shadow:0 8px 18px rgba(0,0,0,.35);
-      overflow:hidden;
-      margin:0;
+      position:relative;border-radius:12px;
+      box-shadow:0 8px 18px rgba(0,0,0,.35);overflow:hidden;
     }
     .carousel.multi .track{
-      display:flex; gap:12px;
-      padding:12px 44px;
-      overflow:hidden;
-      scroll-behavior:smooth; scroll-snap-type:x mandatory;
+      display:flex;gap:12px;padding:12px 44px;
+      overflow:hidden;scroll-behavior:smooth;scroll-snap-type:x mandatory;
     }
     .carousel.multi .card{
-      position:relative; background:#000; border-radius:10px; overflow:hidden;
-      flex:0 0 calc((100% - 24px)/2.5);
-      height:200px; max-height:200px;
-      scroll-snap-align:start;
+      position:relative;background:#000;border-radius:10px;overflow:hidden;
+      flex:0 0 calc((100% - 24px)/2.5);height:200px;max-height:200px;
+      scroll-snap-align:start;border:1px solid var(--border);
+      margin:0;padding:0;
     }
     .carousel.multi .card img{width:100%;height:100%;object-fit:contain;background:#000;display:block}
     .carousel.multi .label{
-      position:absolute; left:0; right:0; bottom:0; padding:8px 10px;
-      font-weight:800; text-align:center; font-size:.95rem;
+      position:absolute;left:0;right:0;bottom:0;padding:8px 10px;
+      font-weight:800;text-align:center;font-size:.95rem;
       background:linear-gradient(180deg,transparent,rgba(0,0,0,.7));
     }
     .carousel.multi button{
-      position:absolute; top:50%; transform:translateY(-50%);
-      width:32px; height:36px; line-height:34px;
-      background:rgba(0,0,0,.55); border:1px solid rgba(255,255,255,.15);
-      border-radius:8px; color:#fff; font-size:1.1rem; cursor:pointer; z-index:2;
-      display:grid; place-items:center;
+      position:absolute;top:50%;transform:translateY(-50%);
+      width:32px;height:36px;
+      background:rgba(0,0,0,.55);border:1px solid rgba(255,255,255,.15);
+      border-radius:8px;color:#fff;font-size:1.1rem;cursor:pointer;z-index:2;
+      display:grid;place-items:center;
     }
     .carousel.multi button:hover{background:rgba(0,0,0,.8)}
     .carousel.multi .prev{left:8px}
     .carousel.multi .next{right:8px}
-    @media (min-width:1280px){
-      .carousel.multi .card{ flex-basis:calc((100% - 24px)/3); height:210px; }
-    }
-    @media (max-width:767.98px){
-      .carousel.multi .track{ padding:10px 44px; }
-      .carousel.multi .card{ flex-basis:calc((100% - 12px)/2); height:160px; }
+    @media(min-width:1280px){.carousel.multi .card{flex-basis:calc((100% - 24px)/3);height:210px}}
+    @media(max-width:767.98px){
+      .carousel.multi .track{padding:10px 44px}
+      .carousel.multi .card{flex-basis:calc((100% - 12px)/2);height:160px}
     }
 
-    .news-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
-    .news-card{border:1px solid rgba(255,255,255,.08);border-radius:12px;overflow:hidden;background:rgba(255,255,255,.02)}
-    .news-thumb{
-      max-height:180px; width:auto; max-width:100%;
-      object-fit:contain; background:#000; display:block; margin:0 auto;
-      border-bottom:1px solid rgba(255,255,255,.08)
+    /* hero no-image fallback */
+    .hero-card.no-img{
+      background:linear-gradient(135deg,var(--bg2),var(--bg1));
+      min-height:320px;
     }
-    .news-body{padding:12px}
-    .news-title{margin:0 0 6px;font-size:16px;font-weight:800;color:#fff}
-    .news-date{font-size:12px;color:var(--muted)}
+    .hero-card.no-img .hero-overlay{background:none}
 
-    .skip-link {
-      position: absolute;
-      top: -50px;
-      left: 10px;
-      background: #0b1030;
-      color: #eef2ff;
-      padding: 10px 14px;
-      border: 2px solid #a5b4ff;
-      border-radius: 8px;
-      font-weight: 700;
-      font-size: 0.875rem;
-      z-index: 9999;
-      text-decoration: none;
-      transition: top 0.15s;
-    }
-    .skip-link:focus { top: 10px; }
-
-    .no-scroll { overflow: hidden; }
-
-    .gate-overlay {
-      position: fixed;
-      inset: 0;
-      z-index: 9000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      background: radial-gradient(circle at 50% 0%, #1a2147 0%, #0b1030 45%, #060915 100%);
-      color: #eef2ff;
-    }
-
-    .gate-panel {
-      max-width: 600px;
-      width: 100%;
-      background: rgba(11, 16, 48, 0.95);
-      border-radius: 20px;
-      padding: 28px 24px 22px;
-      border: 1px solid rgba(165, 180, 255, 0.18);
-      box-shadow:
-        0 0 0 1px rgba(165, 180, 255, 0.06),
-        0 32px 80px rgba(0, 0, 0, 0.8),
-        inset 0 1px 0 rgba(255, 255, 255, 0.04);
-      position: relative;
-      overflow: visible;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-
-    .gate-panel::before {
-      content: "";
-      position: absolute;
-      inset: -1px;
-      border-radius: 21px;
-      background: linear-gradient(
-        135deg,
-        rgba(168, 85, 247, 0.25),
-        rgba(14, 165, 233, 0.12),
-        rgba(212, 176, 106, 0.2)
-      );
-      z-index: -1;
-      pointer-events: none;
-    }
-
-    .gate-dateline {
-      font-size: 0.65rem;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: #d4b06a;
-      margin: 0 0 10px;
-    }
-
-    .gate-title {
-      font-size: clamp(2rem, 5vw, 3rem);
-      font-weight: 900;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      margin: 0 0 8px;
-      color: #eef2ff;
-      line-height: 1.1;
-    }
-
-    .gate-sub {
-      font-size: 0.82rem;
-      color: #b9c3ff;
-      margin: 0 0 18px;
-      line-height: 1.5;
-      max-width: 480px;
-    }
-
-    .gate-warning {
-      display: flex;
-      gap: 10px;
-      align-items: flex-start;
-      background: rgba(127, 29, 29, 0.2);
-      border: 1px solid rgba(248, 113, 113, 0.4);
-      border-radius: 10px;
-      padding: 10px 14px;
-      font-size: 0.8rem;
-      color: #fecaca;
-      margin-bottom: 14px;
-      text-align: left;
-      width: 100%;
-    }
-
-    .gate-cookie {
-      font-size: 0.72rem;
-      color: rgba(185, 195, 255, 0.6);
-      line-height: 1.5;
-      margin: 0 0 18px;
-      max-width: 480px;
-    }
-
-    .gate-prompt {
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: #b9c3ff;
-      margin: 0 0 12px;
-    }
-
-    .gate-alliance-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      justify-content: center;
-      margin-bottom: 20px;
-    }
-
-    .gate-btn {
-      border-radius: 999px;
-      padding: 9px 18px;
-      border: 1px solid rgba(165, 180, 255, 0.28);
-      background: rgba(165, 180, 255, 0.05);
-      color: #eef2ff;
-      cursor: pointer;
-      font-size: 0.82rem;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      transition: background 0.15s, border-color 0.15s, color 0.15s;
-      min-width: 64px;
-    }
-
-    .gate-btn:hover {
-      background: rgba(165, 180, 255, 0.14);
-      border-color: rgba(165, 180, 255, 0.55);
-      color: #fff;
-    }
-
-    .gate-btn:focus-visible {
-      outline: 2px solid #a5b4ff;
-      outline-offset: 3px;
-    }
-
-    .gate-btn:active { transform: scale(0.97); }
-
-    .gate-footer {
-      font-size: 0.68rem;
-      color: rgba(185, 195, 255, 0.35);
-      border-top: 1px solid rgba(165, 180, 255, 0.08);
-      padding-top: 14px;
-      width: 100%;
-    }
-
-    @media (max-width: 480px) {
-      .gate-panel { padding: 22px 16px 18px; }
-      .gate-btn { padding: 8px 14px; font-size: 0.78rem; }
+    @media(max-width:600px){
+      .hero-img{height:280px}
+      .hero-body{padding:20px 18px 18px}
+      .skel-hero{height:280px}
     }
   </style>
 </head>
@@ -273,25 +279,22 @@
 
   <a class="skip-link" href="#main-content">Skip to main content</a>
 
+  <!-- Entry Gate -->
   <div id="gate-overlay" class="gate-overlay" role="dialog" aria-modal="true" aria-labelledby="gate-title" aria-describedby="gate-desc">
     <div class="gate-panel">
       <p class="gate-dateline">Dispatches from the Frozen Frontier</p>
       <h1 id="gate-title" class="gate-title">State 2128</h1>
       <p id="gate-desc" class="gate-sub">Unauthorized legends, scandals, and blizzards. Part satire, part history, entirely without approval.</p>
-
       <div class="gate-warning" role="note">
-        <span aria-hidden="true" style="font-size:16px;flex-shrink:0;">⚠️</span>
+        <span aria-hidden="true" style="font-size:16px;flex-shrink:0">⚠️</span>
         <span>You are entering a zone of biased commentary, heroic exaggeration, and friendly propaganda.</span>
       </div>
-
       <p class="gate-cookie">
         🍪 This site uses cookies to remember your alliance and skip this gate on return visits.
         By choosing your alliance below, you consent. We do not sell your data or run ads.
         We just know which alliance you picked.
       </p>
-
       <p class="gate-prompt" id="gate-prompt-label">Choose your alliance to enter:</p>
-
       <div class="gate-alliance-grid" role="group" aria-labelledby="gate-prompt-label">
         <button class="gate-btn" data-alliance="HAV" type="button">HAV</button>
         <button class="gate-btn" data-alliance="ETF" type="button">ETF</button>
@@ -303,185 +306,298 @@
         <button class="gate-btn" data-alliance="TBD" type="button">TBD</button>
         <button class="gate-btn" data-alliance="GUEST" type="button">GUEST</button>
       </div>
-
       <footer class="gate-footer">
         All stories are creative work. Feedback welcome. Approval optional.
       </footer>
     </div>
   </div>
+  <!-- end gate -->
 
+  <!-- shared nav -->
   <div id="nav-placeholder"></div>
   <script>
     fetch('/nav.html').then(r=>r.text()).then(h=>{ document.getElementById('nav-placeholder').innerHTML = h; });
   </script>
 
   <div class="wrap" id="main-content">
-    <header>
-      <h1>WOS STATE 2128</h1>
-      <p>Hub for alliance news, lore, guides, and strategy. Collaborators: add anything you like, from stories to tips.</p>
+
+    <header style="text-align:center;margin:0 0 28px">
+      <h1 style="margin:0 0 6px;font-size:clamp(26px,2.2vw,34px);letter-spacing:.3px;text-transform:uppercase">WOS STATE 2128</h1>
+      <p style="margin:0;color:var(--muted);font-weight:600">Hub for alliance news, lore, guides, and strategy.</p>
     </header>
 
-    <section class="card" aria-labelledby="alliances-h">
-      <h2 id="alliances-h">Alliances</h2>
-      <div class="carousel multi" id="alliance-carousel" aria-label="Alliances">
+    <!-- Skeletons shown while loading -->
+    <div id="skeleton" aria-hidden="true">
+      <div class="skeleton skel-hero"></div>
+      <div class="secondary-grid" style="margin-bottom:12px">
+        <div class="skeleton skel-card"></div>
+        <div class="skeleton skel-card"></div>
+        <div class="skeleton skel-card"></div>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:14px;padding:18px 20px;margin-bottom:12px">
+        <div class="skeleton skel-hl" style="width:40%;margin-bottom:16px"></div>
+        <div class="skeleton skel-hl"></div>
+        <div class="skeleton skel-hl"></div>
+        <div class="skeleton skel-hl"></div>
+        <div class="skeleton skel-hl"></div>
+        <div class="skeleton skel-hl-s"></div>
+      </div>
+    </div>
+
+    <!-- News sections injected here -->
+    <div id="news-root" aria-live="polite"></div>
+
+    <!-- Alliances -->
+    <section class="alliances-section" aria-labelledby="alliances-h">
+      <span class="section-label" id="alliances-h">Alliances</span>
+      <div class="carousel multi" id="alliance-carousel" aria-label="Alliances carousel">
         <div class="track" role="list"></div>
         <button class="prev" aria-label="Previous alliances">&#10094;</button>
         <button class="next" aria-label="Next alliances">&#10095;</button>
       </div>
     </section>
 
-    <section class="card" aria-labelledby="news-h">
-      <h2 id="news-h">News &amp; Battle Updates</h2>
-      <div id="news" class="news-grid"></div>
-    </section>
   </div>
 
+  <!-- shared footer -->
   <div id="footer-placeholder"></div>
   <script>
     fetch('/footer.html').then(r=>r.text()).then(html=>{ document.getElementById('footer-placeholder').innerHTML = html; });
   </script>
 
+  <!-- News render -->
   <script>
-    let news = [];
+  (() => {
+    function escHtml(str) {
+      return String(str)
+        .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+        .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    function stripHtml(html) {
+      const t = document.createElement('div');
+      t.innerHTML = html;
+      return t.textContent || '';
+    }
+
+    function formatDate(iso) {
+      const d = new Date(iso + 'T00:00:00');
+      return d.toLocaleDateString('en-US', { year:'numeric', month:'short', day:'numeric' });
+    }
+
+    function articleUrl(id) {
+      return `/article.html?id=${encodeURIComponent(id)}`;
+    }
+
+    function tagsHtml(article, small) {
+      const cls = small ? 'hl-tag' : 'tag';
+      const parts = [
+        ...(article.alliances || []).map(a => `<span class="${cls} alliance">${escHtml(a)}</span>`),
+        ...(article.tags || []).map(t => `<span class="${cls}">${escHtml(t)}</span>`)
+      ];
+      return parts.slice(0, 2).join('');
+    }
+
+    function renderHero(n) {
+      const blurb = stripHtml(n.blurb || '');
+      return `
+        <section class="hero-section" aria-labelledby="hero-title">
+          <span class="section-label">Latest</span>
+          <a class="hero-card${n.img ? '' : ' no-img'}" href="${articleUrl(n.id)}" aria-labelledby="hero-title">
+            ${n.img ? `<img class="hero-img" src="${escHtml(n.img)}" alt="${escHtml(n.alt || '')}" fetchpriority="high">` : ''}
+            <div class="hero-overlay" aria-hidden="true"></div>
+            <div class="hero-body">
+              ${tagsHtml(n, false) ? `<div class="hero-tags" aria-label="Tags">${tagsHtml(n, false)}</div>` : ''}
+              <h2 class="hero-title" id="hero-title">${escHtml(n.title)}</h2>
+              <div class="hero-byline">By <span class="reporter">${escHtml(n.reporter)}</span> · <time datetime="${escHtml(n.date)}">${formatDate(n.date)}</time></div>
+              ${blurb ? `<p class="hero-blurb">${escHtml(blurb)}</p>` : ''}
+              <span class="read-more" aria-hidden="true">Read more</span>
+            </div>
+          </a>
+        </section>`;
+    }
+
+    function renderSecondary(articles) {
+      return `
+        <section aria-labelledby="secondary-h">
+          <span class="section-label" id="secondary-h">More Stories</span>
+          <div class="secondary-grid">
+            ${articles.map(n => `
+              <a class="story-card" href="${articleUrl(n.id)}" aria-label="${escHtml(n.title)}">
+                ${n.img ? `<img src="${escHtml(n.img)}" alt="${escHtml(n.alt || '')}" loading="lazy">` : ''}
+                <div class="story-card-body">
+                  ${tagsHtml(n, false) ? `<div class="story-card-tags">${tagsHtml(n, false)}</div>` : ''}
+                  <div class="story-card-title">${escHtml(n.title)}</div>
+                  <div class="story-card-byline">By <span class="reporter">${escHtml(n.reporter)}</span> · <time datetime="${escHtml(n.date)}">${formatDate(n.date)}</time></div>
+                </div>
+              </a>`).join('')}
+          </div>
+        </section>`;
+    }
+
+    function renderHeadlines(articles) {
+      return `
+        <section class="headlines-section" aria-labelledby="headlines-h">
+          <span class="section-label" id="headlines-h" style="margin-bottom:4px">Latest Headlines</span>
+          ${articles.map(n => {
+            const firstTag = (n.alliances && n.alliances[0])
+              ? `<span class="hl-tag alliance">${escHtml(n.alliances[0])}</span>`
+              : (n.tags && n.tags[0])
+                ? `<span class="hl-tag">${escHtml(n.tags[0])}</span>`
+                : '';
+            return `
+              <a class="headline-item" href="${articleUrl(n.id)}" aria-label="${escHtml(n.title)}, ${formatDate(n.date)}">
+                ${firstTag}
+                <span class="hl-title">${escHtml(n.title)}</span>
+                <time class="hl-date" datetime="${escHtml(n.date)}">${formatDate(n.date)}</time>
+              </a>`;
+          }).join('')}
+        </section>`;
+    }
+
     fetch('/news.json')
       .then(r => r.json())
-      .then(data => { news = data; renderNews(); })
-      .catch(err => console.error('Failed to load news:', err));
-
-    function renderNews(){
-      const c = document.getElementById('news');
-      c.innerHTML = news.map(n => `
-        <article class="news-card">
-          <img class="news-thumb" loading="lazy" alt="${n.alt ? n.alt.replace(/"/g,'&quot;') : 'update image'}" src="${n.img}">
-          <div class="news-body">
-            <h3 class="news-title">${n.title}</h3>
-            <div class="news-date">${n.date}</div>
-            <p style="margin:8px 0 0 0">${n.blurb}</p>
-          </div>
-        </article>`).join('');
-    }
+      .then(data => {
+        document.getElementById('skeleton').style.display = 'none';
+        if (!data.length) return;
+        const hero       = data[0];
+        const secondary  = data.slice(1, 4);
+        const headlines  = data.slice(4, 10);
+        document.getElementById('news-root').innerHTML =
+          renderHero(hero) +
+          renderSecondary(secondary) +
+          renderHeadlines(headlines);
+      })
+      .catch(err => {
+        document.getElementById('skeleton').style.display = 'none';
+        console.error('Failed to load news:', err);
+      });
+  })();
   </script>
 
+  <!-- Carousel -->
   <script>
     const slides = [
-      {src:"/assets/alliances/alliance-300.png", caption:"300"},
+      {src:"/assets/alliances/alliance-300.png",        caption:"300"},
       {src:"/assets/alliances/alliance-eternal-frost.png", caption:"ETF"},
-      {src:"/assets/alliances/new-lab-order.webp", caption:"New Lab Order"},
-      {src:"/assets/alliances/alliance-havoc-2.png", caption:"HAVOC"},
+      {src:"/assets/alliances/alliance-havoc-2.png",    caption:"HAVOC"},
+      {src:"/assets/alliances/new-lab-order.webp",      caption:"New Lab Order"},
       {src:"/assets/alliances/alliance-out-of-order.png", caption:"Out of Order"},
       {src:"/assets/alliances/alliance-snack-kingdom.png", caption:"Snack Kingdom"}
     ];
 
     const carousel = document.getElementById('alliance-carousel');
-    const track = carousel.querySelector('.track');
+    const track    = carousel.querySelector('.track');
 
-    track.innerHTML = slides.map(({src, caption}) => `
-      <a class="card" role="listitem" aria-label="${caption}">
+    track.innerHTML = slides.map(({src,caption}) => `
+      <a class="card" role="listitem" aria-label="${caption}" href="#">
         <img loading="lazy" src="${src}" alt="${caption} Alliance">
         <div class="label">${caption}</div>
-      </a>
-    `).join('');
+      </a>`).join('');
 
-    function atEnd(){ return Math.ceil(track.scrollLeft + track.clientWidth) >= (track.scrollWidth - 2); }
+    function atEnd()  { return Math.ceil(track.scrollLeft + track.clientWidth) >= (track.scrollWidth - 2); }
     function atStart(){ return track.scrollLeft <= 1; }
     function cardStep(){
       const card = track.querySelector('.card');
       return card ? (card.offsetWidth + 12) : track.clientWidth;
     }
     function next(){
-      const step = cardStep();
-      if (atEnd()) track.scrollTo({left:0, behavior:'smooth'});
-      else track.scrollBy({left:step, behavior:'smooth'});
+      if (atEnd()) track.scrollTo({left:0,behavior:'smooth'});
+      else track.scrollBy({left:cardStep(),behavior:'smooth'});
     }
     function prev(){
-      const step = cardStep();
-      if (atStart()) track.scrollTo({left:track.scrollWidth, behavior:'instant'});
-      track.scrollBy({left:-step, behavior:'smooth'});
+      if (atStart()) track.scrollTo({left:track.scrollWidth,behavior:'instant'});
+      track.scrollBy({left:-cardStep(),behavior:'smooth'});
     }
 
     carousel.querySelector('.next').onclick = next;
     carousel.querySelector('.prev').onclick = prev;
 
-    let auto = null, resizeTimer;
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    function startAuto(){ if (!prefersReduced){ stopAuto(); auto = setInterval(next, 3500); } }
-    function stopAuto(){ if (auto){ clearInterval(auto); auto = null; } }
-    carousel.addEventListener('mouseenter', stopAuto);
-    carousel.addEventListener('mouseleave', startAuto);
-    carousel.addEventListener('focusin', stopAuto);
-    carousel.addEventListener('focusout', startAuto);
-    window.addEventListener('resize', () => { stopAuto(); clearTimeout(resizeTimer); resizeTimer = setTimeout(startAuto, 300); });
+    let auto=null, resizeTimer;
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+    function startAuto(){ if(!prefersReduced){ stopAuto(); auto=setInterval(next,3500); } }
+    function stopAuto() { if(auto){ clearInterval(auto); auto=null; } }
+    carousel.addEventListener('mouseenter',stopAuto);
+    carousel.addEventListener('mouseleave',startAuto);
+    carousel.addEventListener('focusin',stopAuto);
+    carousel.addEventListener('focusout',startAuto);
+    window.addEventListener('resize',()=>{ stopAuto(); clearTimeout(resizeTimer); resizeTimer=setTimeout(startAuto,300); });
     startAuto();
   </script>
 
+  <!-- Gate Script -->
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       const overlay = document.getElementById('gate-overlay');
       if (!overlay) return;
 
       const etfPaths = [
-        '/nope',
-        '/still-nope',
-        '/not-happening',
-        '/stop-trying',
-        '/error-you',
-        '/why-are-you-like-this',
-        '/stop-being-desperate'
+        '/nope','/still-nope','/not-happening','/stop-trying',
+        '/error-you','/why-are-you-like-this','/stop-being-desperate'
       ];
+
+      try {
+        if (localStorage.getItem('havocPressGate') === 'ok') {
+          overlay.style.display = 'none';
+          overlay.setAttribute('aria-hidden','true');
+          return;
+        }
+      } catch(e) {}
 
       document.body.classList.add('no-scroll');
 
-      const focusableEls = Array.from(overlay.querySelectorAll('button, [href], input, [tabindex]:not([tabindex="-1"])'));
+      const focusableEls = Array.from(overlay.querySelectorAll('button,[href],input,[tabindex]:not([tabindex="-1"])'));
       const firstEl = focusableEls[0];
-      const lastEl = focusableEls[focusableEls.length - 1];
-      overlay.querySelector('.gate-panel').setAttribute('tabindex', '-1');
-      overlay.querySelector('.gate-panel').focus();
+      const lastEl  = focusableEls[focusableEls.length - 1];
+      if (firstEl) firstEl.focus();
 
-      overlay.addEventListener('keydown', function (e) {
+      overlay.addEventListener('keydown', function(e) {
         if (e.key !== 'Tab') return;
         if (e.shiftKey) {
           if (document.activeElement === firstEl) { e.preventDefault(); lastEl.focus(); }
         } else {
-          if (document.activeElement === lastEl) { e.preventDefault(); firstEl.focus(); }
+          if (document.activeElement === lastEl)  { e.preventDefault(); firstEl.focus(); }
         }
       });
 
-      document.addEventListener('keydown', function (e) {
+      document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape') enterSite('GUEST');
       });
 
       function enterSite(alliance) {
         overlay.style.display = 'none';
-        overlay.setAttribute('aria-hidden', 'true');
+        overlay.setAttribute('aria-hidden','true');
         document.body.classList.remove('no-scroll');
         const main = document.getElementById('main-content');
-        if (main) { main.setAttribute('tabindex', '-1'); main.focus(); }
+        if (main) { main.setAttribute('tabindex','-1'); main.focus(); }
+        try {
+          localStorage.setItem('havocPressGate','ok');
+          localStorage.setItem('havocAlliance', alliance);
+        } catch(e) {}
       }
 
-      overlay.querySelectorAll('.gate-btn[data-alliance]').forEach(function (btn) {
-        btn.addEventListener('click', function () {
+      overlay.querySelectorAll('.gate-btn[data-alliance]').forEach(function(btn) {
+        btn.addEventListener('click', function() {
           const alliance = btn.getAttribute('data-alliance');
-
           if (alliance === 'ETF') {
             let index = 0;
             try {
               const stored = parseInt(localStorage.getItem('etfClickIndex') || '0', 10);
               if (!isNaN(stored) && stored >= 0) index = stored;
-            } catch (e) {}
+            } catch(e) {}
             const path = etfPaths[Math.min(index, etfPaths.length - 1)];
             try {
               const next = index < etfPaths.length - 1 ? index + 1 : etfPaths.length - 1;
               localStorage.setItem('etfClickIndex', String(next));
-            } catch (e) {}
+            } catch(e) {}
             window.location.href = path;
             return;
           }
-
           enterSite(alliance);
         });
       });
 
-      overlay.addEventListener('click', function (e) {
+      overlay.addEventListener('click', function(e) {
         if (e.target === overlay) enterSite('GUEST');
       });
     });
