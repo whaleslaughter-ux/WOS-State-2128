@@ -15,9 +15,8 @@
   <style>
     :root{--bg1:#0b1030;--bg2:#1a2147;--ink:#eef2ff;--muted:#b9c3ff;--gold:#d4b06a;--accent:#a5b4ff;--border:rgba(255,255,255,.08)}
     *{box-sizing:border-box}
-
     body{
-      margin:0; color:var(--ink);
+      margin:0;color:var(--ink);
       font:16px/1.6 ui-sans-serif,system-ui,-apple-system,Segoe UI,Inter,Roboto,"Noto Sans",Arial;
       background:radial-gradient(1100px 560px at 50% -10%,var(--bg2) 0%,var(--bg1) 42%,#060915 100%);
     }
@@ -104,10 +103,7 @@
       position:absolute;inset:0;
       background:linear-gradient(to top,rgba(6,9,21,.95) 0%,rgba(6,9,21,.6) 45%,transparent 100%);
     }
-    .hero-body{
-      position:absolute;bottom:0;left:0;right:0;
-      padding:28px 28px 24px;
-    }
+    .hero-body{position:absolute;bottom:0;left:0;right:0;padding:28px 28px 24px}
     .hero-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
     .tag{
       font-size:.65rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
@@ -116,15 +112,11 @@
       border:1px solid rgba(165,180,255,.2);
     }
     .tag.alliance{background:rgba(212,176,106,.15);color:var(--gold);border-color:rgba(212,176,106,.28)}
-    .hero-title{
-      font-size:clamp(1.3rem,3vw,1.9rem);font-weight:900;
-      line-height:1.2;margin:0 0 10px;color:#fff;
-    }
+    .hero-title{font-size:clamp(1.3rem,3vw,1.9rem);font-weight:900;line-height:1.2;margin:0 0 10px;color:#fff}
     .hero-byline{font-size:.78rem;color:rgba(185,195,255,.8);margin-bottom:18px}
     .hero-byline .reporter{color:var(--gold);font-weight:700}
     .hero-blurb{
-      font-size:.88rem;line-height:1.6;
-      color:rgba(238,242,255,.75);margin:0 0 20px;
+      font-size:.88rem;line-height:1.6;color:rgba(238,242,255,.75);margin:0 0 20px;
       display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
     }
     .read-more{
@@ -132,8 +124,7 @@
       padding:9px 20px;border-radius:8px;
       background:var(--accent);color:#0b1030;
       font-size:.82rem;font-weight:800;
-      text-decoration:none;border:none;cursor:pointer;
-      transition:opacity .15s;
+      text-decoration:none;border:none;cursor:pointer;transition:opacity .15s;
     }
     .read-more:hover{opacity:.85;text-decoration:none;color:#0b1030}
     .read-more::after{content:"→"}
@@ -161,22 +152,11 @@
       background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(0,0,0,.04));
       transition:border-color .15s,transform .15s;
     }
-    .story-card:hover{
-      border-color:rgba(165,180,255,.25);
-      transform:translateY(-2px);
-      text-decoration:none;color:var(--ink);
-    }
-    .story-card img{
-      width:100%;height:160px;object-fit:cover;
-      background:#000;display:block;
-      border-bottom:1px solid var(--border);
-    }
+    .story-card:hover{border-color:rgba(165,180,255,.25);transform:translateY(-2px);text-decoration:none;color:var(--ink)}
+    .story-card img{width:100%;height:160px;object-fit:cover;background:#000;display:block;border-bottom:1px solid var(--border)}
     .story-card-body{padding:12px 14px 16px}
     .story-card-tags{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px}
-    .story-card-title{
-      font-size:.92rem;font-weight:800;line-height:1.35;margin:0 0 6px;
-      display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;
-    }
+    .story-card-title{font-size:.92rem;font-weight:800;line-height:1.35;margin:0 0 6px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
     .story-card-byline{font-size:.72rem;color:var(--muted)}
     .story-card-byline .reporter{color:var(--gold);font-weight:700}
 
@@ -201,33 +181,30 @@
       border:1px solid rgba(165,180,255,.18);
     }
     .hl-tag.alliance{background:rgba(212,176,106,.1);color:var(--gold);border-color:rgba(212,176,106,.22)}
-    .hl-title{
-      font-size:.88rem;font-weight:700;flex:1;
-      display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden;
-      color:var(--ink);transition:color .12s;
-    }
+    .hl-title{font-size:.88rem;font-weight:700;flex:1;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden;color:var(--ink);transition:color .12s}
     .hl-date{font-size:.7rem;color:var(--muted);flex-shrink:0;white-space:nowrap}
 
+    .all-stories-wrap{text-align:center;margin:20px 0 12px}
+    .all-stories-btn{
+      display:inline-flex;align-items:center;gap:6px;
+      padding:10px 24px;border-radius:8px;
+      border:1px solid rgba(165,180,255,.25);
+      background:rgba(165,180,255,.06);
+      color:var(--ink);font-weight:700;font-size:.88rem;
+      text-decoration:none;transition:background .15s,border-color .15s;
+    }
+    .all-stories-btn:hover{background:rgba(165,180,255,.14);border-color:rgba(165,180,255,.4);color:#fff;text-decoration:none}
+
     .alliances-section{margin-bottom:8px}
-    .carousel.multi{
-      position:relative;border-radius:12px;
-      box-shadow:0 8px 18px rgba(0,0,0,.35);overflow:hidden;
-    }
-    .carousel.multi .track{
-      display:flex;gap:12px;padding:12px 44px;
-      overflow:hidden;scroll-behavior:smooth;scroll-snap-type:x mandatory;
-    }
+    .carousel.multi{position:relative;border-radius:12px;box-shadow:0 8px 18px rgba(0,0,0,.35);overflow:hidden}
+    .carousel.multi .track{display:flex;gap:12px;padding:12px 44px;overflow:hidden;scroll-behavior:smooth;scroll-snap-type:x mandatory}
     .carousel.multi .card{
       position:relative;background:#000;border-radius:10px;overflow:hidden;
       flex:0 0 calc((100% - 24px)/2.5);height:200px;max-height:200px;
       scroll-snap-align:start;border:1px solid var(--border);margin:0;padding:0;
     }
     .carousel.multi .card img{width:100%;height:100%;object-fit:contain;background:#000;display:block}
-    .carousel.multi .label{
-      position:absolute;left:0;right:0;bottom:0;padding:8px 10px;
-      font-weight:800;text-align:center;font-size:.95rem;
-      background:linear-gradient(180deg,transparent,rgba(0,0,0,.7));
-    }
+    .carousel.multi .label{position:absolute;left:0;right:0;bottom:0;padding:8px 10px;font-weight:800;text-align:center;font-size:.95rem;background:linear-gradient(180deg,transparent,rgba(0,0,0,.7))}
     .carousel.multi button{
       position:absolute;top:50%;transform:translateY(-50%);
       width:32px;height:36px;
@@ -244,9 +221,7 @@
       .carousel.multi .card{flex-basis:calc((100% - 12px)/2);height:160px}
     }
 
-    .hero-card.no-img{
-      background:linear-gradient(135deg,var(--bg2),var(--bg1));min-height:320px;
-    }
+    .hero-card.no-img{background:linear-gradient(135deg,var(--bg2),var(--bg1));min-height:320px}
     .hero-card.no-img .hero-overlay{background:none}
 
     @media(max-width:600px){
@@ -260,7 +235,6 @@
 
   <a class="skip-link" href="#main-content">Skip to main content</a>
 
-  <!-- Entry Gate -->
   <div id="gate-overlay" class="gate-overlay" role="dialog" aria-modal="true" aria-labelledby="gate-title" aria-describedby="gate-desc">
     <div class="gate-panel">
       <p class="gate-dateline">Dispatches from the Frozen Frontier</p>
@@ -293,7 +267,6 @@
     </div>
   </div>
 
-  <!-- shared nav -->
   <div id="nav-placeholder"></div>
   <script>
     fetch('/nav.html').then(r=>r.text()).then(h=>{ document.getElementById('nav-placeholder').innerHTML = h; });
@@ -336,119 +309,107 @@
 
   </div>
 
-  <!-- shared footer -->
   <div id="footer-placeholder"></div>
   <script>
     fetch('/footer.html').then(r=>r.text()).then(html=>{ document.getElementById('footer-placeholder').innerHTML = html; });
   </script>
 
-  <!-- News render -->
   <script>
-  (() => {
+  (function() {
     function escHtml(str) {
-      return String(str)
-        .replace(/&/g,'&amp;').replace(/</g,'&lt;')
-        .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+      return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
     }
     function stripHtml(html) {
-      const t = document.createElement('div');
+      var t = document.createElement('div');
       t.innerHTML = html;
       return t.textContent || '';
     }
     function formatDate(iso) {
-      const d = new Date(iso + 'T00:00:00');
-      return d.toLocaleDateString('en-US', { year:'numeric', month:'short', day:'numeric' });
+      var d = new Date(iso + 'T00:00:00');
+      return d.toLocaleDateString('en-US', {year:'numeric',month:'short',day:'numeric'});
     }
-    function articleUrl(id) { return `/article.html?id=${encodeURIComponent(id)}`; }
-
-    function tagsHtml(article, small) {
-      const cls = small ? 'hl-tag' : 'tag';
-      const parts = [
-        ...(article.alliances || []).map(a => `<span class="${cls} alliance">${escHtml(a)}</span>`),
-        ...(article.tags || []).map(t => `<span class="${cls}">${escHtml(t)}</span>`)
-      ];
-      return parts.slice(0, 2).join('');
+    function articleUrl(id) {
+      return '/article.html?id=' + encodeURIComponent(id);
+    }
+    function tagsHtml(article) {
+      var parts = [];
+      (article.alliances || []).forEach(function(a){ parts.push('<span class="tag alliance">' + escHtml(a) + '</span>'); });
+      (article.tags || []).forEach(function(t){ parts.push('<span class="tag">' + escHtml(t) + '</span>'); });
+      return parts.slice(0,2).join('');
     }
 
     function renderHero(n) {
-      const blurb = stripHtml(n.blurb || '');
-      return `
-        <section class="hero-section" aria-labelledby="hero-title">
-          <span class="section-label">Latest</span>
-          <a class="hero-card${n.img ? '' : ' no-img'}" href="${articleUrl(n.id)}" aria-labelledby="hero-title">
-            ${n.img ? `<img class="hero-img" src="${escHtml(n.img)}" alt="${escHtml(n.alt || '')}" fetchpriority="high">` : ''}
-            <div class="hero-overlay" aria-hidden="true"></div>
-            <div class="hero-body">
-              ${tagsHtml(n,false) ? `<div class="hero-tags" aria-label="Tags">${tagsHtml(n,false)}</div>` : ''}
-              <h2 class="hero-title" id="hero-title">${escHtml(n.title)}</h2>
-              <div class="hero-byline">By <span class="reporter">${escHtml(n.reporter)}</span> · <time datetime="${escHtml(n.date)}">${formatDate(n.date)}</time></div>
-              ${blurb ? `<p class="hero-blurb">${escHtml(blurb)}</p>` : ''}
-              <span class="read-more" aria-hidden="true">Read more</span>
-            </div>
-          </a>
-        </section>`;
+      var blurb = stripHtml(n.blurb || '');
+      var tags = tagsHtml(n);
+      return '<section class="hero-section" aria-labelledby="hero-title">'
+        + '<span class="section-label">Latest</span>'
+        + '<a class="hero-card' + (n.img ? '' : ' no-img') + '" href="' + articleUrl(n.id) + '" aria-labelledby="hero-title">'
+        + (n.img ? '<img class="hero-img" src="' + escHtml(n.img) + '" alt="' + escHtml(n.alt || '') + '" fetchpriority="high">' : '')
+        + '<div class="hero-overlay" aria-hidden="true"></div>'
+        + '<div class="hero-body">'
+        + (tags ? '<div class="hero-tags" aria-label="Tags">' + tags + '</div>' : '')
+        + '<h2 class="hero-title" id="hero-title">' + escHtml(n.title) + '</h2>'
+        + '<div class="hero-byline">By <span class="reporter">' + escHtml(n.reporter) + '</span> &middot; <time datetime="' + escHtml(n.date) + '">' + formatDate(n.date) + '</time></div>'
+        + (blurb ? '<p class="hero-blurb">' + escHtml(blurb) + '</p>' : '')
+        + '<span class="read-more" aria-hidden="true">Read more</span>'
+        + '</div></a></section>';
     }
 
     function renderSecondary(articles) {
-      return `
-        <section aria-labelledby="secondary-h">
-          <span class="section-label" id="secondary-h">More Stories</span>
-          <div class="secondary-grid">
-            ${articles.map(n => `
-              <a class="story-card" href="${articleUrl(n.id)}" aria-label="${escHtml(n.title)}">
-                ${n.img ? `<img src="${escHtml(n.img)}" alt="${escHtml(n.alt || '')}" loading="lazy">` : ''}
-                <div class="story-card-body">
-                  ${tagsHtml(n,false) ? `<div class="story-card-tags">${tagsHtml(n,false)}</div>` : ''}
-                  <div class="story-card-title">${escHtml(n.title)}</div>
-                  <div class="story-card-byline">By <span class="reporter">${escHtml(n.reporter)}</span> · <time datetime="${escHtml(n.date)}">${formatDate(n.date)}</time></div>
-                </div>
-              </a>`).join('')}
-          </div>
-        </section>`;
+      var cards = articles.map(function(n) {
+        var tags = tagsHtml(n);
+        return '<a class="story-card" href="' + articleUrl(n.id) + '" aria-label="' + escHtml(n.title) + '">'
+          + (n.img ? '<img src="' + escHtml(n.img) + '" alt="' + escHtml(n.alt || '') + '" loading="lazy">' : '')
+          + '<div class="story-card-body">'
+          + (tags ? '<div class="story-card-tags">' + tags + '</div>' : '')
+          + '<div class="story-card-title">' + escHtml(n.title) + '</div>'
+          + '<div class="story-card-byline">By <span class="reporter">' + escHtml(n.reporter) + '</span> &middot; <time datetime="' + escHtml(n.date) + '">' + formatDate(n.date) + '</time></div>'
+          + '</div></a>';
+      }).join('');
+      return '<section aria-labelledby="secondary-h"><span class="section-label" id="secondary-h">More Stories</span><div class="secondary-grid">' + cards + '</div></section>';
     }
 
     function renderHeadlines(articles) {
-      return `
-        <section class="headlines-section" aria-labelledby="headlines-h">
-          <span class="section-label" id="headlines-h" style="margin-bottom:4px">Latest Headlines</span>
-          ${articles.map(n => {
-            const firstTag = (n.alliances && n.alliances[0])
-              ? `<span class="hl-tag alliance">${escHtml(n.alliances[0])}</span>`
-              : (n.tags && n.tags[0])
-                ? `<span class="hl-tag">${escHtml(n.tags[0])}</span>`
-                : '';
-            return `
-              <a class="headline-item" href="${articleUrl(n.id)}" aria-label="${escHtml(n.title)}, ${formatDate(n.date)}">
-                ${firstTag}
-                <span class="hl-title">${escHtml(n.title)}</span>
-                <time class="hl-date" datetime="${escHtml(n.date)}">${formatDate(n.date)}</time>
-              </a>`;
-          }).join('')}
-        </section>`;
+      var items = articles.map(function(n) {
+        var firstTag = '';
+        if (n.alliances && n.alliances[0]) {
+          firstTag = '<span class="hl-tag alliance">' + escHtml(n.alliances[0]) + '</span>';
+        } else if (n.tags && n.tags[0]) {
+          firstTag = '<span class="hl-tag">' + escHtml(n.tags[0]) + '</span>';
+        }
+        return '<a class="headline-item" href="' + articleUrl(n.id) + '" aria-label="' + escHtml(n.title) + ', ' + formatDate(n.date) + '">'
+          + firstTag
+          + '<span class="hl-title">' + escHtml(n.title) + '</span>'
+          + '<time class="hl-date" datetime="' + escHtml(n.date) + '">' + formatDate(n.date) + '</time>'
+          + '</a>';
+      }).join('');
+      return '<section class="headlines-section" aria-labelledby="headlines-h"><span class="section-label" id="headlines-h" style="margin-bottom:4px">Latest Headlines</span>' + items + '</section>';
     }
 
-   fetch('/news.json')
-      .then(r => r.json())
-      .then(data => {
+    function renderAllStoriesBtn() {
+      return '<div class="all-stories-wrap"><a class="all-stories-btn" href="/news.html">All Stories &rarr;</a></div>';
+    }
+
+    fetch('/news.json')
+      .then(function(r){ return r.json(); })
+      .then(function(data) {
         document.getElementById('skeleton').style.display = 'none';
         if (!data.length) return;
-        const hero      = data[0];
-        const secondary = data.slice(1, 4);
-        const headlines = data.slice(4, 10);
+        var hero      = data[0];
+        var secondary = data.slice(1, 4);
+        var headlines = data.slice(4, 10);
         document.getElementById('news-root').innerHTML =
-          renderHero(hero) + renderSecondary(secondary) + renderHeadlines(headlines) +
-          '<div style="text-align:center;margin:24px 0 8px"><a href="/news.html" style="display:inline-flex;align-items:center;gap:6px;padding:10px 24px;border-radius:8px;border:1px solid rgba(165,180,255,.25);background:rgba(165,180,255,.06);color:#eef2ff;font-weight:700;font-size:.88rem;text-decoration:none">All Stories →</a></div>';
+          renderHero(hero) + renderSecondary(secondary) + renderHeadlines(headlines) + renderAllStoriesBtn();
       })
-      .catch(err => {
+      .catch(function(err) {
         document.getElementById('skeleton').style.display = 'none';
         console.error('Failed to load news:', err);
       });
   })();
   </script>
 
-  <!-- Carousel -->
   <script>
-    const slides = [
+    var slides = [
       {src:"/assets/alliances/alliance-300.png",           caption:"300"},
       {src:"/assets/alliances/alliance-eternal-frost.png", caption:"ETF"},
       {src:"/assets/alliances/alliance-havoc-2.png",       caption:"HAVOC"},
@@ -456,39 +417,36 @@
       {src:"/assets/alliances/alliance-out-of-order.png",  caption:"Out of Order"},
       {src:"/assets/alliances/alliance-snack-kingdom.png", caption:"Snack Kingdom"}
     ];
-    const carousel = document.getElementById('alliance-carousel');
-    const track    = carousel.querySelector('.track');
-    track.innerHTML = slides.map(({src,caption}) => `
-      <a class="card" role="listitem" aria-label="${caption}" href="#">
-        <img loading="lazy" src="${src}" alt="${caption} Alliance">
-        <div class="label">${caption}</div>
-      </a>`).join('');
+    var carousel = document.getElementById('alliance-carousel');
+    var track    = carousel.querySelector('.track');
+    track.innerHTML = slides.map(function(s){
+      return '<a class="card" role="listitem" aria-label="' + s.caption + '" href="#"><img loading="lazy" src="' + s.src + '" alt="' + s.caption + ' Alliance"><div class="label">' + s.caption + '</div></a>';
+    }).join('');
     function atEnd()  { return Math.ceil(track.scrollLeft + track.clientWidth) >= (track.scrollWidth - 2); }
     function atStart(){ return track.scrollLeft <= 1; }
-    function cardStep(){ const c = track.querySelector('.card'); return c ? (c.offsetWidth + 12) : track.clientWidth; }
+    function cardStep(){ var c=track.querySelector('.card'); return c ? (c.offsetWidth+12) : track.clientWidth; }
     function next(){ if(atEnd()) track.scrollTo({left:0,behavior:'smooth'}); else track.scrollBy({left:cardStep(),behavior:'smooth'}); }
     function prev(){ if(atStart()) track.scrollTo({left:track.scrollWidth,behavior:'instant'}); track.scrollBy({left:-cardStep(),behavior:'smooth'}); }
     carousel.querySelector('.next').onclick = next;
     carousel.querySelector('.prev').onclick = prev;
-    let auto=null, resizeTimer;
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+    var auto=null, resizeTimer;
+    var prefersReduced = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
     function startAuto(){ if(!prefersReduced){ stopAuto(); auto=setInterval(next,3500); } }
     function stopAuto() { if(auto){ clearInterval(auto); auto=null; } }
     carousel.addEventListener('mouseenter',stopAuto);
     carousel.addEventListener('mouseleave',startAuto);
     carousel.addEventListener('focusin',stopAuto);
     carousel.addEventListener('focusout',startAuto);
-    window.addEventListener('resize',()=>{ stopAuto(); clearTimeout(resizeTimer); resizeTimer=setTimeout(startAuto,300); });
+    window.addEventListener('resize',function(){ stopAuto(); clearTimeout(resizeTimer); resizeTimer=setTimeout(startAuto,300); });
     startAuto();
   </script>
 
-  <!-- Gate Script -->
   <script>
     document.addEventListener('DOMContentLoaded', function () {
-      const overlay = document.getElementById('gate-overlay');
+      var overlay = document.getElementById('gate-overlay');
       if (!overlay) return;
 
-      const etfPaths = [
+      var etfPaths = [
         '/nope','/still-nope','/not-happening','/stop-trying',
         '/error-you','/why-are-you-like-this','/stop-being-desperate'
       ];
@@ -503,9 +461,9 @@
 
       document.body.classList.add('no-scroll');
 
-      const focusableEls = Array.from(overlay.querySelectorAll('button,[href],input,[tabindex]:not([tabindex="-1"])'));
-      const firstEl = focusableEls[0];
-      const lastEl  = focusableEls[focusableEls.length - 1];
+      var focusableEls = Array.from(overlay.querySelectorAll('button,[href],input,[tabindex]:not([tabindex="-1"])'));
+      var firstEl = focusableEls[0];
+      var lastEl  = focusableEls[focusableEls.length - 1];
       if (firstEl) firstEl.focus();
 
       overlay.addEventListener('keydown', function(e) {
@@ -525,7 +483,7 @@
         overlay.style.display = 'none';
         overlay.setAttribute('aria-hidden','true');
         document.body.classList.remove('no-scroll');
-        const main = document.getElementById('main-content');
+        var main = document.getElementById('main-content');
         if (main) { main.setAttribute('tabindex','-1'); main.focus(); }
         try {
           sessionStorage.setItem('havocPressGate','ok');
@@ -535,184 +493,16 @@
 
       overlay.querySelectorAll('.gate-btn[data-alliance]').forEach(function(btn) {
         btn.addEventListener('click', function() {
-          const alliance = btn.getAttribute('data-alliance');
+          var alliance = btn.getAttribute('data-alliance');
           if (alliance === 'ETF') {
-            let index = 0;
+            var index = 0;
             try {
-              const stored = parseInt(localStorage.getItem('etfClickIndex') || '0', 10);
+              var stored = parseInt(localStorage.getItem('etfClickIndex') || '0', 10);
               if (!isNaN(stored) && stored >= 0) index = stored;
             } catch(e) {}
-            const path = etfPaths[Math.min(index, etfPaths.length - 1)];
+            var path = etfPaths[Math.min(index, etfPaths.length - 1)];
             try {
-              const next = index < etfPaths.length - 1 ? index + 1 : etfPaths.length - 1;
-              localStorage.setItem('etfClickIndex', String(next));
-            } catch(e) {}
-            window.location.href = path;
-            return;
-          }
-          enterSite(alliance);
-        });
-      });
-
-      overlay.addEventListener('click', function(e) {
-        if (e.target === overlay) enterSite('GUEST');
-      });
-    });
-  </script>
-
-</body>
-</html>      return `
-        <section class="headlines-section" aria-labelledby="headlines-h">
-          <span class="section-label" id="headlines-h" style="margin-bottom:4px">Latest Headlines</span>
-          ${articles.map(n => {
-            const firstTag = (n.alliances && n.alliances[0])
-              ? `<span class="hl-tag alliance">${escHtml(n.alliances[0])}</span>`
-              : (n.tags && n.tags[0])
-                ? `<span class="hl-tag">${escHtml(n.tags[0])}</span>`
-                : '';
-            return `
-              <a class="headline-item" href="${articleUrl(n.id)}" aria-label="${escHtml(n.title)}, ${formatDate(n.date)}">
-                ${firstTag}
-                <span class="hl-title">${escHtml(n.title)}</span>
-                <time class="hl-date" datetime="${escHtml(n.date)}">${formatDate(n.date)}</time>
-              </a>`;
-          }).join('')}
-        </section>`;
-    }
-
-    fetch('/news.json')
-      .then(r => r.json())
-      .then(data => {
-        document.getElementById('skeleton').style.display = 'none';
-        if (!data.length) return;
-        const hero       = data[0];
-        const secondary  = data.slice(1, 4);
-        const headlines  = data.slice(4, 10);
-        document.getElementById('news-root').innerHTML =
-          renderHero(hero) +
-          renderSecondary(secondary) +
-          renderHeadlines(headlines);
-      })
-      .catch(err => {
-        document.getElementById('skeleton').style.display = 'none';
-        console.error('Failed to load news:', err);
-      });
-  })();
-  </script>
-
-  <!-- Carousel -->
-  <script>
-    const slides = [
-      {src:"/assets/alliances/alliance-300.png",        caption:"300"},
-      {src:"/assets/alliances/alliance-eternal-frost.png", caption:"ETF"},
-      {src:"/assets/alliances/alliance-havoc-2.png",    caption:"HAVOC"},
-      {src:"/assets/alliances/new-lab-order.webp",      caption:"New Lab Order"},
-      {src:"/assets/alliances/alliance-out-of-order.png", caption:"Out of Order"},
-      {src:"/assets/alliances/alliance-snack-kingdom.png", caption:"Snack Kingdom"}
-    ];
-
-    const carousel = document.getElementById('alliance-carousel');
-    const track    = carousel.querySelector('.track');
-
-    track.innerHTML = slides.map(({src,caption}) => `
-      <a class="card" role="listitem" aria-label="${caption}" href="#">
-        <img loading="lazy" src="${src}" alt="${caption} Alliance">
-        <div class="label">${caption}</div>
-      </a>`).join('');
-
-    function atEnd()  { return Math.ceil(track.scrollLeft + track.clientWidth) >= (track.scrollWidth - 2); }
-    function atStart(){ return track.scrollLeft <= 1; }
-    function cardStep(){
-      const card = track.querySelector('.card');
-      return card ? (card.offsetWidth + 12) : track.clientWidth;
-    }
-    function next(){
-      if (atEnd()) track.scrollTo({left:0,behavior:'smooth'});
-      else track.scrollBy({left:cardStep(),behavior:'smooth'});
-    }
-    function prev(){
-      if (atStart()) track.scrollTo({left:track.scrollWidth,behavior:'instant'});
-      track.scrollBy({left:-cardStep(),behavior:'smooth'});
-    }
-
-    carousel.querySelector('.next').onclick = next;
-    carousel.querySelector('.prev').onclick = prev;
-
-    let auto=null, resizeTimer;
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
-    function startAuto(){ if(!prefersReduced){ stopAuto(); auto=setInterval(next,3500); } }
-    function stopAuto() { if(auto){ clearInterval(auto); auto=null; } }
-    carousel.addEventListener('mouseenter',stopAuto);
-    carousel.addEventListener('mouseleave',startAuto);
-    carousel.addEventListener('focusin',stopAuto);
-    carousel.addEventListener('focusout',startAuto);
-    window.addEventListener('resize',()=>{ stopAuto(); clearTimeout(resizeTimer); resizeTimer=setTimeout(startAuto,300); });
-    startAuto();
-  </script>
-
-  <!-- Gate Script -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const overlay = document.getElementById('gate-overlay');
-      if (!overlay) return;
-
-      const etfPaths = [
-        '/nope','/still-nope','/not-happening','/stop-trying',
-        '/error-you','/why-are-you-like-this','/stop-being-desperate'
-      ];
-
-      try {
-        if (localStorage.getItem('havocPressGate') === 'ok') {
-          overlay.style.display = 'none';
-          overlay.setAttribute('aria-hidden','true');
-          return;
-        }
-      } catch(e) {}
-
-      document.body.classList.add('no-scroll');
-
-      const focusableEls = Array.from(overlay.querySelectorAll('button,[href],input,[tabindex]:not([tabindex="-1"])'));
-      const firstEl = focusableEls[0];
-      const lastEl  = focusableEls[focusableEls.length - 1];
-      if (firstEl) firstEl.focus();
-
-      overlay.addEventListener('keydown', function(e) {
-        if (e.key !== 'Tab') return;
-        if (e.shiftKey) {
-          if (document.activeElement === firstEl) { e.preventDefault(); lastEl.focus(); }
-        } else {
-          if (document.activeElement === lastEl)  { e.preventDefault(); firstEl.focus(); }
-        }
-      });
-
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') enterSite('GUEST');
-      });
-
-      function enterSite(alliance) {
-        overlay.style.display = 'none';
-        overlay.setAttribute('aria-hidden','true');
-        document.body.classList.remove('no-scroll');
-        const main = document.getElementById('main-content');
-        if (main) { main.setAttribute('tabindex','-1'); main.focus(); }
-        try {
-          localStorage.setItem('havocPressGate','ok');
-          localStorage.setItem('havocAlliance', alliance);
-        } catch(e) {}
-      }
-
-      overlay.querySelectorAll('.gate-btn[data-alliance]').forEach(function(btn) {
-        btn.addEventListener('click', function() {
-          const alliance = btn.getAttribute('data-alliance');
-          if (alliance === 'ETF') {
-            let index = 0;
-            try {
-              const stored = parseInt(localStorage.getItem('etfClickIndex') || '0', 10);
-              if (!isNaN(stored) && stored >= 0) index = stored;
-            } catch(e) {}
-            const path = etfPaths[Math.min(index, etfPaths.length - 1)];
-            try {
-              const next = index < etfPaths.length - 1 ? index + 1 : etfPaths.length - 1;
+              var next = index < etfPaths.length - 1 ? index + 1 : etfPaths.length - 1;
               localStorage.setItem('etfClickIndex', String(next));
             } catch(e) {}
             window.location.href = path;
