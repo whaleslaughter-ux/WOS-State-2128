@@ -284,7 +284,7 @@
       if (h < 24) return h + 'h ago';
       return Math.floor(h / 24) + 'd ago';
     }
-
+function slugify(s){ return (s||'').toLowerCase().replace(/\s+/g,'-').replace(/[^a-z0-9-]/g,''); }
     function escHtml(str) {
       return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
     }
