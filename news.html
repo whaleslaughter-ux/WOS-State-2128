@@ -210,8 +210,8 @@
           + (n.img ? '<img src="' + escHtml(n.img) + '" alt="' + escHtml(n.alt||'') + '" loading="lazy">' : '')
           + '<div class="news-card-body">'
           + '<div class="news-card-title">' + escHtml(n.title) + '</div>'
-          + '<div class="news-card-byline">By <a class="reporter" href="/reporter.html?id=' + slugify(n.reporter) + '">'
-          + escHtml(n.reporter) + '</a>'
+          + '<div class="news-card-byline">By <span class="reporter" role="link" tabindex="0" onclick="event.preventDefault();event.stopPropagation();location.href=\'/reporter.html?id=' + slugify(n.reporter) + '\'" onkeydown="if(event.key===\'Enter\')location.href=\'/reporter.html?id=' + slugify(n.reporter) + '\'">'
+          + escHtml(n.reporter) + '</span>'
           + ' &middot; <time datetime="' + escHtml(n.date) + '">' + formatDate(n.date) + '</time></div>'
           + '</div></a>';
       }).join('');
