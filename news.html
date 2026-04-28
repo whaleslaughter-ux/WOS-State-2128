@@ -210,10 +210,8 @@
           + (n.img ? '<img src="' + escHtml(n.img) + '" alt="' + escHtml(n.alt||'') + '" loading="lazy">' : '')
           + '<div class="news-card-body">'
           + '<div class="news-card-title">' + escHtml(n.title) + '</div>'
-          + '<div class="news-card-byline">By <button class="reporter" type="button"'
-          + ' onclick="event.preventDefault();event.stopPropagation();filterReporter(\'' + escHtml(n.reporter) + '\')"'
-          + ' aria-label="Search articles by ' + escHtml(n.reporter) + '">'
-          + escHtml(n.reporter) + '</button>'
+          + '<div class="news-card-byline">By <a class="reporter" href="/reporter.html?id=' + slugify(n.reporter) + '">'
+          + escHtml(n.reporter) + '</a>'
           + ' &middot; <time datetime="' + escHtml(n.date) + '">' + formatDate(n.date) + '</time></div>'
           + '</div></a>';
       }).join('');
