@@ -81,7 +81,6 @@
     .article-body p { margin: 0 0 1.2em; }
     .article-body a { color: var(--accent); }
     .article-body a:hover { color: #fff; }
-
     .share-wrap { margin-bottom: 40px; }
     .share-btn {
       display: inline-flex; align-items: center; gap: 8px;
@@ -93,7 +92,6 @@
     }
     .share-btn:hover { background: rgba(165,180,255,.14); border-color: rgba(165,180,255,.4); color: #fff; }
     .share-btn.copied { color: #86efac; border-color: rgba(134,239,172,.3); }
-
     .comments-section {
       background: var(--card-bg); border: 1px solid var(--border);
       border-radius: 14px; padding: 24px; margin-bottom: 40px;
@@ -187,7 +185,6 @@
     .comments-empty { text-align: center; padding: 28px 0; color: var(--muted); font-size: .88rem; }
     .comments-loading { text-align: center; padding: 20px 0; color: var(--muted); font-size: .85rem; }
     .error-msg { color: #fca5a5; font-size: .82rem; margin-top: 6px; }
-
     .related-section { margin-bottom: 48px; }
     .related-heading {
       font-size: .72rem; font-weight: 800; letter-spacing: .18em;
@@ -208,7 +205,6 @@
       display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
     }
     .related-card-date { font-size: .72rem; color: var(--muted); }
-
     .not-found { text-align: center; padding: 80px 20px; color: var(--muted); }
     .not-found h1 { color: var(--ink); font-size: 2rem; margin-bottom: 12px; }
     @keyframes shimmer { 0% { background-position: -600px 0; } 100% { background-position: 600px 0; } }
@@ -297,6 +293,12 @@
 
     function translateUrl(text) {
       return 'https://translate.google.com/?sl=auto&tl=en&text=' + encodeURIComponent(text) + '&op=translate';
+    }
+
+    function fcLevel(stoveLv) {
+      if (!stoveLv) return null;
+      if (stoveLv <= 30) return 'Furnace ' + stoveLv;
+      return 'FC' + Math.ceil((stoveLv - 30) / 5);
     }
 
     function saveSession(user) { try { localStorage.setItem('wos_commenter', JSON.stringify(user)); } catch(e){} }
@@ -395,7 +397,8 @@
         qs('#player-initial', card).textContent = initial(user.username);
       }
       qs('#player-name', card).textContent = user.username;
-      qs('#player-meta', card).textContent = user.kid ? 'State ' + user.kid + (user.stoveLv ? ' · FC' + user.stoveLv : '') : '';
+      var fc = fcLevel(user.stoveLv);
+      qs('#player-meta', card).textContent = user.kid ? 'State ' + user.kid + (fc ? ' · ' + fc : '') : '';
       card.classList.add('visible');
       if (login)    login.style.display = 'none';
       if (composer) composer.classList.add('visible');
