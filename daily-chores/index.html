@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Daily Admin (Clock Timer, Larger Windows)</title>
+  <meta charset="UTF-8">
+  <style>
+    body {
+      background:#111;
+      color:#eee;
+      font-family: system-ui, sans-serif;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      height:100vh;
+      margin:0;
+    }
+    .panel {
+      border:3px solid #444;
+      padding:20px;
+      border-radius:12px;
+      background:#181818;
+      width:360px;
+      text-align:left;
+      position:relative;
+    }
+    .panel.alert {
+      animation: flash .8s infinite;
+    }
+    @keyframes flash {
+      0% {border-color:red;}
+      50% {border-color:orange;}
+      100%{border-color:red;}
+    }
+    h1 {margin:0 0 6px}
+    .time {font-size:30px;text-align:center;margin:6px 0}
+    .ends-at {font-size:12px;text-align:center;color:#bbb;margin-bottom:10px;}
+    .buttons {display:flex;gap:8px;margin-bottom:10px;}
+    .buttons button {
+      flex:1;
+      padding:6px;
+      border:none;
+      border-radius:6px;
+      background:#333;
+      color:#fff;
+      cursor:pointer;
+    }
+    ul {list-style:none;padding:0;margin:0}
+    li {margin:6px 0}
+    a {color:#8ecbff;text-decoration:none}
+    .overlay{
+      position:absolute;inset:0;
+      background:rgba(0,0,0,.85);
+      display:none;justify-content:center;align-items:center;
+      text-align:center;border-radius:12px;
+      padding:20px;
+      box-sizing:border-box;
+    }
+    .overlay.show{display:flex}
+  </style>
+</head>
+<body>
+
+<div class="panel" id="box">
+  <h1>Daily Admin</h1>
+  <div class="time" id="timer">15:00</div>
+  <div class="ends-at" id="endsAt"></div>
+  <div class="buttons">
+    <button onclick="startTimer()">Start</button>
+    <button onclick="resetTimer()">Reset</button>
+  </div>
+
+  <ul>
+    <li><input type="checkbox"> <a href="#" onclick="openWin('https://amazon.com/vine'); return false;">Vine orders</a></li>
+    <li><input type="checkbox"> <a href="#" onclick="openWin('https://artists.spotify.com'); return false;">Spotify analytics</a></li>
+    <li><input type="checkbox"> <a href="#" onclick="openWin('https://analytics.google.com'); return false;">Google Analytics</a></li>
+    <li><input type="checkbox"> <a href="#" onclick="openWin('https://mail.google.com/mail/u/3/#inbox'); return false;">White Cane email</a></li>
+    <li><input type="checkbox"> <a href="#" onclick="openWin('https://mail.google.com/mail/u/4/?ogbl#inbox'); return false;">Whaleslaughter email</a></li>
+    <li><input type="checkbox"> <a href="#" onclick="openWin('https://www.tiktok.com/tiktokstudio'); return false;">TikTok</a></li>
+    <li><input type="checkbox"> <a href="#" onclick="openWin('https://www.reddit.com/user/WHALESLAUGHTER/'); return false;">Reddit (scan)</a></li>
+    <li><input type="checkbox"> <a href="#" onclick="openWin('https://discord.com/channels/1315528747562176553/1315528748053037077'); return false;">Discord (scan)</a></li>
+    <li><input type="checkbox"> <a href="#" onclick="openWin('https://supabase.com/dashboard/project/pfjepcvqvsloasdhjukp/editor/17546?schema=public'); return false;">2128 Comments</a></li>
+  </ul>
+
+  <div class="overlay" id="done">
+    ⏰ Admin time is up. Wrap it and move on.
+  </div>
+</div>
+
+<script>
+  function openWin(url){
+    window.open(
+      url,
+      "_blank",
+      "width=1500,height=1200,left=80,top=40,resizable=yes,scrollbars=yes"
+    );
+  }
+
+  const DURATION_MINUTES = 15;
+  const timerEl = document.getElementById('timer');
+  const boxEl = document.getElementById('box');
+  const doneEl = document.getElementById('done');
+  const endsAtEl = document.getElementById('endsAt');
+
+  let endTime = null;
+  let interval = null;
+
+  function formatTimeLeft(ms){
+    if (ms <= 0) return '00:00';
+    const totalSeconds = Math.floor(ms / 1000);
+    const m = String(Math.floor(totalSeconds / 60)).padStart(2,'0');
+    const s = String(totalSeconds % 60).padStart(2,'0');
+    return m + ':' + s;
+  }
+
+  function formatEndTime(ts){
+    if (!ts) return '';
+    const d = new Date(ts);
+    let h = d.getHours();
+    const m = String(d.getMinutes()).padStart(2,'0');
+    const ampm = h >= 12 ? 'PM' : 'AM';
+    if (h === 0) h = 12;
+    else if (h > 12) h -= 12;
+    return 'Ends around ' + h + ':' + m + ' ' + ampm;
+  }
+
+  function updateFromClock(){
+    if (!endTime){
+      timerEl.textContent = formatTimeLeft(DURATION_MINUTES * 60 * 1000);
+      endsAtEl.textContent = '';
+      return;
+    }
+    const now = Date.now();
+    const diff = endTime - now;
+    timerEl.textContent = formatTimeLeft(diff);
+
+    if (diff <= 0){
+      timerEl.textContent = '00:00';
+      if (interval){
+        clearInterval(interval);
+        interval = null;
+      }
+      boxEl.classList.add('alert');
+      doneEl.classList.add('show');
+    }
+  }
+
+  function startTimer(){
+    if (interval) return;
+    const now = Date.now();
+    endTime = now + DURATION_MINUTES * 60 * 1000;
+    endsAtEl.textContent = formatEndTime(endTime);
+    boxEl.classList.remove('alert');
+    doneEl.classList.remove('show');
+
+    updateFromClock();
+    interval = setInterval(updateFromClock, 1000);
+  }
+
+  function resetTimer(){
+    if (interval){
+      clearInterval(interval);
+      interval = null;
+    }
+    endTime = null;
+    boxEl.classList.remove('alert');
+    doneEl.classList.remove('show');
+    timerEl.textContent = formatTimeLeft(DURATION_MINUTES * 60 * 1000);
+    endsAtEl.textContent = '';
+  }
+
+  resetTimer();
+</script>
+
+</body>
+</html>
