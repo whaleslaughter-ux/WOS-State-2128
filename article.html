@@ -578,7 +578,7 @@
         + (tagsHtml ? '<div class="article-tags" aria-label="Tags">' + tagsHtml + '</div>' : '')
         + '<h1 class="article-title" id="article-title">' + escHtml(article.title) + '</h1>'
         + '<div class="article-byline">'
-        + '<span>By <span class="reporter">' + escHtml(article.reporter) + '</span></span>'
+        + '<span>By <a class="reporter" href="/reporter.html?id=' + slugify(article.reporter) + '">' + escHtml(article.reporter) + '</a></span>'
         + '<span class="sep">·</span>'
         + '<time datetime="' + escHtml(article.date) + '">' + formatDate(article.date) + '</time>'
         + '</div>'
