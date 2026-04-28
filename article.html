@@ -81,49 +81,29 @@
     .article-body p { margin: 0 0 1.2em; }
     .article-body a { color: var(--accent); }
     .article-body a:hover { color: #fff; }
-    .share-bar {
-      display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
-      padding: 16px 0; border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border); margin-bottom: 40px;
-    }
-    .share-label {
-      font-size: .75rem; font-weight: 700; letter-spacing: .1em;
-      text-transform: uppercase; color: var(--muted); margin-right: 4px;
-    }
+
+    /* === Share button === */
+    .share-wrap { margin-bottom: 40px; }
     .share-btn {
-      display: inline-flex; align-items: center; gap: 6px;
-      padding: 7px 14px; border-radius: 8px; border: 1px solid var(--border);
-      background: rgba(255,255,255,.03); color: var(--ink);
-      font-size: .8rem; font-weight: 600; cursor: pointer;
-      text-decoration: none; transition: background .15s, border-color .15s;
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 20px; border-radius: 8px;
+      border: 1px solid rgba(165,180,255,.25);
+      background: rgba(165,180,255,.06);
+      color: var(--ink); font-size: .88rem; font-weight: 700;
+      cursor: pointer; transition: background .15s, border-color .15s;
     }
-    .share-btn:hover { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.18); color: #fff; text-decoration: none; }
+    .share-btn:hover { background: rgba(165,180,255,.14); border-color: rgba(165,180,255,.4); color: #fff; }
     .share-btn.copied { color: #86efac; border-color: rgba(134,239,172,.3); }
-    .related-section { margin-bottom: 48px; }
-    .section-heading {
-      font-size: .72rem; font-weight: 800; letter-spacing: .18em;
-      text-transform: uppercase; color: var(--muted); margin: 0 0 16px;
-    }
-    .related-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap: 12px; }
-    .related-card {
-      display: block; border: 1px solid var(--border); border-radius: 12px;
-      overflow: hidden; background: var(--card-bg);
-      text-decoration: none; color: var(--ink);
-      transition: border-color .15s, transform .15s;
-    }
-    .related-card:hover { border-color: rgba(165,180,255,.25); transform: translateY(-2px); text-decoration: none; color: var(--ink); }
-    .related-card img { width: 100%; height: 120px; object-fit: cover; background: #000; display: block; }
-    .related-card-body { padding: 10px 12px; }
-    .related-card-title {
-      font-size: .85rem; font-weight: 700; line-height: 1.35; margin: 0 0 4px;
-      display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
-    }
-    .related-card-date { font-size: .72rem; color: var(--muted); }
+
+    /* === Comments === */
     .comments-section {
       background: var(--card-bg); border: 1px solid var(--border);
-      border-radius: 14px; padding: 24px;
+      border-radius: 14px; padding: 24px; margin-bottom: 40px;
     }
-    .comments-section .section-heading { margin-bottom: 20px; }
+    .section-heading {
+      font-size: .72rem; font-weight: 800; letter-spacing: .18em;
+      text-transform: uppercase; color: var(--muted); margin: 0 0 20px;
+    }
     .comment-login { margin-bottom: 28px; }
     .login-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: flex-end; }
     .login-field { flex: 1; min-width: 180px; }
@@ -183,13 +163,46 @@
       font-weight: 800; font-size: 1rem; color: var(--accent);
     }
     .comment-bubble { flex: 1; min-width: 0; }
-    .comment-meta { display: flex; align-items: baseline; gap: 8px; margin-bottom: 4px; flex-wrap: wrap; }
+    .comment-meta {
+      display: flex; align-items: baseline; gap: 8px;
+      margin-bottom: 4px; flex-wrap: wrap;
+    }
     .comment-name { font-weight: 700; font-size: .85rem; }
     .comment-time { font-size: .72rem; color: var(--muted); }
+    .translate-btn {
+      font-size: .68rem; color: var(--muted);
+      background: none; border: none; cursor: pointer;
+      padding: 0; text-decoration: none;
+      transition: color .12s;
+    }
+    .translate-btn:hover { color: var(--ink); }
     .comment-text { font-size: .88rem; line-height: 1.55; color: var(--ink); word-break: break-word; }
     .comments-empty { text-align: center; padding: 28px 0; color: var(--muted); font-size: .88rem; }
     .comments-loading { text-align: center; padding: 20px 0; color: var(--muted); font-size: .85rem; }
     .error-msg { color: #fca5a5; font-size: .82rem; margin-top: 6px; }
+
+    /* === Related === */
+    .related-section { margin-bottom: 48px; }
+    .related-heading {
+      font-size: .72rem; font-weight: 800; letter-spacing: .18em;
+      text-transform: uppercase; color: var(--muted); margin: 0 0 16px;
+    }
+    .related-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap: 12px; }
+    .related-card {
+      display: block; border: 1px solid var(--border); border-radius: 12px;
+      overflow: hidden; background: var(--card-bg);
+      text-decoration: none; color: var(--ink);
+      transition: border-color .15s, transform .15s;
+    }
+    .related-card:hover { border-color: rgba(165,180,255,.25); transform: translateY(-2px); text-decoration: none; color: var(--ink); }
+    .related-card img { width: 100%; height: 120px; object-fit: cover; background: #000; display: block; }
+    .related-card-body { padding: 10px 12px; }
+    .related-card-title {
+      font-size: .85rem; font-weight: 700; line-height: 1.35; margin: 0 0 4px;
+      display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+    }
+    .related-card-date { font-size: .72rem; color: var(--muted); }
+
     .not-found { text-align: center; padding: 80px 20px; color: var(--muted); }
     .not-found h1 { color: var(--ink); font-size: 2rem; margin-bottom: 12px; }
     @keyframes shimmer { 0% { background-position: -600px 0; } 100% { background-position: 600px 0; } }
@@ -273,8 +286,10 @@
       return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
     }
 
-    function initial(name) {
-      return name ? name.charAt(0).toUpperCase() : '?';
+    function initial(name) { return name ? name.charAt(0).toUpperCase() : '?'; }
+
+    function translateUrl(text) {
+      return 'https://translate.google.com/?sl=auto&tl=en&text=' + encodeURIComponent(text) + '&op=translate';
     }
 
     function saveSession(user) { try { localStorage.setItem('wos_commenter', JSON.stringify(user)); } catch(e){} }
@@ -302,6 +317,7 @@
             + '<div class="comment-meta">'
             + '<span class="comment-name">' + escHtml(c.username) + '</span>'
             + '<time class="comment-time" datetime="' + escHtml(c.created_at) + '">' + timeAgo(c.created_at) + '</time>'
+            + '<a class="translate-btn" href="' + translateUrl(c.comment) + '" target="_blank" rel="noopener" aria-label="Translate this comment">🌐</a>'
             + '</div>'
             + '<p class="comment-text">' + escHtml(c.comment) + '</p>'
             + '</div></div>';
@@ -346,7 +362,6 @@
     function buildComments() {
       return '<section class="comments-section" aria-labelledby="comments-heading">'
         + '<h2 class="section-heading" id="comments-heading">Comments</h2>'
-
         + '<div id="comment-login" class="comment-login">'
         + '<p style="font-size:.85rem;color:var(--muted);margin:0 0 12px">Enter your in-game name to comment. No password needed.</p>'
         + '<div class="login-row">'
@@ -358,13 +373,11 @@
         + '</div>'
         + '<div id="login-error" class="error-msg" role="alert" aria-live="polite"></div>'
         + '</div>'
-
         + '<div id="player-card" class="player-card" aria-label="Commenting as">'
         + '<div class="comment-avatar" id="player-initial" aria-hidden="true">?</div>'
         + '<div class="player-card-name" id="player-name"></div>'
         + '<button class="player-card-logout" id="logout-btn" type="button">Not you?</button>'
         + '</div>'
-
         + '<div id="comment-composer" class="comment-composer" aria-label="Write a comment">'
         + '<label for="comment-textarea" style="display:block;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:6px">Your comment</label>'
         + '<textarea id="comment-textarea" placeholder="Say something about this article…" maxlength="' + MAX_COMMENT + '" aria-describedby="char-count post-error"></textarea>'
@@ -374,7 +387,6 @@
         + '</div>'
         + '<div id="post-error" class="error-msg" role="alert" aria-live="polite"></div>'
         + '</div>'
-
         + '<div id="comments-list" class="comments-list" aria-label="Comments" aria-live="polite">'
         + '<div class="comments-loading">Loading comments…</div>'
         + '</div>'
@@ -451,13 +463,10 @@
     }
 
     function getRelated(article, all) {
-      var tags      = {};
-      var alliances = {};
-      var chars     = {};
+      var tags = {}, alliances = {}, chars = {};
       (article.tags || []).forEach(function(t){ tags[t] = 1; });
       (article.alliances || []).forEach(function(a){ alliances[a] = 1; });
       (article.characters || []).forEach(function(c){ chars[c] = 1; });
-
       return all
         .filter(function(n){ return n.id !== article.id; })
         .map(function(n) {
@@ -484,7 +493,7 @@
       var relatedHtml = '';
       if (related.length) {
         relatedHtml = '<section class="related-section" aria-labelledby="related-heading">'
-          + '<h2 class="section-heading" id="related-heading">Related Stories</h2>'
+          + '<h2 class="related-heading" id="related-heading">Related Stories</h2>'
           + '<div class="related-grid">'
           + related.map(function(r) {
             return '<a class="related-card" href="/article.html?id=' + encodeURIComponent(r.id) + '" aria-label="' + escHtml(r.title) + '">'
@@ -512,20 +521,27 @@
         + '</header>'
         + '<div class="article-body">' + article.blurb + '</div>'
         + '</article>'
-        + '<div class="share-bar" role="complementary" aria-label="Share this article">'
-        + '<span class="share-label">Share</span>'
-        + '<button class="share-btn" id="copy-link-btn" type="button" aria-label="Copy link to clipboard">🔗 Copy link</button>'
+        + '<div class="share-wrap">'
+        + '<button class="share-btn" id="share-btn" type="button">&#128279; Share this article</button>'
         + '</div>'
-        + relatedHtml
-        + buildComments();
+        + buildComments()
+        + relatedHtml;
 
-      qs('#copy-link-btn').addEventListener('click', function() {
-        navigator.clipboard.writeText(window.location.href).then(function() {
-          var btn = qs('#copy-link-btn');
-          btn.textContent = '✓ Copied!';
-          btn.classList.add('copied');
-          setTimeout(function(){ btn.textContent = '🔗 Copy link'; btn.classList.remove('copied'); }, 2000);
-        });
+      var shareBtn = qs('#share-btn');
+      shareBtn.addEventListener('click', function() {
+        if (navigator.share) {
+          navigator.share({
+            title: article.title,
+            text: article.title + ' — WOS State 2128',
+            url: window.location.href
+          }).catch(function(){});
+        } else {
+          navigator.clipboard.writeText(window.location.href).then(function() {
+            shareBtn.textContent = '✓ Link copied!';
+            shareBtn.classList.add('copied');
+            setTimeout(function(){ shareBtn.innerHTML = '&#128279; Share this article'; shareBtn.classList.remove('copied'); }, 2000);
+          });
+        }
       });
 
       wireComments();
