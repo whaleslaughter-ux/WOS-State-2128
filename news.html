@@ -38,7 +38,7 @@
     .page-header h1{margin:0 0 6px;font-size:clamp(1.8rem,4vw,2.4rem);font-weight:900;text-transform:uppercase;letter-spacing:.05em}
     .page-header p{margin:0;color:var(--muted);font-weight:600}
 
-    .search-wrap{position:relative;margin-bottom:16px}
+    .search-wrap{position:relative;margin-bottom:20px}
     .search-wrap label{
       display:block;font-size:.68rem;font-weight:800;letter-spacing:.15em;
       text-transform:uppercase;color:var(--muted);margin-bottom:6px;
@@ -62,21 +62,6 @@
     .search-clear:hover{color:var(--ink)}
     .search-clear.visible{display:block}
 
-    .filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px;align-items:flex-start}
-    .filter-group{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
-    .filter-label{font-size:.62rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-right:2px;white-space:nowrap}
-    .filter-btn{
-      padding:5px 12px;border-radius:999px;
-      border:1px solid rgba(165,180,255,.2);
-      background:rgba(165,180,255,.05);
-      color:var(--muted);font-size:.72rem;font-weight:700;
-      cursor:pointer;transition:all .12s;white-space:nowrap;
-    }
-    .filter-btn:hover{background:rgba(165,180,255,.12);border-color:rgba(165,180,255,.35);color:var(--ink)}
-    .filter-btn.active{background:var(--accent);border-color:var(--accent);color:#0b1030}
-    .filter-btn.alliance.active{background:var(--gold);border-color:var(--gold);color:#0b1030}
-    .filter-divider{width:100%;height:0;border:none;border-top:1px solid var(--border);margin:4px 0}
-
     .results-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:8px}
     .results-count{font-size:.78rem;color:var(--muted)}
     .clear-all{font-size:.72rem;color:var(--accent);background:none;border:none;cursor:pointer;text-decoration:underline;padding:0}
@@ -94,14 +79,6 @@
     .news-card:hover{border-color:rgba(165,180,255,.25);transform:translateY(-2px);text-decoration:none;color:var(--ink)}
     .news-card img{width:100%;height:160px;object-fit:cover;background:#000;display:block;border-bottom:1px solid var(--border)}
     .news-card-body{padding:12px 14px 16px}
-    .news-card-tags{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px}
-    .tag{
-      font-size:.62rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
-      padding:2px 8px;border-radius:999px;
-      background:rgba(165,180,255,.1);color:var(--muted);
-      border:1px solid rgba(165,180,255,.18);
-    }
-    .tag.alliance{background:rgba(212,176,106,.1);color:var(--gold);border-color:rgba(212,176,106,.22)}
     .news-card-title{font-size:.92rem;font-weight:800;line-height:1.35;margin:0 0 6px}
     .news-card-byline{font-size:.72rem;color:var(--muted)}
     .news-card-byline .reporter{
@@ -156,16 +133,13 @@
       <label for="search-input">Search articles</label>
       <span class="search-icon" aria-hidden="true">🔍</span>
       <input type="search" id="search-input" class="search-input"
-             placeholder="Search by title, reporter, alliance…"
+             placeholder="Search by title, reporter, alliance, character…"
              aria-label="Search articles" autocomplete="off" />
       <button class="search-clear" id="search-clear" type="button" aria-label="Clear search">✕</button>
     </div>
 
-    <div class="filters" id="filters" aria-label="Filter articles"></div>
-
     <div class="results-bar">
       <span class="results-count" id="results-count" aria-live="polite" aria-atomic="true"></span>
-      <button class="clear-all" id="clear-all" type="button" style="display:none">Clear all filters</button>
     </div>
 
     <div id="skeleton" aria-hidden="true">
@@ -190,14 +164,9 @@
   </script>
 
   <script>
-  (() => {
-    const PER_PAGE  = 12;
-    const REPORTERS = ['Catty von Catacean','Griff Harpoon','Finn Ledger','Greigh Fox','Editorial Staff'];
-    const TAGS      = ['SVS','Drama','Music','Guide','Alliance News','Espionage'];
-    const ALLIANCES = ['HAV','ETF','SNK','NLO','OOO','300','LFG','TBD'];
-
-    let allNews = [], filtered = [], page = 1, search = '';
-    let activeReporter = null, activeTag = null, activeAlliance = null;
+  (function() {
+    var PER_PAGE = 12;
+    var allNews = [], filtered = [], page = 1, search = '';
 
     function escHtml(str) {
       return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
@@ -205,156 +174,140 @@
     function formatDate(iso) {
       return new Date(iso+'T00:00:00').toLocaleDateString('en-US',{year:'numeric',month:'short',day:'numeric'});
     }
-    function articleUrl(id){ return `/article.html?id=${encodeURIComponent(id)}`; }
-
-    function buildFilters() {
-      const el = document.getElementById('filters');
-      el.innerHTML = `
-        <div class="filter-group" role="group" aria-label="Filter by reporter">
-          <span class="filter-label">Reporter</span>
-          ${REPORTERS.map(r=>`<button class="filter-btn reporter-btn${activeReporter===r?' active':''}" data-reporter="${escHtml(r)}" type="button" aria-pressed="${activeReporter===r}">${escHtml(r)}</button>`).join('')}
-        </div>
-        <div class="filter-divider" role="separator"></div>
-        <div class="filter-group" role="group" aria-label="Filter by tag">
-          <span class="filter-label">Tag</span>
-          ${TAGS.map(t=>`<button class="filter-btn tag-btn${activeTag===t?' active':''}" data-tag="${escHtml(t)}" type="button" aria-pressed="${activeTag===t}">${escHtml(t)}</button>`).join('')}
-        </div>
-        <div class="filter-divider" role="separator"></div>
-        <div class="filter-group" role="group" aria-label="Filter by alliance">
-          <span class="filter-label">Alliance</span>
-          ${ALLIANCES.map(a=>`<button class="filter-btn alliance-btn alliance${activeAlliance===a?' active':''}" data-alliance="${escHtml(a)}" type="button" aria-pressed="${activeAlliance===a}">${escHtml(a)}</button>`).join('')}
-        </div>`;
-
-      el.querySelectorAll('.reporter-btn').forEach(btn=>btn.addEventListener('click',()=>{
-        activeReporter = activeReporter===btn.dataset.reporter ? null : btn.dataset.reporter;
-        page=1; buildFilters(); applyFilters();
-      }));
-      el.querySelectorAll('.tag-btn').forEach(btn=>btn.addEventListener('click',()=>{
-        activeTag = activeTag===btn.dataset.tag ? null : btn.dataset.tag;
-        page=1; buildFilters(); applyFilters();
-      }));
-      el.querySelectorAll('.alliance-btn').forEach(btn=>btn.addEventListener('click',()=>{
-        activeAlliance = activeAlliance===btn.dataset.alliance ? null : btn.dataset.alliance;
-        page=1; buildFilters(); applyFilters();
-      }));
-    }
+    function articleUrl(id){ return '/article.html?id=' + encodeURIComponent(id); }
 
     function applyFilters() {
-      const q = search.toLowerCase().trim();
-      filtered = allNews.filter(n => {
-        if (activeReporter && n.reporter !== activeReporter) return false;
-        if (activeTag && !(n.tags||[]).includes(activeTag)) return false;
-        if (activeAlliance && !(n.alliances||[]).includes(activeAlliance)) return false;
-        if (q) {
-          const hay = [n.title,n.reporter,...(n.tags||[]),...(n.alliances||[]),...(n.characters||[])].join(' ').toLowerCase();
-          if (!hay.includes(q)) return false;
-        }
-        return true;
+      var q = search.toLowerCase().trim();
+      filtered = allNews.filter(function(n) {
+        if (!q) return true;
+        var hay = [n.title, n.reporter]
+          .concat(n.tags || [])
+          .concat(n.alliances || [])
+          .concat(n.characters || [])
+          .join(' ').toLowerCase();
+        return hay.indexOf(q) !== -1;
       });
 
-      const hasFilters = activeReporter||activeTag||activeAlliance||search;
-      document.getElementById('clear-all').style.display = hasFilters ? 'inline' : 'none';
-      document.getElementById('results-count').textContent = filtered.length===allNews.length
-        ? `${allNews.length} articles`
-        : `${filtered.length} of ${allNews.length} articles`;
+      document.getElementById('results-count').textContent = filtered.length === allNews.length
+        ? filtered.length + ' articles'
+        : filtered.length + ' of ' + allNews.length + ' articles';
 
-      renderGrid(); renderPagination();
+      renderGrid();
+      renderPagination();
     }
 
     function renderGrid() {
-      const grid  = document.getElementById('news-grid');
-      const slice = filtered.slice((page-1)*PER_PAGE, page*PER_PAGE);
+      var grid  = document.getElementById('news-grid');
+      var slice = filtered.slice((page-1)*PER_PAGE, page*PER_PAGE);
 
       if (!slice.length) {
-        grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1"><p>No articles match your filters.</p><button type="button" onclick="clearAllFilters()">Clear filters</button></div>`;
+        grid.innerHTML = '<div class="empty-state" style="grid-column:1/-1"><p>No articles match your search.</p><button type="button" onclick="clearSearch()">Clear search</button></div>';
         return;
       }
 
-      grid.innerHTML = slice.map(n => {
-        const tags = [...(n.alliances||[]).map(a=>`<span class="tag alliance">${escHtml(a)}</span>`), ...(n.tags||[]).map(t=>`<span class="tag">${escHtml(t)}</span>`)].slice(0,3).join('');
-        return `
-          <a class="news-card" href="${articleUrl(n.id)}" aria-label="${escHtml(n.title)}">
-            ${n.img?`<img src="${escHtml(n.img)}" alt="${escHtml(n.alt||'')}" loading="lazy">`:''}
-            <div class="news-card-body">
-              ${tags?`<div class="news-card-tags">${tags}</div>`:''}
-              <div class="news-card-title">${escHtml(n.title)}</div>
-              <div class="news-card-byline">
-                By <button class="reporter" type="button" data-reporter="${escHtml(n.reporter)}"
-                     aria-label="Filter by ${escHtml(n.reporter)}"
-                     onclick="event.preventDefault();event.stopPropagation();setReporter('${escHtml(n.reporter)}')"
-                   >${escHtml(n.reporter)}</button>
-                · <time datetime="${escHtml(n.date)}">${formatDate(n.date)}</time>
-              </div>
-            </div>
-          </a>`;
+      grid.innerHTML = slice.map(function(n) {
+        return '<a class="news-card" href="' + articleUrl(n.id) + '" aria-label="' + escHtml(n.title) + '">'
+          + (n.img ? '<img src="' + escHtml(n.img) + '" alt="' + escHtml(n.alt||'') + '" loading="lazy">' : '')
+          + '<div class="news-card-body">'
+          + '<div class="news-card-title">' + escHtml(n.title) + '</div>'
+          + '<div class="news-card-byline">By <button class="reporter" type="button"'
+          + ' onclick="event.preventDefault();event.stopPropagation();filterReporter(\'' + escHtml(n.reporter) + '\')"'
+          + ' aria-label="Search articles by ' + escHtml(n.reporter) + '">'
+          + escHtml(n.reporter) + '</button>'
+          + ' &middot; <time datetime="' + escHtml(n.date) + '">' + formatDate(n.date) + '</time></div>'
+          + '</div></a>';
       }).join('');
     }
 
     function renderPagination() {
-      const nav   = document.getElementById('pagination');
-      const total = Math.ceil(filtered.length/PER_PAGE);
-      if (total<=1){ nav.innerHTML=''; return; }
+      var nav   = document.getElementById('pagination');
+      var total = Math.ceil(filtered.length / PER_PAGE);
+      if (total <= 1) { nav.innerHTML = ''; return; }
 
-      const pages = (() => {
-        const r=[], delta=2;
-        for(let i=Math.max(1,page-delta);i<=Math.min(total,page+delta);i++) r.push(i);
-        if(r[0]>1) r.unshift(1);
-        if(r[r.length-1]<total) r.push(total);
+      var pages = (function() {
+        var r = [], delta = 2;
+        for (var i = Math.max(1,page-delta); i <= Math.min(total,page+delta); i++) r.push(i);
+        if (r[0] > 1) r.unshift(1);
+        if (r[r.length-1] < total) r.push(total);
         return r;
       })();
 
-      let html = `<button class="page-btn" type="button" ${page===1?'disabled':''} aria-label="Previous page" onclick="goPage(${page-1})">‹</button>`;
-      let prev=null;
-      pages.forEach(p=>{
-        if(prev!==null && p-prev>1) html+=`<span class="page-ellipsis" aria-hidden="true">…</span>`;
-        html+=`<button class="page-btn${p===page?' active':''}" type="button" aria-label="Page ${p}" aria-current="${p===page?'page':'false'}" onclick="goPage(${p})">${p}</button>`;
-        prev=p;
+      var html = '<button class="page-btn" type="button" ' + (page===1?'disabled':'') + ' aria-label="Previous page" onclick="goPage(' + (page-1) + ')">&#8249;</button>';
+      var prev = null;
+      pages.forEach(function(p) {
+        if (prev !== null && p - prev > 1) html += '<span class="page-ellipsis" aria-hidden="true">&hellip;</span>';
+        html += '<button class="page-btn' + (p===page?' active':'') + '" type="button" aria-label="Page ' + p + '" aria-current="' + (p===page?'page':'false') + '" onclick="goPage(' + p + ')">' + p + '</button>';
+        prev = p;
       });
-      html+=`<button class="page-btn" type="button" ${page===total?'disabled':''} aria-label="Next page" onclick="goPage(${page+1})">›</button>`;
-      nav.innerHTML=html;
+      html += '<button class="page-btn" type="button" ' + (page===total?'disabled':'') + ' aria-label="Next page" onclick="goPage(' + (page+1) + ')">&#8250;</button>';
+      nav.innerHTML = html;
     }
 
-    window.goPage = function(p){ page=p; renderGrid(); renderPagination(); document.getElementById('main-content').scrollIntoView({behavior:'smooth'}); };
-    window.setReporter = function(r){ activeReporter=r; page=1; buildFilters(); applyFilters(); document.getElementById('main-content').scrollIntoView({behavior:'smooth'}); };
-    window.clearAllFilters = function(){
-      activeReporter=activeTag=activeAlliance=null; search='';
-      document.getElementById('search-input').value='';
-      document.getElementById('search-clear').classList.remove('visible');
-      page=1; buildFilters(); applyFilters();
+    window.goPage = function(p) {
+      page = p;
+      renderGrid();
+      renderPagination();
+      document.getElementById('main-content').scrollIntoView({behavior:'smooth'});
     };
 
-    const searchInput = document.getElementById('search-input');
-    const searchClear = document.getElementById('search-clear');
-    let searchTimer;
-    searchInput.addEventListener('input',()=>{
-      search=searchInput.value;
-      searchClear.classList.toggle('visible',search.length>0);
-      clearTimeout(searchTimer);
-      searchTimer=setTimeout(()=>{ page=1; applyFilters(); },220);
-    });
-    searchClear.addEventListener('click',()=>{
-      search=''; searchInput.value=''; searchClear.classList.remove('visible'); searchInput.focus(); page=1; applyFilters();
-    });
-    document.getElementById('clear-all').addEventListener('click', clearAllFilters);
+    window.filterReporter = function(r) {
+      search = r;
+      document.getElementById('search-input').value = r;
+      document.getElementById('search-clear').classList.add('visible');
+      page = 1;
+      applyFilters();
+      document.getElementById('main-content').scrollIntoView({behavior:'smooth'});
+    };
 
-    function readUrlParams(){
-      const p=new URLSearchParams(window.location.search);
-      if(p.get('reporter')) activeReporter=p.get('reporter');
-      if(p.get('tag'))      activeTag=p.get('tag');
-      if(p.get('alliance')) activeAlliance=p.get('alliance');
-      if(p.get('q')){ search=p.get('q'); searchInput.value=search; searchClear.classList.add('visible'); }
+    window.clearSearch = function() {
+      search = '';
+      document.getElementById('search-input').value = '';
+      document.getElementById('search-clear').classList.remove('visible');
+      page = 1;
+      applyFilters();
+    };
+
+    var searchInput = document.getElementById('search-input');
+    var searchClear = document.getElementById('search-clear');
+    var searchTimer;
+
+    searchInput.addEventListener('input', function() {
+      search = searchInput.value;
+      searchClear.classList.toggle('visible', search.length > 0);
+      clearTimeout(searchTimer);
+      searchTimer = setTimeout(function() { page = 1; applyFilters(); }, 220);
+    });
+
+    searchClear.addEventListener('click', function() {
+      clearSearch();
+      searchInput.focus();
+    });
+
+    function readUrlParams() {
+      var p = new URLSearchParams(window.location.search);
+      if (p.get('reporter')) {
+        search = p.get('reporter');
+        searchInput.value = search;
+        searchClear.classList.add('visible');
+      }
+      if (p.get('q')) {
+        search = p.get('q');
+        searchInput.value = search;
+        searchClear.classList.add('visible');
+      }
     }
 
     fetch('/news.json')
-      .then(r=>r.json())
-      .then(data=>{
-        allNews=data;
-        document.getElementById('skeleton').style.display='none';
-        readUrlParams(); buildFilters(); applyFilters();
+      .then(function(r){ return r.json(); })
+      .then(function(data) {
+        allNews = data;
+        document.getElementById('skeleton').style.display = 'none';
+        readUrlParams();
+        applyFilters();
       })
-      .catch(()=>{
-        document.getElementById('skeleton').style.display='none';
-        document.getElementById('news-grid').innerHTML=`<div class="empty-state" style="grid-column:1/-1"><p>Couldn't load articles. Try refreshing.</p></div>`;
+      .catch(function() {
+        document.getElementById('skeleton').style.display = 'none';
+        document.getElementById('news-grid').innerHTML = '<div class="empty-state" style="grid-column:1/-1"><p>Couldn\'t load articles. Try refreshing.</p></div>';
       });
   })();
   </script>
