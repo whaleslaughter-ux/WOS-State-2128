@@ -427,7 +427,7 @@
         </section>`;
     }
 
-    fetch('/news.json')
+   fetch('/news.json')
       .then(r => r.json())
       .then(data => {
         document.getElementById('skeleton').style.display = 'none';
@@ -436,7 +436,8 @@
         const secondary = data.slice(1, 4);
         const headlines = data.slice(4, 10);
         document.getElementById('news-root').innerHTML =
-          renderHero(hero) + renderSecondary(secondary) + renderHeadlines(headlines);
+          renderHero(hero) + renderSecondary(secondary) + renderHeadlines(headlines) +
+          '<div style="text-align:center;margin:24px 0 8px"><a href="/news.html" style="display:inline-flex;align-items:center;gap:6px;padding:10px 24px;border-radius:8px;border:1px solid rgba(165,180,255,.25);background:rgba(165,180,255,.06);color:#eef2ff;font-weight:700;font-size:.88rem;text-decoration:none">All Stories →</a></div>';
       })
       .catch(err => {
         document.getElementById('skeleton').style.display = 'none';
