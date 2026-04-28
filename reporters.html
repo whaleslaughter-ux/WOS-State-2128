@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6LN9JCF6JC"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-6LN9JCF6JC');
+  </script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Reporter — WOS State 2128</title>
+  <meta name="description" content="Reporter bio and articles — WOS State 2128" />
+  <style>
+    :root {
+      --bg1: #0b1030;
+      --bg2: #1a2147;
+      --ink: #eef2ff;
+      --muted: #b9c3ff;
+      --gold: #d4b06a;
+      --accent: #a5b4ff;
+      --border: rgba(255,255,255,.08);
+      --card-bg: linear-gradient(180deg,rgba(255,255,255,.02),rgba(0,0,0,.04));
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: radial-gradient(1100px 560px at 50% -10%, var(--bg2) 0%, var(--bg1) 42%, #060915 100%);
+      font: 16px/1.7 ui-sans-serif, system-ui, -apple-system, Segoe UI, Inter, Roboto, "Noto Sans", Arial;
+      min-height: 100vh;
+    }
+    a { color: var(--accent); text-decoration: underline; }
+    a:hover { color: #fff; text-decoration: none; }
+
+    .skip-link {
+      position: absolute; top: -50px; left: 10px;
+      background: var(--bg1); color: var(--ink);
+      padding: 10px 14px; border: 2px solid var(--accent);
+      border-radius: 8px; font-weight: 700; font-size: .875rem;
+      z-index: 9999; text-decoration: none; transition: top .15s;
+    }
+    .skip-link:focus { top: 10px; }
+
+    .wrap { max-width: 860px; margin: 0 auto; padding: 28px 20px 60px; }
+
+    .back-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: .82rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--muted);
+      text-decoration: none; margin-bottom: 36px; transition: color .15s;
+    }
+    .back-link:hover { color: var(--ink); text-decoration: none; }
+    .back-link::before { content: "←"; font-size: 1rem; }
+
+    .bio-card {
+      display: flex;
+      gap: 32px;
+      align-items: flex-start;
+      background: linear-gradient(135deg, rgba(255,255,255,.03), rgba(0,0,0,.06));
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 32px;
+      margin-bottom: 52px;
+      position: relative;
+      overflow: hidden;
+    }
+    .bio-card::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(600px 300px at 0% 50%, rgba(212,176,106,.05), transparent 70%);
+      pointer-events: none;
+    }
+    @media (max-width: 580px) {
+      .bio-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 24px 20px;
+        gap: 20px;
+      }
+    }
+
+    .reporter-portrait {
+      width: 140px; height: 140px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: top center;
+      border: 3px solid rgba(212,176,106,.3);
+      flex-shrink: 0;
+      background: var(--bg2);
+      display: block;
+    }
+    .reporter-portrait-placeholder {
+      width: 140px; height: 140px;
+      border-radius: 50%;
+      background: var(--bg2);
+      border: 3px solid rgba(212,176,106,.15);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3rem;
+      flex-shrink: 0;
+    }
+
+    .bio-text { flex: 1; min-width: 0; }
+    .bio-beat {
+      font-size: .68rem; font-weight: 800; letter-spacing: .18em;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 6px;
+    }
+    .bio-name {
+      font-size: clamp(1.6rem, 4vw, 2.1rem);
+      font-weight: 900; margin: 0 0 4px; color: #fff; line-height: 1.15;
+    }
+    .bio-count {
+      font-size: .78rem; color: var(--muted); margin-bottom: 18px;
+    }
+    .bio-blurb {
+      font-size: .97rem; line-height: 1.8; color: var(--ink);
+      margin: 0;
+    }
+    .bio-blurb p { margin: 0 0 1em; }
+    .bio-blurb p:last-child { margin-bottom: 0; }
+
+    .section-heading {
+      font-size: .68rem; font-weight: 800; letter-spacing: .18em;
+      text-transform: uppercase; color: var(--muted);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 10px; margin: 0 0 18px;
+    }
+
+    .article-list { display: flex; flex-direction: column; gap: 10px; }
+
+    .article-row {
+      display: grid;
+      grid-template-columns: 88px 1fr;
+      text-decoration: none;
+      color: var(--ink);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(0,0,0,.04));
+      transition: border-color .15s, transform .12s;
+    }
+    .article-row:hover {
+      border-color: rgba(165,180,255,.28);
+      transform: translateX(4px);
+      text-decoration: none;
+      color: var(--ink);
+    }
+    @media (max-width: 480px) {
+      .article-row { grid-template-columns: 68px 1fr; }
+    }
+
+    .article-row-thumb {
+      width: 88px; height: 70px;
+      object-fit: cover;
+      display: block;
+      background: var(--bg2);
+    }
+    .article-row-thumb-placeholder {
+      width: 88px; height: 70px;
+      background: var(--bg2);
+    }
+    @media (max-width: 480px) {
+      .article-row-thumb,
+      .article-row-thumb-placeholder { width: 68px; height: 60px; }
+    }
+
+    .article-row-body {
+      padding: 10px 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 4px;
+    }
+    .article-row-title {
+      font-size: .88rem; font-weight: 800; line-height: 1.35;
+      margin: 0;
+    }
+    .article-row-meta {
+      font-size: .72rem; color: var(--muted);
+    }
+    .article-row-tags {
+      display: flex; flex-wrap: wrap; gap: 4px; margin-top: 2px;
+    }
+    .tag {
+      font-size: .6rem; font-weight: 800; letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: 2px 7px; border-radius: 999px;
+      background: rgba(165,180,255,.1); color: var(--muted);
+      border: 1px solid rgba(165,180,255,.15);
+    }
+
+    .skel {
+      background: rgba(255,255,255,.06);
+      border-radius: 8px;
+      animation: pulse 1.4s ease-in-out infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:.6} 50%{opacity:.25} }
+    .skel-bio { height: 180px; border-radius: 20px; margin-bottom: 52px; }
+    .skel-row { height: 72px; border-radius: 12px; }
+
+    .not-found {
+      text-align: center; padding: 80px 20px; color: var(--muted);
+    }
+    .not-found h1 { font-size: 2rem; color: var(--ink); margin: 0 0 12px; }
+    .not-found p { margin: 0 0 24px; }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <div id="nav-placeholder"></div>
+
+  <main id="main" class="wrap">
+    <a href="/news.html" class="back-link">All News</a>
+
+    <div id="skeleton" aria-hidden="true">
+      <div class="skel skel-bio"></div>
+      <div class="article-list">
+        <div class="skel skel-row"></div>
+        <div class="skel skel-row"></div>
+        <div class="skel skel-row"></div>
+        <div class="skel skel-row"></div>
+        <div class="skel skel-row"></div>
+      </div>
+    </div>
+
+    <div id="page-content" hidden></div>
+  </main>
+
+  <div id="footer-placeholder"></div>
+
+  <script>
+    fetch('/nav.html').then(r=>r.text()).then(html=>{ document.getElementById('nav-placeholder').innerHTML = html; });
+    fetch('/footer.html').then(r=>r.text()).then(html=>{ document.getElementById('footer-placeholder').innerHTML = html; });
+  </script>
+
+  <script>
+  (function() {
+
+    var REPORTERS = {
+      'catty-von-catacean': {
+        name: 'Catty von Catacean',
+        beat: 'Founder & Editor-in-Chief',
+        img: '/assets/reporters/catty.webp',
+        emoji: '🐱',
+        bio: [
+          'Catty von Catacean is the founder, editor-in-chief, lead correspondent, and \u2014 if she\'s being honest \u2014 the entire reason this publication exists. She began her career in State 2128 world chat, delivering breaking news via ASCII art and a microphone emoji to an audience that was not always ready for her. The moderators were not always ready for her either. She was chat banned. She described it as a tragedy. She meant it.',
+          'Rather than stop, she built a newsroom. She covers drama, music, SVS, alliance politics, romance, and anything else that catches her eye, which is most things. She hired staff eventually, because a serious publication needs more than one byline. She is very proud of them. Griff thinks he is the serious one.',
+          'She is a cat. This has not slowed her down.'
+        ]
+      },
+      'griff-harpoon': {
+        name: 'Griff Harpoon',
+        beat: 'Investigations & SVS Affairs',
+        img: '/assets/reporters/griff.webp',
+        emoji: '🐶',
+        bio: [
+          'Griff Harpoon has been in the news business longer than he\'d like to admit and is crankier about it than he\'ll ever stop being. He arrived at 2128 News under circumstances he describes as \u201ca professional decision\u201d and everyone else describes as \u201cwe\'re not sure he was actually invited.\u201d',
+          'He covers investigations, espionage, SVS, and alliance politics \u2014 the stories that require sources, patience, and a willingness to follow up. He follows up. He is the only one here who follows up. He has noted this to the editorial staff on multiple occasions.',
+          'His byline reads \u201cactually reporting.\u201d This was meant as a dig at Catty. She found it charming. He has not forgiven her for this.',
+          'He takes his coffee black. He does not want to talk about it.'
+        ]
+      },
+      'greigh-fox': {
+        name: 'Greigh Fox',
+        beat: 'Fair & Balanced Reporting\u2122',
+        img: '/assets/reporters/greigh.webp',
+        emoji: '🦊',
+        bio: [
+          'Greigh Fox joined 2128 News as its correspondent for Fair and Balanced Reporting\u2122, a title he chose himself and has defended vigorously ever since. He covers all sides of every story, presents all perspectives with equal weight, and would like it noted for the record that he has never once shown favoritism toward any alliance, player, or political faction.',
+          'His coverage of ETF has been described as \u201cthorough,\u201d \u201cgenerous,\u201d and \u201csuspiciously timed.\u201d He considers all three of these compliments.',
+          'Greigh believes journalism is a sacred public trust. He believes in accountability, transparency, and giving powerful people a fair hearing. He is very good at the fair hearing part. The accountability part is ongoing.',
+          'He owns three suits. They are all excellent. He is the best-dressed person in this newsroom, which he feels should count for something.'
+        ]
+      },
+      'finn-ledger': {
+        name: 'Finn Ledger',
+        beat: 'Strategy & Statistical Analysis',
+        img: '/assets/reporters/finn.webp',
+        emoji: '🦤',
+        bio: [
+          'Finn Ledger is 2128 News\'s Resident Analyst and Strategy Correspondent. He joined the newsroom in April 2026 to cover game mechanics, resource optimization, event strategy, and statistical analysis. He has not yet noticed what kind of newsroom this is.',
+          'He holds strong opinions about ticket allocation, furnace sequencing, and the correct interpretation of Tundra Hellfire rankings. He does not hold opinions about drama, alliance gossip, or anything Catty von Catacean has ever written, because he has not read it. He has been too busy with the numbers.',
+          'His work is accurate, methodical, and genuinely useful. 2128 News is very glad to have him. Nobody has told him about the fart bazooka incident.'
+        ]
+      },
+      'editorial-staff': {
+        name: 'Editorial Staff',
+        beat: 'Official Statements & Announcements',
+        img: null,
+        emoji: '📋',
+        bio: []
+      }
+    };
+
+    function escHtml(s) {
+      return String(s)
+        .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+        .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    function formatDate(iso) {
+      return new Date(iso + 'T00:00:00').toLocaleDateString('en-US', {
+        year: 'numeric', month: 'short', day: 'numeric'
+      });
+    }
+
+    function slugify(name) {
+      return (name || '').toLowerCase().replace(/\s+/g,'-').replace(/[^a-z0-9-]/g,'');
+    }
+
+    function articleUrl(id) {
+      return '/article.html?id=' + encodeURIComponent(id);
+    }
+
+    var params = new URLSearchParams(location.search);
+    var slug = (params.get('id') || '').toLowerCase().trim();
+
+    if (!REPORTERS[slug]) {
+      var match = Object.keys(REPORTERS).find(function(k) {
+        return slugify(REPORTERS[k].name) === slug;
+      });
+      if (match) slug = match;
+    }
+
+    fetch('/news.json')
+      .then(function(r) { return r.json(); })
+      .then(function(allNews) {
+
+        document.getElementById('skeleton').hidden = true;
+        var content = document.getElementById('page-content');
+        content.hidden = false;
+
+        if (!REPORTERS[slug]) {
+          document.title = 'Reporter Not Found \u2014 WOS State 2128';
+          content.innerHTML = '<div class="not-found" role="alert">'
+            + '<h1>Reporter not found</h1>'
+            + '<p>That byline doesn\'t exist in our records. They may have been let go, or you may have mistyped the URL.</p>'
+            + '<a href="/news.html">\u2190 Back to all news</a>'
+            + '</div>';
+          return;
+        }
+
+        var r = REPORTERS[slug];
+
+        var articles = allNews.filter(function(n) {
+          return slugify(n.reporter || '') === slug;
+        });
+
+        document.title = r.name + ' \u2014 WOS State 2128';
+        document.querySelector('meta[name="description"]')
+          .setAttribute('content', r.name + ', ' + r.beat + ' \u2014 2128 News.');
+
+        var portraitHtml = r.img
+          ? '<img class="reporter-portrait" src="' + escHtml(r.img) + '" alt="Portrait of ' + escHtml(r.name) + '" width="140" height="140">'
+          : '<div class="reporter-portrait-placeholder" role="img" aria-label="' + escHtml(r.name) + '">' + r.emoji + '</div>';
+
+        var bioHtml = r.bio.length
+          ? '<div class="bio-blurb">' + r.bio.map(function(p) {
+              return '<p>' + escHtml(p) + '</p>';
+            }).join('') + '</div>'
+          : '';
+
+        var cardHtml = '<section class="bio-card" aria-labelledby="reporter-name">'
+          + portraitHtml
+          + '<div class="bio-text">'
+          + '<div class="bio-beat">' + escHtml(r.beat) + '</div>'
+          + '<h1 class="bio-name" id="reporter-name">' + escHtml(r.name) + '</h1>'
+          + '<div class="bio-count">' + articles.length + ' article' + (articles.length !== 1 ? 's' : '') + ' published</div>'
+          + bioHtml
+          + '</div>'
+          + '</section>';
+
+        var listHtml = '';
+        if (articles.length) {
+          listHtml = '<h2 class="section-heading">Articles</h2>'
+            + '<div class="article-list" role="list">'
+            + articles.map(function(n) {
+                var tags = (n.tags || []).map(function(t) {
+                  return '<span class="tag">' + escHtml(t) + '</span>';
+                }).join('');
+                var thumb = n.img
+                  ? '<img class="article-row-thumb" src="' + escHtml(n.img) + '" alt="" aria-hidden="true" loading="lazy">'
+                  : '<div class="article-row-thumb-placeholder" aria-hidden="true"></div>';
+                return '<a class="article-row" href="' + articleUrl(n.id) + '" role="listitem"'
+                  + ' aria-label="' + escHtml(n.title) + ', ' + formatDate(n.date) + '">'
+                  + thumb
+                  + '<div class="article-row-body">'
+                  + '<div class="article-row-title">' + escHtml(n.title) + '</div>'
+                  + '<div class="article-row-meta"><time datetime="' + escHtml(n.date) + '">' + formatDate(n.date) + '</time></div>'
+                  + (tags ? '<div class="article-row-tags" aria-label="Tags">' + tags + '</div>' : '')
+                  + '</div>'
+                  + '</a>';
+              }).join('')
+            + '</div>';
+        }
+
+        content.innerHTML = cardHtml + listHtml;
+      })
+      .catch(function() {
+        document.getElementById('skeleton').hidden = true;
+        var content = document.getElementById('page-content');
+        content.hidden = false;
+        content.innerHTML = '<div class="not-found" role="alert">'
+          + '<h1>Something went wrong</h1>'
+          + '<p>Couldn\'t load reporter data. Try refreshing.</p>'
+          + '<a href="/news.html">\u2190 Back to all news</a>'
+          + '</div>';
+      });
+
+  })();
+  </script>
+</body>
+</html>
