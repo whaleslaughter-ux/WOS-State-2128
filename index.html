@@ -24,7 +24,6 @@
     .wrap{max-width:1000px;margin:0 auto;padding:28px 20px}
     a{color:var(--accent);text-decoration:underline} a:hover{color:#fff;text-decoration:none}
 
-    /* === Skip link === */
     .skip-link{
       position:absolute;top:-50px;left:10px;
       background:var(--bg1);color:var(--ink);
@@ -34,7 +33,6 @@
     }
     .skip-link:focus{top:10px}
 
-    /* === Gate overlay === */
     .no-scroll{overflow:hidden}
     .gate-overlay{
       position:fixed;inset:0;z-index:9000;
@@ -82,14 +80,12 @@
       .gate-btn{padding:8px 14px;font-size:.78rem}
     }
 
-    /* === Section headings === */
     .section-label{
       font-size:.68rem;font-weight:800;letter-spacing:.18em;
       text-transform:uppercase;color:var(--muted);
       margin:0 0 16px;display:block;
     }
 
-    /* === Hero article === */
     .hero-section{margin-bottom:12px}
     .hero-card{
       position:relative;border-radius:16px;overflow:hidden;
@@ -124,15 +120,11 @@
       font-size:clamp(1.3rem,3vw,1.9rem);font-weight:900;
       line-height:1.2;margin:0 0 10px;color:#fff;
     }
-    .hero-byline{
-      font-size:.78rem;color:rgba(185,195,255,.8);
-      margin-bottom:18px;
-    }
+    .hero-byline{font-size:.78rem;color:rgba(185,195,255,.8);margin-bottom:18px}
     .hero-byline .reporter{color:var(--gold);font-weight:700}
     .hero-blurb{
       font-size:.88rem;line-height:1.6;
-      color:rgba(238,242,255,.75);
-      margin:0 0 20px;
+      color:rgba(238,242,255,.75);margin:0 0 20px;
       display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
     }
     .read-more{
@@ -146,7 +138,6 @@
     .read-more:hover{opacity:.85;text-decoration:none;color:#0b1030}
     .read-more::after{content:"→"}
 
-    /* skeleton for hero */
     @keyframes shimmer{0%{background-position:-600px 0}100%{background-position:600px 0}}
     .skeleton{
       background:linear-gradient(90deg,rgba(255,255,255,.04) 25%,rgba(255,255,255,.08) 50%,rgba(255,255,255,.04) 75%);
@@ -157,12 +148,9 @@
     .skel-hl{height:18px;border-radius:4px;margin-bottom:10px}
     .skel-hl-s{height:18px;width:55%;border-radius:4px}
 
-    /* === Secondary cards === */
     .secondary-grid{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:12px;
-      margin-bottom:12px;
+      display:grid;grid-template-columns:repeat(3,1fr);
+      gap:12px;margin-bottom:12px;
     }
     @media(max-width:720px){.secondary-grid{grid-template-columns:1fr 1fr}}
     @media(max-width:480px){.secondary-grid{grid-template-columns:1fr}}
@@ -186,14 +174,12 @@
     .story-card-body{padding:12px 14px 16px}
     .story-card-tags{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:8px}
     .story-card-title{
-      font-size:.92rem;font-weight:800;line-height:1.35;
-      margin:0 0 6px;
+      font-size:.92rem;font-weight:800;line-height:1.35;margin:0 0 6px;
       display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;
     }
     .story-card-byline{font-size:.72rem;color:var(--muted)}
     .story-card-byline .reporter{color:var(--gold);font-weight:700}
 
-    /* === Headlines strip === */
     .headlines-section{
       background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(0,0,0,.04));
       border:1px solid var(--border);border-radius:14px;
@@ -202,8 +188,7 @@
     .headline-item{
       display:flex;align-items:baseline;gap:10px;
       padding:9px 0;border-bottom:1px solid rgba(255,255,255,.05);
-      text-decoration:none;color:var(--ink);
-      transition:color .12s;
+      text-decoration:none;color:var(--ink);transition:color .12s;
     }
     .headline-item:last-child{border-bottom:none;padding-bottom:0}
     .headline-item:first-of-type{padding-top:0}
@@ -223,7 +208,6 @@
     }
     .hl-date{font-size:.7rem;color:var(--muted);flex-shrink:0;white-space:nowrap}
 
-    /* === Alliances carousel === */
     .alliances-section{margin-bottom:8px}
     .carousel.multi{
       position:relative;border-radius:12px;
@@ -236,8 +220,7 @@
     .carousel.multi .card{
       position:relative;background:#000;border-radius:10px;overflow:hidden;
       flex:0 0 calc((100% - 24px)/2.5);height:200px;max-height:200px;
-      scroll-snap-align:start;border:1px solid var(--border);
-      margin:0;padding:0;
+      scroll-snap-align:start;border:1px solid var(--border);margin:0;padding:0;
     }
     .carousel.multi .card img{width:100%;height:100%;object-fit:contain;background:#000;display:block}
     .carousel.multi .label{
@@ -261,10 +244,8 @@
       .carousel.multi .card{flex-basis:calc((100% - 12px)/2);height:160px}
     }
 
-    /* hero no-image fallback */
     .hero-card.no-img{
-      background:linear-gradient(135deg,var(--bg2),var(--bg1));
-      min-height:320px;
+      background:linear-gradient(135deg,var(--bg2),var(--bg1));min-height:320px;
     }
     .hero-card.no-img .hero-overlay{background:none}
 
@@ -311,7 +292,6 @@
       </footer>
     </div>
   </div>
-  <!-- end gate -->
 
   <!-- shared nav -->
   <div id="nav-placeholder"></div>
@@ -326,7 +306,6 @@
       <p style="margin:0;color:var(--muted);font-weight:600">Hub for alliance news, lore, guides, and strategy.</p>
     </header>
 
-    <!-- Skeletons shown while loading -->
     <div id="skeleton" aria-hidden="true">
       <div class="skeleton skel-hero"></div>
       <div class="secondary-grid" style="margin-bottom:12px">
@@ -344,10 +323,8 @@
       </div>
     </div>
 
-    <!-- News sections injected here -->
     <div id="news-root" aria-live="polite"></div>
 
-    <!-- Alliances -->
     <section class="alliances-section" aria-labelledby="alliances-h">
       <span class="section-label" id="alliances-h">Alliances</span>
       <div class="carousel multi" id="alliance-carousel" aria-label="Alliances carousel">
@@ -373,21 +350,16 @@
         .replace(/&/g,'&amp;').replace(/</g,'&lt;')
         .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
     }
-
     function stripHtml(html) {
       const t = document.createElement('div');
       t.innerHTML = html;
       return t.textContent || '';
     }
-
     function formatDate(iso) {
       const d = new Date(iso + 'T00:00:00');
       return d.toLocaleDateString('en-US', { year:'numeric', month:'short', day:'numeric' });
     }
-
-    function articleUrl(id) {
-      return `/article.html?id=${encodeURIComponent(id)}`;
-    }
+    function articleUrl(id) { return `/article.html?id=${encodeURIComponent(id)}`; }
 
     function tagsHtml(article, small) {
       const cls = small ? 'hl-tag' : 'tag';
@@ -407,7 +379,7 @@
             ${n.img ? `<img class="hero-img" src="${escHtml(n.img)}" alt="${escHtml(n.alt || '')}" fetchpriority="high">` : ''}
             <div class="hero-overlay" aria-hidden="true"></div>
             <div class="hero-body">
-              ${tagsHtml(n, false) ? `<div class="hero-tags" aria-label="Tags">${tagsHtml(n, false)}</div>` : ''}
+              ${tagsHtml(n,false) ? `<div class="hero-tags" aria-label="Tags">${tagsHtml(n,false)}</div>` : ''}
               <h2 class="hero-title" id="hero-title">${escHtml(n.title)}</h2>
               <div class="hero-byline">By <span class="reporter">${escHtml(n.reporter)}</span> · <time datetime="${escHtml(n.date)}">${formatDate(n.date)}</time></div>
               ${blurb ? `<p class="hero-blurb">${escHtml(blurb)}</p>` : ''}
@@ -426,7 +398,7 @@
               <a class="story-card" href="${articleUrl(n.id)}" aria-label="${escHtml(n.title)}">
                 ${n.img ? `<img src="${escHtml(n.img)}" alt="${escHtml(n.alt || '')}" loading="lazy">` : ''}
                 <div class="story-card-body">
-                  ${tagsHtml(n, false) ? `<div class="story-card-tags">${tagsHtml(n, false)}</div>` : ''}
+                  ${tagsHtml(n,false) ? `<div class="story-card-tags">${tagsHtml(n,false)}</div>` : ''}
                   <div class="story-card-title">${escHtml(n.title)}</div>
                   <div class="story-card-byline">By <span class="reporter">${escHtml(n.reporter)}</span> · <time datetime="${escHtml(n.date)}">${formatDate(n.date)}</time></div>
                 </div>
@@ -437,6 +409,158 @@
 
     function renderHeadlines(articles) {
       return `
+        <section class="headlines-section" aria-labelledby="headlines-h">
+          <span class="section-label" id="headlines-h" style="margin-bottom:4px">Latest Headlines</span>
+          ${articles.map(n => {
+            const firstTag = (n.alliances && n.alliances[0])
+              ? `<span class="hl-tag alliance">${escHtml(n.alliances[0])}</span>`
+              : (n.tags && n.tags[0])
+                ? `<span class="hl-tag">${escHtml(n.tags[0])}</span>`
+                : '';
+            return `
+              <a class="headline-item" href="${articleUrl(n.id)}" aria-label="${escHtml(n.title)}, ${formatDate(n.date)}">
+                ${firstTag}
+                <span class="hl-title">${escHtml(n.title)}</span>
+                <time class="hl-date" datetime="${escHtml(n.date)}">${formatDate(n.date)}</time>
+              </a>`;
+          }).join('')}
+        </section>`;
+    }
+
+    fetch('/news.json')
+      .then(r => r.json())
+      .then(data => {
+        document.getElementById('skeleton').style.display = 'none';
+        if (!data.length) return;
+        const hero      = data[0];
+        const secondary = data.slice(1, 4);
+        const headlines = data.slice(4, 10);
+        document.getElementById('news-root').innerHTML =
+          renderHero(hero) + renderSecondary(secondary) + renderHeadlines(headlines);
+      })
+      .catch(err => {
+        document.getElementById('skeleton').style.display = 'none';
+        console.error('Failed to load news:', err);
+      });
+  })();
+  </script>
+
+  <!-- Carousel -->
+  <script>
+    const slides = [
+      {src:"/assets/alliances/alliance-300.png",           caption:"300"},
+      {src:"/assets/alliances/alliance-eternal-frost.png", caption:"ETF"},
+      {src:"/assets/alliances/alliance-havoc-2.png",       caption:"HAVOC"},
+      {src:"/assets/alliances/new-lab-order.webp",         caption:"New Lab Order"},
+      {src:"/assets/alliances/alliance-out-of-order.png",  caption:"Out of Order"},
+      {src:"/assets/alliances/alliance-snack-kingdom.png", caption:"Snack Kingdom"}
+    ];
+    const carousel = document.getElementById('alliance-carousel');
+    const track    = carousel.querySelector('.track');
+    track.innerHTML = slides.map(({src,caption}) => `
+      <a class="card" role="listitem" aria-label="${caption}" href="#">
+        <img loading="lazy" src="${src}" alt="${caption} Alliance">
+        <div class="label">${caption}</div>
+      </a>`).join('');
+    function atEnd()  { return Math.ceil(track.scrollLeft + track.clientWidth) >= (track.scrollWidth - 2); }
+    function atStart(){ return track.scrollLeft <= 1; }
+    function cardStep(){ const c = track.querySelector('.card'); return c ? (c.offsetWidth + 12) : track.clientWidth; }
+    function next(){ if(atEnd()) track.scrollTo({left:0,behavior:'smooth'}); else track.scrollBy({left:cardStep(),behavior:'smooth'}); }
+    function prev(){ if(atStart()) track.scrollTo({left:track.scrollWidth,behavior:'instant'}); track.scrollBy({left:-cardStep(),behavior:'smooth'}); }
+    carousel.querySelector('.next').onclick = next;
+    carousel.querySelector('.prev').onclick = prev;
+    let auto=null, resizeTimer;
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+    function startAuto(){ if(!prefersReduced){ stopAuto(); auto=setInterval(next,3500); } }
+    function stopAuto() { if(auto){ clearInterval(auto); auto=null; } }
+    carousel.addEventListener('mouseenter',stopAuto);
+    carousel.addEventListener('mouseleave',startAuto);
+    carousel.addEventListener('focusin',stopAuto);
+    carousel.addEventListener('focusout',startAuto);
+    window.addEventListener('resize',()=>{ stopAuto(); clearTimeout(resizeTimer); resizeTimer=setTimeout(startAuto,300); });
+    startAuto();
+  </script>
+
+  <!-- Gate Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const overlay = document.getElementById('gate-overlay');
+      if (!overlay) return;
+
+      const etfPaths = [
+        '/nope','/still-nope','/not-happening','/stop-trying',
+        '/error-you','/why-are-you-like-this','/stop-being-desperate'
+      ];
+
+      try {
+        if (sessionStorage.getItem('havocPressGate') === 'ok') {
+          overlay.style.display = 'none';
+          overlay.setAttribute('aria-hidden','true');
+          return;
+        }
+      } catch(e) {}
+
+      document.body.classList.add('no-scroll');
+
+      const focusableEls = Array.from(overlay.querySelectorAll('button,[href],input,[tabindex]:not([tabindex="-1"])'));
+      const firstEl = focusableEls[0];
+      const lastEl  = focusableEls[focusableEls.length - 1];
+      if (firstEl) firstEl.focus();
+
+      overlay.addEventListener('keydown', function(e) {
+        if (e.key !== 'Tab') return;
+        if (e.shiftKey) {
+          if (document.activeElement === firstEl) { e.preventDefault(); lastEl.focus(); }
+        } else {
+          if (document.activeElement === lastEl)  { e.preventDefault(); firstEl.focus(); }
+        }
+      });
+
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') enterSite('GUEST');
+      });
+
+      function enterSite(alliance) {
+        overlay.style.display = 'none';
+        overlay.setAttribute('aria-hidden','true');
+        document.body.classList.remove('no-scroll');
+        const main = document.getElementById('main-content');
+        if (main) { main.setAttribute('tabindex','-1'); main.focus(); }
+        try {
+          sessionStorage.setItem('havocPressGate','ok');
+          sessionStorage.setItem('havocAlliance', alliance);
+        } catch(e) {}
+      }
+
+      overlay.querySelectorAll('.gate-btn[data-alliance]').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          const alliance = btn.getAttribute('data-alliance');
+          if (alliance === 'ETF') {
+            let index = 0;
+            try {
+              const stored = parseInt(localStorage.getItem('etfClickIndex') || '0', 10);
+              if (!isNaN(stored) && stored >= 0) index = stored;
+            } catch(e) {}
+            const path = etfPaths[Math.min(index, etfPaths.length - 1)];
+            try {
+              const next = index < etfPaths.length - 1 ? index + 1 : etfPaths.length - 1;
+              localStorage.setItem('etfClickIndex', String(next));
+            } catch(e) {}
+            window.location.href = path;
+            return;
+          }
+          enterSite(alliance);
+        });
+      });
+
+      overlay.addEventListener('click', function(e) {
+        if (e.target === overlay) enterSite('GUEST');
+      });
+    });
+  </script>
+
+</body>
+</html>      return `
         <section class="headlines-section" aria-labelledby="headlines-h">
           <span class="section-label" id="headlines-h" style="margin-bottom:4px">Latest Headlines</span>
           ${articles.map(n => {
