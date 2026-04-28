@@ -149,8 +149,9 @@
     const now = Date.now();
     endTime = now + DURATION_MINUTES * 60 * 1000;
     endsAtEl.textContent = formatEndTime(endTime);
-    boxEl.classList.remove('alert');
-    doneEl.classList.remove('show');
+    boxEl.classList.add('alert');
+    new Audio('https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3').play();
+    doneEl.classList.add('show');
 
     updateFromClock();
     interval = setInterval(updateFromClock, 1000);
