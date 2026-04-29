@@ -38,7 +38,7 @@
     .page-header h1{margin:0 0 6px;font-size:clamp(1.8rem,4vw,2.4rem);font-weight:900;text-transform:uppercase;letter-spacing:.05em}
     .page-header p{margin:0;color:var(--muted);font-weight:600}
 
-    .search-wrap{position:relative;margin-bottom:20px}
+    .search-wrap{position:relative;margin-bottom:12px}
     .search-wrap label{
       display:block;font-size:.68rem;font-weight:800;letter-spacing:.15em;
       text-transform:uppercase;color:var(--muted);margin-bottom:6px;
@@ -61,6 +61,16 @@
     }
     .search-clear:hover{color:var(--ink)}
     .search-clear.visible{display:block}
+
+    .year-filter{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;align-items:center}
+    .year-filter label{font-size:.68rem;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-right:4px}
+    .year-btn{
+      padding:5px 14px;border-radius:8px;border:1px solid var(--border);
+      background:rgba(255,255,255,.03);color:var(--muted);
+      font-size:.78rem;font-weight:700;cursor:pointer;transition:all .12s;
+    }
+    .year-btn:hover{border-color:rgba(165,180,255,.3);color:var(--ink)}
+    .year-btn.active{background:var(--accent);border-color:var(--accent);color:#0b1030}
 
     .results-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:8px}
     .results-count{font-size:.78rem;color:var(--muted)}
@@ -138,6 +148,8 @@
       <button class="search-clear" id="search-clear" type="button" aria-label="Clear search">✕</button>
     </div>
 
+    <div class="year-filter" id="year-filter" role="group" aria-label="Filter by year"></div>
+
     <div class="results-bar">
       <span class="results-count" id="results-count" aria-live="polite" aria-atomic="true"></span>
     </div>
@@ -166,7 +178,7 @@
   <script>
   (function() {
     var PER_PAGE = 12;
-    var allNews = [], filtered = [], page = 1, search = '';
+    var allNews = [], filtered = [], page = 1, search = '', activeYear = '';
 
     function escHtml(str) {
       return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
@@ -175,10 +187,11 @@
       return new Date(iso+'T00:00:00').toLocaleDateString('en-US',{year:'numeric',month:'short',day:'numeric'});
     }
     function articleUrl(id){ return '/article.html?id=' + encodeURIComponent(id); }
-    function slugify(s){ return (s||'').toLowerCase().replace(/\s+/g,'-').replace(/[^a-z0-9-]/g,''); }
+
     function applyFilters() {
       var q = search.toLowerCase().trim();
       filtered = allNews.filter(function(n) {
+        if (activeYear && !n.date.startsWith(activeYear)) return false;
         if (!q) return true;
         var hay = [n.title, n.reporter]
           .concat(n.tags || [])
@@ -210,8 +223,10 @@
           + (n.img ? '<img src="' + escHtml(n.img) + '" alt="' + escHtml(n.alt||'') + '" loading="lazy">' : '')
           + '<div class="news-card-body">'
           + '<div class="news-card-title">' + escHtml(n.title) + '</div>'
-          + '<div class="news-card-byline">By <span class="reporter" role="link" tabindex="0" onclick="event.preventDefault();event.stopPropagation();location.href=\'/reporter.html?id=' + slugify(n.reporter) + '\'" onkeydown="if(event.key===\'Enter\')location.href=\'/reporter.html?id=' + slugify(n.reporter) + '\'">'
-          + escHtml(n.reporter) + '</span>'
+          + '<div class="news-card-byline">By <button class="reporter" type="button"'
+          + ' onclick="event.preventDefault();event.stopPropagation();filterReporter(\'' + escHtml(n.reporter) + '\')"'
+          + ' aria-label="Search articles by ' + escHtml(n.reporter) + '">'
+          + escHtml(n.reporter) + '</button>'
           + ' &middot; <time datetime="' + escHtml(n.date) + '">' + formatDate(n.date) + '</time></div>'
           + '</div></a>';
       }).join('');
@@ -257,6 +272,16 @@
       document.getElementById('main-content').scrollIntoView({behavior:'smooth'});
     };
 
+    window.filterYear = function(y) {
+      activeYear = activeYear === y ? '' : y;
+      document.querySelectorAll('.year-btn').forEach(function(b){
+        b.classList.toggle('active', b.dataset.year === activeYear);
+        b.setAttribute('aria-pressed', b.dataset.year === activeYear);
+      });
+      page = 1;
+      applyFilters();
+    };
+
     window.clearSearch = function() {
       search = '';
       document.getElementById('search-input').value = '';
@@ -299,6 +324,11 @@
       .then(function(r){ return r.json(); })
       .then(function(data) {
         allNews = data;
+        var years = [...new Set(data.map(function(n){ return n.date.slice(0,4); }))].sort().reverse();
+        var yf = document.getElementById('year-filter');
+        yf.innerHTML = '<label>Year</label>' + years.map(function(y){
+          return '<button class="year-btn" type="button" data-year="' + y + '" aria-pressed="false" onclick="filterYear(\'' + y + '\')">' + y + '</button>';
+        }).join('');
         document.getElementById('skeleton').style.display = 'none';
         readUrlParams();
         applyFilters();
