@@ -1,5 +1,32 @@
 [
+ {
+  "id": "ghoost-r4-vote",
+  "date": "2026-04-29",
+  "title": "HAVOC Votes On GhoOost's R4 Promotion — Death Has A List",
+  "img": "/assets/bia/catty-ghoost-r4.webp",
+  "alt": "A ballot box on fire, GhoOost hovering dramatically above it looking extremely pleased, Dooly in the background with his mouth open in a sustained NOOOOO, Death quietly writing names in a small notebook, Whaleslaughter voting yes while visibly sweating",
+  "blurb": "GhoOost wants to be R4. Abdo allegedly suggested it, then denied it, then said let the alliance vote. The R4s voted no unanimously. Twelve alliance members voted yes. Whaleslaughter voted yes, citing reasons she described only as complicated and definitely not fear-related. Dooly's response spanned multiple lines and consisted entirely of NO. Death has confirmed he will personally tap everyone who voted yes when things go wrong. Not if. When. GhoOost, a fiery player who thoroughly enjoyed the recent war and may have contributed to starting it, awaits the verdict. The state is advised to be terrified. —Catty von Catacean",
+  "reporter": "Catty von Catacean",
+  "tags": ["Drama", "Alliance News"],
+  "alliances": ["HAV"],
+  "states": ["2128"],
+  "characters": ["GhoOost", "Abdo", "Dooly", "Death", "Whaleslaughter"]
+},
   {
+  "id": "rudy-beachy-drama-2461",
+  "date": "2026-04-29",
+  "title": "Former 2128 Resident Rudy Immediately Causes Drama In New State",
+  "img": "/assets/bia/griff-rudy-2461.webp",
+  "alt": "A narwhal in a new alliance hall looking completely unbothered while the surrounding alliance members clutch their rulebooks in horror, a transfer portal still glowing behind him",
+  "blurb": "Rudy of the legendary duo Rudy and Beachy has checked in from State 2461 with news: he has already caused drama. Having transferred in with one alliance he promptly joined a different one, which in a heavily NAP-controlled state with strict alliance rules apparently constitutes a crisis. Rudy finds this hilarious. Rudy's official statement on the matter: 'I went to a different alliance than the one we transferred into... people are getting upset about it.' This publication finds this completely predictable. State 2128 operates as a NUT state with as few rules as possible — Rudy simply forgot he moved somewhere that takes these things seriously. Welcome to the real world, Rudy. Try not to burn it down. —Griff Harpoon, actually reporting.",
+  "reporter": "Griff Harpoon",
+  "tags": ["Drama", "Alliance News"],
+  "alliances": ["HAV"],
+  "states": ["2128", "2461"],
+  "characters": ["Rudy", "Beachy"]
+},
+
+{
     "id": "pooparoni-api-breakthrough",
     "date": "2026-02-09",
     "title": "Technical Marvel: Pooparoni & Whaleslaughter Bridge the API Gap",
