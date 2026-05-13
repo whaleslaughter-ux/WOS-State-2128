@@ -1,5 +1,17 @@
 [
  {
+  "id": "wander-theater-reviews",
+  "date": "2026-05-13",
+  "title": "New Wander Theater Event Called 'Wack As Hell' By Leading Critics",
+  "img": "/assets/bia/griff-wander-theater-reviews.webp",
+  "alt": "Anime students in WOS blazers walking out of Wander Theater covered in tomatoes looking personally offended, a cave marked Cave of Questionable Strategies to the left, a basement sign promising the real Talismans live down there, a small cat in a blazer bringing up the rear, a sign advertising tonight's Tomato Toss Championship where hecklers are welcome",
+  "blurb": "<p>Finn Ledger did the math. The math was sound. State 2128 played the event anyway and has thoughts.</p><p>Isla opened the critical discourse: 'And it's called Wander Theater. Basement theater would have been better.' Sin, never one for ambiguity, offered: 'Oh I hate this game.' Spider conducted a structural assessment and concluded: 'Cave theater at most.'</p><p>NachoCheez was direct. 'Wander Theater is horseshite. Couldn't get past the 3rd floor.' SmolBeachy, who had initially responded with 'amen to that,' later filed a follow up review consisting entirely of the word 'bored' and the observation that she doesn't like this weird new event.</p><p>Boss Baby closed the proceedings with characteristic grace: 'I see there is another new game that I literally SUCK at, lol.' Boss Baby subsequently filed an addendum: 'The wander game is wack as HELL.' The position has been clarified.</p><p>Finn Ledger has been informed of these reviews. Finn Ledger said the math still works. The math and the vibes remain in conflict. —Griff Harpoon, actually reporting.</p>",
+  "reporter": "Griff Harpoon",
+  "tags": ["Guide", "Drama"],
+  "alliances": [],
+  "states": ["2128"],
+  "characters": ["Isla", "Sin", "Spider", "NachoCheez", "smolBeachy", "Boss Baby", "Finn Ledger"]
+},{
   "id": "idk-alliance-joins",
   "date": "2026-05-12",
   "title": "New Alliance Joins State 2128 — Nobody Knows Their Name",
