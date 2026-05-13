@@ -1,5 +1,18 @@
 [
  {
+  "id": "idk-cat-war",
+  "date": "2026-05-13",
+  "title": "Newly Arrived IDK Alliance Declares War On Cats",
+  "img": "/assets/bia/catty-idk-cat-war.webp",
+  "alt": "Pharaonic Cat standing completely unbothered while IDK members wave anti-cat signs behind him, Spider holding a pro-cat sign on the wrong side of the argument, BIG emerging from jail into the middle of all of it, a white cat with pastel accents reporting from the front lines with a completely neutral expression",
+  "blurb": "<p>IDK has been in State 2128 for approximately five minutes. In that time they have introduced themselves, located Pharaonic Cat, and declared cats to be horrible. This publication is reporting this story objectively and mostly without any personal feelings whatsoever.</p><p>LeviOFC of IDK informed Pharaonic Cat — a respected member of this state and a valued source for this publication — that cats are evil, horrible, and specifically that orange cats are the worst. BIG #2035, freshly released from jail and visibly disoriented, confirmed the alliance position: 'We hate cats actually. They are evil.' IDK has formally declared itself the anti-cat alliance. They did this in world chat. In a state where the news is written by — this reporter has no further comment on that.</p><p>Spider of IDK, to his eternal credit, looked at all of this and said 'cats are adorable.' Spider subsequently called for the burning of LeviOFC. IDK's internal unity on the cat question is developing.</p><p>Pharaonic Cat was unbothered throughout. He announced he was on his way to LeviOFC. LeviOFC said the cat was trembling. The cat was not trembling. The cat was, at last report, asleep. IDK is advised not to wake it.</p><p>This has been an objective and unbiased teary eyed report. —Catty von Catacean</p>",
+  "reporter": "Catty von Catacean",
+  "tags": ["Drama", "Alliance News"],
+  "alliances": ["HAV", "IDK"],
+  "states": ["2128"],
+  "characters": ["Pharaonic Cat", "LeviOFC", "BIG", "Spider"]
+},
+ {
   "id": "wander-theater-reviews",
   "date": "2026-05-13",
   "title": "New Wander Theater Event Called 'Wack As Hell' By Leading Critics",
