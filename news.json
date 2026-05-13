@@ -1,7 +1,20 @@
 [
  {
+  "id": "idk-alliance-joins",
+  "date": "2026-05-12",
+  "title": "New Alliance Joins State 2128 — Nobody Knows Their Name",
+  "img": "/assets/bia/catty-idk-alliance.webp",
+  "alt": "A group of new players arriving at the state border, a welcome banner overhead with a large question mark where the alliance name should be, existing residents squinting at them trying to figure out who they are",
+  "blurb": "<p>State 2128 has a new alliance. This reporter needed to know their name before filing this article, which seemed like a reasonable journalistic standard to meet.</p><p>Big was asked first. 'Don't know,' he said. This reporter assumed Big had misunderstood the question and tried again. Big had not misunderstood the question.</p><p>Veri was consulted next, on the theory that a fresh perspective might yield better results. 'Don't know,' Veri confirmed. Marli was approached as a tiebreaker. 'Don't know,' said Marli, with the energy of someone who has answered this question before and expects to answer it again.</p><p>After extensive investigation this publication can confirm that the alliance initials are IDK, which somehow makes it worse. The full name remains outstanding. This reporter remains on the case.</p><p>Welcome to State 2128, IDK. We have questions. You are, apparently, the answer. —Catty von Catacean</p>",
+  "reporter": "Catty von Catacean",
+  "tags": ["Alliance News"],
+  "alliances": ["IDK"],
+  "states": ["2128"],
+  "characters": ["Big", "Veri", "Marli", "Catty von Catacean"]
+},
+ {
   "id": "finn-wander-theater-guide",
-  "date": "2026-05-10",
+  "date": "2026-05-12",
   "title": "Wander Theater: A Complete Breakdown for F2P and Spenders",
   "img": "/assets/bia/finn-wander-theater.webp",
   "alt": "Finn Ledger at his dock-side desk surrounded by probability charts and Talisman calculations, a Wander Theater floor map pinned to the wall, his pelican beak stuffed with spreadsheets",
