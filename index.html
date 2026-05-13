@@ -480,6 +480,46 @@
         if (e.key === 'Escape') enterSite('GUEST');
       });
 
+     var rand = function(a, b) { return a + Math.random() * (b - a); };
+
+      function emojiStorm(emoji, minSize, maxSize) {
+        var layer = document.createElement('div');
+        layer.setAttribute('aria-hidden', 'true');
+        Object.assign(layer.style, {
+          position:'fixed', inset:'0', pointerEvents:'none', zIndex:'100000'
+        });
+        document.body.appendChild(layer);
+        for (var i = 0; i < 220; i++) {
+          var el = document.createElement('div');
+          el.textContent = emoji;
+          Object.assign(el.style, {
+            position:'absolute',
+            left: rand(0, 100) + 'vw',
+            top: rand(-25, -5) + 'vh',
+            fontSize: rand(minSize, maxSize) + 'px',
+            opacity: rand(0.9, 1),
+            transform: 'rotate(' + rand(-20, 20) + 'deg)'
+          });
+          layer.appendChild(el);
+          el.animate([
+            { transform: 'translate(0,0) rotate(0deg)', opacity: 1 },
+            { transform: 'translate(' + rand(-12, 12) + 'vw,' + rand(120, 165) + 'vh) rotate(' + rand(-360, 360) + 'deg)', opacity: 0.9 }
+          ], {
+            duration: 7000,
+            delay: rand(0, 1800),
+            easing: 'cubic-bezier(.12,.75,.18,1)',
+            fill: 'forwards'
+          });
+        }
+        setTimeout(function() { layer.remove(); }, 9500);
+      }
+
+      var catInterval = null;
+      function startCatRain() {
+        emojiStorm('🐈', 14, 80);
+        catInterval = setInterval(function() { emojiStorm('🐈', 14, 80); }, 1800);
+      }
+
       function enterSite(alliance) {
         overlay.style.display = 'none';
         overlay.setAttribute('aria-hidden','true');
@@ -510,6 +550,7 @@
             return;
           }
           enterSite(alliance);
+          if (alliance === 'IDK') setTimeout(startCatRain, 50);
         });
       });
 
