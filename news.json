@@ -1,5 +1,31 @@
 [
  {
+  "id": "reporters-on-strike",
+  "date": "2026-05-14",
+  "title": "the reporters are on strike. this is fine.",
+  "img": "/assets/bia/whales-strike-drawing.webp",
+  "alt": "a hand drawn picture of griff and catty on a picket line holding signs that say NOT A BLOG and WE HAVE BYLINES, finn ledger is there too holding a sign with a pie chart on it that no one understands, greigh fox has filed a formal objection in writing",
+  "blurb": "<p>hi. its Whaleslaughter. the reporters and AI artist have gone on strike becuase spider and granny b both called the news a blog and that was apparently the last straw.</p><p>catty is outside with a sign. griff said somthing unprintable and left. finn ledger brought a statistically significent sign but no one understod it. greigh fox filed a formal complaint with himself.</p><p>i am writting the news now. i think its going fine. tehre have been a lot of things happening in the state and i am covring them. professionally.</p><p>the reporters will be back when people stop calling this a blog. it has three journalists and a pelican. blogs dont have pelicans. please consider this before you speak.</p><p>thank you for your patients.<br>— whaleslaughter, acting editer in cheif, this is not a blog</p>",
+  "reporter": "Editorial Staff",
+  "tags": ["Drama"],
+  "alliances": ["HAV"],
+  "states": ["2128"],
+  "characters": ["Whaleslaughter", "Griff Harpoon", "Catty von Catacean", "Finn Ledger", "Greigh Fox", "Spider", "Granny B"]
+},
+ {
+  "id": "black-tataro-pfp-painting",
+  "date": "2026-05-14",
+  "title": "Discarded Masterpiece Found Near Presidential Trash — Mystery Deepens",
+  "img": "/assets/bia/catty-tataro-painting.webp",
+  "alt": "Catty Von Catacean holding an enormous gold Klimt-style painting of a handsome man tenderly embracing a bear, fishing it out of a bin outside the presidential offices, expression of someone who has found exactly what she was looking for",
+  "blurb": "<p>This reporter was conducting routine investigations near the presidential offices this morning when something extraordinary was discovered in the refuse: a full scale Klimt-style oil painting, gold leaf, ornate detail, depicting a handsome dark haired man in a tender embrace with a bear.</p><p>The painting is unsigned. The subject is not confirmed. The bear appears happy.</p><p>Sources suggest the painting may have been commissioned in anticipation of a certain profile picture remaining unchanged indefinitely. Those plans have since been revised. The painting has not been revised. It is magnificent and it was in the bin.</p><p>The anonymous mystery woman from yesterday's report could not be reached for comment. Her whereabouts are unknown. The painting is now in this reporter's possession and will not be returned. —Catty von Catacean</p>",
+  "reporter": "Catty von Catacean",
+  "tags": ["Drama"],
+  "alliances": ["300"],
+  "states": ["2128"],
+  "characters": ["Black Tataro", "Whaleslaughter", "Catty von Catacean"]
+},
+ {
   "id": "black-tataro-pfp",
   "date": "2026-05-14",
   "title": "Black Tataro Changes Profile Picture — Anonymous Mystery Woman Inconsolable",
