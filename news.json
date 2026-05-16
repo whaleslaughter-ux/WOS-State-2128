@@ -1,5 +1,31 @@
 [
  {
+  "id": "fortress-rotation-policy",
+  "date": "2026-05-15",
+  "title": "new fortress rotation policy is good actully",
+  "img": "/assets/bia/whales-fortress-rotation.webp",
+  "alt": "a hand drawn chess board with fortresses on it, one alliance piece looking very nervous, whaleslaughter in the corner looking extremely pleased with herself holding a clipboard",
+  "blurb": "<p>hi its whaleslaughter. i am covring this one personaly.</p><p>leader chat has agreed to a new fortress rotation that rewards SVS prep points. i was against it at first. then Dii suggested   that the last fort in the rotation gets shared between the lowest ranked alliances and that if an alliance sucks at prep they could get knocked down the rankings and have to share a fort.</p><p>i changed my mind immediatly. this is called strategic thinking.</p><p>there is no conflict of intrest here. i am a journalist.</p><p>the new policy rewards aliances that show up for prep and creates consequnces for ones that dont. this is going to be satisfying and very entertaining and i am looking forward to it a normal amount.</p><p>the fortress rotation has been aproved. prep matters now. you have been warned.<br>— whaleslaughter, acting editer and strategic genius, this is not a blog</p>",
+  "reporter": "Editorial Staff",
+  "tags": ["Alliance News", "SVS"],
+  "alliances": ["HAV"],
+  "states": ["2128"],
+  "characters": ["Whaleslaughter"]
+},
+ {
+  "id": "strike-update",
+  "date": "2026-05-15",
+  "title": "strike update. progress.",
+  "img": "/assets/bia/whales-strike-update.webp",
+  "alt": "another hand drawn image of the picket line but griff is sitting down eating a sandwich, catty is checking her phone, finn ledger has added more data to his sign, greigh fox is still holding his formal objection but it looks like he wrote it on a napkin",
+  "blurb": "<p>hi its whaleslaughter again. negotiations are progressing.</p><p>granny b has agreed to call the news the news from now on. she prefers the stick figure ilustrations which is very kind of her and also concerning for the reporters who may never come back.</p><p>spider wants to know what the strikers demands are. sources close to the picket line indicate the demands are: one, stop calling it a blog. two, possibly a vacation. mostly the vacation.</p><p>griff was seen eating a sandwhich outside. catty has been on her phone. finn ledger added three more data points to his sign. no one understands the sign.</p><p>the reporters will return when they are rested. the news will continu in the meantime. i think im getting better at this.<br>— whaleslaughter, still acting editer, still not a blog</p>",
+  "reporter": "Editorial Staff",
+  "tags": ["Drama"],
+  "alliances": ["HAV"],
+  "states": ["2128"],
+  "characters": ["Whaleslaughter", "Griff Harpoon", "Catty von Catacean", "Finn Ledger", "Greigh Fox", "Spider", "Granny B"]
+},
+ {
   "id": "reporters-on-strike",
   "date": "2026-05-14",
   "title": "the reporters are on strike. this is fine.",
