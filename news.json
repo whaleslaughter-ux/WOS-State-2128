@@ -1,4 +1,17 @@
 [
+ {
+  "id": "svs-prep-day-one-hav-second",
+  "date": "2026-05-18",
+  "title": "HAV Takes State First In SVS Prep — 2128 Leads Day One",
+  "img": "/assets/bia/catty-svs-prep-day-one.webp",
+  "alt": "The top three players on the podium in first second and thrid place Sara is a brunette woman taking a selfie with a pink phone, Sheriff Sandwich is literally a sandwich with a badge and a mustache, and Ben Dal is a green something or other",
+  "blurb": "<p>Day one of SVS Preparation Phase is closed and State 2128 holds a comfortable lead over State 2127 in City Construction.</p><p>The personal ranking board went down to the wire. S A R A of State 2127 held first overall throughout — a performance worth acknowledging. But in the final minutes Sheriff Sandwich of HAV surged from fifth to second globally, edging out DOolY who finished fourth. BEN DAL of State 2127 slipped into third in the closing moments, with FLOWER dropping off the podium entirely. State 2127 is a worthy opponent and apparently sends their best — but 2128 had something to say about the final standings.</p><p>On the alliance board, HAV finished first in the state and second globally. NLO fourth, OOO fifth. Eight of the top eleven alliances on the global prep board are from State 2128.</p><p>A strong day one. —Catty von Catacean</p>",
+  "reporter": "Catty von Catacean",
+  "tags": ["SVS", "Alliance News"],
+  "alliances": ["HAV", "NLO", "OOO"],
+  "states": ["2128", "2127"],
+  "characters": ["Catty von Catacean", "DOolY", "DByrd79", "Sheriff Sandwich", "S A R A", "BEN DAL", "FLOWER"]
+},
   {
 
   "id": "state-2128-recruiting",
