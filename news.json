@@ -1,5 +1,18 @@
 [
  {
+  "id": "warhymn-number-bigger-simulator",
+  "date": "2026-05-20",
+  "title": "BREAKING: WarHymn Officially Discovered To Be A \"Whose Is Bigger\" Simulator",
+  "img": "/assets/bia/griff-warhymn-simulator.webp",
+  "alt": "Griff Harpoon at his desk reviewing a battle report that shows one side had twelve million infantry and the other side had hope, a chart on the wall labeled FC Power Curve showing a line that goes straight up and then off the page, a smaller chart labeled FC7 Strategy Options showing a single dot labeled 'accept death'",
+  "blurb": "<p>State scientists, led by Queen Zar and her spreadsheets, confirmed today that WarHymn matchmaking operates by locating the nearest FC10 and feeding them an FC7 \"for enrichment.\"</p><p>Witnesses describe the event as \"less of a tactical battle\" and \"more of a public execution with loading screens.\"</p><p>Critics continue questioning why battles run until every troop is dead rather than using a best-two-out-of-three squad system allowing actual strategy, counterplay, and lineup positioning. One anonymous commander suggested \"what if hero squads fought once each and placement actually mattered?\" before being immediately trampled by twelve million infantry.</p><p>Economic analysts are beginning to worry about the long-term emotional wellbeing of whales forced to endure another difficult day of effortlessly deleting weaker players from existence. At some point even the rich guys have to get bored winning every fight by default.</p><p>FC7 commanders have responded with advanced tactical maneuvers: accepting death, moving troops around hopefully, pretending lineup order matters, staring at battle reports in disbelief, and loudly claiming \"strategy game\" in world chat.</p><p>Developers have not commented on whether future versions of WarHymn will contain \"strategy.\" Several players remain optimistic.</p><p><em>—Griff Harpoon, actually reporting.</em></p><p><strong>Update, filed 10:42:</strong> This publication contacted the FC10 for comment. He also thinks the matchmaking is unfair. He is currently losing to someone bigger.</p>",
+  "reporter": "Griff Harpoon",
+  "tags": ["Drama"],
+  "alliances": [],
+  "states": ["2128"],
+  "characters": ["Griff Harpoon", "Queen Zar"]
+},
+ {
   "id": "svs-prep-day-one-hav-second",
   "date": "2026-05-18",
   "title": "HAV Takes State First In SVS Prep — 2128 Leads Day One",
