@@ -1,5 +1,17 @@
 [
  {
+  "id": "svs-prep-day2-top-scorers",
+  "date": "2026-05-20",
+  "title": "SVS Prep Day 2: State 2128 Wins Again, Top Scorers Identified",
+  "img": "/assets/bia/griff-svs-prep-day2.webp",
+  "alt": "Griff Harpoon at his desk with five personnel files open, pausing longest on the one that is just a photograph of a mustache with a mustache listed as next of kin",
+  "blurb": "<p>State 2128 has won the SVS Preparation Phase for the second consecutive day. The top five scorers have been identified and questions have been raised about some of the names.</p><p>First place: [HAV]ii D E A T H ii. HAVOC. The spaces in the name suggest deliberate emphasis. Death. With room to breathe.</p><p>Second place: [HAV]ii DEATHWICH ii. Also HAVOC. Also death, but combined with sandwich. HAVOC sent Death and Sandwich to the top of the leaderboard. Sandwich has appeared two days in a row. The sandwich endures.</p><p>Third place: [RNG]미니BEN, State 2127. Mini Ben. A tiger. Named after a smaller version of a Ben. He finished third in an inter-state SVS competition. The original Ben remains uncontacted and presumably full-sized.</p><p>Fourth place: [ROK]가보자go, State 2127. This translates to Let's Go Go. The name is motivational. The redundancy appears intentional. He finished fourth.</p><p>Fifth place: [RNG]마른콧수염_Mar, State 2127. Thin Mustache. The name is a mustache. The avatar is also a mustache. There was no confusion about the brand. The mustache finished fifth. It is the highest-ranked mustache in the competition since sandwich shaved recently.</p><p><em>—Griff Harpoon, actually reporting.</em></p>",
+  "reporter": "Griff Harpoon",
+  "tags": ["SVS"],
+  "alliances": ["HAV"],
+  "states": ["2128", "2127"],
+  "characters": ["ii D E A T H ii", "Sandwich", "미니BEN", "가보자go", "마른콧수염_Mar"]
+},{
   "id": "warhymn-number-bigger-simulator",
   "date": "2026-05-20",
   "title": "BREAKING: WarHymn Officially Discovered To Be A \"Whose Is Bigger\" Simulator",
