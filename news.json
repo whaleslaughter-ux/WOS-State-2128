@@ -1,5 +1,45 @@
 [
  {
+  "id": "zar-itsy-bitsy-spider",
+  "date": "2026-05-21",
+  "title": "Queen Zar Has Released A Dark Nursery Rhyme About A Spider",
+  "img": "/assets/bia/zar-itsy-bitsy-spider-20260520.webp",
+  "alt": "Queen Zar in a dark hood smirking over a music box, a small spider frozen mid-climb below her fist, glockenspiel keys visible in the background, one leg already airborne",
+  "blurb": "<p>Queen Zar — spreadsheet architect, state scientist, woman of mystery and apparently many feelings about arachnids — has entered the AI music scene and she did not come quietly.</p><p>\"itsy bitsy spider\" is a dark nursery rhyme. A creepy lullaby. A music box fever dream about something small that crawled into the wrong domain and paid for it with every leg it had. The chorus alone should be studied in schools. \"Down came the fist and shattered every part\" is not where the original song goes and yet here we are and it is BETTER.</p><p>It is worth noting that there is a player in this state named Spider and that he has previously gone on record stating he does not like AI music. The song exists regardless.</p><p>Whether Spider has heard it remains unknown. Whether the music box stops is also unknown. Both questions keep this reporter up at night.</p><p>Listen at your own risk: <a href=\"https://suno.com/s/JpaeoxNW2gvlnra3\">itsy bitsy spider by MyZaR^</a></p><p><em>—Catty von Catacean</em></p>",
+  "reporter": "Catty von Catacean",
+  "tags": ["Music", "Drama"],
+  "alliances": [],
+  "states": ["2128"],
+  "characters": ["Queen Zar", "Spider"]
+},
+ {
+  "id": "svs-prep-day4-top-scorers",
+  "date": "2026-05-21",
+  "title": "SVS Prep Day 4: The Podium Is Just Death",
+  "img": "/assets/bia/griff-svs-prep-day4-20260521.webp",
+  "alt": "Griff Harpoon staring at a podium with three identical death skulls on it, clipboard in hand, expression suggesting this is not the strangest thing he has filed this week but it is close",
+  "blurb": "<p>First place: [HAV]ii D E A T H ii. Second place: [HAV]iiDOOLYDEATHii. Third place: [HAV]ii DEATHWICH ii.</p><p>The top three finishers share an alliance and a theme. No further analysis is required.</p><p>Fourth place: [RNG]미니BEN, State 2127. Mini Ben returns. The tiger persists.</p><p>Fifth place: [NLO]Sin7877, State 2128. New Lab Order's first appearance in the individual top five this SVS. Sin has logged the achievement.</p><p><em>—Griff Harpoon, actually reporting.</em></p>",
+  "reporter": "Griff Harpoon",
+  "tags": ["SVS"],
+  "alliances": ["HAV", "NLO"],
+  "states": ["2128", "2127"],
+  "characters": ["ii D E A T H ii", "DoolyDeath", "Sandwich", "미니BEN", "Sin7877"]
+},
+ {
+  "id": "svs-prep-day3-top-scorers",
+  "date": "2026-05-20",
+  "title": "SVS Prep Day 3: A New Whale Arrives, Three Cats Appear, Everything Is Fine",
+  "img": "/assets/bia/catty-svs-prep-day-three-20260520.webp",
+  "alt": "Catty von Catacean at her desk completely ignoring the leaderboard in front of her, instead gazing dreamily at three cat portraits pinned to the wall — a catfish hybrid, an orange cat, and a distant white cat from another state — a small sticky note on the leaderboard reads 'also Wandyrer won'",
+  "blurb": "<p>Wandyrer — State 2128's magnificent new whale, IDK's crown jewel, the answer to several prayers — has taken first place in SVS Preparation Phase III and this is wonderful and important and must be celebrated BUT there are three cats on this leaderboard and they cannot wait.</p><p>Second place: [HAV]ii D E A T H ii. Death is noted. Death is always noted. Moving on.</p><p>Third place: [HAV]iiDOOLYDEATHii. A cat. Also a shark. Also a catfish. Dooly has looked at the concept of species and simply refused it. Third place on the leaderboard, first place in every objective ranking of faces that should not work but absolutely do.</p><p>Fourth place: [HAV]Raistlin. An orange cat. Dignified. Quietly devastating. The kind of cat who has seen things and chosen elegance anyway. Fourth place on the board. First place in gravitas.</p><p>Fifth place: [ROK]《Snow》. State 2127. A white cat. From another state. Who simply appeared, placed top five, and said nothing. Snow has been seen. Snow is being watched. Snow does not know what has been set in motion.</p><p>Three cats on one leaderboard. This has never happened before. It will be remembered.</p><p><em>—Catty von Catacean</em></p>",
+  "reporter": "Catty von Catacean",
+  "tags": ["SVS"],
+  "alliances": ["HAV", "IDK"],
+  "states": ["2128", "2127"],
+  "characters": ["Wandyrer", "ii D E A T H ii", "DoolyDeath", "Raistlin", "Snow"]
+},
+
+ {
   "id": "svs-prep-day2-top-scorers",
   "date": "2026-05-20",
   "title": "SVS Prep Day 2: State 2128 Wins Again, Top Scorers Identified",
