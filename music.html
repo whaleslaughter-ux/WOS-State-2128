@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6LN9JCF6JC"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-6LN9JCF6JC');
+  </script>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Scene — WOS State 2128</title>
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      color: #eef2ff;
+      font: 16px/1.6 ui-sans-serif, system-ui, -apple-system, Segoe UI, Inter, Roboto, "Noto Sans", Arial;
+      background: radial-gradient(1100px 560px at 50% -10%, #1e3a8a 0%, #0f172a 42%, #020617 100%);
+      background-attachment: fixed;
+    }
+
+    .wrap {
+      width: min(1000px, 95%);
+      margin: 0 auto;
+      padding: 40px 20px 48px;
+    }
+
+    /* ---- Skip link ---- */
+    .skip-link {
+      position: absolute; top: -50px; left: 10px;
+      background: #0b1030; color: #eef2ff;
+      padding: 10px 14px; border: 2px solid #a5b4ff;
+      border-radius: 8px; font-weight: 700; font-size: .875rem;
+      z-index: 9999; text-decoration: none; transition: top .15s;
+    }
+    .skip-link:focus { top: 10px; }
+
+    /* ---- Page header ---- */
+    header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+    header .kicker {
+      display: block;
+      font-size: .68rem; font-weight: 800; letter-spacing: .22em;
+      text-transform: uppercase; color: #d4b06a;
+      margin-bottom: 10px;
+    }
+    header h1 {
+      margin: 0 0 .5rem;
+      font-size: clamp(2rem, 2vw + 1.2rem, 3rem);
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: #fff;
+    }
+    header p {
+      margin: 0;
+      font-size: 1rem;
+      color: #b9c3ff;
+      opacity: .9;
+    }
+
+    /* ---- Section label ---- */
+    .section-label {
+      display: block;
+      font-size: .68rem; font-weight: 800; letter-spacing: .18em;
+      text-transform: uppercase; color: #b9c3ff;
+      margin-bottom: 18px;
+    }
+
+    /* ---- Alliance badge ---- */
+    .alliance-badge {
+      display: inline-block;
+      font-size: .62rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase;
+      padding: 3px 9px; border-radius: 999px;
+      background: rgba(212,176,106,.15); color: #d4b06a;
+      border: 1px solid rgba(212,176,106,.28);
+    }
+
+    /* ---- Artist shell (like player-shell) ---- */
+    .artist-shell {
+      max-width: 680px;
+      margin: 0 auto 2rem;
+      padding: 24px 24px 28px;
+      border-radius: 24px;
+      background: radial-gradient(circle at top, rgba(15,23,42,.96), rgba(2,6,23,1));
+      box-shadow: 0 22px 60px rgba(0,0,0,0.85);
+      border: 1px solid rgba(255,255,255,.1);
+    }
+    .artist-shell.featured {
+      border-color: rgba(212,176,106,.3);
+      box-shadow: 0 22px 60px rgba(0,0,0,0.85), 0 0 0 1px rgba(212,176,106,.1);
+    }
+
+    /* ---- Artist bio row ---- */
+    .artist-bio-row {
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+      margin-bottom: 20px;
+    }
+    .artist-photo {
+      width: 90px; height: 90px;
+      border-radius: 12px;
+      object-fit: cover; object-position: top;
+      flex-shrink: 0;
+      background: #0b1030;
+      border: 1px solid rgba(255,255,255,.1);
+    }
+    .artist-photo-placeholder {
+      width: 90px; height: 90px;
+      border-radius: 12px;
+      flex-shrink: 0;
+      background: linear-gradient(160deg, #1a2147, #0b1030);
+      border: 1px solid rgba(255,255,255,.1);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.8rem; color: #b9c3ff;
+    }
+    .artist-info { flex: 1; min-width: 0; }
+    .artist-name {
+      margin: 0 0 6px;
+      font-size: 1.1rem; font-weight: 900;
+      letter-spacing: .05em; text-transform: uppercase;
+      color: #fff; line-height: 1.1;
+    }
+    .artist-name-meta {
+      display: flex; align-items: center; gap: 8px;
+      flex-wrap: wrap; margin-bottom: 8px;
+    }
+    .artist-bio-text {
+      margin: 0;
+      font-size: .88rem; color: #b9c3ff; line-height: 1.6;
+    }
+
+    /* ---- Song buttons ---- */
+    .song-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 10px;
+    }
+    .song-btn {
+      display: block;
+      padding: 12px 14px;
+      border-radius: 14px;
+      text-align: left;
+      text-decoration: none;
+      background: linear-gradient(135deg, #1e3a8a, #312e81);
+      color: #fff;
+      box-shadow: 0 8px 24px rgba(0,0,0,.4);
+      transition: transform .15s ease, opacity .15s ease;
+      border: 1px solid rgba(255,255,255,.08);
+    }
+    .song-btn:hover {
+      transform: translateY(-2px);
+      opacity: .92;
+      text-decoration: none;
+      color: #fff;
+    }
+    .song-btn:focus-visible {
+      outline: 2px solid #a5b4ff;
+      outline-offset: 3px;
+    }
+    .song-btn-title {
+      display: block;
+      font-size: .85rem; font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 4px;
+      /* clamp to 2 lines */
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .song-btn-meta {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .platform-label {
+      font-size: .65rem; font-weight: 800; letter-spacing: .06em;
+      text-transform: uppercase;
+      color: rgba(165,180,255,.8);
+    }
+    .diss-label {
+      font-size: .65rem; font-weight: 700;
+      color: rgba(212,176,106,.8);
+    }
+
+    /* ---- All artists grid (below featured) ---- */
+    .all-artists { margin-top: 3rem; }
+    .all-artists .section-label { text-align: center; }
+    .artists-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 16px;
+    }
+    /* Grid items use a slightly more compact shell */
+    .artists-grid .artist-shell {
+      max-width: none;
+      margin: 0;
+    }
+
+    /* ---- Loading / error ---- */
+    #scene-loading {
+      text-align: center;
+      padding: 60px 20px;
+      color: #b9c3ff;
+      font-size: .9rem;
+    }
+    #scene-error {
+      text-align: center;
+      padding: 40px 20px;
+      color: #fca5a5;
+    }
+  </style>
+</head>
+<body>
+
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="nav-placeholder"></div>
+
+  <main class="wrap" id="main-content" tabindex="-1">
+    <header>
+      <span class="kicker" aria-hidden="true">State 2128</span>
+      <h1>The Scene</h1>
+      <p>Songs, beefs, and bars from the frozen frontier. Our state has bars. Literally.</p>
+    </header>
+
+    <div id="scene-loading" aria-live="polite" aria-atomic="true">Loading artists…</div>
+    <div id="scene-error" role="alert" hidden></div>
+    <div id="scene-root" aria-busy="true"></div>
+  </main>
+
+  <div id="footer-placeholder"></div>
+
+  <script>
+  (function () {
+    'use strict';
+
+    function esc(s) {
+      return String(s)
+        .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    var PLATFORM_LABELS = {
+      youtube: 'YouTube', soundcloud: 'SoundCloud',
+      spotify: 'Spotify', bandcamp: 'Bandcamp',
+      suno: 'Suno', link: 'Link'
+    };
+    function platformLabel(p) {
+      if (!p) return 'Listen';
+      return PLATFORM_LABELS[p.toLowerCase()] || p;
+    }
+
+    function renderSongButtons(songs, artistName) {
+      if (!songs || !songs.length) return '';
+      return '<div class="song-grid">'
+        + songs.slice(0, 3).map(function (s) {
+            var label = platformLabel(s.platform);
+            var dissHtml = (s.targets && s.targets.length)
+              ? '<span class="diss-label" aria-label="Shots at: ' + esc(s.targets.join(', ')) + '">↳ ' + esc(s.targets.join(', ')) + '</span>'
+              : '';
+            var ariaLabel = s.title + ' by ' + artistName
+              + (s.platform ? ', on ' + label : '') + ', opens in new tab';
+            return '<a class="song-btn" href="' + esc(s.url || '#') + '"'
+              + (s.url ? ' target="_blank" rel="noopener noreferrer"' : ' aria-disabled="true"')
+              + ' aria-label="' + esc(ariaLabel) + '">'
+              + '<span class="song-btn-title">' + esc(s.title) + '</span>'
+              + '<span class="song-btn-meta">'
+              + '<span class="platform-label">' + esc(label) + '</span>'
+              + dissHtml
+              + '</span>'
+              + '</a>';
+          }).join('')
+        + '</div>';
+    }
+
+    function renderArtistShell(artist, headingLevel, extraClass) {
+      var tag      = headingLevel || 'h2';
+      var cssClass = 'artist-shell' + (extraClass ? ' ' + extraClass : '');
+      var idSlug   = 'artist-' + esc(artist.id);
+
+      var photoHtml = artist.img
+        ? '<img class="artist-photo" src="' + esc(artist.img) + '"'
+          + ' alt="' + esc(artist.alt || artist.name + ', portrait') + '"'
+          + ' loading="' + (extraClass === 'featured' ? 'eager' : 'lazy') + '"'
+          + ' width="90" height="90">'
+        : '<div class="artist-photo-placeholder" aria-hidden="true">♪</div>';
+
+      var allianceHtml = artist.alliance
+        ? '<span class="alliance-badge">' + esc(artist.alliance) + '</span>'
+        : '';
+
+      return '<div class="' + cssClass + '">'
+        + '<div class="artist-bio-row">'
+        + photoHtml
+        + '<div class="artist-info">'
+        + '<div class="artist-name-meta">'
+        + '<' + tag + ' class="artist-name" id="' + idSlug + '">' + esc(artist.name) + '</' + tag + '>'
+        + allianceHtml
+        + '</div>'
+        + (artist.bio ? '<p class="artist-bio-text">' + esc(artist.bio) + '</p>' : '')
+        + '</div>'
+        + '</div>'
+        + renderSongButtons(artist.songs, artist.name)
+        + '</div>';
+    }
+
+    /* Load nav + footer */
+    function loadPartial(id, url) {
+      fetch(url)
+        .then(function (r) { return r.ok ? r.text() : Promise.reject(r.status); })
+        .then(function (h) { document.getElementById(id).innerHTML = h; })
+        .catch(function (e) { console.warn('Partial failed:', url, e); });
+    }
+    loadPartial('nav-placeholder',    '/nav.html');
+    loadPartial('footer-placeholder', '/footer.html');
+
+    /* Fetch and render */
+    var loading = document.getElementById('scene-loading');
+    var errBox  = document.getElementById('scene-error');
+    var root    = document.getElementById('scene-root');
+
+    fetch('/music.json')
+      .then(function (r) {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.json();
+      })
+      .then(function (data) {
+        loading.style.display = 'none';
+        var artists = Array.isArray(data.artists) ? data.artists : [];
+
+        if (!artists.length) {
+          root.innerHTML = '<p style="text-align:center;color:#b9c3ff;padding:48px 0">No artists yet — check back soon.</p>';
+          root.removeAttribute('aria-busy');
+          return;
+        }
+
+        var featured   = artists.find(function (a) { return a.featured; });
+        var supporting = artists.filter(function (a) { return !a.featured; });
+        var html       = '';
+
+        /* Featured artist — centered, gold border, h2 heading */
+        if (featured) {
+          html += '<section aria-labelledby="artist-' + esc(featured.id) + '">'
+            + '<span class="section-label" style="text-align:center">Featured Artist</span>'
+            + renderArtistShell(featured, 'h2', 'featured')
+            + '</section>';
+        }
+
+        /* Remaining artists — 2-col grid, h3 headings */
+        if (supporting.length) {
+          html += '<section class="all-artists" aria-labelledby="all-h">'
+            + '<span class="section-label" id="all-h">All Artists</span>'
+            + '<div class="artists-grid">'
+            + supporting.map(function (a) {
+                return '<div aria-labelledby="artist-' + esc(a.id) + '">'
+                  + renderArtistShell(a, 'h3', '')
+                  + '</div>';
+              }).join('')
+            + '</div>'
+            + '</section>';
+        }
+
+        root.innerHTML = html;
+        root.removeAttribute('aria-busy');
+      })
+      .catch(function (err) {
+        console.error('music.json failed:', err);
+        loading.style.display = 'none';
+        errBox.textContent    = 'Could not load music data. Check the console for details.';
+        errBox.hidden         = false;
+      });
+
+  })();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,68 @@
+{
+  "artists": [
+    {
+      "id": "whaleslaughter",
+      "name": "WHALESLAUGHTER",
+      "alliance": "HAVOC",
+      "img": "/assets/music/whaleslaughter.jpg",
+      "alt": "WHALESLAUGHTER, founder of HAVOC and state 2128 recording artist",
+      "bio": "Founder of HAVOC and state 2128's most prolific composer of diplomatically disastrous bangers. If it rhymes and it burns, it's probably his fault.",
+      "featured": true,
+      "songs": [
+        {
+          "title": "Your Song Title Here",
+          "url": "https://youtube.com/watch?v=REPLACE",
+          "platform": "youtube",
+          "targets": [],
+          "date": "2026-01-01"
+        },
+        {
+          "title": "Your Second Track",
+          "url": "https://soundcloud.com/REPLACE",
+          "platform": "soundcloud",
+          "targets": ["ETF"],
+          "date": "2026-02-14"
+        },
+        {
+          "title": "Your Third Track",
+          "url": "https://youtube.com/watch?v=REPLACE",
+          "platform": "youtube",
+          "targets": ["300", "ETF"],
+          "date": "2026-03-22"
+        }
+      ]
+    },
+    {
+      "id": "artist-two",
+      "name": "Artist Name",
+      "alliance": "300",
+      "img": "/assets/music/artist-two.jpg",
+      "alt": "Artist Name, portrait",
+      "bio": "Short bio for this artist. One or two sentences about their style or what state 2128 beef they've contributed to.",
+      "featured": false,
+      "songs": [
+        {
+          "title": "Track Title",
+          "url": "https://youtube.com/watch?v=REPLACE",
+          "platform": "youtube",
+          "targets": ["HAVOC"],
+          "date": "2026-01-10"
+        },
+        {
+          "title": "Track Title Two",
+          "url": "https://soundcloud.com/REPLACE",
+          "platform": "soundcloud",
+          "targets": [],
+          "date": "2026-02-05"
+        },
+        {
+          "title": "Track Title Three",
+          "url": "https://youtube.com/watch?v=REPLACE",
+          "platform": "youtube",
+          "targets": [],
+          "date": "2026-03-01"
+        }
+      ]
+    }
+  ]
+}
