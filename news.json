@@ -1,5 +1,18 @@
 [
  {
+  "id": "spider-lie-zar-disstrack",
+  "date": "2026-05-21",
+  "title": "Spider, Who Does Not Like AI Music, Has Made A Suno Account And Released A Diss Track About Zar's Spreadsheets.",
+  "img": "/assets/bia/catty-spider-lie-zar-20260521.webp",
+  "alt": "Catty von Catacean reading a printout of Spider's lyrics with one paw over her mouth, a sticky note on her monitor reads 'he made an account', Zar's spreadsheet visible on a second screen with a red error in the pivot table",
+  "blurb": "<p>Spider has stated, on the record, that he does not like AI music.</p><p>Spider now has a Suno account. The account is named hairyspider. His first song is a diss track. He did not ease into this.</p><p>\"Lie Zar\" is a rebuttal directed at Queen Zar, spreadsheet architect of State 2128, composer of \"itsy bitsy spider,\" crusher of small things that crawl where they shouldn't. Spider has grievances. He would like Zar to know that her VLOOKUP is fake, her pivot table is broken, her meatballs are from IKEA, and her macros are calculating LOSS. He would also like her to go back to Stockholm.</p><p>He is doing all of this on six legs. He lost two in the last song. He has not addressed this directly. He has instead written a bridge.</p><p>Zar has not responded. Zar's spreadsheets are unavailable for comment. The pivot table's status remains unconfirmed.</p><p>Spider quoted his own song in world chat. He is, against all available evidence, having a great time.</p><p>Spider has since clarified in world chat that he likes \"IA.\" The assumption is that he means AI. The pivot table remains broken regardless.</p><p>Listen here: <a href=\"https://suno.com/song/b3c2ec16-be6a-4554-ae09-ec236eee43c6?sh=7hQDb5kCAy1qHxcB\" target=\"_blank\" rel=\"noopener noreferrer\">Lie Zar by Spider</a></p><p><em>—Catty von Catacean</em></p>",
+  "reporter": "Catty von Catacean",
+  "tags": ["Music", "Drama"],
+  "alliances": [],
+  "states": ["2128"],
+  "characters": ["Spider", "Queen Zar"]
+},
+ {
   "id": "zar-itsy-bitsy-spider",
   "date": "2026-05-21",
   "title": "Queen Zar Has Released A Dark Nursery Rhyme About A Spider",
