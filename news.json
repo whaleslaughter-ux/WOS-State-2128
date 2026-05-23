@@ -1,5 +1,17 @@
 [
  {
+  "id": "gwanggaeto-diaper-whale",
+  "date": "2026-05-23",
+  "title": "A Great Conqueror Has Arrived. He Is Wearing A Diaper.",
+  "img": "/assets/bia/catty-gwanggaeto-diaper-20260521.webp",
+  "alt": "A teddy bear diaper and pacifier visible below, stomping on troops and taking the castle",
+  "blurb": "<p>광개토대왕 — Gwanggaeto the Great, conqueror of kingdoms, expander of empires, one of the most celebrated warriors in Korean history — has entered the State 2128 castle battle.</p><p>He arrived late.</p><p>He is a teddy bear.</p><p>He has a pacifier.</p><p>He is wearing a diaper.</p><p>He is also State 2127's whale.</p><p>Gwanggaeto the Great once expanded Goguryeo's territory to its greatest extent in recorded history. RNG sent their most powerful player to turn the tide of this battle and he is a stuffed animal in a onesie and this correspondent has never been more delighted by anything that has ever happened in this state.</p><p>Will the tides turn? Will the great conqueror rise? Will the diaper hold?</p><p>State 2128 is watching. State 2128 is also screaming a little.</p><p><em>—Catty von Catacean</em></p>",
+  "reporter": "Catty von Catacean",
+  "tags": ["SVS", "Drama"],
+  "alliances": ["NLO"],
+  "states": ["2128", "2127"],
+  "characters": ["광개토대왕"]
+},{
   "id": "spider-lie-zar-disstrack",
   "date": "2026-05-21",
   "title": "Spider, Who Does Not Like AI Music, Has Made A Suno Account And Released A Diss Track About Zar's Spreadsheets.",
