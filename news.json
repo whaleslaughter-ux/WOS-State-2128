@@ -1,5 +1,46 @@
 [
  {
+
+  "id": "state-2128-supreme-title",
+  "date": "2026-05-21",
+  "title": "State 2128 Claims The Supreme Title. TSA Held The Castle. 2127 Made Them Work For Every Second Of It.",
+  "img": "/assets/bia/catty-supreme-title-20260521.webp",
+  "alt": "Wandyrer standing at the front of a massive coalition of players, TSA banner raised over a castle with all four turrets glowing, Dbyrd, Faceless, and DoolyDeath visible in the ranks, the scoreboard behind them showing State 2128 at the top",
+  "blurb": "<p>Wandyrer led the rallies. State 2128's magnificent new whale showed up for the biggest moment of the SVS and delivered.</p><p>It was not a gift. ROK and RNG came to fight and they fought hard. The battle was real and State 2128 won it anyway.</p><p>TSA held the castle. When everyone joined together the alliance reached over 35 billion power — a number that should be read slowly and with appropriate reverence. Four turrets held. Most of the battle. Against opponents who were absolutely trying to take them.</p><p>Dbyrd was there and was awesome. Faceless was there and was awesome. DoolyDeath — cat, shark, catfish, force of nature — was there and was awesome.</p><p>Supreme title. All four turrets. A hard fight against a worthy opponent.</p><p><em>—Catty von Catacean</em></p>",
+  "reporter": "Catty von Catacean",
+  "tags": ["SVS"],
+  "alliances": ["TSA", "HAV"],
+  "states": ["2128", "2127"],
+  "characters": ["Wandyrer", "Dbyrd", "Faceless", "DoolyDeath"]
+
+},
+ {
+  "id": "discord-voice-chat-second-time",
+  "date": "2026-05-21",
+  "title": "State 2128 Uses Voice Chat For Second Time In Recorded History",
+  "img": "/assets/bia/discord-voice-chat-20260521.webp",
+  "alt": "A Discord voice channel showing Big R4, Queen Zar, and Spider as active participants, one of them has been talking for several minutes without stopping, the others have not yet figured out how to mute",
+  "blurb": "<p>State 2128 coordinated yesterday's castle battle using Discord voice chat. This is the second known instance of this occurring.</p><p>Players who typically communicate exclusively through text, emoji, and the occasional gif were asked to speak out loud using their mouths. They did. The battle was coordinated. The fortresses were claimed.</p><p>Analysts are currently investigating whether this development was driven by military necessity or whether a Boomer got in the channel and just started talking.</p><p><em>—Griff Harpoon, actually reporting.</em></p>",
+  "reporter": "Griff Harpoon",
+  "tags": ["Drama"],
+  "alliances": [],
+  "states": ["2128"],
+  "characters": ["Big R4", "Queen Zar", "Spider"]
+},
+ {
+  "id": "bambooter-rally-leader",
+  "date": "2026-05-21",
+  "title": "Bambooter Ran The Rallies. All Of Them. While Everything Else Was On Fire.",
+  "img": "/assets/bia/bambooter-rally-leader-20260521.webp",
+  "alt": "Bambooter standing at the center of a chaotic battle map, rally flags radiating outward in every direction, Spider, Big R4, Isla, and Death Cat visible in the background, the castle walls visibly crumbling in the distance",
+  "blurb": "<p>There are players who wait for perfect conditions. Bambooter is not one of them.</p><p>When State 2128 entered yesterday's castle battle with a dusty alliance that hadn't been opened yet and two battle alliances that needed to coordinate without shooting each other, Bambooter did not wait for someone to sort it out. He opened the rally. Then he opened another one. Then another. Rally after rally hammered at enemy towers from CAT alliance — not to claim the castle, not for the credit, but to weaken what needed weakening so TSA could finish the job without friendly fire turning the whole operation into a disaster.</p><p>Spider was there. Big R4 was there. Isla was there. Death Cat was jumping between alliances moving players like a general who doesn't sleep. Bambooter held the center of all of it.</p><p>The castle is falling. The rally log is very long. Bambooter's name is at the top of it.</p><p>State 2128 sees you.</p><p><em>—Griff Harpoon, actually reporting.</em></p>",
+  "reporter": "Griff Harpoon",
+  "tags": ["SVS"],
+  "alliances": ["HAV", "CAT", "TSA"],
+  "states": ["2128"],
+  "characters": ["Bambooter", "Spider", "Big R4", "Isla", "Death Cat"]
+},
+ {
   "id": "gwanggaeto-diaper-whale",
   "date": "2026-05-23",
   "title": "A Great Conqueror Has Arrived. He Is Wearing A Diaper.",
