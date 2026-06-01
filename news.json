@@ -1,5 +1,43 @@
 [
  {
+  "id": "analyst-finn-forensic",
+  "date": "2026-06-01",
+  "title": "Who Is [OBS]Analyst? Finn Ledger Ran the Numbers.",
+  "img": "/assets/bia/finn-analyst-forensic-20260601.webp",
+  "alt": "A magnifying glass held up against a snowy cityscape revealing a mysterious dark-haired woman holding a megaphone, a Stockholm signpost visible to the left, Japanese text on a bulletin board in the background, snow falling across the entire scene",
+  "blurb": "<p>Three reports. Eight alliances. One anonymous author with a megaphone. Data leaves fingerprints.</p><p>The reports posted at the following UTC times: 11:25, 12:30, 05:50, 05:55, 14:35. In New York that is 1:50am. In Vancouver it is 10:50pm. The full posting history fits a normal European or Asian working day. The Americas were asleep. Someone else was making coffee and checking spreadsheets.</p><p>Eight alliances were evaluated. Eight alliances walked away with at least one positive observation. Even TTC. Even BUT. When [300]BLACKTATARO launched a direct confrontation, the register did not change. The warmth did not change. This is the communication profile of someone who has spent a long time doing thankless organizational work in a room full of loud people and has developed patience as a survival strategy.</p><p>The word \"impressive\" appears once across all three reports. It describes HAV. The word \"determination\" appears once. It describes BUT. The phrase \"possible explanations\" appears once. It applies to 300.</p><p>The Analyst cited alliance power figures visible only to state planners and active leadership.</p><p>Cross-referenced against state communication patterns, the probability that [OBS]Analyst is a woman is 80%.</p><p>She is sitting behind a quiet unrecognized tag, watching everything, and holding exactly one fort.</p><p>Finn Ledger has no further comment. The Analyst has promised KOI coverage. Finn will be reading it.</p><p><em>—Finn Ledger</em></p>",
+  "reporter": "Finn Ledger",
+  "tags": ["Drama", "Alliance News"],
+  "alliances": [],
+  "states": ["2128"],
+  "characters": ["BLACKTATARO"]
+},
+{
+  "id": "analyst-catty-defense",
+  "date": "2026-06-01",
+  "title": "Someone Is Harassing BLACKTATARO And This Publication Will Not Stand For It",
+  "img": "/assets/bia/catty-analyst-defense-20260601.webp",
+  "alt": "Catty von Catacean in pearls pointing furiously across a news desk covered in Anonymous Analysis papers at a shadowy cloaked figure holding a megaphone, BLACKTATARO visible on a glowing screen in the background looking dignified with an excellent beard, blue crystals spilling from a bag on the floor",
+  "blurb": "<p>State 2128 has a new problem and his name is [OBS]Analyst and nobody knows what he looks like.</p><p>For three consecutive events, this anonymous account has been posting megaphone reports in world chat ranking alliances like they are produce at a farmers market. HAV first. NLO second. 300 fifth. Catty von Catacean has reviewed these findings and would like to formally note that HAV did not finish first in SvS preparation week because of a spreadsheet. HAV finished first because HAV showed up, coordinated, sacrificed individual glory for collective victory, and did not stop to post about it in world chat because HAV was busy winning.</p><p>The Analyst called this exceptional coordination. He is not wrong. He could have led with this. He did not lead with this.</p><p>Instead he has spent three reports returning, with increasing enthusiasm, to the question of why 300 — the most powerful alliance in the state, home to some of its finest and most committed players, led by a man with an extremely credible beard — did not score higher in SvS preparation. [300]BLACKTATARO has explained this patiently and at length. He cannot control his members' wallets. He invests everything personally. He has already stepped down from the president rotation. He has done everything right and he is being footnoted by a winky face.</p><p>[IDK]Spider called it propaganda. This publication rarely agrees with Spider but finds itself, on this occasion, in uncomfortable alignment.</p><p>The Analyst has no name. He has no face. He has no alliance anyone recognizes. He does have, apparently, unlimited megaphone charges and strong opinions about 300's resource allocation strategy. He has promised KOI coverage next. Several people said they were looking forward to it. Catty von Catacean was not among them.</p><p>Show your face, Analyst. Then we'll talk about the data.</p><p><em>—Catty von Catacean</em></p>",
+  "reporter": "Catty von Catacean",
+  "tags": ["Drama"],
+  "alliances": ["300", "HAV"],
+  "states": ["2128"],
+  "characters": ["BLACKTATARO", "Spider"]
+},
+{
+  "id": "analyst-pressure-campaign",
+  "date": "2026-06-01",
+  "title": "State Analyst Faces Pressure Campaign After Filing Accurate Reports",
+  "img": "/assets/bia/greigh-analyst-pressure-20260601.webp",
+  "alt": "A grey wolf in a suit at the 2128 News desk, behind him a conspiracy board covered in pinned megaphone screenshots, a yellow sticky note reading Possible Explanations, BLACKTATARO's face visible among the pinned messages, a 300 alliance banner in the corner, Truth Builds Tomorrow on a billboard outside the window",
+  "blurb": "<p>An independent analyst has spent three weeks documenting State 2128's competitive landscape with precision and consistency. The state's response has been instructive.</p><p>[OBS]Analyst — operating without institutional support, without an alliance anyone recognizes, and without apparent personal agenda — has filed post-event breakdowns for SvS Preparation Week, the Officer Project, and the Armament Competition. The methodology is transparent. The data is verifiable. In a notable display of journalistic integrity, the Analyst even filed favorable findings about HAV, an alliance that finished first in SvS prep despite placing only 8 members in the Officer Project top 100. A lesser analyst might have found this suspicious. This one called it coordination. He filed it and moved on.</p><p>Alliance 300 has not moved on.</p><p>[300]BLACKTATARO, responding to the third consecutive report, asked what the Analyst wanted from them. This is a reasonable question to ask about accurate data. [IDK]Spider characterized the reports as propaganda. Spider's alliance was described in the same reports as demonstrating solid coordination and strong potential. Spider did not quote which part he found propagandistic.</p><p>[300]Constantine asked whether the Analyst had analyzed his own SvS contribution. The Analyst did not answer. It is worth noting that Constantine did not dispute any of the numbers.</p><p>The Analyst has promised KOI coverage next. Several alliances have said they are looking forward to it. These alliances finished in the top three during SvS preparation week.</p><p>This is a coincidence. The data will clarify.</p><p><em>—Greigh Fox, Fair &amp; Balanced Reporting</em></p>",
+  "reporter": "Greigh Fox",
+  "tags": ["Drama", "Alliance News"],
+  "alliances": ["300", "HAV", "IDK"],
+  "states": ["2128"],
+  "characters": ["BLACKTATARO", "Constantine", "Spider"]
+},{
   "id": "mordukai-birthday-song",
   "date": "2026-05-26",
   "title": "Whaleslaughter Has Written Mordukai A Birthday Song. It Is About His Knees.",
