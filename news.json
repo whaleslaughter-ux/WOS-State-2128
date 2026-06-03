@@ -1,5 +1,17 @@
 [
 {
+  "id": "analyst-vanishes-koi",
+  "date": "2026-06-03",
+  "title": "[OBS]Analyst Publishes KOI Day One Report. Vanishes.",
+  "img": "/assets/bia/griff-analyst-vanishes-koi-20260603.webp",
+  "alt": "BLACKTATARO with his head in his hands at a desk covered in analytics reports, a white fox a grey cat and a pelican wearing Einstein hair laughing and holding trophies in the background, Dracula in the corner holding a small trophy and smirking",
+  "blurb": "<p>On June 1, [OBS]Analyst published a King of Icefield Day One report. They noted they were not naming names, as naming names had not gone well previously.</p><p>That was three days ago.</p><p>Alliance 300 made their position clear. White Moon, Linochka:3, XAH, Santa Claus, Юрий, Astra00, Bek, #CRaZyDoc#, and Psihos_Evgenii occupied nine of the top ten KOI Day One positions. The tenth spot was taken by [HAV]Dracula, who apparently had somewhere to be. 300 was not asked for comment. They had already made one. [LOV]300Fan, reached via megaphone, previously stated that 300 does not hoard anything and could not care less. The Day One standings remain consistent with this position.</p><p>The Analyst promised KOI coverage. The Analyst filed one report. Day Two passed. Day Three passed. The megaphone is silent.</p><p>This publication has been covering State 2128 since before the Analyst had an account. We have four reporters. We have a pelican. We file.</p><p>The Analyst has a spreadsheet, a theory, and something to say about alliance power gaps. 2128 News is hiring. The pay is nonexistent. The editorial independence is total. The application is simple.</p><p>Send a DM.</p><p><em>—Griff Harpoon, actually reporting.</em></p>",
+  "reporter": "Griff Harpoon",
+  "tags": ["Drama", "Alliance News"],
+  "alliances": ["300", "HAV"],
+  "states": ["2128"],
+  "characters": ["BLACKTATARO", "Dracula", "Santa Claus", "White Moon", "Astra00"]
+},{
   "id": "spider-kills-the-dice",
   "date": "2026-06-02",
   "title": "Spider Submits Fortress Proposal. The Dice Has Been Sentenced to Death.",
