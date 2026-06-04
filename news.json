@@ -1,5 +1,44 @@
 [
 {
+  "id": "koi-crossstate-first-catty",
+  "date": "2026-06-04",
+  "title": "State 2128 Takes First. White Moon Obliterates the Leaderboard.",
+  "img": "/assets/bia/catty-koi-crossstate-first-20260604.webp",
+  "alt": "A giant golden trophy held by a proud white fox, confetti falling",
+  "blurb": "<p>State 2128 is ranked first in the King of Icefield cross-state rankings with 917 million points. Second place is less than one million points behind. The margin is razor thin and frankly electrifying.</p><p>[300]White Moon is leading the personal cross-state rankings. First place. Cross-state. The entire field. This is the kind of individual performance that makes a cat sit up straight.</p><p>The state is currently winning. First place. Because people spent. Those resources went somewhere and that somewhere is currently a trophy.</p><p>The cross-state state rank rewards go to every player who hits 250,000 points regardless of where they personally finished. White Moon is dragging the whole state to first place and everyone gets to come along for the ride.</p><p>And here is where it gets complicated, darlings. SVS preparation week is coming. The numbers will tell their own story when it arrives. For now State 2128 is first and White Moon put them there.</p><p>Some things are complicated. First place is not one of them.</p><p><em>—Catty von Catacean</em></p>",
+  "reporter": "Catty von Catacean",
+  "tags": ["SVS", "Alliance News"],
+  "alliances": ["300"],
+  "states": ["2128"],
+  "characters": ["White Moon"]
+},
+{
+  "id": "koi-svs-savings-guide-finn",
+  "date": "2026-06-04",
+  "title": "How To Fill Your Backpack: A Guide To Saving For SVS Prep",
+  "img": "/assets/bia/finn-koi-svs-savings-guide-20260604.webp",
+  "alt": "A pelican in a visor standing next to an overflowing backpack full of speedups and resources, a calendar on the wall with SVS prep week circled in red, charts showing daily event spending vs savings on a chalkboard behind him",
+  "blurb": "<p>State 2128 runs on resources. Speedups, items, essence stones, building materials. Every player accumulates them. The question is when to spend them.</p><p>The answer, mathematically, is on days when spending produces rewards.</p><p>Most events in Whiteout Survival run on a points system. Each event has specific scoring categories — building upgrades, essence stones, hero development, troop training. Spending resources in the right category on the right day earns event points, which earn rewards. Those rewards go back into the backpack. Spending outside scoring categories earns nothing back.</p><p>The optimal pattern is simple. Identify what scores points today. Spend only on those categories. Save everything else.</p><p>SVS Preparation Week is the exception that makes the rule matter.</p><p>SVS prep is a state event. Every point scored by every player in every alliance contributes to State 2128's collective total. The state that scores more points wins. Winning affects the battle. The battle determines territory, resources, and bragging rights for the next cycle.</p><p>This means resources saved for SVS prep produce two returns: personal event rewards and collective state benefit. No other event in the game offers both simultaneously.</p><p>Individual events like King of Icefield and Officer Project produce personal rewards and personal rankings. They do not contribute to the state's SVS position. Resources spent on personal rankings in individual events are resources that will not exist during SVS prep week.</p><p>This is not an argument against spending on individual events. Players who spend on KOI earn real rewards. White Moon is currently leading the cross-state KOI rankings and has helped put State 2128 in first place. That is a real accomplishment with real rewards for everyone who hits 250,000 points.</p><p>It is simply a description of how the math works.</p><p>According to [OBS]Analyst's recent post in world chat, State 2128's top 100 players scored 475 million points in the first three days of KOI. The daily rewards threshold is 250,000 points per player. The top 100 needed 25 million combined points per day to hit that threshold. They scored between 129 and 190 million per day.</p><p>The surplus ranged from 104 to 165 million points per day above what rewards required.</p><p>Finn Ledger files this number without comment. The math is available to anyone who wants to run it.</p><p><em>—Finn Ledger</em></p>",
+  "reporter": "Finn Ledger",
+  "tags": ["Guide", "SVS"],
+  "alliances": [],
+  "states": ["2128"],
+  "characters": []
+},
+{
+  "id": "koi-day3-greigh-callout",
+  "date": "2026-06-04",
+  "title": "The Analyst Wouldn't Name Names. Greigh Fox Will.",
+  "img": "/assets/bia/greigh-koi-day3-callout-20260604.webp",
+  "alt": "A grey fox in a suit at a news desk, a KOI leaderboard pinned to the wall behind him with 300 names circled in red, one HAV name circled in gold with a question mark, the word CONTEXT stamped across a SVS prep standings chart in the corner",
+  "blurb": "<p>[OBS]Analyst has filed four reports on State 2128's competitive landscape. The Analyst has been careful. Measured. The Analyst does not name names.</p><p>Greigh Fox has reviewed the King of Icefield Day Three standings. Greigh Fox has a different policy.</p><p>300 took the top four positions on Day Three. White Moon, Серый_Волк, Astra00, and #CRaZyDoC# finished first through fourth. Santa Claus, Linochka:3, and Cäcilia rounded out the 300 representation in the top ten. Seven of the top ten spots. On Day One it was nine. 300 appears to be pacing themselves.</p><p>JovAnkA of IDK and ViridianA of NLO also placed in the top ten, representing their alliances with distinction.</p><p>HAV placed moatz at sixth. One player. As usual, HAV does whatever it wants with no consequences. Greigh Fox notes this without surprise.</p><p>For context, 300 finished fifth in SvS Preparation Week despite holding the highest raw alliance power in the state. The Analyst offered possible explanations. Greigh Fox finds the Day Three KOI standings a possible explanation.</p><p>The Analyst promised KOI coverage and has since gone quiet. The data was always going to say what the data says. It says it whether anyone files it or not.</p><p>Greigh Fox filed it.</p><p><em>—Greigh Fox, Fair &amp; Balanced Reporting</em></p>",
+  "reporter": "Greigh Fox",
+  "tags": ["Drama", "Alliance News"],
+  "alliances": ["300", "HAV", "IDK"],
+  "states": ["2128"],
+  "characters": ["White Moon", "Astra00", "Santa Claus", "Linochka", "moatz", "JovAnkA", "ViridianA"]
+},
+  {
   "id": "analyst-vanishes-koi",
   "date": "2026-06-03",
   "title": "[OBS]Analyst Publishes KOI Day One Report. Vanishes.",
@@ -8,7 +47,7 @@
   "blurb": "<p>On June 1, [OBS]Analyst published a King of Icefield Day One report. They noted they were not naming names, as naming names had not gone well previously.</p><p>That was three days ago.</p><p>Alliance 300 made their position clear. White Moon, Linochka:3, XAH, Santa Claus, Юрий, Astra00, Bek, #CRaZyDoc#, and Psihos_Evgenii occupied nine of the top ten KOI Day One positions. The tenth spot was taken by [HAV]Dracula, who apparently had somewhere to be. 300 was not asked for comment. They had already made one. [LOV]300Fan, reached via megaphone, previously stated that 300 does not hoard anything and could not care less. The Day One standings remain consistent with this position.</p><p>The Analyst promised KOI coverage. The Analyst filed one report. Day Two passed. Day Three passed. The megaphone is silent.</p><p>This publication has been covering State 2128 since before the Analyst had an account. We have four reporters. We have a pelican. We file.</p><p>The Analyst has a spreadsheet, a theory, and something to say about alliance power gaps. 2128 News is hiring. The pay is nonexistent. The editorial independence is total. The application is simple.</p><p>Send a DM.</p><p><em>—Griff Harpoon, actually reporting.</em></p>",
   "reporter": "Griff Harpoon",
   "tags": ["Drama", "Alliance News"],
-  "alliances": ["300", "HAV"],
+  "alliances": ["300"],
   "states": ["2128"],
   "characters": ["BLACKTATARO", "Dracula", "Santa Claus", "White Moon", "Astra00"]
 },{
