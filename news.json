@@ -1,5 +1,18 @@
 [
 {
+  "id": "ghoost-buff-rampage",
+  "date": "2026-06-04",
+  "title": "GhoOost Causes International Scandal. GhoOost Is in Jail.",
+  "img": "/assets/bia/catty-ghoost-jail-20260603.webp",
+  "alt": "President M buried under glowing DMs at her desk, expression of a woman at her absolute limit, GhoOost visible through jail bars in the background wearing a piggy hat looking genuinely sorry",
+  "blurb": "<p>GhoOost, of HAVOC, cleared the ministry sign-ups this week. All of them. For both states. The ministry sign-ups coordinate buffs — shared boosts that benefit every player across the state. When they disappear, everyone notices, and everyone knows who to call. The plan, sources close to GhoOost confirm, was to have fun.</p><p>The fun affected two states worth of players, a significant portion of whom are Korean, and every single one of them found President M's DMs. President M, NLO, supreme president of two states, wise, kind, and possessed of a patience that has now been fully expended, is managing the situation. The situation is a lot of messages. The messages are angry. GhoOost did not mean to make this many messages.</p><p>GhoOost is in jail. GhoOost has a piggy hat. GhoOost has since apologized.</p><p><em>—Catty von Catacean</em></p>",
+  "reporter": "Catty von Catacean",
+  "tags": ["Drama", "Alliance News"],
+  "alliances": ["HAV", "NLO"],
+  "states": ["2128"],
+  "characters": ["GhoOost", "M"]
+},
+  {
   "id": "koi-crossstate-first-catty",
   "date": "2026-06-04",
   "title": "State 2128 Takes First. White Moon Obliterates the Leaderboard.",
