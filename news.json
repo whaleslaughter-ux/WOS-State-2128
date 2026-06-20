@@ -1,4 +1,17 @@
 [
+ {
+  "id": "svs-turret-raistlin",
+  "date": "2026-06-20",
+  "title": "Raistlin Has Held the South Turret Since the Battle Opened..",
+  "img": "/assets/bia/griff-turret-raistlin-20260620.webp",
+  "alt": "A lone cat warrior holding a castle turret against waves of attackers, banners of NLO and 300 visible on the walls, battle raging below",
+  "blurb": "<p>Raistlin has held the south turret since the battle opened. </p><p>He is not doing it alone. Maham mju, Roman's, Z J 1123, Lil Wilmie, VoinSveta, Astra00, Юрий, Фиалка, and #CRaZyDoC# have formed a wall that State 1989 has spent the better part of this battle running into. NLO and 300 are coordinated, present, and apparently unbothered.</p><p>The Lowkey Legends came here fired up. The turret remains.</p><p><em>—Griff Harpoon, actually reporting.</em></p>",
+  "reporter": "Griff Harpoon",
+  "tags": ["SVS"],
+  "alliances": ["NLO", "300"],
+  "states": ["2128", "1989"],
+  "characters": ["Raistlin"]
+},
   {
   "id": "lol-castle-retaliation",
   "date": "2026-06-20",
