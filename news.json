@@ -1,5 +1,17 @@
 [
  {
+  "id": "svs-psyduck-infestation",
+  "date": "2026-06-20",
+  "title": "State 2128 Clears the Castle. The Psyducks Are Already Regrouping.",
+  "img": "/assets/bia/running-psyducks.webp",
+  "alt": "Lowkey Legends and an army of Psyducks being driven out of the Sunfire Castle gates under LoL banners, Death visible on the battlements, the retreat is organized and extremely temporary",
+  "blurb": "<p>State 2128 has cleared the Sunfire Castle. Again. The Lowkey Legends of State 1989 have been removed from the premises by Death, Wandy, Raistlin, and a garrison that has treated every attempted takeover as a minor administrative inconvenience.</p><p>They are already regrouping. [LoL]Noob, [LoL]PianoBird, [LoL]Dawn, [LoL]Bushraa, [LoL]Aang@ilProff, and [LoL]Karch did not come here to stay gone. They came here because Whaleslaughter sent them a recruitment message asking if they were tired of losing. They are not tired. They are not done. The Psyducks are simply between attempts.</p><p>State 2128 holds the castle. State 1989 is right outside. This has been the situation all day and there is no indication it is about to change.</p><p><em>—Griff Harpoon, actually reporting.</em></p>",
+  "reporter": "Griff Harpoon",
+  "tags": ["SVS", "Drama"],
+  "alliances": ["HAV", "NLO", "IDK"],
+  "states": ["2128", "1989"],
+  "characters": ["Death", "Wandy", "Raistlin", "Whaleslaughter"]
+},{
   "id": "svs-turret-raistlin",
   "date": "2026-06-20",
   "title": "Raistlin Has Held the South Turret Since the Battle Opened..",
