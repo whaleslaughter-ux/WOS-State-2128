@@ -1,4 +1,30 @@
 [
+  {
+  "id": "svs-battle-1989-tsa",
+  "date": "2026-06-04",
+  "title": "Wandy Holds Castle for 36 Minutes. State 2128 Almost Likes Each Other.",
+  "img": "/assets/bia/catty-svs-tsa-20260604.webp",
+  "alt": "Catty von Catacean reporting live from the battlefield, Wandy visible in the distance holding a glowing castle, alliance banners from multiple alliances flying together, mood is chaotic but coordinated",
+  "blurb": "<p>Wandy, IDK's whale, held the castle for thirty-six minutes and twenty-one seconds at the opening of today's SVS battle against State 1989. Continuously. Without interruption. Thirty-six minutes.</p><p>TSA, the state's SVS alliance, is running like a machine that has been oiled, calibrated, and pointed in the right direction. Players are communicating ratios. Heroes are being selected with intention. Everyone knows where to be and is actually being there. State 2128 is coordinating. State 2128 is communicating. State 2128 is, this reporter cautiously suggests, almost enjoying each other's company.</p><p>This is what the state looks like when it works.</p><p>State 1989's Lowkey Legends are invited to bring more energy to the remainder of this battle. They are going to need it.</p><p><em>—Catty von Catacean, reporting live.</em></p>",
+  "reporter": "Catty von Catacean",
+  "tags": ["SVS"],
+  "alliances": ["HAV", "IDK"],
+  "states": ["2128", "1989"],
+  "characters": ["Wandy"]
+},
+  {
+  "id": "prep-week-2128-sweep",
+  "date": "2026-06-04",
+  "title": "HAVOC Wins Prep Week. State 2128 Defeats 1989. Second Place Unknown.",
+  "img": "/assets/bia/griff-prep-sweep-20260604.webp",
+  "alt": "Griff Harpoon at his desk reviewing a prep leaderboard, HAVOC at the top, second place conspicuously blank, expression of a man who has seen this before",
+  "blurb": "<p>SVS Prep concluded this week. State 2128 defeated State 1989. This was not a surprise. This was not close. State 1989 showed up and State 2128 showed up harder and that is the entire story of the matchup.</p><p>Internal rankings: HAVOC first. Second place is unknown. NLO third. 300 fourth. Out of Order fifth. EVL Horizon sixth. 301 seventh. Everyone participated. The sheet got filled out. Nobody did anything requiring an explanation.</p><p>HAVOC is, for the record, a fourth-place alliance. HAVOC has won Prep Week. This has happened before. This will presumably happen again. This reporter filed the same story last cycle and the cycle before that and has accepted that HAVOC winning Prep Week is simply a feature of this state that does not require further analysis. HAVOC also receives a Stronghold most weeks. The current system appears to be working fine for HAVOC. This reporter declines to speculate on whether anyone has noticed.</p><p><em>—Griff Harpoon, actually reporting.</em></p>",
+  "reporter": "Griff Harpoon",
+  "tags": ["SVS", "Alliance News"],
+  "alliances": ["HAV", "NLO", "300", "OOO"],
+  "states": ["2128", "1989"],
+  "characters": []
+},
 {
   "id": "ghoost-buff-rampage",
   "date": "2026-06-04",
