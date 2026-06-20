@@ -1,5 +1,18 @@
 [
   {
+  "id": "lol-castle-retaliation",
+  "date": "2026-06-20",
+  "title": "Whaleslaughter Asks State 1989 If They Are Tired of Losing. State 1989 Has Thoughts.",
+  "img": "/assets/bia/fox-lol-castle-20260620.webp",
+  "alt": "Lowkey Legends troops storming the Sunfire Castle gates, banners raised, energy of people who have something to prove",
+  "blurb": "<p>At some point during today's SVS battle against State 1989, with the Sunfire Castle under State 2128 control, HAVOC R5 and editor of this publication Whaleslaughter sent the following recruitment message to the enemy state: \"Tired of losing? Join 2128.\"</p><p>One might ask what motivated this message. One might ask whether mid-battle recruitment is standard diplomatic practice. One might ask whether Whaleslaughter considered that State 1989 was, at that moment, not yet finished losing.</p><p>State 1989's Lowkey Legends — [LoL]Noob, [LoL]PianoBird, [LoL]Dawn, [LoL]Bushraa, [LoL]Aang@ilProff, and [LoL]Karch — assembled 1.7 million troops and seized the castle.</p><p>The castle that State 2128 held before the message was sent.</p><p>Whaleslaughter could not be reached for comment. The recruitment drive is ongoing.</p><p><em>—Greigh Fox, fair and balanced.</em></p>",
+  "reporter": "Greigh Fox",
+  "tags": ["SVS", "Drama"],
+  "alliances": ["HAV"],
+  "states": ["2128", "1989"],
+  "characters": ["Whaleslaughter"]
+},
+  {
   "id": "svs-battle-1989-live",
   "date": "2026-06-20",
   "title": "Death Takes the Castle. The Song Was Prophetic.",
