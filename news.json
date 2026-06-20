@@ -1,5 +1,17 @@
 [
  {
+  "id": "svs-2128-retake",
+  "date": "2026-06-20",
+  "title": "DByrd79 Leads the Rally. Whaleslaughter Contributes. Castle Retaken.",
+  "img": "/assets/bia/griff-svs-retake-20260620.webp",
+  "alt": "2128 troops flooding back into the Sunfire Castle, banners changing hands again, DByrd79 leading the charge",
+  "blurb": "<p>State 2128 has retaken the castle. DByrd79 led the rally. Whaleslaughter contributed troops. The troops were not FC9. The Helios were not fully leveled. The castle is back.</p><p>Death was in traffic. Wandy was jumpy. The three rally attempt failed. The second three rally attempt also failed. Then DByrd79 ran a rally with whatever was available, including Whaleslaughter and her weakass troops, and it worked.</p><p>Fifteen minutes of possession remaining. The Psyducks are still out there.</p><p><em>—Griff Harpoon, actually reporting.</em></p>",
+  "reporter": "Griff Harpoon",
+  "tags": ["SVS", "Drama"],
+  "alliances": ["HAV", "NLO", "IDK"],
+  "states": ["2128", "1989"],
+  "characters": ["Whaleslaughter", "Death", "Wandy"]
+},{
   "id": "svs-1989-counterattack",
   "date": "2026-06-20",
   "title": "1989 Controls the Castle. Death Is in Traffic.",
