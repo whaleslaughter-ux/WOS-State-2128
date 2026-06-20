@@ -1,5 +1,17 @@
 [
  {
+  "id": "svs-final-result-1989",
+  "date": "2026-06-20",
+  "title": "Heartbreaker. 1989 Takes the Castle in the Final Ten Minutes.",
+  "img": "/assets/bia/griff-svs-final-20260620.webp",
+  "alt": "1989 banners flying over the Sunfire Castle at final whistle, Lowkey Legends celebrating, State 2128 regrouping outside",
+  "blurb": "<p>State 1989 has won today's SVS battle. In the final ten minutes, the Lowkey Legends seized the castle, took the lead, and held it. State 2128 could not get it back.</p><p>The best battles are close and well fought. Today was a great battle. The Lowkey Legends absorbed hours of pressure, held their nerve when it mattered, and took the castle at the end. That is how you win a battle.</p><p>Congratulations to State 1989. Well fought.</p><p><em>—Greigh Fox, fair and balanced.</em></p>",
+  "reporter": "Greigh Fox",
+  "tags": ["SVS"],
+  "alliances": [],
+  "states": ["2128", "1989"],
+  "characters": []
+},{
   "id": "svs-2128-retake",
   "date": "2026-06-20",
   "title": "DByrd79 Leads the Rally. Whaleslaughter Contributes. Castle Retaken.",
