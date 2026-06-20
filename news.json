@@ -1,5 +1,18 @@
 [
  {
+  "id": "svs-1989-counterattack",
+  "date": "2026-06-20",
+  "title": "1989 Controls the Castle. Death Is in Traffic.",
+  "img": "/assets/bia/griff-svs-crisis-20260620.webp",
+  "alt": "1989 banners flying over the Sunfire Castle, all turrets captured, State 2128 regrouping outside the gates",
+  "blurb": "<p>State 1989 has turned it around. The Lowkey Legends control the castle. The Lowkey Legends control all the turrets. The Psyducks, written off by this publication as a recurring inconvenience, have taken everything.</p><p>Wandy said wth. Death said oh oh. A three rally attempt was launched. It did not work. A second three rally attempt is underway. Death is currently driving to work.</p><p>State 2128 is running out of time. The castle that held through Death's perfectly executed rallies, through Wandy's thirty-six minute garrison, through an infestation of motivated Psyducks, is currently flying 1989 colors.</p><p>Wandy is jumpy. Death is in traffic. The Psyducks are having a moment.</p><p><em>—Griff Harpoon, actually reporting.</em></p>",
+  "reporter": "Griff Harpoon",
+  "tags": ["SVS", "Drama"],
+  "alliances": ["HAV", "NLO", "IDK"],
+  "states": ["2128", "1989"],
+  "characters": ["Death", "Wandy"]
+},
+ {
   "id": "svs-psyduck-infestation",
   "date": "2026-06-20",
   "title": "State 2128 Clears the Castle. The Psyducks Are Already Regrouping.",
