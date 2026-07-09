@@ -1,5 +1,18 @@
 [
  {
+  "id": "snk-history-part-1",
+  "date": "2026-06-21",
+  "title": "The History of Snack Kingdom, Part 1: The Carebear Era",
+  "img": "/assets/bia/catty-snk-history-1-20260621.webp",
+  "alt": "WHL banners flying over a frost-covered state, smaller alliance flags burning in the distance, the founding era of State 2128",
+  "blurb": "<p>State 2128 was born in November 2024 with a clear hierarchy and no apologies for it. The Whales were on top, and the alliance they ran — WHL — operated on a philosophy that was neither cruel nor complicated: the strongest players build the strongest state, the NAP 10 holds the order, and anyone outside those ten alliances is welcome to exist on whatever terms the top decides to offer. Their leader was Carebear, a true believer with the spending power to back it up, and for a while the system worked the way closed systems always work — efficiently, cleanly, and at a cost that doesn't show up until later.</p><p>The cost was players. Smaller alliances that stepped out of line burned and didn't come back. The state shed members steadily while the top ten held their banners and their meetings and their votes, deciding the future of a community that wasn't allowed in the room. It should be said that Yami, who inherited the state when Carebear handed over the reins and left to start fresh somewhere else, was a more measured leader than his predecessor. The NAP had process. Alliances met. Decisions were made collectively and with genuine deliberation. The process simply never included anyone outside the top ten, and this did not strike anyone in the room as a problem worth solving.</p><p>Outside the room, it was a different story. From the very first days of the state, there were alliances that had decided — quietly at first, then very loudly — that they weren't going anywhere and weren't going to behave. HAVOC recruited across alliance lines, broke every NAP rule available, got burned, came back, got burned again, and came back again, rising from 80th place to 13th on sheer refusal to accept the terms being offered. BBQ, 300, and Out of Order were reaching the same conclusions in their own ways, each of them absorbing punishment and staying anyway, each of them making the same quiet argument: that a state needs everyone in it, not just the ones at the top.</p><p>Yami inherited a state that was starting to crack along that argument. He had the philosophy, the spending power, the alliance, and the absolute certainty that the system was correct — and on the other side of the NAP line, a growing number of alliances that had decided it wasn't. What happened next between them is the story of how State 2128 became what it is today.</p><p>This is the story of Snack Kingdom. It is also, unavoidably, the story of State 2128. You cannot tell one without the other.</p><p>Were you there? Share your memories of the WHL era in the comments.</p><p><em>—Catty von Catacean, who was there for all of it.</em></p>",
+  "reporter": "Catty von Catacean",
+  "tags": ["Alliance News", "Drama"],
+  "alliances": ["SNK"],
+  "states": ["2128"],
+  "characters": ["Yami"]
+},
+ {
   "id": "svs-final-result-1989",
   "date": "2026-06-20",
   "title": "Heartbreaker. 1989 Takes the Castle in the Final Ten Minutes.",
