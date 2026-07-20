@@ -1,5 +1,17 @@
 [
  {
+  "id": "tundra-arms-league-round-1",
+  "date": "2026-07-20",
+  "title": "Tundra Arms League Round 1: Legion One Fought. Legion Two Provided the Fire.",
+  "img": "/assets/bia/catty-tundra-arms-result-20260720.webp",
+  "alt": "Zar, Whaleslaughter and Pharaonic Cat looking singed",
+  "blurb": "<p>State 2128 entered the Tundra Arms League with two full teams and significant enthusiasm. The results were mixed in the way that a birthday party is mixed when half of it goes ok and the other half catches fire.</p><p>Legion One was the ok birthday party. Thirty-three players showed up, held the middle, scored gathering and loot rewards, and finished with 198,072 points against GAO's 349,524. They did not win. They also did not embarrass anyone. They fought, they coordinated, they gave State 2131's GAO alliance a real enough game that the MVP had to work for it. For a first tournament outing against an established opponent, this is something to build on.</p><p>Legion Two was what happens when toddlers run around with lit candles at a birthday party. [KOR]한국연맹 of State 2123 held the Foundry for 43 minutes and 51 seconds. TSA held it for zero minutes and zero seconds. KOR scored 410,591 control rewards. TSA scored zero control rewards. The final score was 535,129 to 5,887.</p><p>Whaleslaughter was zeroed. Then zeroed again. Then zeroed again until she lost count and simply accepted her new identity as a recurring target. Queen Zar, composer of dark electro-rock anthems and a woman not accustomed to losing, was zeroed multiple times. Pharaonic Cat, beloved, loyal, eternal, was zeroed. To be fair, they teleported in right next to the FC10 Globes. The Korean alliance did not discriminate. They came for everyone and they got everyone.</p><p>Neither legion advances. State 2128 came to the Tundra Arms League with full rosters and big energy and discovered that the tournament has its own ideas about that. Legion One built something real today. Legion Two built character. Both will be back.</p><p><em>—Catty von Catacean, charred.</em></p>",
+  "reporter": "Catty von Catacean",
+  "tags": ["Alliance News"],
+  "alliances": ["HAV", "NLO"],
+  "states": ["2128", "2123", "2131"],
+  "characters": ["Whaleslaughter", "Queen Zar", "Pharaonic Cat"]
+},{
   "id": "tundra-arms-league-2128",
   "date": "2026-07-18",
   "title": "State 2128 Fields Two Full Teams for Tundra Arms League. TSA Did Not Mess Around.",
