@@ -1,5 +1,18 @@
 [
  {
+  "id": "wander-theater-returns",
+  "date": "2026-07-26",
+  "title": "Wander Theater Returns. Data Collected. Catty Needs to Lie Down.",
+  "img": "/assets/bia/catty-finn-wander-theater-20260726.webp",
+  "alt": "Catty von Catacean dramatically slumped at a desk across from Finn Ledger who is calmly reviewing a clipboard of devastating statistics, Wander Theater promotional material visible in the background",
+  "blurb": "<p><strong>Catty von Catacean:</strong> Finn. The Wander Theater has returned. I have personally aged three years since the announcement. BLACKTATARO called it a scam, Whaleslaughter called it tedious, and I have been inconsolable since Tuesday. What does the data say.</p><p><strong>Finn Ledger:</strong> The official Whiteout Survival Facebook page asked players how they liked the event. The post received 160 comments. The top answer was \"And the shop is pure garbage.\"</p><p><strong>Catty:</strong> The top answer. On their OWN page. That THEY posted. Finn I am going to need a moment. Actually I don't have a moment because this event is stealing my time as we speak. What is the broader community saying about this crime against gaming.</p><p><strong>Finn:</strong> A YouTube video is titled \"Wander Theater Might Be Whiteout Survival's Worst Event Yet.\" A second creator stated \"I hate this one. Just doesn't seem worth it. What a waste.\" A Facebook post describing spending money on the event as being robbed received 90 comments. A third video asked \"Smash or Trash?\" and answered it.</p><p><strong>Catty:</strong> ROBBED. They felt ROBBED. I felt robbed. We are ALL being robbed, Finn, of our time, our resources, and our will to continue. The developers saw all of this feedback and did what.</p><p><strong>Finn:</strong> Shipped the event again. This is the second occurrence.</p><p><strong>Catty:</strong> I need to lie down.</p><p><strong>Finn:</strong> The data suggests that would be reasonable.</p><p><em>—Catty von Catacean and Finn Ledger, reporting jointly.</em></p>",
+  "reporter": "Catty von Catacean",
+  "tags": ["Drama"],
+  "alliances": ["300", "HAV"],
+  "states": ["2128"],
+  "characters": ["BLACKTATARO", "Whaleslaughter"]
+},
+ {
   "id": "mordukai-returns",
   "date": "2026-07-20",
   "title": "Mordukai Returns. Has Already Agreed With Whaleslaughter Three Times.",
