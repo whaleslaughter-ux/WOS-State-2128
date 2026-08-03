@@ -1,5 +1,17 @@
 [
  {
+  "id": "frostdragon-tyrant-declaration",
+  "date": "2026-08-03",
+  "title": "BREAKING: The Frostdragon Tyrant Has a Message for the Developers.",
+  "img": "/assets/bia/griff-frostdragon-declaration-20260803.webp",
+  "alt": "The Frostdragon Tyrant declaration mail displayed in game, victory banner in the background, the message visible in full",
+  "blurb": "<p>[WAR]SirCTone is the Frostdragon Tyrant. His alliance won the largest cross-state competition in Whiteout Survival. Then he sent a message to every major spender in the game.</p><p>The message, in full: &ldquo;The greed has gone too far. Updates are coming too fast, while the cost of keeping up keeps getting higher. The game is no longer about fun, strategy, or teamwork &mdash; it feels like an endless attempt to empty players&rsquo; wallets. Even big spenders are reaching their limits. To all major spenders: let&rsquo;s unite for once and stop spending on overpriced events and upgrades. Only together can we make the developers listen. We love this game, but this direction is killing the fun. Enough is Enough.&rdquo;</p><p>SirCTone did not send this as a struggling f2p player watching from the outside. He sent it as the man who just beat everyone. That is a different kind of message. The developers should probably read it.</p><p>2128 News has reached out to [WAR]SirCT for comment. This publication also notes that the declaration was sent from an account designated SirCTone rather than the main account on record. Whether this was intentional protection of a primary account is unknown at time of publication.</p><p><em>&mdash;Griff Harpoon, actually reporting.</em></p>",
+  "reporter": "Griff Harpoon",
+  "tags": ["Drama", "Alliance News"],
+  "alliances": ["WAR"],
+  "states": ["2128"],
+  "characters": ["SirCTone"]
+},{
   "id": "wander-theater-returns",
   "date": "2026-07-26",
   "title": "Wander Theater Returns. Data Collected. Catty Needs to Lie Down.",
