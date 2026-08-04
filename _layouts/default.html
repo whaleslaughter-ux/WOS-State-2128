@@ -16,11 +16,7 @@
 
 <link rel="shortcut icon" href="/favicon.ico">
 
-<meta property="og:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}" />
-  <meta property="og:description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}" />
-  <meta property="og:url" content="{{ page.url | absolute_url }}" />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="{{ '/assets/images/preview-image.png' | absolute_url }}" />
+
 </head>
 <body>
   {% include nav.html %}
