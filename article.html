@@ -284,7 +284,9 @@
       if (h < 24) return h + 'h ago';
       return Math.floor(h / 24) + 'd ago';
     }
-function slugify(s){ return (s||'').toLowerCase().replace(/\s+/g,'-').replace(/[^a-z0-9-]/g,''); }
+
+    function slugify(s){ return (s||'').toLowerCase().replace(/\s+/g,'-').replace(/[^a-z0-9-]/g,''); }
+
     function escHtml(str) {
       return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
     }
@@ -546,7 +548,18 @@ function slugify(s){ return (s||'').toLowerCase().replace(/\s+/g,'-').replace(/[
         .map(function(x){ return x.n; });
     }
 
-    function renderArticle(article, related) {
+    function getAdjacentArticles(article, all) {
+      var idx = all.findIndex(function(n){ return n.id === article.id; });
+      if (idx === -1) return { newer: null, older: null };
+      
+      // Since array is newest-first: index 0 is newest
+      var newer = idx > 0 ? all[idx - 1] : null;
+      var older = idx < all.length - 1 ? all[idx + 1] : null;
+      
+      return { newer: newer, older: older };
+    }
+
+    function renderArticle(article, all) {
       document.title = article.title + ' — WOS State 2128';
 
       var tagsHtml = [
@@ -554,6 +567,21 @@ function slugify(s){ return (s||'').toLowerCase().replace(/\s+/g,'-').replace(/[
         (article.tags || []).map(function(t){ return '<span class="tag">' + escHtml(t) + '</span>'; }).join('')
       ].join('');
 
+      // Find adjacent articles for next/prev navigation
+      var adj = getAdjacentArticles(article, all);
+      var navHtml = '';
+      if (adj.newer || adj.older) {
+        navHtml = '<nav class="article-nav" aria-label="More stories" style="display:flex;justify-content:space-between;gap:12px;margin:32px 0 40px;flex-wrap:wrap;">'
+          + (adj.newer 
+              ? '<a href="/article.html?id=' + encodeURIComponent(adj.newer.id) + '" class="btn-primary" style="text-decoration:none;display:inline-flex;align-items:center;gap:6px;">← Newer Story</a>' 
+              : '<div></div>')
+          + (adj.older 
+              ? '<a href="/article.html?id=' + encodeURIComponent(adj.older.id) + '" class="btn-primary" style="text-decoration:none;display:inline-flex;align-items:center;gap:6px;margin-left:auto;">Older Story →</a>' 
+              : '')
+          + '</nav>';
+      }
+
+      var related = getRelated(article, all);
       var relatedHtml = '';
       if (related.length) {
         relatedHtml = '<section class="related-section" aria-labelledby="related-heading">'
@@ -585,6 +613,7 @@ function slugify(s){ return (s||'').toLowerCase().replace(/\s+/g,'-').replace(/[
         + '</header>'
         + '<div class="article-body">' + article.blurb + '</div>'
         + '</article>'
+        + navHtml
         + '<div class="share-wrap">'
         + '<button class="share-btn" id="share-btn" type="button">&#128279; Share this article</button>'
         + '</div>'
@@ -629,7 +658,7 @@ function slugify(s){ return (s||'').toLowerCase().replace(/\s+/g,'-').replace(/[
             qs('#article-root').innerHTML = '<div class="not-found"><h1>Article not found</h1><p>We couldn\'t find that story. <a href="/index.html">Return home</a>.</p></div>';
             return;
           }
-          renderArticle(article, getRelated(article, allNews));
+          renderArticle(article, allNews);
         })
         .catch(function() {
           qs('#skeleton').style.display = 'none';
