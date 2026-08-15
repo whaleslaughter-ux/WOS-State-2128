@@ -2,6 +2,18 @@
 {
   "id": "svs-battle-2159-rally",
   "date": "2026-08-15",
+  "title": "2159 Sends Five Consecutive Rallies. The Fifth One Worked.",
+  "img": "/assets/bia/placeholder.webp",
+  "alt": "Image pending. Our AI art department has been found unconscious. Again.",
+  "blurb": "<p>2128 held the castle against four consecutive rallies. 2159 sent five. Giant meteors rained across the garrison. The castle held through the first four. The last rally took it.</p><p><em>—Catty von Catacean, reporting live.</em></p>",
+  "reporter": "Catty von Catacean",
+  "tags": ["SVS"],
+  "alliances": ["HAV", "NLO", "IDK"],
+  "states": ["2128", "2159"],
+  "characters": []
+},{
+  "id": "svs-battle-2159-rally",
+  "date": "2026-08-15",
   "title": "2159 Sends Five Consecutive Rallies. The Castle Held Against Four.",
   "img": "/assets/bia/placeholder.webp",
   "alt": "Image pending. Our AI art department has been found unconscious. Again.",
