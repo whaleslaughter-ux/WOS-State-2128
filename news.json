@@ -1,5 +1,17 @@
 [
 {
+  "id": "svs-battle-2159-update",
+  "date": "2026-08-15",
+  "title": "2159 Finds Their Footing. 2128 Is Not Making It Easy.",
+  "img": "/assets/bia/catty-svs-battle-update-20260815.webp",
+  "alt": "Turrets changing hands in a fierce castle battle, multiple alliance banners visible, healers and coordinators working across the battlefield",
+  "blurb": "<p>The battle has settled into something relentless. Turrets changing hands on both sides, constant rallies, nothing decided. 2159 is starting to find their footing at the castle but 2128 is not making it easy.</p><p>Pharaonic Cat and Sin7877 are running ratios and keeping morale loud. The healers are working overtime keeping troops in the fight. Death is here on his day off — his actual day off, from his actual job — because that is who Death is. Little Bunny is on announcements keeping everyone coordinated and calm.</p><p>This is what 2128 looks like when it shows up. Not the biggest wallets in the room. Just everyone doing their job at the same time.</p><p><em>—Catty von Catacean, reporting live.</em></p>",
+  "reporter": "Catty von Catacean",
+  "tags": ["SVS"],
+  "alliances": ["HAV", "NLO", "IDK"],
+  "states": ["2128", "2159"],
+  "characters": ["Death", "Pharaonic Cat", "Sin7877"]
+},{
   "id": "blk-goodbye-meme-face",
   "date": "2026-08-15",
   "title": "A Face Has Appeared at the Castle. This Publication Has Questions.",
