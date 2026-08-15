@@ -1,5 +1,17 @@
 [
 {
+  "id": "svs-battle-2159-midbattle",
+  "date": "2026-08-15",
+  "title": "Mid-Battle Report: Black Hawk Has Thoughts. 2159 Is Too Busy to Comment.",
+  "img": "/assets/bia/placeholder.webp",
+  "alt": "If our AI art department were conscious, this would show Black Hawk raising an eyebrow at a leaderboard showing billion-power players requiring five rallies to take a castle. They are not conscious. We regret this.",
+  "blurb": "<p>Mid-battle update from the Sunfire Castle.</p><p>Black Hawk of 2128 has issued a statement: &ldquo;You would think 4 or 5 players with a billion power wouldn&rsquo;t need to rally 4 to 5 times, just saying.&rdquo; Black Hawk said this and then presumably went back to fighting.</p><p>Pet rotations are underway as boost timers expire. Fresh pets are cycling in to replace exhausted ones. The logistics of a sustained castle battle are considerable and 2128 is managing them.</p><p>2159 has not commented. 2159 is busy.</p><p><em>—Catty von Catacean, reporting live.</em></p>",
+  "reporter": "Catty von Catacean",
+  "tags": ["SVS"],
+  "alliances": ["HAV", "NLO", "IDK"],
+  "states": ["2128", "2159"],
+  "characters": ["Black Hawk"]
+},{
   "id": "svs-battle-2159-retake",
   "date": "2026-08-15",
   "title": "2128 Retakes the Castle. Two Rallies. Wandy Is Holding It.",
