@@ -1,5 +1,17 @@
 [
 {
+  "id": "svs-battle-2159-retake",
+  "date": "2026-08-15",
+  "title": "2128 Retakes the Castle. Two Rallies. Wandy Is Holding It.",
+  "img": "/assets/bia/placeholder.webp",
+  "alt": "If our AI art department were conscious, this image would show Wandy — cute brunette, white fluffy dog on her head — holding the castle garrison with calm authority while 2159 regroups in the distance. They are not conscious. We regret this.",
+  "blurb": "<p>2159 spent five rallies taking the castle. 2128 took it back in two.</p><p>Wandy is holding it. The fluffy dog on her head has not commented on the situation but sources describe it as unbothered.</p><p><em>—Catty von Catacean, reporting live.</em></p>",
+  "reporter": "Catty von Catacean",
+  "tags": ["SVS"],
+  "alliances": ["HAV", "NLO", "IDK"],
+  "states": ["2128", "2159"],
+  "characters": ["Wandy"]
+},{
   "id": "svs-battle-2159-rally",
   "date": "2026-08-15",
   "title": "2159 Sends Five Consecutive Rallies. The Fifth One Worked.",
