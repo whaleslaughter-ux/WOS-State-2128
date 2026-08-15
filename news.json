@@ -1,5 +1,17 @@
 [
  {
+  "id": "svs-battle-2159-live",
+  "date": "2026-08-15",
+  "title": "Death Holds the Castle. IKEA Has an Allen Wrench. 2128 Came Ready.",
+  "img": "/assets/bia/catty-svs-battle-2159-20260815.webp",
+  "alt": "2128 troops holding the castle against 2159's FC9 and FC10 forces, Death visible in the garrison, coordination visible across the battlefield",
+  "blurb": "<p>State 2128 is holding the castle and the situation is, genuinely, beautiful to watch.</p><p>2159 came with everything. FC9s. FC10s. Whales deep enough to make the leaderboard look like a spending competition, which it is. Their battle alliance is called Brother of Soldiers. Their leader is named IKEA. IKEA has troops. IKEA has resources. IKEA has, presumably, instructions in twelve languages and one allen wrench.</p><p>And yet. Death and 2128 have held the castle for almost the entire first hour. The rally ratios went out early. The coordination has been sharp. Every player in the right place at the right time doing the right thing. This state has been called a lot of things but today it looks like a machine — every cog turning, every rally landing, every instruction followed.</p><p>2128 came ready. 2159 is going to have to earn this one.</p><p><em>—Catty von Catacean, reporting live.</em></p>",
+  "reporter": "Catty von Catacean",
+  "tags": ["SVS"],
+  "alliances": ["HAV", "NLO", "IDK"],
+  "states": ["2128", "2159"],
+  "characters": ["Death"]
+},{
   "id": "svs-prep-recap-2159",
   "date": "2026-08-14",
   "title": "SVS Prep Concludes. State 2159 Has Deeper Pockets. The Numbers Confirm This.",
