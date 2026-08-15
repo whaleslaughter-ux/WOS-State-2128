@@ -1,5 +1,17 @@
 [
  {
+  "id": "blk-goodbye-meme-face",
+  "date": "2026-08-15",
+  "title": "A Face Has Appeared at the Castle. This Publication Has Questions.",
+  "img": "/assets/bia/griff-goodbye-meme-20260815.webp",
+  "alt": "man in pigtails with missing teeth on the screen while bulldog griff reports",
+  "blurb": "<p>[BLK]goodbye is holding the Sunfire Castle. [BLK]goodbye has a profile picture. The profile picture is a real human face — smiling, slightly unsettling, the kind of face that appears on stock photo websites under the search term \"confident.\" It became something of a landmark during the Frostdragon Tyrant competition, where it appeared frequently enough to achieve a certain notoriety.</p><p>This publication has reviewed [BLK]goodbye's performance at the castle today. The face is powerful. The player is less conclusively so.</p><p>Where the face came from remains unknown. This publication is not making accusations. This publication is simply noting that a very recognizable face has turned up at the castle and that its owner's stats do not entirely match its confidence.</p><p>The investigation is ongoing.</p><p><em>—Griff Harpoon, actually reporting.</em></p>",
+  "reporter": "Griff Harpoon",
+  "tags": ["Drama", "SVS"],
+  "alliances": [],
+  "states": ["2128", "2159"],
+  "characters": ["goodbye"]
+},{
   "id": "svs-battle-2159-live",
   "date": "2026-08-15",
   "title": "Death Holds the Castle. IKEA Has an Allen Wrench. 2128 Came Ready.",
