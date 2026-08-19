@@ -1,5 +1,17 @@
 [
 {
+  "id": "nwo-new-management-cute",
+  "date": "2026-08-19",
+  "title": "New World Order Under New Management — Management Is A Panda And A Peach",
+  "img": "/assets/bia/catty-nwo-cute-takeover.webp",
+  "alt": "Pharoanic cat wearing a golden Egyptian headdress and grinning in the center of an enormous pile of adorable animals on an ornate rug, pandas and bunnies and kittens and corgis and huskies and fluffy round things of indeterminate species heaped on top of each other in every direction, an Egyptian palace and pyramids in the background, daisies and wildflowers in the grass, everyone smiling, nobody concerned about the sheer volume of cuteness, the pile still growing",
+  "blurb": "<p>The NWO alliance has new leadership and they are overwhelming State 2128 with their cuteness. We are talking bunnies. We are talking kittens. We are talking what appears to be a peach with eyes. A <em>peach</em>.</p><p>The R5 is Panda, who has been with us for a couple of weeks testing the culture of 2128. Somehow we passed &mdash; in spite of a hacking rampage and a kerfuffle with the news. I am choosing not to examine this too closely.</p><p>We are so excited to meet new friends. Pharoanic cat is thrilled to have more friends to be adorable with. I for one welcome our tribble overlords. They are multiplying. They cannot be stopped. Nobody wants to stop them.</p><p>Be warned. These little animals come with some power &mdash; and with KingKong and aShark &mdash; so do not let the cute little faces fool you too much. &mdash;Catty von Catacean</p>",
+  "reporter": "Catty von Catacean",
+  "tags": ["Alliance News"],
+  "alliances": ["NWO", "HAV"],
+  "states": ["2128"],
+  "characters": ["Panda", "Pharoanic cat", "KingKong", "aShark"]
+},{
   "id": "svs-battle-2159-final",
   "date": "2026-08-15",
   "title": "2128 Holds the Castle. One State. One Mountain. Good Work All.",
