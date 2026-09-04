@@ -1,5 +1,18 @@
 [
  {
+  "id": "player-card-pipeline-status-report",
+  "date": "2026-09-04",
+  "title": "Player Card Automation Pipeline Now Operational &mdash; A Status Report",
+  "img": "/assets/bia/finn-player-card-pipeline-20260904.webp",
+  "alt": "A pelican in a tie standing at a podium presenting a flowchart with six logos connected by arrows, the audience of zero chairs all empty, a single slide behind him reading Slide 1 of 1, the podium nameplate reading F. Ledger, Systems",
+  "blurb": "<p>2128 News has deployed a player card generation pipeline. A player submits a form with their character details. Six platforms then do things in sequence &mdash; Make.com, Google Sheets, OpenAI, Cloudinary, Stripe, and Google Apps Script &mdash; resulting in a watercolor-and-pencil illustrated card with the player&#39;s name, alliance, and title rendered directly into the artwork. The back of the card displays a decorative border and the player&#39;s own description, lightly copy-edited by a machine that was not told why.</p><p>Each card requires four to six API calls. The content moderation filter flagged the word &ldquo;slaughter&rdquo; during development. This was noted.</p><p>Cards are available for $2 at the <a href=&quot;https://2128.whaleslaughter.com/players&quot;>Players page</a>. The first five readers to use the promo code <strong>FINNFIVE</strong> will receive one at no cost. Cards flip on hover on desktop and via button on mobile. Alt text is generated as full literary scene descriptions for screen reader users, because the person who built this system teaches blind people for a living and was not going to skip that.</p><p>The system was built in approximately 30 hours. Further observations have been deemed unnecessary. &mdash;Finn Ledger</p>",
+  "reporter": "Finn Ledger",
+  "tags": ["Guide"],
+  "alliances": [],
+  "states": ["2128"],
+  "characters": ["Finn Ledger"]
+},
+ {
   "id": "mordukai-zeroed-2321",
   "date": "2026-08-27",
   "title": "UPDATE: State 2321 Zeros Every Mordukai Account, Former Resident Now In Jail",
