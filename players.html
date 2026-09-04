@@ -159,7 +159,7 @@
     // Main
     (async () => {
       try {
-        const url = 'https://script.google.com/macros/s/AKfycbybmxe-dbKeru59gp0fmiaH_j8_fofOIju_wFOCWV2SaGfd8D1KiIMxVI53uAKqbPm8/exec';
+        const url = 'https://script.google.com/macros/s/AKfycbwYByTa24Yd4WX97uozPPT7y-8lOyLxdar-jP8HYfGLb0rm8Tw9o8o7Z7T3L0revXkJ/exec';
         const res = await fetch(url, { method:'GET', headers: { 'Accept': 'application/json' }});
         if (!res.ok) throw new Error('Feed HTTP ' + res.status);
         const raw = await res.json();
