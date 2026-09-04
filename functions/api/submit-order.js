@@ -3,12 +3,10 @@ export async function onRequestPost({ request, env }) {
     const data = await request.json();
     const code = (data.payment_code || '').trim();
 
-    // 1. Reject empty payment codes
     if (!code) {
       return jsonRes({ status: 'error', message: 'Missing payment code.' });
     }
 
-    // 2. Sanitize inputs
     const clean = str => String(str || '').replace(/<[^>]*>/g, '').trim();
     data.name = clean(data.name);
     data.alliance = clean(data.alliance);
@@ -19,15 +17,16 @@ export async function onRequestPost({ request, env }) {
     data.motifs = clean(data.motifs);
     data.back_text = clean(data.back_text);
 
-    // 3. Require mandatory fields
     if (!data.name || !data.alliance || !data.title || !data.description) {
       return jsonRes({ status: 'error', message: 'Missing required fields.' });
     }
 
-    // 4. Verify with Stripe (skip grandfathered codes)
     const isGrandfathered = code === 'ORIGINAL' || code.startsWith('PC-');
     if (!isGrandfathered) {
       const stripeKey = env.STRIPE_SECRET_KEY;
+      if (!stripeKey) {
+        return jsonRes({ status: 'error', message: 'Server config error: missing Stripe key.' });
+      }
       const stripeRes = await fetch(
         'https://api.stripe.com/v1/checkout/sessions/' + encodeURIComponent(code),
         {
@@ -41,23 +40,34 @@ export async function onRequestPost({ request, env }) {
       }
     }
 
-    // 5. Send to Apps Script (it handles duplicate check + row write)
     const scriptUrl = 'https://script.google.com/macros/s/AKfycbwYByTa24Yd4WX97uozPPT7y-8lOyLxdar-jP8HYfGLb0rm8Tw9o8o7Z7T3L0revXkJ/exec';
     const scriptRes = await fetch(scriptUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
     });
-    const scriptResult = await scriptRes.json();
+    const scriptText = await scriptRes.text();
+    
+    let scriptResult;
+    try {
+      scriptResult = JSON.parse(scriptText);
+    } catch {
+      return jsonRes({ status: 'error', message: 'Apps Script returned invalid response: ' + scriptText.substring(0, 200) });
+    }
 
     if (scriptResult.status !== 'ok') {
       return jsonRes(scriptResult);
     }
 
-    // 6. Poke Make.com
+    // Poke Make.com
     const makeToken = env.MAKE_API_TOKEN;
     const makeScenarioId = env.MAKE_SCENARIO_ID;
-    await fetch(
+
+    if (!makeToken || !makeScenarioId) {
+      return jsonRes({ status: 'ok', warning: 'Card saved but auto-generation failed: missing Make.com config.' });
+    }
+
+    const makeRes = await fetch(
       'https://us2.make.com/api/v2/scenarios/' + makeScenarioId + '/run',
       {
         method: 'POST',
@@ -67,11 +77,16 @@ export async function onRequestPost({ request, env }) {
         }
       }
     );
+    const makeText = await makeRes.text();
+
+    if (!makeRes.ok) {
+      return jsonRes({ status: 'ok', warning: 'Card saved but Make.com poke failed (' + makeRes.status + '): ' + makeText.substring(0, 200) });
+    }
 
     return jsonRes({ status: 'ok' });
 
   } catch (err) {
-    return jsonRes({ status: 'error', message: 'Server error. Please try again.' });
+    return jsonRes({ status: 'error', message: 'Server error: ' + err.message });
   }
 }
 
