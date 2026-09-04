@@ -64,10 +64,10 @@
     /* Back */
     .back{transform:rotateY(180deg);background:linear-gradient(180deg,#0c122f 0%,#070b1a 80%);border:1px solid rgba(212,176,106,.35)}
     .back-img{width:100%;height:100%;object-fit:cover;border-radius:var(--radius)}
-      .back-text{position:absolute;inset:30px 24px;display:flex;align-items:center;justify-content:center;
-      padding:20px;text-align:center;font-size:.85rem;line-height:1.6;color:#2a1f0e;
+    .back-text{position:absolute;inset:40px 36px;display:flex;align-items:center;justify-content:center;
+      padding:16px;text-align:center;font-size:1rem;line-height:1.6;color:#2a1f0e;
       font-style:italic;font-family:Georgia,'Times New Roman',serif}
-    .back-text p{margin:0;max-width:200px;text-shadow:0 0 8px rgba(255,245,220,.4)}
+    .back-text p{margin:0;max-width:160px;text-shadow:0 0 8px rgba(255,245,220,.4)}
 
     /* Coming soon placeholder */
     .placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;
@@ -83,11 +83,14 @@
     .cta-link:hover,.cta-link:focus{border-color:var(--gold);box-shadow:0 0 20px rgba(212,176,106,.25)}
     .cta-link:focus{outline:3px solid #88a2ff}
 
-    /* Flip button */
+    /* Flip button — hidden on desktop, visible on touch/reduced-motion */
     .flip-btn{position:absolute;right:10px;top:10px;z-index:2;background:rgba(10,15,36,.6);color:#fff;
       border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:6px 10px;font-size:.8rem;
-      backdrop-filter:blur(4px);cursor:pointer}
+      backdrop-filter:blur(4px);cursor:pointer;display:none}
     .flip-btn:focus{outline:3px solid #88a2ff}
+    @media (hover: none),(prefers-reduced-motion: reduce){
+      .flip-btn{display:block}
+    }
 
     .no-results{text-align:center;color:#b9c3ff;font-size:1rem;padding:40px 0;grid-column:1/-1}
     .sr-only{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}
@@ -201,7 +204,7 @@
           grid.insertAdjacentHTML('beforeend', `
             <article class="card-outer" aria-label="Get your own Player Card">
               <div class="card noflip">
-                <a class="cta-link" href="https://buy.stripe.com/YOUR_PAYMENT_LINK" target="_blank" rel="noopener">
+                <a class="cta-link" href="https://forms.gle/StCbCzoMK8Fv6yAZ6" target="_blank" rel="noopener">
                   <span style="font-size:1.3rem;font-weight:600;">✨ Want your own<br>Player Card?</span>
                   <span style="margin-top:12px;font-size:1rem;opacity:.9;">$2 — Click here to order</span>
                 </a>
@@ -235,7 +238,7 @@
             if (hasBack) {
               backHTML = `<div class="face back"><img class="back-img" src="${c.back}" alt="" loading="lazy" width="320" height="480" />${backText ? `<div class="back-text"><p>${esc(backText)}</p></div>` : ''}</div>`;
             } else {
-              backHTML = `<div class="face back"><div class="placeholder">${backText ? `<p style="color:#eef2ff;max-width:240px">${esc(backText)}</p>` : '<span style="opacity:.6">Back coming soon</span>'}</div></div>`;
+              backHTML = `<div class="face back"><div class="placeholder">${backText ? `<p style="color:#eef2ff;max-width:200px;font-style:italic;font-family:Georgia,serif">${esc(backText)}</p>` : '<span style="opacity:.6">Back coming soon</span>'}</div></div>`;
             }
 
             grid.insertAdjacentHTML('beforeend', `
