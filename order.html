@@ -307,6 +307,7 @@
         const result = await res.json();
 
         if (result.status === 'ok') {
+          if (result.warning) alert('Note: ' + result.warning);
           document.getElementById('form-container').style.display = 'none';
           document.getElementById('success-msg').style.display = 'block';
         } else {
