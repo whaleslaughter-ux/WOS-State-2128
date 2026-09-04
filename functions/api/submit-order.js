@@ -37,7 +37,7 @@ export async function onRequestPost({ request, env }) {
       const session = await stripeRes.json();
 
       if (!stripeRes.ok || (session.payment_status !== 'paid' && session.amount_total !== 0)) {
-        return jsonRes({ status: 'error', message: 'Payment not verified.' });
+        return jsonRes({ status: 'error', message: 'STOP YOU FIEND. PAYMENT NOT VERIFIED.' });
       }
     }
 
