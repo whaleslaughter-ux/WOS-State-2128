@@ -47,7 +47,7 @@ export async function onRequestPost({ request, env }) {
       body: JSON.stringify(data)
     });
     const scriptText = await scriptRes.text();
-    
+
     let scriptResult;
     try {
       scriptResult = JSON.parse(scriptText);
@@ -59,7 +59,6 @@ export async function onRequestPost({ request, env }) {
       return jsonRes(scriptResult);
     }
 
-    // Poke Make.com
     const makeToken = env.MAKE_API_TOKEN;
     const makeScenarioId = env.MAKE_SCENARIO_ID;
 
@@ -68,7 +67,7 @@ export async function onRequestPost({ request, env }) {
     }
 
     const makeRes = await fetch(
-      'https://us2.make.com/api/v2/scenarios/' + makeScenarioId + '/run',
+      'https://us2.make.com/api/v2/scenarios/' + makeScenarioId + '/start',
       {
         method: 'POST',
         headers: {
