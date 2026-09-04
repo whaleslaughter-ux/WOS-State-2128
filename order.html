@@ -16,9 +16,31 @@
     *{box-sizing:border-box}
     body{margin:0;color:#eef2ff;font:16px/1.6 system-ui,-apple-system,Segoe UI,Inter,Roboto,Arial;
       background:radial-gradient(1100px 560px at 50% -10%,#1a2147 0%,#0b1030 42%,#060915 100%)}
-    .wrap{max-width:640px;margin:0 auto;padding:40px 16px}
+    .wrap{max-width:1000px;margin:0 auto;padding:40px 16px}
     h1{text-align:center;font-size:clamp(1.2rem,1.6vw + 1rem,1.8rem);letter-spacing:.5px;margin:0 0 8px}
     .subtitle{text-align:center;color:#b9c3ff;margin:0 0 32px;font-size:.95rem}
+
+    /* Layout grid for Form + Live Preview Card */
+    .builder-layout{display:flex;gap:40px;align-items:flex-start;justify-content:center}
+    .form-column{flex:1;max-width:520px}
+    .preview-column{width:320px;position:sticky;top:20px}
+
+    .card-preview-wrapper{position:relative;width:100%;border-radius:12px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,0.5);border:1px solid rgba(212,176,106,.3)}
+    .card-preview-wrapper img{width:100%;height:auto;display:block}
+
+    /* Highlight Boxes mapped precisely to your card design */
+    .card-highlight{
+      position:absolute;border:2px dashed #00ffff;
+      background-color:rgba(0, 255, 255, 0.15);
+      box-shadow:0 0 12px rgba(0, 255, 255, 0.5);
+      opacity:0;transition:opacity 0.2s ease-in-out;pointer-events:none;border-radius:4px;
+    }
+    .zone-name { top: 5.5%; left: 21%; width: 58%; height: 6.5%; }
+    .zone-alliance { top: 12.5%; left: 32%; width: 36%; height: 3.5%; }
+    .zone-title { bottom: 5%; left: 16%; width: 68%; height: 9.5%; }
+    .zone-desc { top: 22%; left: 10%; width: 80%; height: 50%; }
+    .zone-back { top: 38%; left: 15%; width: 70%; height: 35%; }
+    .card-highlight.active { opacity: 1; }
 
     .form-group{margin-bottom:20px}
     label{display:block;font-weight:600;margin-bottom:6px;color:#d4b06a;font-size:.9rem}
@@ -47,7 +69,11 @@
     .success p{color:#b9c3ff;max-width:400px;margin:0 auto}
 
     .error-msg{color:#ff6b6b;font-size:.85rem;margin-top:4px;display:none}
-    .sr-only{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}
+
+    @media (max-width: 850px) {
+      .builder-layout{flex-direction:column-reverse;align-items:center}
+      .preview-column{position:relative;top:0;width:280px;margin-bottom:30px}
+    }
   </style>
 </head>
 <body>
@@ -56,72 +82,92 @@
 
   <div class="wrap">
     <h1>Order Your Player Card</h1>
-    <p class="subtitle">Fill out the details below and we'll generate your bespoke fantasy player card.</p>
+    <p class="subtitle">Fill out the details below and watch the interactive preview guide your design.</p>
 
-    <div id="form-container">
-      <div class="form-group">
-        <label for="payment-code">Payment Code</label>
-        <span class="hint">Auto-filled from your payment — don't change this</span>
-        <input type="text" id="payment-code" readonly />
+    <div class="builder-layout">
+      <!-- Left Column: Form -->
+      <div class="form-column">
+        <div id="form-container">
+          <div class="form-group">
+            <label for="payment-code">Payment Code</label>
+            <span class="hint">Auto-filled from your payment — don't change this</span>
+            <input type="text" id="payment-code" readonly />
+          </div>
+
+          <div class="form-group" data-target="zone-name">
+            <label for="char-name" class="required">Character Name</label>
+            <input type="text" id="char-name" placeholder="e.g. WHALESLAUGHTER" required />
+            <div class="error-msg" id="name-error">Please enter your character name.</div>
+          </div>
+
+          <div class="form-group" data-target="zone-alliance">
+            <label for="alliance" class="required">Alliance Name</label>
+            <span class="hint">Format: HAVOC - 2128 (include your state)</span>
+            <input type="text" id="alliance" placeholder="e.g. HAVOC - 2128" required />
+            <div class="error-msg" id="alliance-error">Please enter your alliance name.</div>
+          </div>
+
+          <div class="form-group" data-target="zone-title">
+            <label for="title" class="required">Tarot Title / Tagline</label>
+            <span class="hint">The text at the bottom banner of your card</span>
+            <input type="text" id="title" placeholder="e.g. The Villain" required />
+            <div class="error-msg" id="title-error">Please enter a title or tagline.</div>
+          </div>
+
+          <div class="form-group" data-target="zone-desc">
+            <label for="description" class="required">Physical Description</label>
+            <span class="hint">Detailed prompt description for your front card artwork</span>
+            <textarea id="description" placeholder="e.g. A female warrior in dark plate armor, purple hair..." required></textarea>
+            <div class="error-msg" id="desc-error">Please describe your character.</div>
+          </div>
+
+          <div class="form-group">
+            <label for="setting">Setting / Atmosphere</label>
+            <span class="hint">Defaults to a winter scene if left blank</span>
+            <input type="text" id="setting" placeholder="e.g. A misty swamp, a medieval tavern..." />
+          </div>
+
+          <div class="form-group">
+            <label for="extras">Artistic Extras</label>
+            <span class="hint">Mist, snowflakes, petals, bugs, etc.</span>
+            <input type="text" id="extras" placeholder="e.g. Snowflakes, floating lanterns..." />
+          </div>
+
+          <div class="form-group">
+            <label for="motifs">Border Motifs</label>
+            <span class="hint">The decorative stuff around the card edge</span>
+            <input type="text" id="motifs" placeholder="e.g. Spider webs, frozen curls, weapons..." />
+          </div>
+
+          <div class="form-group" data-target="zone-back">
+            <label for="back-text">Back of Card Text</label>
+            <span class="hint">The bio / flavor text displayed on the card back</span>
+            <textarea id="back-text" placeholder="e.g. Topples empires with razor-sharp wit..."></textarea>
+          </div>
+
+          <button class="submit-btn" id="submit-btn">Submit My Card</button>
+        </div>
+
+        <div id="success-msg" class="success" style="display:none">
+          <h2>Card Submitted!</h2>
+          <p>Your bespoke player card is being generated. Check the <a href="/players.html" style="color:#d4b06a">Player Cards</a> page — it'll be there when it's ready.</p>
+        </div>
       </div>
 
-      <div class="form-group">
-        <label for="char-name" class="required">Character Name</label>
-        <input type="text" id="char-name" placeholder="e.g. Monster Man" required />
-        <div class="error-msg" id="name-error">Please enter your character name.</div>
+      <!-- Right Column: Interactive Card Preview -->
+      <div class="preview-column">
+        <div class="card-preview-wrapper">
+          <!-- Defaults to Front Card image; can toggle or keep static -->
+          <img src="https://res.cloudinary.com/v2erguss/image/upload/v1788534309/player-card-WHALESLAUGHTER-front.webp" alt="Card Preview Template" id="previewImg" />
+          
+          <!-- Highlight Zones -->
+          <div class="card-highlight zone-name"></div>
+          <div class="card-highlight zone-alliance"></div>
+          <div class="card-highlight zone-title"></div>
+          <div class="card-highlight zone-desc"></div>
+          <div class="card-highlight zone-back"></div>
+        </div>
       </div>
-
-      <div class="form-group">
-        <label for="alliance" class="required">Alliance Name</label>
-        <span class="hint">Format: HAVOC - 2128 (include your state)</span>
-        <input type="text" id="alliance" placeholder="e.g. HAVOC - 2128" required />
-        <div class="error-msg" id="alliance-error">Please enter your alliance name.</div>
-      </div>
-
-      <div class="form-group">
-        <label for="title" class="required">Tarot Title / Tagline</label>
-        <span class="hint">The text at the bottom of your card</span>
-        <input type="text" id="title" placeholder="e.g. The Hearthwise" required />
-        <div class="error-msg" id="title-error">Please enter a title or tagline.</div>
-      </div>
-
-      <div class="form-group">
-        <label for="description" class="required">Physical Description</label>
-        <span class="hint">Be as detailed as possible so AI can create your portrait</span>
-        <textarea id="description" placeholder="e.g. A tall figure in a brown hooded cloak, mysterious and deadly, with piercing green eyes..." required></textarea>
-        <div class="error-msg" id="desc-error">Please describe your character.</div>
-      </div>
-
-      <div class="form-group">
-        <label for="setting">Setting / Atmosphere</label>
-        <span class="hint">Defaults to a winter scene if left blank</span>
-        <input type="text" id="setting" placeholder="e.g. A misty swamp, a medieval tavern..." />
-      </div>
-
-      <div class="form-group">
-        <label for="extras">Artistic Extras</label>
-        <span class="hint">Mist, snowflakes, petals, bugs, etc.</span>
-        <input type="text" id="extras" placeholder="e.g. Snowflakes, floating lanterns..." />
-      </div>
-
-      <div class="form-group">
-        <label for="motifs">Border Motifs</label>
-        <span class="hint">The decorative stuff around the card edge</span>
-        <input type="text" id="motifs" placeholder="e.g. Spider webs, frozen curls, weapons..." />
-      </div>
-
-      <div class="form-group">
-        <label for="back-text">Back of Card Text</label>
-        <span class="hint">Tell us about yourself — IRL, in-game, whatever you want on the back</span>
-        <textarea id="back-text" placeholder="e.g. Family Dad. Fishing. Poker. Don't mess with my alliance."></textarea>
-      </div>
-
-      <button class="submit-btn" id="submit-btn">Submit My Card</button>
-    </div>
-
-    <div id="success-msg" class="success" style="display:none">
-      <h2>Card Submitted!</h2>
-      <p>Your bespoke player card is being generated. Check the <a href="/players.html" style="color:#d4b06a">Player Cards</a> page — it'll be there when it's ready.</p>
     </div>
   </div>
 
@@ -140,6 +186,34 @@
     const params = new URLSearchParams(window.location.search);
     const code = params.get('entry.1504637527') || params.get('session_id') || '';
     document.getElementById('payment-code').value = code;
+
+    // Interactive Highlight Logic (Focus/Blur triggers corresponding card zone)
+    document.querySelectorAll('.form-group[data-target]').forEach(group => {
+      const targetClass = group.getAttribute('data-target');
+      const highlightBox = document.querySelector('.' + targetClass);
+      const input = group.querySelector('input, textarea, select');
+
+      if (input && highlightBox) {
+        input.addEventListener('focus', () => {
+          // Clear active highlights first
+          document.querySelectorAll('.card-highlight').forEach(el => el.classList.remove('active'));
+          highlightBox.classList.add('active');
+
+          // Optional: If focusing on back-text, swap preview to back card image temporarily
+          if (targetClass === 'zone-back') {
+            document.getElementById('previewImg').src = 'https://res.cloudinary.com/v2erguss/image/upload/v1788534425/player-card-WHALESLAUGHTER-back.webp';
+          }
+        });
+
+        input.addEventListener('blur', () => {
+          highlightBox.classList.remove('active');
+          // Revert back to front card when leaving back text
+          if (targetClass === 'zone-back') {
+            document.getElementById('previewImg').src = 'https://res.cloudinary.com/v2erguss/image/upload/v1788534309/player-card-WHALESLAUGHTER-front.webp';
+          }
+        });
+      }
+    });
 
     // Validation
     function validate() {
@@ -163,7 +237,7 @@
       return valid;
     }
 
-    // Submit
+    // Submit handler
     document.getElementById('submit-btn').addEventListener('click', async () => {
       if (!validate()) return;
 
@@ -187,7 +261,7 @@
       try {
         const res = await fetch('https://script.google.com/macros/s/AKfycbybmxe-dbKeru59gp0fmiaH_j8_fofOIju_wFOCWV2SaGfd8D1KiIMxVI53uAKqbPm8/exec', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Content-Type': 'Application/json' },
           body: JSON.stringify(data),
           mode: 'no-cors'
         });
