@@ -299,14 +299,21 @@
       };
 
       try {
-        const res = await fetch('https://script.google.com/macros/s/AKfycbybmxe-dbKeru59gp0fmiaH_j8_fofOIju_wFOCWV2SaGfd8D1KiIMxVI53uAKqbPm8/exec', {
+        const res = await fetch('/api/submit-order', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data),
-          mode: 'no-cors'
+          body: JSON.stringify(data)
         });
-        document.getElementById('form-container').style.display = 'none';
-        document.getElementById('success-msg').style.display = 'block';
+        const result = await res.json();
+
+        if (result.status === 'ok') {
+          document.getElementById('form-container').style.display = 'none';
+          document.getElementById('success-msg').style.display = 'block';
+        } else {
+          alert(result.message || 'Something went wrong. Please try again.');
+          btn.disabled = false;
+          btn.textContent = 'Submit My Card';
+        }
       } catch (err) {
         console.error(err);
         btn.disabled = false;
