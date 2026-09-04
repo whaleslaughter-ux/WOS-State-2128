@@ -66,20 +66,16 @@ export async function onRequestPost({ request, env }) {
       return jsonRes({ status: 'ok', warning: 'Card saved but auto-generation failed: missing Make.com config.' });
     }
 
-    const makeHeaders = {
-      'Authorization': 'Token ' + makeToken,
-      'Content-Type': 'application/json'
-    };
-    const makeBase = 'https://us2.make.com/api/v2/scenarios/' + makeScenarioId;
-
-    // Stop the scenario first (ignore errors — it might already be stopped)
-    await fetch(makeBase + '/stop', { method: 'POST', headers: makeHeaders });
-
-    // Brief pause to let it fully stop
-    await new Promise(r => setTimeout(r, 1000));
-
-    // Start it — this activates and triggers a run
-    const makeRes = await fetch(makeBase + '/start', { method: 'POST', headers: makeHeaders });
+    const makeRes = await fetch(
+      'https://us2.make.com/api/v2/scenarios/' + makeScenarioId + '/run',
+      {
+        method: 'POST',
+        headers: {
+          'Authorization': 'Token ' + makeToken,
+          'Content-Type': 'application/json'
+        }
+      }
+    );
     const makeText = await makeRes.text();
 
     if (!makeRes.ok) {
