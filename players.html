@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-6LN9JCF6JC"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -69,6 +68,14 @@
       font-style:italic;font-family:Georgia,'Times New Roman',serif}
     .back-text p{margin:0;max-width:160px;text-shadow:0 0 8px rgba(255,245,220,.4)}
 
+    /* Save link on back of card */
+    .save-link{position:absolute;bottom:16px;right:16px;z-index:2;
+      background:rgba(10,15,36,.7);color:#d4b06a;border:1px solid rgba(212,176,106,.3);
+      border-radius:6px;padding:4px 10px;font-size:.75rem;text-decoration:none;
+      backdrop-filter:blur(4px);letter-spacing:.3px;transition:background .2s,color .2s}
+    .save-link:hover{background:rgba(212,176,106,.9);color:#0b1030}
+    .save-link:focus{outline:3px solid #88a2ff}
+
     /* Coming soon placeholder */
     .placeholder{display:flex;flex-direction:column;align-items:center;justify-content:center;
       width:100%;height:100%;text-align:center;padding:30px 20px;color:#b9c3ff;font-size:1rem}
@@ -134,11 +141,11 @@
 
     // Load nav/footer
     fetch('/nav.html').then(r=>r.ok?r.text():Promise.reject(r.status)).then(h=>{
-      document.getElementById('nav-placeholder').innerHTML = h;
-    }).catch(e=>console.warn('Nav load failed:', e));
+      document.getElementById('nav-placeholder').innerHTML=h;
+    }).catch(e=>console.warn('Nav load failed:',e));
     fetch('/footer.html').then(r=>r.ok?r.text():Promise.reject(r.status)).then(h=>{
-      document.getElementById('footer-placeholder').innerHTML = h;
-    }).catch(e=>console.warn('Footer load failed:', e));
+      document.getElementById('footer-placeholder').innerHTML=h;
+    }).catch(e=>console.warn('Footer load failed:',e));
 
     // Flip logic
     document.addEventListener('click', e => {
@@ -158,7 +165,6 @@
         const raw = await res.json();
         if (!Array.isArray(raw)) throw new Error('Feed not an array');
 
-        // Filter to cards with names, store with index for sort stability
         let cards = raw.filter(c => (c.name || '').trim()).map((c, i) => ({ ...c, _idx: i }));
 
         // Build alliance dropdown
@@ -179,14 +185,12 @@
           const allianceVal = allianceSelect.value;
           const sortVal = sortSelect.value;
 
-          // Filter
           let filtered = cards.filter(c => {
             const nameMatch = !query || c.name.toLowerCase().includes(query);
             const allianceMatch = !allianceVal || (c.alliance || '') === allianceVal;
             return nameMatch && allianceMatch;
           });
 
-          // Sort
           filtered.sort((a, b) => {
             switch (sortVal) {
               case 'newest': return b._idx - a._idx;
@@ -200,7 +204,7 @@
 
           grid.innerHTML = '';
 
-          // CTA card first
+          // CTA card
           grid.insertAdjacentHTML('beforeend', `
             <article class="card-outer" aria-label="Get your own Player Card">
               <div class="card noflip">
@@ -227,6 +231,9 @@
             const title = (c.title || '').trim();
             const esc = s => s.replace(/"/g, '&quot;').replace(/</g, '&lt;');
 
+            // Build download URL with fl_attachment
+            const downloadUrl = hasFront ? c.front.replace('/upload/', '/upload/fl_attachment/') : '';
+
             let frontHTML, backHTML;
 
             if (hasFront) {
@@ -236,7 +243,7 @@
             }
 
             if (hasBack) {
-              backHTML = `<div class="face back"><img class="back-img" src="${c.back}" alt="" loading="lazy" width="320" height="480" />${backText ? `<div class="back-text"><p>${esc(backText)}</p></div>` : ''}</div>`;
+              backHTML = `<div class="face back"><img class="back-img" src="${c.back}" alt="" loading="lazy" width="320" height="480" />${backText ? `<div class="back-text"><p>${esc(backText)}</p></div>` : ''}${downloadUrl ? `<a class="save-link" href="${downloadUrl}" download aria-label="Save ${esc(name)} card">Save ↓</a>` : ''}</div>`;
             } else {
               backHTML = `<div class="face back"><div class="placeholder">${backText ? `<p style="color:#eef2ff;max-width:200px;font-style:italic;font-family:Georgia,serif">${esc(backText)}</p>` : '<span style="opacity:.6">Back coming soon</span>'}</div></div>`;
             }
