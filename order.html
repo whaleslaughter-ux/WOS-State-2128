@@ -28,21 +28,16 @@
     .card-preview-wrapper{position:relative;width:100%;border-radius:12px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,0.5);border:1px solid rgba(212,176,106,.3)}
     .card-preview-wrapper img{width:100%;height:auto;display:block}
 
-    /* Live Overlaid Text matching your card style */
+    /* Live Overlaid Text for the Back of the Card only (translatable) */
     .card-text-overlay {
       position: absolute;
       left: 50%;
       transform: translateX(-50%);
       text-align: center;
       font-family: "Georgia", "Times New Roman", serif;
-      color: #2b1d0c;
-      white-space: nowrap;
       pointer-events: none;
       z-index: 2;
     }
-    #preview-name-text { top: 4.5%; font-size: clamp(0.8rem, 3vw, 1.05rem); font-weight: bold; letter-spacing: 0.5px; }
-    #preview-alliance-text { top: 9.0%; font-size: clamp(0.5rem, 2vw, 0.65rem); letter-spacing: 0.5px; opacity: 0.85; }
-    #preview-title-text { bottom: 6.8%; font-size: clamp(0.7rem, 2.5vw, 0.95rem); font-style: italic; }
     #preview-back-text {
       top: 40%; left: 18%; right: 18%; transform: none;
       text-align: center; font-size: clamp(0.6rem, 2vw, 0.75rem); font-style: italic;
@@ -191,10 +186,7 @@
         <div class="card-preview-wrapper">
           <img src="https://res.cloudinary.com/v2erguss/image/upload/v1788534309/player-card-WHALESLAUGHTER-front.webp" alt="Card Preview Template" id="previewImg" />
           
-          <!-- Live Text Overlays -->
-          <div id="preview-name-text" class="card-text-overlay">WHALESLAUGHTER</div>
-          <div id="preview-alliance-text" class="card-text-overlay">- HAVOC - 2128 -</div>
-          <div id="preview-title-text" class="card-text-overlay">The Villain</div>
+          <!-- Live Text Overlay (Back of card only) -->
           <div id="preview-back-text" class="card-text-overlay">Topples empires with wit and strategy.</div>
 
           <!-- Highlight Zones -->
@@ -225,16 +217,7 @@
     const code = params.get('entry.1504637527') || params.get('session_id') || '';
     document.getElementById('payment-code').value = code;
 
-    // Live text binding
-    document.getElementById('char-name').addEventListener('input', (e) => {
-      document.getElementById('preview-name-text').textContent = e.target.value || 'WHALESLAUGHTER';
-    });
-    document.getElementById('alliance').addEventListener('input', (e) => {
-      document.getElementById('preview-alliance-text').textContent = e.target.value ? `- ${e.target.value} -` : '- HAVOC - 2128 -';
-    });
-    document.getElementById('title').addEventListener('input', (e) => {
-      document.getElementById('preview-title-text').textContent = e.target.value || 'The Villain';
-    });
+    // Live text binding for the back card text only
     document.getElementById('back-text').addEventListener('input', (e) => {
       document.getElementById('preview-back-text').textContent = e.target.value || '';
     });
@@ -252,9 +235,6 @@
 
           if (targetClass === 'zone-back') {
             document.getElementById('previewImg').src = 'https://res.cloudinary.com/v2erguss/image/upload/v1788534425/player-card-WHALESLAUGHTER-back.webp';
-            document.getElementById('preview-name-text').style.display = 'none';
-            document.getElementById('preview-alliance-text').style.display = 'none';
-            document.getElementById('preview-title-text').style.display = 'none';
             document.getElementById('preview-back-text').style.display = 'block';
           }
         });
@@ -263,9 +243,6 @@
           highlightBox.classList.remove('active');
           if (targetClass === 'zone-back') {
             document.getElementById('previewImg').src = 'https://res.cloudinary.com/v2erguss/image/upload/v1788534309/player-card-WHALESLAUGHTER-front.webp';
-            document.getElementById('preview-name-text').style.display = 'block';
-            document.getElementById('preview-alliance-text').style.display = 'block';
-            document.getElementById('preview-title-text').style.display = 'block';
             document.getElementById('preview-back-text').style.display = 'none';
           }
         });
