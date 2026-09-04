@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6LN9JCF6JC"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-6LN9JCF6JC');
+</script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Order Your Player Card — 2128 News</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    *{box-sizing:border-box}
+    body{margin:0;color:#eef2ff;font:16px/1.6 system-ui,-apple-system,Segoe UI,Inter,Roboto,Arial;
+      background:radial-gradient(1100px 560px at 50% -10%,#1a2147 0%,#0b1030 42%,#060915 100%)}
+    .wrap{max-width:640px;margin:0 auto;padding:40px 16px}
+    h1{text-align:center;font-size:clamp(1.2rem,1.6vw + 1rem,1.8rem);letter-spacing:.5px;margin:0 0 8px}
+    .subtitle{text-align:center;color:#b9c3ff;margin:0 0 32px;font-size:.95rem}
+
+    .form-group{margin-bottom:20px}
+    label{display:block;font-weight:600;margin-bottom:6px;color:#d4b06a;font-size:.9rem}
+    .hint{display:block;font-weight:400;color:#8892bb;font-size:.8rem;margin-top:2px}
+    input[type="text"],textarea,select{
+      width:100%;background:rgba(255,255,255,.08);border:1px solid rgba(212,176,106,.3);
+      border-radius:8px;padding:12px 14px;color:#eef2ff;font-size:1rem;font-family:inherit;
+      transition:border-color .2s}
+    input:focus,textarea:focus,select:focus{outline:3px solid #88a2ff;border-color:#88a2ff}
+    input::placeholder,textarea::placeholder{color:#8892bb}
+    textarea{resize:vertical;min-height:100px}
+    input[readonly]{opacity:.6;cursor:not-allowed}
+
+    .required::after{content:" *";color:#ff6b6b}
+
+    .submit-btn{display:block;width:100%;padding:14px;margin-top:28px;
+      background:linear-gradient(135deg,#d4b06a,#b8943e);color:#0b1030;font-size:1.05rem;
+      font-weight:700;border:none;border-radius:8px;cursor:pointer;letter-spacing:.5px;
+      transition:box-shadow .2s,transform .1s}
+    .submit-btn:hover{box-shadow:0 4px 20px rgba(212,176,106,.4);transform:translateY(-1px)}
+    .submit-btn:focus{outline:3px solid #88a2ff;outline-offset:2px}
+    .submit-btn:disabled{opacity:.5;cursor:not-allowed;transform:none;box-shadow:none}
+
+    .success{text-align:center;padding:60px 20px;color:#eef2ff}
+    .success h2{color:#d4b06a;margin:0 0 12px}
+    .success p{color:#b9c3ff;max-width:400px;margin:0 auto}
+
+    .error-msg{color:#ff6b6b;font-size:.85rem;margin-top:4px;display:none}
+    .sr-only{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}
+  </style>
+</head>
+<body>
+
+  <div id="nav-placeholder"></div>
+
+  <div class="wrap">
+    <h1>Order Your Player Card</h1>
+    <p class="subtitle">Fill out the details below and we'll generate your bespoke fantasy player card.</p>
+
+    <div id="form-container">
+      <div class="form-group">
+        <label for="payment-code">Payment Code</label>
+        <span class="hint">Auto-filled from your payment — don't change this</span>
+        <input type="text" id="payment-code" readonly />
+      </div>
+
+      <div class="form-group">
+        <label for="char-name" class="required">Character Name</label>
+        <input type="text" id="char-name" placeholder="e.g. Monster Man" required />
+        <div class="error-msg" id="name-error">Please enter your character name.</div>
+      </div>
+
+      <div class="form-group">
+        <label for="alliance" class="required">Alliance Name</label>
+        <span class="hint">Format: HAVOC - 2128 (include your state)</span>
+        <input type="text" id="alliance" placeholder="e.g. HAVOC - 2128" required />
+        <div class="error-msg" id="alliance-error">Please enter your alliance name.</div>
+      </div>
+
+      <div class="form-group">
+        <label for="title" class="required">Tarot Title / Tagline</label>
+        <span class="hint">The text at the bottom of your card</span>
+        <input type="text" id="title" placeholder="e.g. The Hearthwise" required />
+        <div class="error-msg" id="title-error">Please enter a title or tagline.</div>
+      </div>
+
+      <div class="form-group">
+        <label for="description" class="required">Physical Description</label>
+        <span class="hint">Be as detailed as possible so AI can create your portrait</span>
+        <textarea id="description" placeholder="e.g. A tall figure in a brown hooded cloak, mysterious and deadly, with piercing green eyes..." required></textarea>
+        <div class="error-msg" id="desc-error">Please describe your character.</div>
+      </div>
+
+      <div class="form-group">
+        <label for="setting">Setting / Atmosphere</label>
+        <span class="hint">Defaults to a winter scene if left blank</span>
+        <input type="text" id="setting" placeholder="e.g. A misty swamp, a medieval tavern..." />
+      </div>
+
+      <div class="form-group">
+        <label for="extras">Artistic Extras</label>
+        <span class="hint">Mist, snowflakes, petals, bugs, etc.</span>
+        <input type="text" id="extras" placeholder="e.g. Snowflakes, floating lanterns..." />
+      </div>
+
+      <div class="form-group">
+        <label for="motifs">Border Motifs</label>
+        <span class="hint">The decorative stuff around the card edge</span>
+        <input type="text" id="motifs" placeholder="e.g. Spider webs, frozen curls, weapons..." />
+      </div>
+
+      <div class="form-group">
+        <label for="back-text">Back of Card Text</label>
+        <span class="hint">Tell us about yourself — IRL, in-game, whatever you want on the back</span>
+        <textarea id="back-text" placeholder="e.g. Family Dad. Fishing. Poker. Don't mess with my alliance."></textarea>
+      </div>
+
+      <button class="submit-btn" id="submit-btn">Submit My Card</button>
+    </div>
+
+    <div id="success-msg" class="success" style="display:none">
+      <h2>Card Submitted!</h2>
+      <p>Your bespoke player card is being generated. Check the <a href="/players.html" style="color:#d4b06a">Player Cards</a> page — it'll be there when it's ready.</p>
+    </div>
+  </div>
+
+  <div id="footer-placeholder"></div>
+
+  <script>
+    // Load nav/footer
+    fetch('/nav.html').then(r=>r.ok?r.text():Promise.reject(r.status)).then(h=>{
+      document.getElementById('nav-placeholder').innerHTML=h;
+    }).catch(e=>console.warn('Nav load failed:',e));
+    fetch('/footer.html').then(r=>r.ok?r.text():Promise.reject(r.status)).then(h=>{
+      document.getElementById('footer-placeholder').innerHTML=h;
+    }).catch(e=>console.warn('Footer load failed:',e));
+
+    // Pre-fill payment code from URL
+    const params = new URLSearchParams(window.location.search);
+    const code = params.get('entry.1504637527') || params.get('session_id') || '';
+    document.getElementById('payment-code').value = code;
+
+    // Validation
+    function validate() {
+      let valid = true;
+      const fields = [
+        { id: 'char-name', error: 'name-error' },
+        { id: 'alliance', error: 'alliance-error' },
+        { id: 'title', error: 'title-error' },
+        { id: 'description', error: 'desc-error' }
+      ];
+      fields.forEach(f => {
+        const el = document.getElementById(f.id);
+        const err = document.getElementById(f.error);
+        if (!el.value.trim()) {
+          err.style.display = 'block';
+          valid = false;
+        } else {
+          err.style.display = 'none';
+        }
+      });
+      return valid;
+    }
+
+    // Submit
+    document.getElementById('submit-btn').addEventListener('click', async () => {
+      if (!validate()) return;
+
+      const btn = document.getElementById('submit-btn');
+      btn.disabled = true;
+      btn.textContent = 'Submitting…';
+
+      const data = {
+        timestamp: new Date().toISOString(),
+        name: document.getElementById('char-name').value.trim(),
+        alliance: document.getElementById('alliance').value.trim(),
+        title: document.getElementById('title').value.trim(),
+        description: document.getElementById('description').value.trim(),
+        setting: document.getElementById('setting').value.trim(),
+        extras: document.getElementById('extras').value.trim(),
+        motifs: document.getElementById('motifs').value.trim(),
+        back_text: document.getElementById('back-text').value.trim(),
+        payment_code: document.getElementById('payment-code').value.trim()
+      };
+
+      try {
+        const res = await fetch('YOUR_APPS_SCRIPT_WEB_APP_URL', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+          mode: 'no-cors'
+        });
+        document.getElementById('form-container').style.display = 'none';
+        document.getElementById('success-msg').style.display = 'block';
+      } catch (err) {
+        console.error(err);
+        btn.disabled = false;
+        btn.textContent = 'Submit My Card';
+        alert('Something went wrong. Please try again.');
+      }
+    });
+  </script>
+</body>
+</html>
