@@ -28,7 +28,7 @@
     .card-preview-wrapper{position:relative;width:100%;border-radius:12px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,0.5);border:1px solid rgba(212,176,106,.3)}
     .card-preview-wrapper img{width:100%;height:auto;display:block}
 
-    /* Live Overlaid Text for the Back of the Card only (translatable) */
+    /* Static lore text for Whaleslaughter's back card preview */
     .card-text-overlay {
       position: absolute;
       left: 50%;
@@ -188,8 +188,8 @@
         <div class="card-preview-wrapper">
           <img src="https://res.cloudinary.com/v2erguss/image/upload/v1788534309/player-card-WHALESLAUGHTER-front.webp" alt="Card Preview Template" id="previewImg" />
           
-          <!-- Live Text Overlay (Back of card only) -->
-          <div id="preview-back-text" class="card-text-overlay"></div>
+          <!-- Static Lore Text Overlay for Whaleslaughter's back card preview -->
+          <div id="preview-back-text" class="card-text-overlay">While Whaleslaughter charged off, sure her keep was safe, Salih bided his time — sharp as sleet, rich in gems, and twice as sneaky. With a single sly slip through the gates, he crowned himself king, renamed the alliance, and left HAVOC stewing in frosty disbelief.</div>
 
           <!-- Highlight Zones -->
           <div class="card-highlight zone-name"></div>
@@ -219,15 +219,13 @@
     const code = params.get('entry.1504637527') || params.get('session_id') || '';
     document.getElementById('payment-code').value = code;
 
-    // Live text binding & character counter for the back card text
+    // Character counter only (no dynamic text injection into preview)
     const backTextEl = document.getElementById('back-text');
-    const previewBackText = document.getElementById('preview-back-text');
     const charCounter = document.getElementById('char-counter');
+    const previewBackText = document.getElementById('preview-back-text');
 
     backTextEl.addEventListener('input', (e) => {
-      const val = e.target.value;
-      previewBackText.textContent = val;
-      charCounter.textContent = `${val.length} / 225 characters`;
+      charCounter.textContent = `${e.target.value.length} / 225 characters`;
     });
 
     // Interactive Highlight Logic
