@@ -72,6 +72,7 @@
     .form-group{margin-bottom:20px}
     label{display:block;font-weight:600;margin-bottom:6px;color:#d4b06a;font-size:.9rem}
     .hint{display:block;font-weight:400;color:#8892bb;font-size:.8rem;margin-top:2px}
+    .char-count{display:block;text-align:right;font-weight:400;color:#8892bb;font-size:.75rem;margin-top:4px}
     input[type="text"],textarea,select{
       width:100%;background:rgba(255,255,255,.08);border:1px solid rgba(212,176,106,.3);
       border-radius:8px;padding:12px 14px;color:#eef2ff;font-size:1rem;font-family:inherit;
@@ -169,7 +170,8 @@
           <div class="form-group" data-target="zone-back">
             <label for="back-text">Back of Card Text</label>
             <span class="hint">The bio / flavor text displayed on the card back</span>
-            <textarea id="back-text" placeholder="e.g. Topples empires with razor-sharp wit..."></textarea>
+            <textarea id="back-text" maxlength="225" placeholder="e.g. Topples empires with razor-sharp wit..."></textarea>
+            <span class="char-count" id="char-counter">0 / 225 characters</span>
           </div>
 
           <button class="submit-btn" id="submit-btn">Submit My Card</button>
@@ -187,7 +189,7 @@
           <img src="https://res.cloudinary.com/v2erguss/image/upload/v1788534309/player-card-WHALESLAUGHTER-front.webp" alt="Card Preview Template" id="previewImg" />
           
           <!-- Live Text Overlay (Back of card only) -->
-          <div id="preview-back-text" class="card-text-overlay">Topples empires with wit and strategy.</div>
+          <div id="preview-back-text" class="card-text-overlay"></div>
 
           <!-- Highlight Zones -->
           <div class="card-highlight zone-name"></div>
@@ -217,9 +219,15 @@
     const code = params.get('entry.1504637527') || params.get('session_id') || '';
     document.getElementById('payment-code').value = code;
 
-    // Live text binding for the back card text only
-    document.getElementById('back-text').addEventListener('input', (e) => {
-      document.getElementById('preview-back-text').textContent = e.target.value || '';
+    // Live text binding & character counter for the back card text
+    const backTextEl = document.getElementById('back-text');
+    const previewBackText = document.getElementById('preview-back-text');
+    const charCounter = document.getElementById('char-counter');
+
+    backTextEl.addEventListener('input', (e) => {
+      const val = e.target.value;
+      previewBackText.textContent = val;
+      charCounter.textContent = `${val.length} / 225 characters`;
     });
 
     // Interactive Highlight Logic
@@ -235,7 +243,7 @@
 
           if (targetClass === 'zone-back') {
             document.getElementById('previewImg').src = 'https://res.cloudinary.com/v2erguss/image/upload/v1788534425/player-card-WHALESLAUGHTER-back.webp';
-            document.getElementById('preview-back-text').style.display = 'block';
+            previewBackText.style.display = 'block';
           }
         });
 
@@ -243,7 +251,7 @@
           highlightBox.classList.remove('active');
           if (targetClass === 'zone-back') {
             document.getElementById('previewImg').src = 'https://res.cloudinary.com/v2erguss/image/upload/v1788534309/player-card-WHALESLAUGHTER-front.webp';
-            document.getElementById('preview-back-text').style.display = 'none';
+            previewBackText.style.display = 'none';
           }
         });
       }
@@ -288,7 +296,7 @@
         setting: document.getElementById('setting').value.trim(),
         extras: document.getElementById('extras').value.trim(),
         motifs: document.getElementById('motifs').value.trim(),
-        back_text: document.getElementById('back-text').value.trim(),
+        back_text: backTextEl.value.trim(),
         payment_code: document.getElementById('payment-code').value.trim()
       };
 
