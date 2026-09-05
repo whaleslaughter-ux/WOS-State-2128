@@ -205,15 +205,14 @@
           grid.innerHTML = '';
 
       // CTA card
-          grid.insertAdjacentHTML('beforeend', `
-            <article class="card-outer" aria-label="Get your own Player Card">
-              <div class="card noflip">
-                <a class="cta-link" href="https://buy.stripe.com/cNi6oJ64MaQ4dIFg2w9Ve03" target="_blank" rel="noopener">
-                  <span style="font-size:1.3rem;font-weight:600;">✨ Want your own<br>Player Card?</span>
-                  <span style="margin-top:12px;font-size:1rem;opacity:.9;">$2 — Click here to order</span>
-                </a>
-              </div>
-            </article>`);
+         grid.insertAdjacentHTML('beforeend', `
+  <article class="card-outer">
+    <div class="card">
+      <button class="flip-btn" aria-pressed="false" aria-label="Flip ${esc(name)} card">Flip</button>
+      ${frontHTML}
+      ${backHTML}
+    </div>
+  </article>`);
 
           if (!filtered.length) {
             grid.insertAdjacentHTML('beforeend', '<p class="no-results">No cards match your search.</p>');
