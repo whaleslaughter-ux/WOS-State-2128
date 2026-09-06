@@ -120,8 +120,7 @@
       <div class="form-column">
         <div id="form-container">
           <div class="form-group">
-            <label for="payment-code">Payment Code</label>
-            <span class="hint">Auto-filled from your payment — don't change this</span>
+            <label for="payment-code">Payment Code — auto-filled</label>
             <input type="text" id="payment-code" readonly />
           </div>
 
@@ -144,22 +143,22 @@
               <option value="other">Other</option>
             </select>
             <div class="other-fields" id="other-alliance">
-              <input type="text" id="custom-alliance" placeholder="Alliance name" />
-              <input type="text" id="custom-state" placeholder="State #" />
+              <input type="text" id="custom-alliance" placeholder="Alliance name" aria-label="Custom alliance name" />
+              <input type="text" id="custom-state" placeholder="State number" aria-label="State number" />
             </div>
             <div class="error-msg" id="alliance-error">We need your alliance.</div>
           </div>
 
           <div class="form-group" data-target="zone-title">
             <label for="title" class="required">What title goes on your card?</label>
-            <span class="hint">e.g. The Frost Warden, Queen of Ashes, The Villain</span>
-            <input type="text" id="title" placeholder="e.g. The Villain" required />
+            <span class="hint">e.g. The Frost Warden, Queen of Ashes, Popcorn King, Candy Thief</span>
+            <input type="text" id="title" placeholder="e.g. The Frost Warden" required />
             <div class="error-msg" id="title-error">Give yourself a title!</div>
           </div>
 
           <div class="form-group" data-target="zone-artwork">
             <label for="description" class="required">What do you look like?</label>
-            <span class="hint">Hair, armor, weapons, scars, vibes — anything goes</span>
+            <span class="hint">Human? Elf? Wolf? Hair, armor, weapons, scars — anything goes</span>
             <textarea id="description" placeholder="e.g. Big guy, ice armor, battle axe, glowing blue eyes..." required></textarea>
             <div class="error-msg" id="desc-error">Tell us what you look like!</div>
           </div>
