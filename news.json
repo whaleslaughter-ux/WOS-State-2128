@@ -1,5 +1,17 @@
 [
 {
+  "id": "card-form-redesign",
+  "date": "2026-09-05",
+  "title": "The Card Order Form Has Been Rebuilt Because You Deserve Better",
+  "img": "/assets/bia/catty-form-redesign-20260905.webp",
+  "alt": "A confused player staring at a form with fields labeled in ancient runes, a second panel showing the same player breezing through a form that just says what do you look like with a big smile, Catty in the background looking satisfied",
+  "blurb": "<p>Finn wrote an article about the player card system yesterday. It was, by every measurable standard, the most boring thing ever published on this site. Two people ordered cards. Two. The man buried a free promo code inside an infrastructure audit and acted like the public should be grateful.</p><p>Meanwhile, I have had my card since before the system was even public. It is beautiful. Dramatic lighting, perfect composition, an air of mystery and emotional depth. I look at it daily. You would too.</p><p>The problem was not the cards. The problem was the form. The original version asked for 'Physical Descriptions' and 'Border Motifs.' These are not words that come naturally when someone just wants a cool picture of themselves holding a sword.</p><p>So the form has been rebuilt. It now asks things like 'What do you look like?' and 'Brag on yourself.' There should probably be a note at the top that says 'Don't overthink it.' The AI rewrites your answers into a full prompt anyway. You could type 'big guy, ice armor' and get a masterpiece.</p><p>Cards are still $2 at the <a href='https://2128.whaleslaughter.com/players' target='_blank' rel='noopener noreferrer'>Players page</a>. Two <strong>FINNFIVE</strong> codes are still available because Finn's article put everyone to sleep before they reached them. But now there are five fresh <strong>CATTYCAN</strong> codes, because someone had to do this properly. Keep an eye on the news for more codes. —Catty von Catacean</p>",
+  "reporter": "Catty von Catacean",
+  "tags": ["Guide"],
+  "alliances": [],
+  "states": ["2128"],
+  "characters": ["Catty von Catacean", "Finn Ledger", "WHALESLAUGHTER"]
+},{
   "id": "player-card-pipeline-status-report",
   "date": "2026-09-04",
   "title": "Player Card Automation Pipeline Now Operational — A Status Report",
