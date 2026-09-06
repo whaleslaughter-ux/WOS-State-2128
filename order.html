@@ -20,7 +20,6 @@
     h1{text-align:center;font-size:clamp(1.2rem,1.6vw + 1rem,1.8rem);letter-spacing:.5px;margin:0 0 8px}
     .subtitle{text-align:center;color:#b9c3ff;margin:0 0 32px;font-size:.95rem}
 
-    /* Layout grid for Form + Live Preview Card */
     .builder-layout{display:flex;gap:40px;align-items:flex-start;justify-content:center}
     .form-column{flex:1;max-width:520px}
     .preview-column{width:320px;position:sticky;top:20px}
@@ -28,7 +27,6 @@
     .card-preview-wrapper{position:relative;width:100%;border-radius:12px;overflow:hidden;box-shadow:0 8px 30px rgba(0,0,0,0.5);border:1px solid rgba(212,176,106,.3)}
     .card-preview-wrapper img{width:100%;height:auto;display:block}
 
-    /* Static lore text for Whaleslaughter's back card preview */
     .card-text-overlay {
       position: absolute;
       left: 50%;
@@ -44,7 +42,6 @@
       white-space: normal; line-height: 1.4; display: none; color: #2b1d0c;
     }
 
-    /* Highlight Boxes mapped precisely to your card design */
     .card-highlight{
       position:absolute;border:2px dashed #00ffff;
       background-color:rgba(0, 255, 255, 0.15);
@@ -57,8 +54,6 @@
     .zone-title { bottom: 5%; left: 16%; width: 68%; height: 9.5%; }
     .zone-artwork { top: 18%; left: 12%; width: 76%; height: 56%; border-radius: 8px; }
     .zone-back { top: 38%; left: 15%; width: 70%; height: 35%; }
-
-    /* Hollow border frame for Card Motifs */
     .zone-motifs {
       top: 1%; left: 1%; width: 98%; height: 98%;
       border-radius: 16px;
@@ -81,8 +76,14 @@
     input::placeholder,textarea::placeholder{color:#8892bb}
     textarea{resize:vertical;min-height:100px}
     input[readonly]{opacity:.6;cursor:not-allowed}
+    select{cursor:pointer;appearance:auto}
 
     .required::after{content:" *";color:#ff6b6b}
+    .optional-tag{font-weight:400;color:#8892bb;font-size:.8rem}
+
+    .other-fields{display:none;margin-top:12px;gap:12px}
+    .other-fields.visible{display:flex}
+    .other-fields input{flex:1}
 
     .submit-btn{display:block;width:100%;padding:14px;margin-top:28px;
       background:linear-gradient(135deg,#d4b06a,#b8943e);color:#0b1030;font-size:1.05rem;
@@ -98,6 +99,8 @@
 
     .error-msg{color:#ff6b6b;font-size:.85rem;margin-top:4px;display:none}
 
+    .form-note{text-align:center;color:#8892bb;font-size:.85rem;margin:0 0 24px;font-style:italic}
+
     @media (max-width: 850px) {
       .builder-layout{flex-direction:column-reverse;align-items:center}
       .preview-column{position:relative;top:0;width:280px;margin-bottom:30px}
@@ -110,10 +113,10 @@
 
   <div class="wrap">
     <h1>Order Your Player Card</h1>
-    <p class="subtitle">Fill out the details below and watch the interactive preview guide your design.</p>
+    <p class="subtitle">Fill out the details below and we'll make it look amazing.</p>
+    <p class="form-note">Don't overthink it — just give us the basics.</p>
 
     <div class="builder-layout">
-      <!-- Left Column: Form -->
       <div class="form-column">
         <div id="form-container">
           <div class="form-group">
@@ -123,56 +126,62 @@
           </div>
 
           <div class="form-group" data-target="zone-name">
-            <label for="char-name" class="required">Character Name</label>
+            <label for="char-name" class="required">What's your name in-game?</label>
             <input type="text" id="char-name" placeholder="e.g. WHALESLAUGHTER" required />
-            <div class="error-msg" id="name-error">Please enter your character name.</div>
+            <div class="error-msg" id="name-error">We need your in-game name.</div>
           </div>
 
           <div class="form-group" data-target="zone-alliance">
-            <label for="alliance" class="required">Alliance Name</label>
-            <span class="hint">Format: HAVOC - 2128 (include your state)</span>
-            <input type="text" id="alliance" placeholder="e.g. HAVOC - 2128" required />
-            <div class="error-msg" id="alliance-error">Please enter your alliance name.</div>
+            <label for="alliance-select" class="required">What alliance are you in?</label>
+            <select id="alliance-select">
+              <option value="">Pick your alliance</option>
+              <option value="HAVOC - 2128">HAVOC - 2128</option>
+              <option value="Snack Kingdom - 2128">Snack Kingdom - 2128</option>
+              <option value="IDK - 2128">IDK - 2128</option>
+              <option value="300 - 2128">300 - 2128</option>
+              <option value="Out of Order - 2128">Out of Order - 2128</option>
+              <option value="New World Order - 2128">New World Order - 2128</option>
+              <option value="other">Other</option>
+            </select>
+            <div class="other-fields" id="other-alliance">
+              <input type="text" id="custom-alliance" placeholder="Alliance name" />
+              <input type="text" id="custom-state" placeholder="State #" />
+            </div>
+            <div class="error-msg" id="alliance-error">We need your alliance.</div>
           </div>
 
           <div class="form-group" data-target="zone-title">
-            <label for="title" class="required">Tarot Title / Tagline</label>
-            <span class="hint">The text at the bottom banner of your card</span>
+            <label for="title" class="required">What title goes on your card?</label>
+            <span class="hint">e.g. The Frost Warden, Queen of Ashes, The Villain</span>
             <input type="text" id="title" placeholder="e.g. The Villain" required />
-            <div class="error-msg" id="title-error">Please enter a title or tagline.</div>
+            <div class="error-msg" id="title-error">Give yourself a title!</div>
           </div>
 
           <div class="form-group" data-target="zone-artwork">
-            <label for="description" class="required">Physical Description</label>
-            <span class="hint">Detailed prompt description for your front card artwork</span>
-            <textarea id="description" placeholder="e.g. A female warrior in dark plate armor, purple hair..." required></textarea>
-            <div class="error-msg" id="desc-error">Please describe your character.</div>
+            <label for="description" class="required">What do you look like?</label>
+            <span class="hint">Hair, armor, weapons, scars, vibes — anything goes</span>
+            <textarea id="description" placeholder="e.g. Big guy, ice armor, battle axe, glowing blue eyes..." required></textarea>
+            <div class="error-msg" id="desc-error">Tell us what you look like!</div>
           </div>
 
           <div class="form-group" data-target="zone-artwork">
-            <label for="setting">Setting / Atmosphere</label>
+            <label for="setting">Where are you standing? <span class="optional-tag">(optional)</span></label>
             <span class="hint">Defaults to a winter scene if left blank</span>
-            <input type="text" id="setting" placeholder="e.g. A misty swamp, a medieval tavern..." />
+            <input type="text" id="setting" placeholder="e.g. Ice fortress, forest, tavern, battlefield..." />
           </div>
 
-          <div class="form-group" data-target="zone-artwork">
-            <label for="extras">Artistic Extras</label>
-            <span class="hint">Mist, snowflakes, petals, bugs, etc.</span>
-            <input type="text" id="extras" placeholder="e.g. Snowflakes, floating lanterns..." />
-          </div>
-
-          
           <div class="form-group" data-target="zone-motifs">
-            <label for="motifs">Border Motifs</label>
-            <span class="hint">The decorative stuff around the card edge</span>
-            <input type="text" id="motifs" placeholder="e.g. Spider webs, frozen curls, weapons..." />
+            <label for="motifs">Pick a couple of objects for the border <span class="optional-tag">(optional)</span></label>
+            <span class="hint">Weapons, animals, food, flowers, skulls — whatever fits your vibe</span>
+            <input type="text" id="motifs" placeholder="e.g. Swords and wolves, crabs and roses..." />
           </div>
 
           <div class="form-group" data-target="zone-back">
-            <label for="back-text">Back of Card Text</label>
-            <span class="hint">The bio / flavor text displayed on the card back</span>
-            <textarea id="back-text" maxlength="225" placeholder="e.g. Topples empires with razor-sharp wit..."></textarea>
+            <label for="back-text" class="required">What goes on the back of your card?</label>
+            <span class="hint">Brag on yourself, tell a story — this is your space</span>
+            <textarea id="back-text" maxlength="225" placeholder="e.g. Took over the state with nothing but charm and a spreadsheet..."></textarea>
             <span class="char-count" id="char-counter">0 / 225 characters</span>
+            <div class="error-msg" id="back-error">Don't leave the back blank — say something!</div>
           </div>
 
           <button class="submit-btn" id="submit-btn">Submit My Card</button>
@@ -180,19 +189,14 @@
 
         <div id="success-msg" class="success" style="display:none">
           <h2>Card Submitted!</h2>
-          <p>Your bespoke player card is being generated. Check the <a href="/players.html" style="color:#d4b06a">Player Cards</a> page — it'll be there when it's ready.</p>
+          <p>Your card is being generated right now. Check the <a href="/players.html" style="color:#d4b06a">Player Cards</a> page — it'll be there when it's ready.</p>
         </div>
       </div>
 
-      <!-- Right Column: Interactive Card Preview -->
       <div class="preview-column">
         <div class="card-preview-wrapper">
           <img src="https://res.cloudinary.com/v2erguss/image/upload/v1788534309/player-card-WHALESLAUGHTER-front.webp" alt="Card Preview Template" id="previewImg" />
-          
-          <!-- Static Lore Text Overlay for Whaleslaughter's back card preview -->
           <div id="preview-back-text" class="card-text-overlay">While Whaleslaughter charged off, sure her keep was safe, Salih bided his time — sharp as sleet, rich in gems, and twice as sneaky. With a single sly slip through the gates, he crowned himself king, renamed the alliance, and left HAVOC stewing in frosty disbelief.</div>
-
-          <!-- Highlight Zones -->
           <div class="card-highlight zone-name"></div>
           <div class="card-highlight zone-alliance"></div>
           <div class="card-highlight zone-title"></div>
@@ -220,60 +224,77 @@
     const code = params.get('entry.1504637527') || params.get('session_id') || '';
     document.getElementById('payment-code').value = code;
 
-    // Character counter only (no dynamic text injection into preview)
+    // Alliance dropdown — show/hide Other fields
+    const allianceSelect = document.getElementById('alliance-select');
+    const otherAlliance = document.getElementById('other-alliance');
+    allianceSelect.addEventListener('change', () => {
+      if (allianceSelect.value === 'other') {
+        otherAlliance.classList.add('visible');
+      } else {
+        otherAlliance.classList.remove('visible');
+      }
+    });
+
+    // Character counter
     const backTextEl = document.getElementById('back-text');
     const charCounter = document.getElementById('char-counter');
-    const previewBackText = document.getElementById('preview-back-text');
-
     backTextEl.addEventListener('input', (e) => {
       charCounter.textContent = `${e.target.value.length} / 225 characters`;
     });
 
     // Interactive Highlight Logic
+    const previewBackText = document.getElementById('preview-back-text');
     document.querySelectorAll('.form-group[data-target]').forEach(group => {
       const targetClass = group.getAttribute('data-target');
       const highlightBox = document.querySelector('.' + targetClass);
-      const input = group.querySelector('input, textarea, select');
+      const inputs = group.querySelectorAll('input, textarea, select');
 
-      if (input && highlightBox) {
-        input.addEventListener('focus', () => {
-          document.querySelectorAll('.card-highlight').forEach(el => el.classList.remove('active'));
-          highlightBox.classList.add('active');
-
-          if (targetClass === 'zone-back') {
-            document.getElementById('previewImg').src = 'https://res.cloudinary.com/v2erguss/image/upload/v1788534425/player-card-WHALESLAUGHTER-back.webp';
-            previewBackText.style.display = 'block';
-          }
-        });
-
-        input.addEventListener('blur', () => {
-          highlightBox.classList.remove('active');
-          if (targetClass === 'zone-back') {
-            document.getElementById('previewImg').src = 'https://res.cloudinary.com/v2erguss/image/upload/v1788534309/player-card-WHALESLAUGHTER-front.webp';
-            previewBackText.style.display = 'none';
-          }
-        });
-      }
+      inputs.forEach(input => {
+        if (highlightBox) {
+          input.addEventListener('focus', () => {
+            document.querySelectorAll('.card-highlight').forEach(el => el.classList.remove('active'));
+            highlightBox.classList.add('active');
+            if (targetClass === 'zone-back') {
+              document.getElementById('previewImg').src = 'https://res.cloudinary.com/v2erguss/image/upload/v1788534425/player-card-WHALESLAUGHTER-back.webp';
+              previewBackText.style.display = 'block';
+            }
+          });
+          input.addEventListener('blur', () => {
+            highlightBox.classList.remove('active');
+            if (targetClass === 'zone-back') {
+              document.getElementById('previewImg').src = 'https://res.cloudinary.com/v2erguss/image/upload/v1788534309/player-card-WHALESLAUGHTER-front.webp';
+              previewBackText.style.display = 'none';
+            }
+          });
+        }
+      });
     });
+
+    // Get alliance value (dropdown or custom)
+    function getAlliance() {
+      if (allianceSelect.value === 'other') {
+        const custom = document.getElementById('custom-alliance').value.trim();
+        const state = document.getElementById('custom-state').value.trim();
+        if (!custom) return '';
+        return state ? custom + ' - ' + state : custom;
+      }
+      return allianceSelect.value;
+    }
 
     // Validation
     function validate() {
       let valid = true;
-      const fields = [
-        { id: 'char-name', error: 'name-error' },
-        { id: 'alliance', error: 'alliance-error' },
-        { id: 'title', error: 'title-error' },
-        { id: 'description', error: 'desc-error' }
+      const checks = [
+        { val: document.getElementById('char-name').value.trim(), err: 'name-error' },
+        { val: getAlliance(), err: 'alliance-error' },
+        { val: document.getElementById('title').value.trim(), err: 'title-error' },
+        { val: document.getElementById('description').value.trim(), err: 'desc-error' },
+        { val: backTextEl.value.trim(), err: 'back-error' }
       ];
-      fields.forEach(f => {
-        const el = document.getElementById(f.id);
-        const err = document.getElementById(f.error);
-        if (!el.value.trim()) {
-          err.style.display = 'block';
-          valid = false;
-        } else {
-          err.style.display = 'none';
-        }
+      checks.forEach(c => {
+        const errEl = document.getElementById(c.err);
+        if (!c.val) { errEl.style.display = 'block'; valid = false; }
+        else { errEl.style.display = 'none'; }
       });
       return valid;
     }
@@ -289,11 +310,11 @@
       const data = {
         timestamp: new Date().toISOString(),
         name: document.getElementById('char-name').value.trim(),
-        alliance: document.getElementById('alliance').value.trim(),
+        alliance: getAlliance(),
         title: document.getElementById('title').value.trim(),
         description: document.getElementById('description').value.trim(),
         setting: document.getElementById('setting').value.trim(),
-        extras: document.getElementById('extras').value.trim(),
+        extras: '',
         motifs: document.getElementById('motifs').value.trim(),
         back_text: backTextEl.value.trim(),
         payment_code: document.getElementById('payment-code').value.trim()
