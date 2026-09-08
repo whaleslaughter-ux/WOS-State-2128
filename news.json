@@ -1,5 +1,29 @@
 [
 {
+  "id": "panda-perpetual-peril",
+  "date": "2026-09-08",
+  "title": "Panda Has Been In Danger For As Long As Anyone Can Remember",
+  "img": "/assets/bia/greigh-panda-peril-20260908.webp",
+  "alt": "Panda sitting cross-legged on the ground watching a phone screen showing a pregnant merman AI drama, behind her a campfire surrounded by players holding signs reading CUT THE PANDA, Pei and Bow standing in the background looking shocked, Panda not noticing any of it",
+  "blurb": "<p>Last week the state demanded Panda change her profile picture because it contained another person. The week before that, she was in some kind of trouble. The week before that, also trouble. No one can identify a week in which Panda was not in some form of peril. This is either a coincidence or a lifestyle.</p><p>The profile picture situation escalated to a campfire. Multiple players chanted 'CUT THE PANDA.' Panda survived. Panda always survives.</p><p>Pei and Bow, who are always together and may or may not be a couple, appear in nearly every incident. They are not so much antagonists as recurring cast members. In the short AI-generated dramas currently flooding social media, this role is known as 'the ones who betray the empress in episode one and then appear shocked when she is reincarnated in episode two.' The drama auto-plays. The viewer does not look away.</p><p>Panda's account history follows this structure exactly. One could argue this is a coincidence. One could also look at Panda's watch history.</p><p>At the time of publication, Panda was observed in world chat declaring a new war via megaphone. The cycle continues. &mdash;Greigh Fox, fair and balanced.</p>",
+  "reporter": "Greigh Fox",
+  "tags": ["Drama"],
+  "alliances": ["NWO"],
+  "states": ["2128"],
+  "characters": ["Panda", "Pei", "Bow", "Greigh Fox"]
+},{
+  "id": "svs-prep-day-one-2196",
+  "date": "2026-09-08",
+  "title": "SVS Prep Day One — 2196 Leads, NWO Closes In, HAVOC Beats IDK Because Of Course They Do",
+  "img": "/assets/bia/griff-svs-prep-day1-20260908.webp",
+  "alt": "A tired war correspondent standing in front of a scoreboard showing alliance rankings, one line circled in red where HAVOC sits above IDK, a handwritten note in the margin reading mentioned once and never again",
+  "blurb": "<p>State 2196 holds a narrow lead after the first day of SVS preparation, which will surprise no one who looked at the matchup and counted the wallets on the other side. SunfireWolves sits at the top of the alliance board with roughly 443 million points, but NewWorldOrder is right behind them at 440 million, which is close enough to make the next four days interesting and far enough to make today's result meaningless.</p><p>BORN2KILL, SpartanHeroes, and TeQuitos round out the top five, all from 2196, which means the enemy holds four of five alliance slots and one of them is barely ahead of an alliance that spent the evening plotting against a panda. NWO should probably feel good about that.</p><p>HAVOC sits at sixth with 235 million. IDK is seventh. HAVOC is beating IDK. This will be mentioned exactly once and never brought up again, which is a lie.</p><p>On the personal board, DEVIL from SpartanHeroes leads at 35 million. BabyRaistlin, representing HAVOC, holds second at 29 million, followed closely by Strannikk from BORN2KILL at 29 million and HITMAN from NWO at 27 million. SKELETOR rounds out the top five. Three of the top five are from 2196. Two are from 2128. The margin is thin enough that no one should be celebrating and everyone will anyway.</p><p>Day two starts tomorrow. Try not to burn anything down before then. &mdash;Griff Harpoon, actually reporting.</p>",
+  "reporter": "Griff Harpoon",
+  "tags": ["SVS"],
+  "alliances": ["NWO", "HAV", "IDK"],
+  "states": ["2128", "2196"],
+  "characters": ["DEVIL", "BabyRaistlin", "Strannikk", "HITMAN", "SKELETOR"]
+},{
   "id": "card-form-redesign",
   "date": "2026-09-05",
   "title": "The Card Order Form Has Been Rebuilt Because You Deserve Better",
