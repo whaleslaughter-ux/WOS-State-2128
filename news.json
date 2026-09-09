@@ -1,4 +1,17 @@
 [
+  {
+  "id": "svs-prep-day-two-2196",
+  "date": "2026-09-09",
+  "title": "SVS Prep Day Two — IDK Passes HAVOC, Panda Remains In Danger At Number Two",
+  "img": "/assets/bia/griff-svs-prep-day2-20260909.webp",
+  "alt": "Five players standing on a podium numbered one through five, Smartie on top holding a trophy, Panda in second looking around nervously, SandMan in third, kaybetmemm in fourth, Carp in fifth, alliance banners from both states flying in the background",
+  "blurb": "<p>IDK passed HAVOC on Day 2. This is noted without comment, mostly because commenting would require acknowledging yesterday's article, and no one here is prepared to do that.</p><p>SunfireWolves extended their lead at the top of the alliance board with 350 million, and NWO crossed 300 million in second place but the gap is widening. TeQuitos climbed to third. BORN2KILL sits fourth. IDK holds fifth at 185 million. HAVOC is seventh with 107 million, which is above SpartanHeroes, if anyone is looking for consolation. No one is.</p><p>The personal board reshuffled entirely. None of yesterday's top five returned. Smartie from SAY leads at 52 million. In second place with 36 million is Panda from NWO, who was the subject of a formal investigation by this publication approximately twenty-four hours ago regarding an inability to avoid peril. Panda has responded by becoming the highest-scoring individual from State 2128. The cycle continues, apparently, in both directions.</p><p>SandMan from TeQuitos sits third at 36 million, followed by kaybetmemm from LUX at 26 million and Carp from SunfireWolves in fifth. Four of the top five are from 2196. Panda is holding the line alone.</p><p>Three days remain. Something will probably happen to Panda before then. &mdash;Griff Harpoon, actually reporting.</p>",
+  "reporter": "Griff Harpoon",
+  "tags": ["SVS"],
+  "alliances": ["NWO", "HAV", "IDK", "SAY", "TeQ", "B2K", "SFW", "LUX", "SHR"],
+  "states": ["2128", "2196"],
+  "characters": ["Smartie", "Panda", "SandMan", "kaybetmemm", "Carp"]
+},
 {
   "id": "panda-perpetual-peril",
   "date": "2026-09-08",
