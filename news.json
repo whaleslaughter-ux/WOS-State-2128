@@ -1,5 +1,30 @@
 [
   {
+  "id": "svs-prep-day-four-nwo-first",
+  "date": "2026-09-11",
+  "title": "SVS Prep Day Four — NWO Takes First Overall by One Million Points",
+  "img": "/assets/bia/griff-svs-prep-day4-20260911.webp",
+  "alt": "A scoreboard showing NWO and SunfireWolves neck and neck at 1.6 billion points, a magnifying glass hovering over the one million point gap, Griff in the corner shaking his head",
+  "blurb": "<p>NWO remembered they were in a competition and put up 461 million on Day 4, retaking the daily lead from BORN2KILL and pulling ahead of SunfireWolves by roughly 50 million. SunfireWolves posted 409 million. BORN2KILL and TeQuitos sit third and fourth. The top five daily slots belong to three 2196 alliances and one 2128 alliance that apparently decided to stop pacing itself.</p><p>The overall standings are now absurd. NWO leads at 1.613 billion. SunfireWolves sits at 1.612 billion. The gap is one million points out of 1.6 billion, which is close enough that a rounding error could change the outcome and far enough that NWO will claim it was never in doubt. HAVOC sits seventh at 723 million.</p><p>IDK took sixth on the day at 210 million. HAVOC is seventh at 176 million. LEGION appeared at eighth with 104 million, which is the first time a fourth 2128 alliance has made the board. No one is discussing this because everyone is watching the NWO-SunfireWolves race, but it is noted.</p><p>On the personal board, Panda is back at second place with 51 million, behind Louie from BORN2KILL at 62 million. MightyMopar from SunfireWolves takes third, Bye Bye returns at fourth, and Captain Jimmy rounds out the top five. Panda has now placed second on two of the four prep days. The player who was the subject of a formal investigation into perpetual peril is quietly becoming the most consistent individual scorer State 2128 has. The cycle continues. &mdash;Griff Harpoon, actually reporting.</p>",
+  "reporter": "Griff Harpoon",
+  "tags": ["SVS"],
+  "alliances": ["NWO", "SFW", "B2K", "TeQ", "HAV", "IDK", "300"],
+  "states": ["2128", "2196"],
+  "characters": ["Panda", "Louie", "MightyMopar", "Bye Bye", "Captain Jimmy"]
+},
+{
+  "id": "svs-prep-day-three-2196-sweep",
+  "date": "2026-09-10",
+  "title": "SVS Prep Day Three — 2196 Sweeps the Top Four, PANDA POWER Holds Fourth Alone",
+  "img": "/assets/bia/griff-svs-prep-day3-20260910.webp",
+  "alt": "Four 2196 alliance banners towering over the battlefield, a lone panda warrior standing in fourth place with a glowing green nameplate reading PANDA POWER, the original name Death visible underneath in faded text",
+  "blurb": "<p>State 2196 took four of the top four alliance slots on Day 3, which is the kind of number that makes you stop checking and start drinking. BORN2KILL led the day at 367 million. SunfireWolves, SpartanHeroes, and TeQuitos followed. NWO dropped to fifth with 229 million. HAVOC held sixth at 173 million. IDK trailed at seventh with 151 million, which means HAVOC is beating IDK again, and at this point tracking the lead changes between those two is a full-time job that no one at this publication applied for.</p><p>On the personal board, USMC DRILL from BORN2KILL led at 70 million, followed by Bye Bye from SpartanHeroes at 54 million and Louie from BORN2KILL at 52 million. The top three are all 2196. In fourth place, representing the entire population of State 2128, is someone named !!PANDA POWER!! from HAVOC with 44 million points.</p><p>This requires explanation. State 2128 has adopted a Panda-themed profile picture campaign for SVS, which began when WHALESLAUGHTER declared it in leader chat without a vote. Players have responded by making Panda into a disco ball, a rickshaw passenger, a spider, and a bodybuilder. At least one player has now changed their name entirely. !!PANDA POWER!! is Death. Whether this qualifies as team spirit or targeted harassment remains unclear. The points suggest it might be working. &mdash;Griff Harpoon, actually reporting.</p>",
+  "reporter": "Griff Harpoon",
+  "tags": ["SVS"],
+  "alliances": ["B2K", "SFW", "SHR", "TeQ", "NWO", "HAV", "IDK"],
+  "states": ["2128", "2196"],
+  "characters": ["USMC DRILL", "Bye Bye", "Louie", "Death", "Panda", "WHALESLAUGHTER"]
+},{
   "id": "whaleslaughter-v8-complaint",
   "date": "2026-09-10",
   "title": "WHALESLAUGHTER Sends Harshly Worded Letter to Campbell's, Sources Confirm It's About Juice",
