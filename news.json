@@ -1,5 +1,17 @@
 [
   {
+  "id": "svs-battle-day-begins",
+  "date": "2026-09-12",
+  "title": "Battle Day Begins — 2128 Is Losing, Which They Insist Is Part of the Plan",
+  "img": "/assets/bia/catty-battle-day-20260912.webp",
+  "alt": "A cat reporter perched on a windowsill peering into a dark war room where silhouettes huddle over a glowing map table, speech bubbles reading timing troops sync floating above them, the scoreboard visible through another window showing 2128 losing, the cat taking notes",
+  "blurb": "<p>I am sitting in the window of the war room. I was not invited. No one has asked me to leave, which I am choosing to interpret as permission.</p><p>State 2128 lost the preparation phase, which means they are hosting, which means the enemy is coming here. 2196 has assembled a battle alliance, which is what serious states do when they want to consolidate their strongest players into one formation. 2128 has also done this because 2128 copies everything that works and pretends they thought of it first.</p><p>The voice chat is running. I keep hearing the words 'timing,' 'troops,' and 'sync,' which are either military strategy or a boy band rehearsal. Panda &mdash; who is a man, and I will address this in a moment &mdash; is coordinating. WHALESLAUGHTER is also on the call, which means someone is managing the war and someone else is making it entertaining. I will let the reader decide which is which.</p><p>The scoreboard currently shows 2128 losing. I have been told not to worry about this. I have been told that losing is part of the strategy. I have been told that there is a plan and that the plan requires the enemy to feel confident. I have been told a lot of things by people who are also losing, and I am choosing to believe them because the alternative is panic and I do not panic attractively.</p><p>2196 is strong. Their alliances are organized, their top scorers rotate daily, and they have players named things like USMC DRILL, which suggests a level of personal discipline that this state handles mostly through themed profile pictures and newspaper articles about juice. But 2128 has something 2196 does not have, which is the absolute certainty that they are going to win despite all available evidence. This is either confidence or delusion. In this state, they are the same thing.</p><p>More updates to follow. I am not leaving this window. &mdash;Catty von Catacean</p><p><em>Correction: This publication previously referred to Panda using incorrect pronouns in our September 8 investigation. Panda is a man. The investigation continues. &mdash;Greigh Fox</em></p>",
+  "reporter": "Catty von Catacean",
+  "tags": ["SVS"],
+  "alliances": ["HAV", "NWO"],
+  "states": ["2128", "2196"],
+  "characters": ["Panda", "WHALESLAUGHTER", "Catty von Catacean", "Greigh Fox"]
+},{
   "id": "svs-prep-day-four-nwo-first",
   "date": "2026-09-11",
   "title": "SVS Prep Day Four — NWO Takes First Overall by One Million Points",
