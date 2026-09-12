@@ -1,5 +1,17 @@
 [
 {
+  "id": "svs-battle-result-learning-experience",
+  "date": "2026-09-12",
+  "title": "The Plan Did Not Work — But the Window Was Worth It",
+  "img": "/assets/bia/catty-window-close-20260912.webp",
+  "alt": "A cat reporter climbing down from a windowsill at dawn, the war room behind her dark and empty, a single scoreboard still glowing showing 2196 ahead, but the table covered in plans and notes and empty coffee cups suggesting a room that fought hard",
+  "blurb": "<p>The secret plan failed. I am not going to pretend otherwise. I sat in that window for the entire battle and watched the numbers climb and then watched them stop climbing and then watched 2196 win, and I am not going to dress this up as a moral victory because I respect you too much for that.</p><p>But here is what I will say.</p><p>Death &mdash; who spent this entire SVS answering to PANDA POWER because WHALESLAUGHTER thought it was funny &mdash; came off the call and said it was a great learning experience. Not a loss. Not a disaster. A learning experience. And the thing is, he meant it. The coordination was real. The countdowns were real. The timing, the troops, the sync &mdash; all of it was real. The plan was diabolical and the execution was close and 2196 was stronger and that is allowed to be true at the same time.</p><p>2128 went into this SVS with panda memes and came out of it with a war room that actually works. Zaddy, Zar, and Death ran voice chat like they have done this a hundred times, and next time they will have done it one more. Wandy popped the pets. Bambooty, Abdo, Raistlin, Pandagonga, Spider, Panda, Bow, Pei, Faceless, Aslan, and every player in CAT showed up. The state showed up.</p><p>I am leaving the window now. &mdash;Catty von Catacean</p>",
+  "reporter": "Catty von Catacean",
+  "tags": ["SVS"],
+  "alliances": ["CAT"],
+  "states": ["2128", "2196"],
+  "characters": ["Death", "Captain Zaddy", "Queen Zar", "Wandy", "Bambooty", "Abdo", "Raistlin", "Pandagonga", "Spider", "Panda", "Bow", "Pei", "Faceless", "Aslan", "WHALESLAUGHTER", "Catty von Catacean"]
+},{
   "id": "svs-battle-war-room-update",
   "date": "2026-09-12",
   "title": "2128 War Room Update — Zaddy, Zar, and Death Are Running This and It Shows",
