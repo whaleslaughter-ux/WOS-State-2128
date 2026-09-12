@@ -1,5 +1,17 @@
 [
-  {
+{
+  "id": "svs-battle-war-room-update",
+  "date": "2026-09-12",
+  "title": "2128 War Room Update — Zaddy, Zar, and Death Are Running This and It Shows",
+  "img": "/assets/bia/catty-war-room-20260912.webp",
+  "alt": "A war room in State 2196, commanders slumped over a table staring at a scoreboard trending the wrong direction, one player with their head in their hands, alliance banners from SunfireWolves and BORN2KILL hanging limp in the background, a clock on the wall showing time running out",
+  "blurb": "<p>I am still in the window. I have not moved. I may live here now.</p><p>The battle alliances are active, which means there are no alliance names that matter today. There is no HAVOC, no NWO, no IDK. There is only 2128 and 2196, and everyone who spent the last week arguing about profile pictures and juice is now in the same room following the same calls.</p><p>Captain Zaddy, Queen Zar, and Death are leading voice chat. I do not understand most of what they are saying but I understand the tone, and the tone is people who have done this before and are tired of explaining it to people who have not. They are adjusting in real time. They are calling targets. They are saying things like 'hold' and 'now' and 'pop your pets' and '10, 9, 8, 7 ... 1, OK Wandy' with the kind of calm authority that makes you believe them even though you have no idea what is being held or what needs popping or what Wandy just did.</p><p>The secret plan is in action. PANDA POWER is in action. Time gains are happening. I have been watching long enough to understand what is being done here and it is diabolical. The enemy arrived confident and the confidence appears to be fading, which is exactly what I was told would happen by people I chose to believe because the alternative was panic. I believed correctly.</p><p>2128 spent the preparation phase making panda memes and filing complaints about juice. 2128 is now executing coordinated military operations led by three people who sound like they teach this for a living. This state makes no sense and I would not trade it for anything.</p><p>I am not leaving this window. &mdash;Catty von Catacean</p>",
+  "reporter": "Catty von Catacean",
+  "tags": ["SVS"],
+  "alliances": [],
+  "states": ["2128", "2196"],
+  "characters": ["Captain Zaddy", "Queen Zar", "Death", "Wandy", "Catty von Catacean"]
+},{
   "id": "svs-battle-day-begins",
   "date": "2026-09-12",
   "title": "Battle Day Begins — 2128 Is Losing, Which They Insist Is Part of the Plan",
