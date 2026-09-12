@@ -139,7 +139,6 @@
     }
     .player-card-info { flex: 1; min-width: 0; }
     .player-card-name { font-weight: 700; font-size: .9rem; }
-    .player-card-meta { font-size: .72rem; color: var(--muted); }
     .player-card-logout {
       margin-left: auto; font-size: .72rem; color: var(--muted);
       background: none; border: none; cursor: pointer;
@@ -298,7 +297,6 @@
       return 'https://translate.google.com/?sl=auto&tl=en&text=' + encodeURIComponent(text) + '&op=translate';
     }
 
-    // Hybrid session loading supporting both legacy logged-in users with avatars and new manual entries
     function saveSession(user) { try { localStorage.setItem('wos_commenter_session', JSON.stringify(user)); } catch(e){} }
     function loadSession() {
       try {
@@ -382,7 +380,6 @@
       }
 
       qs('#player-name', card).textContent = user.username;
-      qs('#player-meta', card).textContent = 'Player ID: ' + user.playerId;
       card.classList.add('visible');
       if (login)    login.style.display = 'none';
       if (composer) composer.classList.add('visible');
@@ -392,11 +389,11 @@
       return '<section class="comments-section" aria-labelledby="comments-heading">'
         + '<h2 class="section-heading" id="comments-heading">Comments</h2>'
         + '<div id="comment-login" class="comment-login">'
-        + '<p style="font-size:.85rem;color:var(--muted);margin:0 0 12px">Enter your 9-digit Player ID and custom username to join the discussion.</p>'
+        + '<p style="font-size:.85rem;color:var(--muted);margin:0 0 12px">Enter your Player ID and custom username to join the discussion.</p>'
         + '<div class="login-row">'
         + '<div class="login-field">'
-        + '<label for="player-id-input">Player ID (9 digits)</label>'
-        + '<input type="text" id="player-id-input" placeholder="e.g. 327682909" maxlength="9" inputmode="numeric" autocomplete="off" />'
+        + '<label for="player-id-input">Player ID</label>'
+        + '<input type="text" id="player-id-input" placeholder="e.g. 327682909" autocomplete="off" />'
         + '</div>'
         + '<div class="login-field">'
         + '<label for="username-input">Username</label>'
@@ -410,7 +407,6 @@
         + '<div class="player-card-avatar" id="player-card-avatar"></div>'
         + '<div class="player-card-info">'
         + '<div class="player-card-name" id="player-name"></div>'
-        + '<div class="player-card-meta" id="player-meta"></div>'
         + '</div>'
         + '<button class="player-card-logout" id="logout-btn" type="button">Change ID</button>'
         + '</div>'
@@ -442,10 +438,6 @@
 
           if (!fid || !uname) {
             loginError.textContent = 'Please provide both your Player ID and a username.';
-            return;
-          }
-          if (!/^\d{9}$/.test(fid)) {
-            loginError.textContent = 'Player ID must be exactly 9 numeric digits.';
             return;
           }
 
