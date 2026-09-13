@@ -95,4 +95,24 @@ export async function onRequest(context) {
   // Rewrite the HTML: swap meta, inject content
   return new HTMLRewriter()
     .on('title', {
-      element: function(el)
+      element: function(el) { el.remove(); }
+    })
+    .on('meta[name="description"]', {
+      element: function(el) { el.remove(); }
+    })
+    .on('head', {
+      element: function(el) { el.append(ogTags, { html: true }); }
+    })
+    .on('#article-root', {
+      element: function(el) { el.append(renderedArticle, { html: true }); }
+    })
+    .transform(pageRes);
+}
+
+function escHtml(s) {
+  return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+function escAttr(s) {
+  return String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
