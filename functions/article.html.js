@@ -82,7 +82,11 @@ export async function onRequest(context) {
   ogTags += '<script type="application/ld+json">' + jsonLd + '</script>\n';
 
   // Server-rendered article content for crawlers that don't run JS
+  var altText = article.alt || article.title;
   var renderedArticle = '<div id="ssr-article">'
+    + (article.img
+      ? '<img src="' + escAttr(article.img) + '" alt="' + escAttr(altText) + '" width="900" height="480" />'
+      : '')
     + '<h1>' + escHtml(article.title) + '</h1>'
     + '<p>By ' + escHtml(article.reporter) + ' \u00b7 ' + article.date + '</p>'
     + article.blurb
@@ -91,24 +95,4 @@ export async function onRequest(context) {
   // Rewrite the HTML: swap meta, inject content
   return new HTMLRewriter()
     .on('title', {
-      element: function(el) { el.remove(); }
-    })
-    .on('meta[name="description"]', {
-      element: function(el) { el.remove(); }
-    })
-    .on('head', {
-      element: function(el) { el.append(ogTags, { html: true }); }
-    })
-    .on('#article-root', {
-      element: function(el) { el.append(renderedArticle, { html: true }); }
-    })
-    .transform(pageRes);
-}
-
-function escHtml(s) {
-  return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-}
-
-function escAttr(s) {
-  return String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-}
+      element: function(el)
