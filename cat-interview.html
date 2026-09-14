@@ -13,6 +13,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>The Cat in the Chat: An Interview — WOS State 2128</title>
   <meta name="description" content="Griff Harpoon interviews transfer chat's most prolific correspondent: a small cat holding signs." />
+  <link rel="canonical" href="https://2128.whaleslaughter.com/cat-interview.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="The Cat in the Chat: An Interview" />
+  <meta property="og:description" content="Griff Harpoon interviews transfer chat's most prolific correspondent: a small cat holding signs." />
+  <meta property="og:image" content="https://2128.whaleslaughter.com/assets/bia/griff-cat-interview.webp" />
+  <meta property="og:url" content="https://2128.whaleslaughter.com/cat-interview.html" />
+  <meta property="og:site_name" content="2128 News — WOS State 2128" />
+  <meta property="article:published_time" content="2026-09-14" />
+  <meta property="article:author" content="Griff Harpoon" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="The Cat in the Chat: An Interview" />
+  <meta name="twitter:description" content="Griff Harpoon interviews transfer chat's most prolific correspondent: a small cat holding signs." />
+  <meta name="twitter:image" content="https://2128.whaleslaughter.com/assets/bia/griff-cat-interview.webp" />
   <style>
     :root {
       --bg1: #0b1030;
@@ -129,6 +142,104 @@
     }
     .share-btn:hover { background: rgba(165,180,255,.14); border-color: rgba(165,180,255,.4); color: #fff; }
     .share-btn.copied { color: #86efac; border-color: rgba(134,239,172,.3); }
+
+    .comments-section {
+      background: linear-gradient(180deg,rgba(255,255,255,.02),rgba(0,0,0,.04));
+      border: 1px solid var(--border); border-radius: 14px;
+      padding: 24px; margin-bottom: 40px;
+    }
+    .section-heading {
+      font-size: .72rem; font-weight: 800; letter-spacing: .18em;
+      text-transform: uppercase; color: var(--muted); margin: 0 0 20px;
+    }
+    .comment-login { margin-bottom: 28px; }
+    .login-row { display: flex; gap: 12px; flex-wrap: wrap; align-items: flex-end; }
+    .login-field { flex: 1; min-width: 180px; }
+    .login-field label {
+      display: block; font-size: .72rem; font-weight: 700;
+      letter-spacing: .08em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 6px;
+    }
+    .login-field input {
+      width: 100%; padding: 9px 12px; border-radius: 8px;
+      border: 1px solid var(--border); background: rgba(0,0,0,.3);
+      color: var(--ink); font-size: .9rem; outline: none; transition: border-color .15s;
+    }
+    .login-field input:focus { border-color: rgba(165,180,255,.4); }
+    .login-field input::placeholder { color: rgba(185,195,255,.35); }
+    .btn-primary {
+      padding: 9px 18px; border-radius: 8px; border: none;
+      background: var(--accent); color: #0b1030;
+      font-size: .85rem; font-weight: 800; cursor: pointer;
+      transition: opacity .15s; white-space: nowrap;
+    }
+    .btn-primary:hover { opacity: .85; }
+    .btn-primary:disabled { opacity: .4; cursor: not-allowed; }
+    .player-card {
+      display: none; align-items: center; gap: 12px;
+      padding: 12px 14px; border: 1px solid rgba(165,180,255,.15);
+      border-radius: 10px; background: rgba(165,180,255,.05); margin-bottom: 20px;
+    }
+    .player-card.visible { display: flex; }
+    .player-card-avatar {
+      width: 38px; height: 38px; border-radius: 50%;
+      object-fit: cover; background: var(--bg2);
+      border: 1px solid rgba(255,255,255,.1);
+      flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 1rem; color: var(--accent); overflow: hidden;
+    }
+    .player-card-info { flex: 1; min-width: 0; }
+    .player-card-name { font-weight: 700; font-size: .9rem; }
+    .player-card-logout {
+      margin-left: auto; font-size: .72rem; color: var(--muted);
+      background: none; border: none; cursor: pointer;
+      text-decoration: underline; padding: 0; flex-shrink: 0;
+    }
+    .player-card-logout:hover { color: var(--ink); }
+    .comment-composer { display: none; margin-bottom: 28px; }
+    .comment-composer.visible { display: block; }
+    .comment-composer textarea {
+      width: 100%; min-height: 90px; padding: 10px 12px;
+      border-radius: 8px; border: 1px solid var(--border);
+      background: rgba(0,0,0,.3); color: var(--ink);
+      font: inherit; font-size: .9rem; resize: vertical; outline: none;
+      transition: border-color .15s; margin-bottom: 8px;
+    }
+    .comment-composer textarea:focus { border-color: rgba(165,180,255,.4); }
+    .comment-composer textarea::placeholder { color: rgba(185,195,255,.35); }
+    .composer-footer { display: flex; justify-content: flex-end; align-items: center; gap: 10px; }
+    .char-count { font-size: .72rem; color: var(--muted); }
+    .char-count.warn { color: #fca5a5; }
+    .comments-list { display: flex; flex-direction: column; gap: 16px; }
+    .comment-item { display: flex; gap: 12px; align-items: flex-start; }
+    .comment-avatar {
+      width: 38px; height: 38px; border-radius: 50%;
+      object-fit: cover; background: var(--bg2);
+      border: 1px solid rgba(255,255,255,.1);
+      flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 1rem; color: var(--accent); overflow: hidden;
+    }
+    .comment-bubble { flex: 1; min-width: 0; }
+    .comment-meta {
+      display: flex; align-items: baseline; gap: 8px;
+      margin-bottom: 4px; flex-wrap: wrap;
+    }
+    .comment-name { font-weight: 700; font-size: .85rem; }
+    .comment-time { font-size: .72rem; color: var(--muted); }
+    .translate-btn {
+      font-size: .68rem; color: var(--muted);
+      background: none; border: none; cursor: pointer;
+      padding: 0; text-decoration: none; transition: color .12s;
+    }
+    .translate-btn:hover { color: var(--ink); }
+    .comment-text { font-size: .88rem; line-height: 1.55; color: var(--ink); word-break: break-word; }
+    .comments-empty { text-align: center; padding: 28px 0; color: var(--muted); font-size: .88rem; }
+    .comments-loading { text-align: center; padding: 20px 0; color: var(--muted); font-size: .85rem; }
+    .error-msg { color: #fca5a5; font-size: .82rem; margin-top: 6px; }
+    @media (max-width: 600px) {
+      .article-hero { max-height: 260px; }
+      .comments-section { padding: 16px; }
+    }
   </style>
 </head>
 <body>
@@ -244,6 +355,44 @@
     <button class="share-btn" id="share-btn" type="button">&#128279; Share this article</button>
   </div>
 
+  <section class="comments-section" aria-labelledby="comments-heading">
+    <h2 class="section-heading" id="comments-heading">Comments</h2>
+    <div id="comment-login" class="comment-login">
+      <p style="font-size:.85rem;color:var(--muted);margin:0 0 12px">Enter your Player ID and custom username to join the discussion.</p>
+      <div class="login-row">
+        <div class="login-field">
+          <label for="player-id-input">Player ID</label>
+          <input type="text" id="player-id-input" placeholder="e.g. 327682909" autocomplete="off" />
+        </div>
+        <div class="login-field">
+          <label for="username-input">Username</label>
+          <input type="text" id="username-input" placeholder="e.g. Whaleslaughter" maxlength="30" autocomplete="off" />
+        </div>
+        <button class="btn-primary" id="login-btn" type="button">Set ID</button>
+      </div>
+      <div id="login-error" class="error-msg" role="alert" aria-live="polite"></div>
+    </div>
+    <div id="player-card" class="player-card" aria-label="Logged in player">
+      <div class="player-card-avatar" id="player-card-avatar"></div>
+      <div class="player-card-info">
+        <div class="player-card-name" id="player-name"></div>
+      </div>
+      <button class="player-card-logout" id="logout-btn" type="button">Change ID</button>
+    </div>
+    <div id="comment-composer" class="comment-composer" aria-label="Write a comment">
+      <label for="comment-textarea" style="display:block;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:6px">Your comment</label>
+      <textarea id="comment-textarea" placeholder="Say something about this article…" maxlength="500" aria-describedby="char-count post-error"></textarea>
+      <div class="composer-footer">
+        <span id="char-count" class="char-count" aria-live="polite">500 remaining</span>
+        <button class="btn-primary" id="post-btn" type="button">Post</button>
+      </div>
+      <div id="post-error" class="error-msg" role="alert" aria-live="polite"></div>
+    </div>
+    <div id="comments-list" class="comments-list" aria-label="Comments" aria-live="polite">
+      <div class="comments-loading">Loading comments…</div>
+    </div>
+  </section>
+
 </main>
 
 <div id="footer-placeholder"></div>
@@ -252,7 +401,124 @@
 </script>
 
 <script>
-  var shareBtn = document.getElementById('share-btn');
+(function() {
+  var SUPABASE_URL = 'https://pfjepcvqvsloasdhjukp.supabase.co';
+  var SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBmamVwY3ZxdnNsb2FzZGhqdWtwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzczMjQ0NTEsImV4cCI6MjA5MjkwMDQ1MX0.2gRdJ4hP_osVLrv38aZYLQ-QeioRwdBNAYcK_Kdc40s';
+  var MAX_COMMENT = 500;
+  var ARTICLE_ID = 'cat-in-the-chat-interview';
+  var currentUser = null;
+
+  function qs(sel, ctx) { return (ctx || document).querySelector(sel); }
+
+  function escHtml(str) {
+    return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+
+  function initial(name) { return name ? name.charAt(0).toUpperCase() : '?'; }
+
+  function timeAgo(iso) {
+    var diff = Date.now() - new Date(iso).getTime();
+    var m = Math.floor(diff / 60000);
+    if (m < 1) return 'just now';
+    if (m < 60) return m + 'm ago';
+    var h = Math.floor(m / 60);
+    if (h < 24) return h + 'h ago';
+    return Math.floor(h / 24) + 'd ago';
+  }
+
+  function translateUrl(text) {
+    return 'https://translate.google.com/?sl=auto&tl=en&text=' + encodeURIComponent(text) + '&op=translate';
+  }
+
+  function saveSession(user) { try { localStorage.setItem('wos_commenter_session', JSON.stringify(user)); } catch(e){} }
+  function loadSession() {
+    try {
+      var s = localStorage.getItem('wos_commenter_session') || localStorage.getItem('wos_commenter_manual');
+      return s ? JSON.parse(s) : null;
+    } catch(e){ return null; }
+  }
+  function clearSession() {
+    try {
+      localStorage.removeItem('wos_commenter_session');
+      localStorage.removeItem('wos_commenter_manual');
+    } catch(e){}
+  }
+
+  function loadComments() {
+    var list = qs('#comments-list');
+    if (!list) return;
+    list.innerHTML = '<div class="comments-loading" aria-live="polite">Loading comments…</div>';
+
+    fetch(SUPABASE_URL + '/rest/v1/comments?article_id=eq.' + encodeURIComponent(ARTICLE_ID) + '&order=created_at.asc', {
+      headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+    })
+    .then(function(r){ return r.json(); })
+    .then(function(comments) {
+      if (!comments.length) {
+        list.innerHTML = '<div class="comments-empty">No comments yet. Be the first!</div>';
+        return;
+      }
+      list.innerHTML = comments.map(function(c) {
+        var avatarHtml = c.avatar_url
+          ? '<img class="comment-avatar" src="' + escHtml(c.avatar_url) + '" alt="' + escHtml(c.username) + '" />'
+          : '<div class="comment-avatar">' + escHtml(initial(c.username)) + '</div>';
+        return '<div class="comment-item" role="article" aria-label="Comment by ' + escHtml(c.username) + '">'
+          + avatarHtml
+          + '<div class="comment-bubble">'
+          + '<div class="comment-meta">'
+          + '<span class="comment-name">' + escHtml(c.username) + '</span>'
+          + '<time class="comment-time" datetime="' + escHtml(c.created_at) + '">' + timeAgo(c.created_at) + '</time>'
+          + '<a class="translate-btn" href="' + translateUrl(c.comment) + '" target="_blank" rel="noopener" aria-label="Translate this comment">🌐</a>'
+          + '</div>'
+          + '<p class="comment-text">' + escHtml(c.comment) + '</p>'
+          + '</div></div>';
+      }).join('');
+    })
+    .catch(function() {
+      list.innerHTML = '<div class="error-msg">Could not load comments. Try refreshing.</div>';
+    });
+  }
+
+  function postComment(comment) {
+    return fetch(SUPABASE_URL + '/rest/v1/comments', {
+      method: 'POST',
+      headers: {
+        'apikey': SUPABASE_KEY,
+        'Authorization': 'Bearer ' + SUPABASE_KEY,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=minimal'
+      },
+      body: JSON.stringify({
+        article_id: ARTICLE_ID,
+        player_id: currentUser.playerId,
+        username: currentUser.username,
+        avatar_url: currentUser.avatarUrl || null,
+        comment: comment
+      })
+    }).then(function(r){ if (!r.ok) throw new Error(); });
+  }
+
+  function showPlayerCard(user) {
+    var card = qs('#player-card');
+    var login = qs('#comment-login');
+    var composer = qs('#comment-composer');
+    if (!card) return;
+
+    var avatarEl = qs('#player-card-avatar', card);
+    if (user.avatarUrl) {
+      avatarEl.innerHTML = '<img src="' + escHtml(user.avatarUrl) + '" alt="" style="width:100%;height:100%;object-fit:cover;" />';
+    } else {
+      avatarEl.textContent = initial(user.username);
+    }
+
+    qs('#player-name', card).textContent = user.username;
+    card.classList.add('visible');
+    if (login) login.style.display = 'none';
+    if (composer) composer.classList.add('visible');
+  }
+
+  // Share button
+  var shareBtn = qs('#share-btn');
   if (shareBtn) {
     shareBtn.addEventListener('click', function() {
       if (navigator.share) {
@@ -270,6 +536,88 @@
       }
     });
   }
+
+  // Login
+  var loginBtn = qs('#login-btn');
+  var loginInput = qs('#player-id-input');
+  var usernameInput = qs('#username-input');
+  var loginError = qs('#login-error');
+
+  if (loginBtn) {
+    loginBtn.addEventListener('click', function() {
+      var fid = loginInput.value.trim();
+      var uname = usernameInput.value.trim();
+      if (!fid || !uname) {
+        loginError.textContent = 'Please provide both your Player ID and a username.';
+        return;
+      }
+      loginError.textContent = '';
+      currentUser = { playerId: fid, username: uname, avatarUrl: null };
+      saveSession(currentUser);
+      showPlayerCard(currentUser);
+    });
+  }
+
+  // Logout
+  var logoutBtn = qs('#logout-btn');
+  if (logoutBtn) {
+    logoutBtn.addEventListener('click', function() {
+      currentUser = null;
+      clearSession();
+      qs('#player-card').classList.remove('visible');
+      qs('#comment-composer').classList.remove('visible');
+      qs('#comment-login').style.display = '';
+      if (loginInput) loginInput.value = '';
+      if (usernameInput) usernameInput.value = '';
+    });
+  }
+
+  // Textarea
+  var textarea = qs('#comment-textarea');
+  var charCount = qs('#char-count');
+  if (textarea && charCount) {
+    textarea.addEventListener('input', function() {
+      var rem = MAX_COMMENT - textarea.value.length;
+      charCount.textContent = rem + ' remaining';
+      charCount.classList.toggle('warn', rem < 50);
+    });
+  }
+
+  // Post
+  var postBtn = qs('#post-btn');
+  var postError = qs('#post-error');
+  if (postBtn) {
+    postBtn.addEventListener('click', function() {
+      var text = textarea.value.trim();
+      if (!text) { postError.textContent = 'Write something first!'; return; }
+      if (!currentUser) { postError.textContent = 'Please log in first.'; return; }
+      postBtn.disabled = true;
+      postBtn.textContent = 'Posting…';
+      postError.textContent = '';
+      postComment(text)
+        .then(function() {
+          textarea.value = '';
+          charCount.textContent = MAX_COMMENT + ' remaining';
+          charCount.classList.remove('warn');
+          loadComments();
+        })
+        .catch(function() {
+          postError.textContent = 'Failed to post. Try again.';
+        })
+        .finally(function() {
+          postBtn.disabled = false;
+          postBtn.textContent = 'Post';
+        });
+    });
+  }
+
+  // Restore session
+  var saved = loadSession();
+  if (saved) { currentUser = saved; showPlayerCard(saved); }
+
+  // Load comments
+  loadComments();
+})();
 </script>
 
 </body>
