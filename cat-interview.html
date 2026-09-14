@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6LN9JCF6JC"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-6LN9JCF6JC');
+  </script>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Cat in the Chat: An Interview — WOS State 2128</title>
+  <meta name="description" content="Griff Harpoon interviews transfer chat's most prolific correspondent: a small cat holding signs." />
+  <style>
+    :root {
+      --bg1: #0b1030;
+      --bg2: #1a2147;
+      --ink: #eef2ff;
+      --muted: #b9c3ff;
+      --gold: #d4b06a;
+      --accent: #a5b4ff;
+      --border: rgba(255,255,255,.08);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: radial-gradient(1100px 560px at 50% -10%, var(--bg2) 0%, var(--bg1) 42%, #060915 100%);
+      font: 16px/1.7 ui-sans-serif, system-ui, -apple-system, Segoe UI, Inter, Roboto, "Noto Sans", Arial;
+      min-height: 100vh;
+    }
+    a { color: var(--accent); text-decoration: underline; }
+    a:hover { color: #fff; text-decoration: none; }
+
+    .skip-link {
+      position: absolute; top: -50px; left: 10px;
+      background: var(--bg1); color: var(--ink);
+      padding: 10px 14px; border: 2px solid var(--accent);
+      border-radius: 8px; font-weight: 700; font-size: .875rem;
+      z-index: 9999; text-decoration: none; transition: top .15s;
+    }
+    .skip-link:focus { top: 10px; }
+
+    .wrap { max-width: 760px; margin: 0 auto; padding: 28px 20px 60px; }
+
+    .back-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: .82rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--muted);
+      text-decoration: none; margin-bottom: 28px; transition: color .15s;
+    }
+    .back-link:hover { color: var(--ink); text-decoration: none; }
+    .back-link::before { content: "←"; font-size: 1rem; }
+
+    .article-hero {
+      width: 100%; max-height: 480px; object-fit: cover;
+      border-radius: 14px; display: block; background: #000; margin-bottom: 28px;
+    }
+
+    .article-header { margin-bottom: 24px; }
+    .article-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+    .tag {
+      font-size: .68rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase;
+      padding: 3px 9px; border-radius: 999px;
+      background: rgba(165,180,255,.12); color: var(--muted);
+      border: 1px solid rgba(165,180,255,.2);
+    }
+    .article-title {
+      font-size: clamp(1.5rem, 4vw, 2.2rem); font-weight: 900;
+      line-height: 1.2; margin: 0 0 16px; color: #fff;
+    }
+    .article-byline {
+      display: flex; align-items: center; gap: 10px;
+      font-size: .82rem; color: var(--muted); flex-wrap: wrap;
+    }
+    .article-byline .reporter { font-weight: 700; color: var(--gold); text-decoration: none; }
+    .article-byline .reporter:hover { color: #fff; }
+    .article-byline .sep { opacity: .4; }
+
+    .article-body {
+      font-size: 1.05rem; line-height: 1.8; color: var(--ink);
+    }
+    .article-body p { margin: 0 0 1.2em; }
+
+    .interview-q {
+      font-weight: 700;
+      color: var(--gold);
+      margin: 2em 0 1em;
+      font-size: 1.05rem;
+      line-height: 1.6;
+    }
+    .interview-q span {
+      color: #fff;
+      font-weight: 900;
+      margin-right: .3em;
+    }
+
+    .cat-sign {
+      display: block;
+      margin: 1em auto 1.5em;
+      width: min(360px, 100%);
+      height: auto;
+      border-radius: 10px;
+    }
+
+    .interview-note {
+      font-style: italic;
+      color: var(--muted);
+      margin: 1em 0 1.5em;
+      font-size: .95rem;
+    }
+
+    .signoff {
+      margin-top: 2.5em;
+      font-style: italic;
+      color: var(--muted);
+    }
+
+    .share-wrap { margin: 40px 0; }
+    .share-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 20px; border-radius: 8px;
+      border: 1px solid rgba(165,180,255,.25);
+      background: rgba(165,180,255,.06);
+      color: var(--ink); font-size: .88rem; font-weight: 700;
+      cursor: pointer; transition: background .15s, border-color .15s;
+    }
+    .share-btn:hover { background: rgba(165,180,255,.14); border-color: rgba(165,180,255,.4); color: #fff; }
+    .share-btn.copied { color: #86efac; border-color: rgba(134,239,172,.3); }
+  </style>
+</head>
+<body>
+
+<a class="skip-link" href="#interview">Skip to interview</a>
+
+<div id="nav-placeholder"></div>
+<script>
+  fetch('/nav.html').then(r=>r.text()).then(h=>{ document.getElementById('nav-placeholder').innerHTML = h; });
+</script>
+
+<main class="wrap" id="interview">
+
+  <a href="/index.html" class="back-link">Back to home</a>
+
+  <article aria-labelledby="article-title">
+
+    <img
+      class="article-hero"
+      src="/assets/bia/griff-cat-interview.webp"
+      alt="Griff Harpoon, a bulldog in a trench coat and press badge, holding a microphone out to a small cat made of dashes and characters who is holding a sign that reads Thank you for interviewing me"
+      fetchpriority="high"
+    />
+
+    <header class="article-header">
+      <div class="article-tags" aria-label="Tags">
+        <span class="tag">Drama</span>
+      </div>
+      <h1 class="article-title" id="article-title">The Cat in the Chat: An Interview</h1>
+      <div class="article-byline">
+        <span>By <a class="reporter" href="/reporter.html?id=griff-harpoon">Griff Harpoon</a></span>
+        <span class="sep">·</span>
+        <time datetime="2026-09-14">September 14, 2026</time>
+      </div>
+    </header>
+
+    <div class="article-body">
+
+      <p>The transfer window has been open for twenty-five hours. Recruitment posts scroll past at a rate that suggests several states have confused this channel with a personal ads section and at least one has confused it with a crime. Amid the NAP agreements and bear schedules, one figure has appeared more often than any recruiter, any moderator, and any reasonable explanation for what is happening in this channel: a small cat holding signs.</p>
+
+      <p>The cat has no verified state affiliation, no known power level, and no apparent interest in Whiteout Survival as a game. It holds signs. The signs are unprintable. It does not stop. This correspondent requested a formal interview. The cat agreed, or at least it appeared again, which in transfer chat passes for consent.</p>
+
+      <!-- Q1 -->
+      <p class="interview-q"><span>Griff:</span> Let's start at the beginning. Every career has an origin story, even the ones that probably shouldn't exist. Why did you start doing this?</p>
+
+      <img class="cat-sign" src="/assets/bia/cat-sign-01.webp" alt="Cat holding sign that reads: I was told I have the right look for RADIO" loading="lazy" />
+
+      <!-- Q2 -->
+      <p class="interview-q"><span>Griff:</span> You've been out here for twenty-five hours straight holding signs that would get a person removed from most public spaces. Do your arms get tired?</p>
+
+      <img class="cat-sign" src="/assets/bia/cat-sign-02.webp" alt="Cat holding sign that reads: NO" loading="lazy" />
+
+      <!-- Q3 -->
+      <p class="interview-q"><span>Griff:</span> This correspondent has watched you cycle through approximately forty signs in the last day, and not one of them has contained a bear schedule, a NAP level, or anything resembling useful information. Have you ever considered holding a different sign?</p>
+
+      <img class="cat-sign" src="/assets/bia/cat-sign-03.webp" alt="Cat holding sign that reads: I TRIED TO BE NORMAL ONCE, worst 3 minutes of my life" loading="lazy" />
+
+      <!-- Q4 -->
+      <p class="interview-q"><span>Griff:</span> Everybody's got to make a living, even in transfer chat. You show up, you hold the signs, you leave. Or you don't leave. It's unclear. How do you get paid?</p>
+
+      <img class="cat-sign" src="/assets/bia/cat-sign-04.webp" alt="Cat holding sign that reads: sarcasm and orgasim, two things a lot of people don't get" loading="lazy" />
+
+      <!-- Q5 -->
+      <p class="interview-q"><span>Griff:</span> When the transfer window closes and the last recruitment post sinks to the bottom of the channel, where do you go? Is there a life outside of this?</p>
+
+      <img class="cat-sign" src="/assets/bia/cat-sign-05.webp" alt="Cat holding sign that reads: LOOKING FOR A BADDIE TO STEAL ME" loading="lazy" />
+
+      <!-- Q6 -->
+      <p class="interview-q"><span>Griff:</span> Do the moderators know you're here? Has anyone in any official capacity ever acknowledged what is happening in this channel?</p>
+
+      <img class="cat-sign" src="/assets/bia/cat-sign-06.webp" alt="Cat holding sign that reads: Looking" loading="lazy" />
+
+      <!-- Q7 -->
+      <p class="interview-q"><span>Griff:</span> This correspondent has received complaints. Multiple states have flagged your signs as inappropriate, offensive, and in one case "an act of war." Have you ever been reported?</p>
+
+      <img class="cat-sign" src="/assets/bia/cat-sign-07.webp" alt="Cat holding sign that reads: Hey, are you a newspaper? Because there's a new issue with you every day" loading="lazy" />
+
+      <!-- Q8 -->
+      <p class="interview-q"><span>Griff:</span> Let me rephrase. Do you have any kind of permit, license, or authorization to be doing what you are doing in this channel?</p>
+
+      <img class="cat-sign" src="/assets/bia/cat-sign-08.webp" alt="Cat holding sign that reads: YES" loading="lazy" />
+
+      <!-- Q9 -->
+      <p class="interview-q"><span>Griff:</span> Sources indicate there are multiple cats operating in transfer chat using the same sign format, the same face, and the same complete disregard for community standards. Are you the same cat every time, or are there several of you?</p>
+
+      <p class="interview-note">A different cat appeared. This one was wearing a bow.</p>
+
+      <img class="cat-sign" src="/assets/bia/cat-sign-09.webp" alt="A different cat wearing a bow, holding a sign that reads: I like men a little strict, I'm not going to listen but I love the effort" loading="lazy" />
+
+      <!-- Q10 -->
+      <p class="interview-q"><span>Griff:</span> In your entire career — and this correspondent is using that word as loosely as it has ever been used — what is the worst sign you've ever held?</p>
+
+      <img class="cat-sign" src="/assets/bia/cat-sign-10.webp" alt="Cat holding sign that reads: Please Like My Island" loading="lazy" />
+
+      <!-- Q11 -->
+      <p class="interview-q"><span>Griff:</span> Do you have anything to say for yourself?</p>
+
+      <img class="cat-sign" src="/assets/bia/cat-sign-11.webp" alt="Cat holding sign that reads: Looking for a Mommy" loading="lazy" />
+
+      <!-- Q12 -->
+      <p class="interview-q"><span>Griff:</span> Any final words for the people of transfer chat?</p>
+
+      <img class="cat-sign" src="/assets/bia/cat-sign-12.webp" alt="Cat holding sign that reads: Burn people who love pineapple pizza" loading="lazy" />
+
+      <p class="signoff">This correspondent has requested reassignment. The request is pending.</p>
+      <p class="signoff"><em>—Griff Harpoon, actually reporting.</em></p>
+
+    </div>
+
+  </article>
+
+  <div class="share-wrap">
+    <button class="share-btn" id="share-btn" type="button">&#128279; Share this article</button>
+  </div>
+
+</main>
+
+<div id="footer-placeholder"></div>
+<script>
+  fetch('/footer.html').then(r=>r.text()).then(html=>{ document.getElementById('footer-placeholder').innerHTML = html; });
+</script>
+
+<script>
+  var shareBtn = document.getElementById('share-btn');
+  if (shareBtn) {
+    shareBtn.addEventListener('click', function() {
+      if (navigator.share) {
+        navigator.share({
+          title: 'The Cat in the Chat: An Interview — WOS State 2128',
+          text: 'Griff Harpoon interviews transfer chat\'s most prolific correspondent.',
+          url: window.location.href
+        }).catch(function(){});
+      } else {
+        navigator.clipboard.writeText(window.location.href).then(function() {
+          shareBtn.textContent = '✓ Link copied!';
+          shareBtn.classList.add('copied');
+          setTimeout(function(){ shareBtn.innerHTML = '&#128279; Share this article'; shareBtn.classList.remove('copied'); }, 2000);
+        });
+      }
+    });
+  }
+</script>
+
+</body>
+</html>
