@@ -14,6 +14,7 @@ export async function onRequest(context) {
     { path: '/presidents.html', priority: '0.7' },
     { path: '/players.html', priority: '0.6' },
     { path: '/throat-of-the-frost.html', priority: '0.5' },
+    { path: '/music.html', priority: '0.7' },
   ];
 
   let xml = '<?xml version="1.0" encoding="UTF-8"?>\n';
