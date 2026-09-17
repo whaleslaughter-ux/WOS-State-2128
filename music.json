@@ -7,7 +7,8 @@
       "alliance": "HAVOC",
       "img": "/assets/music/whaleslaughter.webp",
       "alt": "WHALESLAUGHTER, founder of HAVOC and State 2128's most prolific recording artist",
-      "bio": "Founder of HAVOC and State 2128's most prolific composer of diplomatically disastrous bangers. If it rhymes and it burns, it's probably her fault."
+      "bio": "Founder of HAVOC and State 2128's most prolific composer of diplomatically disastrous bangers. If it rhymes and it burns, it's probably her fault.",
+      "seedLikes": 56
     },
     {
       "id": "mordukai",
@@ -16,7 +17,8 @@
       "alliance": "NLO",
       "img": "/assets/music/mordukai.webp",
       "alt": "Mordukai, NLO's resident lyricist",
-      "bio": "NLO's demon poet. Wrote a song about dropping the whale, then wrote another about a pigeon. Has declared himself Song of the Year. Nobody has confirmed this."
+      "bio": "NLO's demon poet. Wrote a song about dropping the whale, then wrote another about a pigeon. Has declared himself Song of the Year. Nobody has confirmed this.",
+      "seedLikes": 4
     },
     {
       "id": "great-dane",
@@ -25,7 +27,8 @@
       "alliance": "",
       "img": "/assets/music/great-dane.webp",
       "alt": "Great Dane, State 2128's resident bard",
-      "bio": "State 2128's actual bard. Wrote a Christmas song so sincere it made Whaleslaughter gag. Catty crowned his track her official anthem. The man has range."
+      "bio": "State 2128's actual bard. Wrote a Christmas song so sincere it made Whaleslaughter gag. Catty crowned his track her official anthem. The man has range.",
+      "seedLikes": 12
     },
     {
       "id": "spider",
@@ -34,7 +37,8 @@
       "alliance": "IDK",
       "img": "/assets/music/spider.webp",
       "alt": "Spider of IDK, reluctant Suno convert",
-      "bio": "Does not like AI music. Made a Suno account anyway. Released a diss track about Zar's spreadsheets. The hypocrisy is the art."
+      "bio": "Does not like AI music. Made a Suno account anyway. Released a diss track about Zar's spreadsheets. The hypocrisy is the art.",
+      "seedLikes": 18
     },
     {
       "id": "queen-zar",
@@ -43,7 +47,8 @@
       "alliance": "NLO",
       "img": "/assets/music/queen-zar.webp",
       "alt": "Queen Zar, NLO commander and nursery rhyme composer",
-      "bio": "Commander, former president, and apparently a songwriter now. Responded to Spider's diss track with a dark nursery rhyme. The beef is adorable."
+      "bio": "Commander, former president, and apparently a songwriter now. Responded to Spider's diss track with a dark nursery rhyme. The beef is adorable.",
+      "seedLikes": 63
     },
     {
       "id": "shartblaster",
