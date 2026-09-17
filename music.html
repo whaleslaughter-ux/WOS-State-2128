@@ -1,67 +1,604 @@
-{
-  "artists": [
-    {
-      "id": "whaleslaughter",
-      "name": "Whaleslaughter",
-      "match": ["Whaleslaughter", "WHALESLAUGHTER", "Whalerilyn"],
-      "alliance": "HAVOC",
-      "img": "/assets/music/whaleslaughter.webp",
-      "alt": "WHALESLAUGHTER, founder of HAVOC and State 2128's most prolific recording artist",
-      "bio": "Founder of HAVOC and State 2128's most prolific composer of diplomatically disastrous bangers. If it rhymes and it burns, it's probably her fault."
-    },
-    {
-      "id": "mordukai",
-      "name": "Mordukai",
-      "match": ["Mordukai"],
-      "alliance": "NLO",
-      "img": "/assets/music/mordukai.webp",
-      "alt": "Mordukai, NLO's resident lyricist",
-      "bio": "NLO's demon poet. Wrote a song about dropping the whale, then wrote another about a pigeon. Has declared his work Song of the Year. Nobody has confirmed this."
-    },
-    {
-      "id": "great-dane",
-      "name": "Great Dane",
-      "match": ["Great Dane"],
-      "alliance": "SNK",
-      "img": "/assets/music/great-dane.webp",
-      "alt": "Great Dane, State 2128's resident bard",
-      "bio": "State 2128's actual bard. Wrote a Christmas song so sincere it made Whaleslaughter gag. Catty crowned his track her official anthem. The man has range."
-    },
-    {
-      "id": "spider",
-      "name": "Spider",
-      "match": ["Spider"],
-      "alliance": "IDK",
-      "img": "/assets/music/spider.webp",
-      "alt": "Spider of IDK, reluctant Suno convert",
-      "bio": "Does not like AI music. Made a Suno account anyway. Released a diss track about Zar's spreadsheets. The hypocrisy is the art."
-    },
-    {
-      "id": "queen-zar",
-      "name": "Queen Zar",
-      "match": ["Queen Zar", "Zar"],
-      "alliance": "NLO",
-      "img": "/assets/music/queen-zar.webp",
-      "alt": "Queen Zar, NLO commander and nursery rhyme composer",
-      "bio": "Commander, former president, and apparently a songwriter now. Responded to Spider's diss track with a dark nursery rhyme. The beef is adorable. Also has a spicy song about Death."
-    },
-    {
-      "id": "shartblaster",
-      "name": "Shartblaster",
-      "match": ["Shartblaster"],
-      "alliance": "Friend from another state",
-      "img": "/assets/music/shartblaster.webp",
-      "alt": "Shartblaster, multi-platform recording artist",
-      "bio": "Multi-platform artist with music on Spotify, YouTube, and Apple Music. Details incoming."
-    },
-    {
-      "id": "datsuzoku",
-      "name": "Datsuzoku",
-      "match": ["Datsuzoku"],
-      "alliance": "Enemy State",
-      "img": "/assets/music/datsuzoku.webp",
-      "alt": "Datsuzoku, enemy state video creator",
-      "bio": "Made a video about battling State 2128. We're including it because the disrespect deserves documentation."
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6LN9JCF6JC"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-6LN9JCF6JC');
+  </script>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Scene — WOS State 2128</title>
+  <meta name="description" content="Every artist who ever picked up a mic in the blizzard. Songs, beefs, and bars from State 2128." />
+
+  <style>
+    :root {
+      --bg1:#0b1030; --bg2:#1a2147; --ink:#eef2ff; --muted:#b9c3ff;
+      --gold:#d4b06a; --accent:#a5b4ff; --border:rgba(255,255,255,.08);
     }
-  ]
-}
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      font: 16px/1.6 ui-sans-serif, system-ui, -apple-system, Segoe UI, Inter, Roboto, "Noto Sans", Arial;
+      background: radial-gradient(1100px 560px at 50% -10%, #1e3a8a 0%, #0f172a 42%, #020617 100%);
+      background-attachment: fixed;
+      min-height: 100vh;
+    }
+    a { color: var(--accent); text-decoration: underline; }
+    a:hover { color: #fff; text-decoration: none; }
+
+    .wrap {
+      width: min(1000px, 95%);
+      margin: 0 auto;
+      padding: 40px 20px 48px;
+    }
+
+    /* ---- Skip link ---- */
+    .skip-link {
+      position: absolute; top: -50px; left: 10px;
+      background: var(--bg1); color: var(--ink);
+      padding: 10px 14px; border: 2px solid var(--accent);
+      border-radius: 8px; font-weight: 700; font-size: .875rem;
+      z-index: 9999; text-decoration: none; transition: top .15s;
+    }
+    .skip-link:focus { top: 10px; }
+
+    /* ---- Page header ---- */
+    header { text-align: center; margin-bottom: 2.5rem; }
+    header .kicker {
+      display: block; font-size: .68rem; font-weight: 800;
+      letter-spacing: .22em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 10px;
+    }
+    header h1 {
+      margin: 0 0 .5rem;
+      font-size: clamp(2rem, 2vw + 1.2rem, 3rem);
+      letter-spacing: .06em; text-transform: uppercase; color: #fff;
+    }
+    header p { margin: 0; font-size: 1rem; color: var(--muted); opacity: .9; }
+
+    /* ---- Section label ---- */
+    .section-label {
+      display: block; font-size: .68rem; font-weight: 800;
+      letter-spacing: .18em; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 18px;
+    }
+
+    /* ---- Alliance badge ---- */
+    .alliance-badge {
+      display: inline-block; font-size: .62rem; font-weight: 800;
+      letter-spacing: .1em; text-transform: uppercase;
+      padding: 3px 9px; border-radius: 999px;
+      background: rgba(212,176,106,.15); color: var(--gold);
+      border: 1px solid rgba(212,176,106,.28);
+    }
+    .alliance-badge.enemy {
+      background: rgba(252,165,165,.1); color: #fca5a5;
+      border-color: rgba(252,165,165,.25);
+    }
+
+    /* ---- Artist shell ---- */
+    .artist-shell {
+      max-width: 680px; margin: 0 auto 2rem;
+      padding: 24px 24px 28px; border-radius: 24px;
+      background: radial-gradient(circle at top, rgba(15,23,42,.96), rgba(2,6,23,1));
+      box-shadow: 0 22px 60px rgba(0,0,0,0.85);
+      border: 1px solid rgba(255,255,255,.1);
+    }
+    .artist-shell.featured {
+      border-color: rgba(212,176,106,.3);
+      box-shadow: 0 22px 60px rgba(0,0,0,0.85), 0 0 0 1px rgba(212,176,106,.1);
+    }
+
+    /* ---- Artist bio row ---- */
+    .artist-bio-row {
+      display: flex; gap: 18px; align-items: flex-start; margin-bottom: 20px;
+    }
+    .artist-photo {
+      width: 90px; height: 90px; border-radius: 12px;
+      object-fit: cover; object-position: top; flex-shrink: 0;
+      background: var(--bg1); border: 1px solid rgba(255,255,255,.1);
+    }
+    .artist-photo-placeholder {
+      width: 90px; height: 90px; border-radius: 12px; flex-shrink: 0;
+      background: linear-gradient(160deg, var(--bg2), var(--bg1));
+      border: 1px solid rgba(255,255,255,.1);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.8rem; color: var(--muted);
+    }
+    .artist-info { flex: 1; min-width: 0; }
+    .artist-name {
+      margin: 0 0 6px; font-size: 1.1rem; font-weight: 900;
+      letter-spacing: .05em; text-transform: uppercase;
+      color: #fff; line-height: 1.1;
+    }
+    .artist-name-meta {
+      display: flex; align-items: center; gap: 8px;
+      flex-wrap: wrap; margin-bottom: 8px;
+    }
+    .artist-bio-text {
+      margin: 0; font-size: .88rem; color: var(--muted); line-height: 1.6;
+    }
+
+    /* ---- Song buttons ---- */
+    .song-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 10px;
+    }
+    .song-btn {
+      display: block; padding: 12px 14px; border-radius: 14px;
+      text-align: left; text-decoration: none;
+      background: linear-gradient(135deg, #1e3a8a, #312e81);
+      color: #fff; box-shadow: 0 8px 24px rgba(0,0,0,.4);
+      transition: transform .15s ease, opacity .15s ease;
+      border: 1px solid rgba(255,255,255,.08);
+    }
+    .song-btn:hover { transform: translateY(-2px); opacity: .92; text-decoration: none; color: #fff; }
+    .song-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    .song-btn-title {
+      display: -webkit-box; font-size: .85rem; font-weight: 700;
+      line-height: 1.3; margin-bottom: 4px;
+      -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+    }
+    .song-btn-meta { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+    .platform-label {
+      font-size: .65rem; font-weight: 800; letter-spacing: .06em;
+      text-transform: uppercase; color: rgba(165,180,255,.8);
+    }
+    .platform-label.spotify { color: #1ed760; }
+    .platform-label.youtube { color: #ff5050; }
+    .platform-label.apple { color: #fc3c6e; }
+    .platform-label.suno { color: #ffb464; }
+    .diss-label { font-size: .65rem; font-weight: 700; color: rgba(212,176,106,.8); }
+
+    /* ---- All artists grid ---- */
+    .all-artists { margin-top: 3rem; }
+    .all-artists .section-label { text-align: center; }
+    .artists-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 16px;
+    }
+    .artists-grid .artist-shell { max-width: none; margin: 0; }
+    .no-songs-note { font-size: .8rem; color: var(--muted); opacity: .7; font-style: italic; }
+
+    /* ---- Music news feed ---- */
+    .music-news { margin-top: 3.5rem; }
+    .music-news .section-label { text-align: center; }
+    .news-subtitle {
+      text-align: center; font-size: .82rem; color: var(--muted);
+      margin: -10px 0 20px;
+    }
+    .news-grid { display: flex; flex-direction: column; gap: 14px; }
+    .news-card {
+      display: flex; gap: 16px;
+      background: rgba(255,255,255,.02); border: 1px solid var(--border);
+      border-radius: 14px; padding: 14px;
+      transition: border-color .15s; text-decoration: none; color: var(--ink);
+    }
+    .news-card:hover { border-color: rgba(165,180,255,.2); text-decoration: none; color: var(--ink); }
+    .news-card:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    .news-thumb {
+      width: 120px; height: 80px; border-radius: 10px;
+      object-fit: cover; flex-shrink: 0; background: var(--bg2);
+    }
+    .news-body { flex: 1; min-width: 0; }
+    .news-title { font-size: .9rem; font-weight: 700; color: #fff; line-height: 1.3; margin-bottom: 4px; }
+    .news-meta { font-size: .72rem; color: var(--muted); }
+    .news-meta .reporter { color: var(--gold); }
+
+    /* ---- Pagination ---- */
+    .pagination {
+      display: flex; align-items: center; justify-content: center;
+      gap: 6px; flex-wrap: wrap; margin-top: 20px;
+    }
+    .page-btn {
+      min-width: 38px; height: 38px; padding: 0 10px;
+      border-radius: 8px; border: 1px solid var(--border);
+      background: rgba(255,255,255,.03); color: var(--ink);
+      font-size: .85rem; font-weight: 600; cursor: pointer; transition: all .12s;
+    }
+    .page-btn:hover { background: rgba(255,255,255,.08); border-color: rgba(165,180,255,.3); }
+    .page-btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg1); font-weight: 800; }
+    .page-btn:disabled { opacity: .35; cursor: not-allowed; }
+    .page-ellipsis { color: var(--muted); font-size: .85rem; padding: 0 4px; }
+
+    /* ---- Loading / error ---- */
+    #scene-loading {
+      text-align: center; padding: 60px 20px; color: var(--muted); font-size: .9rem;
+    }
+    #scene-error {
+      text-align: center; padding: 40px 20px; color: #fca5a5;
+    }
+
+    @media (max-width: 500px) {
+      .news-card { flex-direction: column; }
+      .news-thumb { width: 100%; height: 160px; }
+      .artist-bio-row { flex-direction: column; align-items: center; text-align: center; }
+      .artist-name-meta { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="nav-placeholder"></div>
+
+  <main class="wrap" id="main-content" tabindex="-1">
+    <header>
+      <span class="kicker" aria-hidden="true">State 2128</span>
+      <h1>The Scene</h1>
+      <p>Songs, beefs, and bars from the frozen frontier. Our state has bars. Literally.</p>
+    </header>
+
+    <div id="scene-loading" aria-live="polite" aria-atomic="true">Loading artists…</div>
+    <div id="scene-error" role="alert" hidden></div>
+    <div id="scene-root" aria-busy="true"></div>
+    <div id="news-root"></div>
+  </main>
+
+  <div id="footer-placeholder"></div>
+
+  <script>
+  (function () {
+    'use strict';
+
+    /* ======= UTILITIES ======= */
+
+    function esc(s) {
+      return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;')
+        .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    function formatDate(iso) {
+      return new Date(iso + 'T00:00:00').toLocaleDateString('en-US', {
+        year: 'numeric', month: 'short', day: 'numeric'
+      });
+    }
+
+    /* ======= LINK EXTRACTION ======= */
+
+    var LINK_PATTERNS = [
+      { re: /https?:\/\/open\.spotify\.com\/[^\s"'<>]+/gi,  platform: 'spotify' },
+      { re: /https?:\/\/suno\.com\/[^\s"'<>]+/gi,           platform: 'suno' },
+      { re: /https?:\/\/(?:www\.)?youtube\.com\/watch[^\s"'<>]+/gi, platform: 'youtube' },
+      { re: /https?:\/\/youtu\.be\/[^\s"'<>]+/gi,           platform: 'youtube' },
+      { re: /https?:\/\/music\.apple\.com\/[^\s"'<>]+/gi,   platform: 'apple' },
+      { re: /https?:\/\/(?:www\.)?soundcloud\.com\/[^\s"'<>]+/gi, platform: 'soundcloud' }
+    ];
+
+    function extractLinks(blurb) {
+      var found = [];
+      var seen = {};
+      LINK_PATTERNS.forEach(function (pat) {
+        var m;
+        pat.re.lastIndex = 0;
+        while ((m = pat.re.exec(blurb)) !== null) {
+          var url = m[0].replace(/[.,;)]+$/, '');
+          if (!seen[url]) {
+            seen[url] = true;
+            found.push({ url: url, platform: pat.platform });
+          }
+        }
+      });
+      return found;
+    }
+
+    var PLATFORM_LABELS = {
+      youtube: 'YouTube', soundcloud: 'SoundCloud',
+      spotify: 'Spotify', bandcamp: 'Bandcamp',
+      suno: 'Suno', apple: 'Apple Music', link: 'Link'
+    };
+
+    function platformLabel(p) {
+      return (p && PLATFORM_LABELS[p.toLowerCase()]) || p || 'Listen';
+    }
+
+    /* ======= MATCH ARTICLES TO ARTISTS ======= */
+
+    function matchArtist(article, artists) {
+      var chars = article.characters || [];
+      for (var i = 0; i < artists.length; i++) {
+        var names = artists[i].match || [artists[i].name];
+        for (var j = 0; j < names.length; j++) {
+          if (chars.indexOf(names[j]) > -1) return artists[i].id;
+        }
+      }
+      return null;
+    }
+
+    function buildArtistSongs(musicArticles, artists) {
+      var songs = {};
+      artists.forEach(function (a) { songs[a.id] = []; });
+
+      musicArticles.forEach(function (article) {
+        var links = extractLinks(article.blurb || '');
+        if (!links.length) return;
+
+        var artistId = matchArtist(article, artists);
+        if (!artistId || !songs[artistId]) return;
+
+        /* Use article title as song title, trimmed */
+        var songTitle = article.title
+          .replace(/^.*?[:—–]\s*/, '')   /* strip reporter prefix patterns */
+          .replace(/\s*—\s*.*$/, '');    /* strip trailing attributions */
+
+        /* Deduplicate by URL */
+        var existing = {};
+        songs[artistId].forEach(function (s) { existing[s.url] = true; });
+
+        links.forEach(function (link) {
+          if (existing[link.url]) return;
+          existing[link.url] = true;
+          songs[artistId].push({
+            title: songTitle,
+            url: link.url,
+            platform: link.platform,
+            date: article.date,
+            articleId: article.id
+          });
+        });
+      });
+
+      /* Sort each artist's songs by date descending, keep max 6 */
+      Object.keys(songs).forEach(function (id) {
+        songs[id].sort(function (a, b) { return b.date.localeCompare(a.date); });
+        songs[id] = songs[id].slice(0, 6);
+      });
+
+      return songs;
+    }
+
+    /* ======= FIND FEATURED ARTIST ======= */
+
+    function findFeaturedId(musicArticles, artists) {
+      for (var i = 0; i < musicArticles.length; i++) {
+        var id = matchArtist(musicArticles[i], artists);
+        if (id) return id;
+      }
+      return null;
+    }
+
+    /* ======= RENDER ======= */
+
+    function renderSongButtons(songs, artistName) {
+      if (!songs || !songs.length) {
+        return '<p class="no-songs-note">No songs linked in the archive yet.</p>';
+      }
+      return '<div class="song-grid">'
+        + songs.slice(0, 3).map(function (s) {
+            var label = platformLabel(s.platform);
+            var pClass = 'platform-label' + (s.platform ? ' ' + s.platform : '');
+            var ariaLabel = s.title + ' by ' + artistName
+              + (s.platform ? ', on ' + label : '') + ', opens in new tab';
+            return '<a class="song-btn" href="' + esc(s.url) + '"'
+              + ' target="_blank" rel="noopener noreferrer"'
+              + ' aria-label="' + esc(ariaLabel) + '">'
+              + '<span class="song-btn-title">' + esc(s.title) + '</span>'
+              + '<span class="song-btn-meta">'
+              + '<span class="' + pClass + '">' + esc(label) + '</span>'
+              + '</span></a>';
+          }).join('')
+        + '</div>';
+    }
+
+    function renderArtistShell(artist, songs, headingLevel, extraClass) {
+      var tag = headingLevel || 'h2';
+      var cssClass = 'artist-shell' + (extraClass ? ' ' + extraClass : '');
+      var idSlug = 'artist-' + esc(artist.id);
+
+      var photoHtml = artist.img
+        ? '<img class="artist-photo" src="' + esc(artist.img) + '"'
+          + ' alt="' + esc(artist.alt || artist.name + ', portrait') + '"'
+          + ' loading="' + (extraClass === 'featured' ? 'eager' : 'lazy') + '"'
+          + ' width="90" height="90"'
+          + ' onerror="this.outerHTML=\'<div class=artist-photo-placeholder aria-hidden=true>♪</div>\'">'
+        : '<div class="artist-photo-placeholder" aria-hidden="true">♪</div>';
+
+      var isEnemy = artist.alliance && artist.alliance.toLowerCase().indexOf('enemy') > -1;
+      var allianceHtml = artist.alliance
+        ? '<span class="alliance-badge' + (isEnemy ? ' enemy' : '') + '">' + esc(artist.alliance) + '</span>'
+        : '';
+
+      return '<div class="' + cssClass + '">'
+        + '<div class="artist-bio-row">'
+        + photoHtml
+        + '<div class="artist-info">'
+        + '<div class="artist-name-meta">'
+        + '<' + tag + ' class="artist-name" id="' + idSlug + '">' + esc(artist.name) + '</' + tag + '>'
+        + allianceHtml
+        + '</div>'
+        + (artist.bio ? '<p class="artist-bio-text">' + esc(artist.bio) + '</p>' : '')
+        + '</div>'
+        + '</div>'
+        + renderSongButtons(songs, artist.name)
+        + '</div>';
+    }
+
+    /* ======= NEWS FEED ======= */
+
+    var NEWS_PER_PAGE = 6;
+    var newsPage = 0;
+    var musicArticles = [];
+
+    function renderNewsFeed() {
+      var root = document.getElementById('news-root');
+      if (!musicArticles.length) {
+        root.innerHTML = '';
+        return;
+      }
+
+      var totalPages = Math.ceil(musicArticles.length / NEWS_PER_PAGE);
+      var slice = musicArticles.slice(
+        newsPage * NEWS_PER_PAGE,
+        (newsPage + 1) * NEWS_PER_PAGE
+      );
+
+      var cardsHtml = slice.map(function (n) {
+        var imgHtml = n.img
+          ? '<img class="news-thumb" src="' + esc(n.img) + '" alt="' + esc(n.alt || '') + '" loading="lazy">'
+          : '<div class="news-thumb"></div>';
+        return '<a class="news-card" href="/article.html?id=' + encodeURIComponent(n.id) + '"'
+          + ' aria-label="' + esc(n.title) + '">'
+          + imgHtml
+          + '<div class="news-body">'
+          + '<div class="news-title">' + esc(n.title) + '</div>'
+          + '<div class="news-meta">'
+          + '<time datetime="' + esc(n.date) + '">' + formatDate(n.date) + '</time>'
+          + ' · <span class="reporter">' + esc(n.reporter) + '</span>'
+          + '</div>'
+          + '</div></a>';
+      }).join('');
+
+      /* Pagination */
+      var pagHtml = '';
+      if (totalPages > 1) {
+        pagHtml = '<nav class="pagination" aria-label="Music news pages">';
+        pagHtml += '<button class="page-btn" type="button"'
+          + (newsPage === 0 ? ' disabled' : '')
+          + ' aria-label="Previous page">&lsaquo;</button>';
+        for (var i = 0; i < totalPages; i++) {
+          pagHtml += '<button class="page-btn' + (i === newsPage ? ' active' : '') + '"'
+            + ' type="button" aria-label="Page ' + (i + 1) + '"'
+            + (i === newsPage ? ' aria-current="page"' : '')
+            + ' data-p="' + i + '">' + (i + 1) + '</button>';
+        }
+        pagHtml += '<button class="page-btn" type="button"'
+          + (newsPage === totalPages - 1 ? ' disabled' : '')
+          + ' aria-label="Next page">&rsaquo;</button>';
+        pagHtml += '</nav>';
+      }
+
+      root.innerHTML = '<section class="music-news" aria-labelledby="news-h">'
+        + '<span class="section-label" id="news-h">Music News</span>'
+        + '<p class="news-subtitle">Every article tagged "Music" — updated automatically</p>'
+        + '<div class="news-grid">' + cardsHtml + '</div>'
+        + pagHtml
+        + '</section>';
+
+      /* Wire pagination buttons */
+      root.querySelectorAll('.page-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          if (btn.disabled) return;
+          var p = btn.getAttribute('data-p');
+          if (p !== null) {
+            newsPage = parseInt(p, 10);
+          } else if (btn.getAttribute('aria-label') === 'Previous page') {
+            newsPage = Math.max(0, newsPage - 1);
+          } else {
+            newsPage = Math.min(totalPages - 1, newsPage + 1);
+          }
+          renderNewsFeed();
+          document.getElementById('news-h').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      });
+    }
+
+    /* ======= LOAD PARTIALS ======= */
+
+    function loadPartial(id, url) {
+      fetch(url)
+        .then(function (r) { return r.ok ? r.text() : Promise.reject(r.status); })
+        .then(function (h) { document.getElementById(id).innerHTML = h; })
+        .catch(function (e) { console.warn('Partial failed:', url, e); });
+    }
+    loadPartial('nav-placeholder', '/nav.html');
+    loadPartial('footer-placeholder', '/footer.html');
+
+    /* ======= INIT ======= */
+
+    var loading = document.getElementById('scene-loading');
+    var errBox = document.getElementById('scene-error');
+    var root = document.getElementById('scene-root');
+
+    Promise.all([
+      fetch('/music.json').then(function (r) {
+        if (!r.ok) throw new Error('music.json ' + r.status);
+        return r.json();
+      }),
+      fetch('/news.json').then(function (r) {
+        if (!r.ok) throw new Error('news.json ' + r.status);
+        return r.json();
+      })
+    ])
+    .then(function (results) {
+      var artists = Array.isArray(results[0].artists) ? results[0].artists : [];
+      var allNews = results[1];
+
+      loading.style.display = 'none';
+
+      if (!artists.length) {
+        root.innerHTML = '<p style="text-align:center;color:var(--muted);padding:48px 0">No artists yet — check back soon.</p>';
+        root.removeAttribute('aria-busy');
+        return;
+      }
+
+      /* Filter music articles, sort newest first */
+      musicArticles = allNews
+        .filter(function (a) { return (a.tags || []).indexOf('Music') > -1; })
+        .sort(function (a, b) { return b.date.localeCompare(a.date); });
+
+      /* Build songs per artist from news articles */
+      var songMap = buildArtistSongs(musicArticles, artists);
+
+      /* Find featured = whoever is in the most recent music article */
+      var featuredId = findFeaturedId(musicArticles, artists);
+
+      var featured = featuredId ? artists.find(function (a) { return a.id === featuredId; }) : null;
+      var supporting = artists.filter(function (a) { return a.id !== featuredId; });
+
+      /* Sort supporting: artists with songs first, then alphabetical */
+      supporting.sort(function (a, b) {
+        var aHas = (songMap[a.id] || []).length ? 0 : 1;
+        var bHas = (songMap[b.id] || []).length ? 0 : 1;
+        if (aHas !== bHas) return aHas - bHas;
+        return a.name.localeCompare(b.name);
+      });
+
+      var html = '';
+
+      /* Featured artist */
+      if (featured) {
+        html += '<section aria-labelledby="artist-' + esc(featured.id) + '">'
+          + '<span class="section-label" style="text-align:center">Latest Drop</span>'
+          + renderArtistShell(featured, songMap[featured.id] || [], 'h2', 'featured')
+          + '</section>';
+      }
+
+      /* Everyone else */
+      if (supporting.length) {
+        html += '<section class="all-artists" aria-labelledby="all-h">'
+          + '<span class="section-label" id="all-h">All Artists</span>'
+          + '<div class="artists-grid">'
+          + supporting.map(function (a) {
+              return '<div aria-labelledby="artist-' + esc(a.id) + '">'
+                + renderArtistShell(a, songMap[a.id] || [], 'h3', '')
+                + '</div>';
+            }).join('')
+          + '</div></section>';
+      }
+
+      root.innerHTML = html;
+      root.removeAttribute('aria-busy');
+
+      /* Render news feed */
+      renderNewsFeed();
+    })
+    .catch(function (err) {
+      console.error('Music page load failed:', err);
+      loading.style.display = 'none';
+      errBox.textContent = 'Could not load music data. Check the console for details.';
+      errBox.hidden = false;
+    });
+
+  })();
+  </script>
+
+</body>
+</html>
