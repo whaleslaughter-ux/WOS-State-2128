@@ -16,13 +16,13 @@
       "alliance": "NLO",
       "img": "/assets/music/mordukai.webp",
       "alt": "Mordukai, NLO's resident lyricist",
-      "bio": "NLO's demon poet. Wrote a song about dropping the whale, then wrote another about a pigeon. Has declared his work Song of the Year. Nobody has confirmed this."
+      "bio": "NLO's demon poet. Wrote a song about dropping the whale, then wrote another about a pigeon. Has declared himself Song of the Year. Nobody has confirmed this."
     },
     {
       "id": "great-dane",
       "name": "Great Dane",
       "match": ["Great Dane"],
-      "alliance": "SNK",
+      "alliance": "",
       "img": "/assets/music/great-dane.webp",
       "alt": "Great Dane, State 2128's resident bard",
       "bio": "State 2128's actual bard. Wrote a Christmas song so sincere it made Whaleslaughter gag. Catty crowned his track her official anthem. The man has range."
@@ -43,13 +43,13 @@
       "alliance": "NLO",
       "img": "/assets/music/queen-zar.webp",
       "alt": "Queen Zar, NLO commander and nursery rhyme composer",
-      "bio": "Commander, former president, and apparently a songwriter now. Responded to Spider's diss track with a dark nursery rhyme. The beef is adorable. Also has a spicy song about Death."
+      "bio": "Commander, former president, and apparently a songwriter now. Responded to Spider's diss track with a dark nursery rhyme. The beef is adorable."
     },
     {
       "id": "shartblaster",
       "name": "Shartblaster",
       "match": ["Shartblaster"],
-      "alliance": "Friend from another state",
+      "alliance": "",
       "img": "/assets/music/shartblaster.webp",
       "alt": "Shartblaster, multi-platform recording artist",
       "bio": "Multi-platform artist with music on Spotify, YouTube, and Apple Music. Details incoming."
