@@ -38,7 +38,6 @@
       padding: 40px 20px 48px;
     }
 
-    /* ---- Skip link ---- */
     .skip-link {
       position: absolute; top: -50px; left: 10px;
       background: var(--bg1); color: var(--ink);
@@ -48,7 +47,6 @@
     }
     .skip-link:focus { top: 10px; }
 
-    /* ---- Page header ---- */
     header { text-align: center; margin-bottom: 2.5rem; }
     header .kicker {
       display: block; font-size: .68rem; font-weight: 800;
@@ -62,14 +60,12 @@
     }
     header p { margin: 0; font-size: 1rem; color: var(--muted); opacity: .9; }
 
-    /* ---- Section label ---- */
     .section-label {
       display: block; font-size: .68rem; font-weight: 800;
       letter-spacing: .18em; text-transform: uppercase;
       color: var(--muted); margin-bottom: 18px;
     }
 
-    /* ---- Alliance badge ---- */
     .alliance-badge {
       display: inline-block; font-size: .62rem; font-weight: 800;
       letter-spacing: .1em; text-transform: uppercase;
@@ -82,7 +78,6 @@
       border-color: rgba(252,165,165,.25);
     }
 
-    /* ---- Artist shell ---- */
     .artist-shell {
       max-width: 680px; margin: 0 auto 2rem;
       padding: 24px 24px 28px; border-radius: 24px;
@@ -95,7 +90,6 @@
       box-shadow: 0 22px 60px rgba(0,0,0,0.85), 0 0 0 1px rgba(212,176,106,.1);
     }
 
-    /* ---- Artist bio row ---- */
     .artist-bio-row {
       display: flex; gap: 18px; align-items: flex-start; margin-bottom: 20px;
     }
@@ -125,7 +119,6 @@
       margin: 0; font-size: .88rem; color: var(--muted); line-height: 1.6;
     }
 
-    /* ---- Song buttons ---- */
     .song-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -155,9 +148,8 @@
     .platform-label.youtube { color: #ff5050; }
     .platform-label.apple { color: #fc3c6e; }
     .platform-label.suno { color: #ffb464; }
-    .diss-label { font-size: .65rem; font-weight: 700; color: rgba(212,176,106,.8); }
+    .platform-label.soundcloud { color: #ff7700; }
 
-    /* ---- All artists grid ---- */
     .all-artists { margin-top: 3rem; }
     .all-artists .section-label { text-align: center; }
     .artists-grid {
@@ -168,7 +160,6 @@
     .artists-grid .artist-shell { max-width: none; margin: 0; }
     .no-songs-note { font-size: .8rem; color: var(--muted); opacity: .7; font-style: italic; }
 
-    /* ---- Music news feed ---- */
     .music-news { margin-top: 3.5rem; }
     .music-news .section-label { text-align: center; }
     .news-subtitle {
@@ -189,11 +180,20 @@
       object-fit: cover; flex-shrink: 0; background: var(--bg2);
     }
     .news-body { flex: 1; min-width: 0; }
-    .news-title { font-size: .9rem; font-weight: 700; color: #fff; line-height: 1.3; margin-bottom: 4px; }
+    .news-song-title { font-size: .95rem; font-weight: 700; color: #fff; line-height: 1.3; margin-bottom: 2px; }
+    .news-article-title { font-size: .75rem; color: var(--muted); line-height: 1.3; margin-bottom: 4px; }
     .news-meta { font-size: .72rem; color: var(--muted); }
     .news-meta .reporter { color: var(--gold); }
+    .platform-pill {
+      font-size: .65rem; font-weight: 800; letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+    .platform-pill.spotify { color: #1ed760; }
+    .platform-pill.youtube { color: #ff5050; }
+    .platform-pill.apple { color: #fc3c6e; }
+    .platform-pill.suno { color: #ffb464; }
+    .platform-pill.soundcloud { color: #ff7700; }
 
-    /* ---- Pagination ---- */
     .pagination {
       display: flex; align-items: center; justify-content: center;
       gap: 6px; flex-wrap: wrap; margin-top: 20px;
@@ -207,9 +207,7 @@
     .page-btn:hover { background: rgba(255,255,255,.08); border-color: rgba(165,180,255,.3); }
     .page-btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg1); font-weight: 800; }
     .page-btn:disabled { opacity: .35; cursor: not-allowed; }
-    .page-ellipsis { color: var(--muted); font-size: .85rem; padding: 0 4px; }
 
-    /* ---- Loading / error ---- */
     #scene-loading {
       text-align: center; padding: 60px 20px; color: var(--muted); font-size: .9rem;
     }
@@ -249,8 +247,6 @@
   (function () {
     'use strict';
 
-    /* ======= UTILITIES ======= */
-
     function esc(s) {
       return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;')
         .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
@@ -262,31 +258,72 @@
       });
     }
 
-    /* ======= LINK EXTRACTION ======= */
+    /* ======= LINK + SONG TITLE EXTRACTION ======= */
 
-    var LINK_PATTERNS = [
-      { re: /https?:\/\/open\.spotify\.com\/[^\s"'<>]+/gi,  platform: 'spotify' },
-      { re: /https?:\/\/suno\.com\/[^\s"'<>]+/gi,           platform: 'suno' },
-      { re: /https?:\/\/(?:www\.)?youtube\.com\/watch[^\s"'<>]+/gi, platform: 'youtube' },
-      { re: /https?:\/\/youtu\.be\/[^\s"'<>]+/gi,           platform: 'youtube' },
-      { re: /https?:\/\/music\.apple\.com\/[^\s"'<>]+/gi,   platform: 'apple' },
-      { re: /https?:\/\/(?:www\.)?soundcloud\.com\/[^\s"'<>]+/gi, platform: 'soundcloud' }
+    var MUSIC_HOSTS = /(?:suno\.com|open\.spotify\.com|youtube\.com|youtu\.be|music\.apple\.com|soundcloud\.com)/i;
+
+    var ANCHOR_RE = /<a[^>]*href=["']([^"']+)["'][^>]*>([^<]+)<\/a>/gi;
+
+    var BARE_LINK_PATTERNS = [
+      { re: /https?:\/\/open\.spotify\.com\/[^\s"'<>]+/gi,           platform: 'spotify' },
+      { re: /https?:\/\/suno\.com\/[^\s"'<>]+/gi,                    platform: 'suno' },
+      { re: /https?:\/\/(?:www\.)?youtube\.com\/watch[^\s"'<>]+/gi,  platform: 'youtube' },
+      { re: /https?:\/\/youtu\.be\/[^\s"'<>]+/gi,                    platform: 'youtube' },
+      { re: /https?:\/\/music\.apple\.com\/[^\s"'<>]+/gi,            platform: 'apple' },
+      { re: /https?:\/\/(?:www\.)?soundcloud\.com\/[^\s"'<>]+/gi,    platform: 'soundcloud' }
     ];
 
-    function extractLinks(blurb) {
+    /* Words that mean the anchor text is generic, not a song title */
+    var GENERIC_TEXT = /^(listen|here|available|click|suno|spotify|youtube|apple music|link|stream|play|open|watch|check it out|song here|available here)/i;
+
+    function detectPlatform(url) {
+      if (/spotify\.com/i.test(url))    return 'spotify';
+      if (/suno\.com/i.test(url))       return 'suno';
+      if (/youtu\.?be/i.test(url))      return 'youtube';
+      if (/music\.apple\.com/i.test(url)) return 'apple';
+      if (/soundcloud\.com/i.test(url)) return 'soundcloud';
+      return 'link';
+    }
+
+    function extractSongs(blurb, fallbackTitle) {
       var found = [];
       var seen = {};
-      LINK_PATTERNS.forEach(function (pat) {
-        var m;
+      var m;
+
+      /* Pass 1: anchors with music URLs — extract song title from anchor text */
+      ANCHOR_RE.lastIndex = 0;
+      while ((m = ANCHOR_RE.exec(blurb)) !== null) {
+        var url = m[1].replace(/[.,;)]+$/, '');
+        if (!MUSIC_HOSTS.test(url) || seen[url]) continue;
+        seen[url] = true;
+
+        var rawText = m[2].trim().replace(/\s*→\s*$/, '').replace(/\s*↗\s*$/, '').trim();
+        var isGeneric = GENERIC_TEXT.test(rawText) || /^https?:\/\//i.test(rawText);
+        var title = isGeneric ? fallbackTitle : rawText;
+
+        found.push({
+          url: url,
+          platform: detectPlatform(url),
+          title: title
+        });
+      }
+
+      /* Pass 2: bare URLs not already captured */
+      BARE_LINK_PATTERNS.forEach(function (pat) {
         pat.re.lastIndex = 0;
         while ((m = pat.re.exec(blurb)) !== null) {
-          var url = m[0].replace(/[.,;)]+$/, '');
-          if (!seen[url]) {
-            seen[url] = true;
-            found.push({ url: url, platform: pat.platform });
+          var burl = m[0].replace(/[.,;)]+$/, '');
+          if (!seen[burl]) {
+            seen[burl] = true;
+            found.push({
+              url: burl,
+              platform: pat.platform,
+              title: fallbackTitle
+            });
           }
         }
       });
+
       return found;
     }
 
@@ -295,7 +332,6 @@
       spotify: 'Spotify', bandcamp: 'Bandcamp',
       suno: 'Suno', apple: 'Apple Music', link: 'Link'
     };
-
     function platformLabel(p) {
       return (p && PLATFORM_LABELS[p.toLowerCase()]) || p || 'Listen';
     }
@@ -318,35 +354,28 @@
       artists.forEach(function (a) { songs[a.id] = []; });
 
       musicArticles.forEach(function (article) {
-        var links = extractLinks(article.blurb || '');
-        if (!links.length) return;
+        var extracted = extractSongs(article.blurb || '', article.title);
+        if (!extracted.length) return;
 
         var artistId = matchArtist(article, artists);
         if (!artistId || !songs[artistId]) return;
 
-        /* Use article title as song title, trimmed */
-        var songTitle = article.title
-          .replace(/^.*?[:—–]\s*/, '')   /* strip reporter prefix patterns */
-          .replace(/\s*—\s*.*$/, '');    /* strip trailing attributions */
-
-        /* Deduplicate by URL */
         var existing = {};
         songs[artistId].forEach(function (s) { existing[s.url] = true; });
 
-        links.forEach(function (link) {
-          if (existing[link.url]) return;
-          existing[link.url] = true;
+        extracted.forEach(function (song) {
+          if (existing[song.url]) return;
+          existing[song.url] = true;
           songs[artistId].push({
-            title: songTitle,
-            url: link.url,
-            platform: link.platform,
+            title: song.title,
+            url: song.url,
+            platform: song.platform,
             date: article.date,
             articleId: article.id
           });
         });
       });
 
-      /* Sort each artist's songs by date descending, keep max 6 */
       Object.keys(songs).forEach(function (id) {
         songs[id].sort(function (a, b) { return b.date.localeCompare(a.date); });
         songs[id] = songs[id].slice(0, 6);
@@ -376,7 +405,7 @@
             var label = platformLabel(s.platform);
             var pClass = 'platform-label' + (s.platform ? ' ' + s.platform : '');
             var ariaLabel = s.title + ' by ' + artistName
-              + (s.platform ? ', on ' + label : '') + ', opens in new tab';
+              + ', on ' + label + ', opens in new tab';
             return '<a class="song-btn" href="' + esc(s.url) + '"'
               + ' target="_blank" rel="noopener noreferrer"'
               + ' aria-label="' + esc(ariaLabel) + '">'
@@ -398,8 +427,8 @@
           + ' alt="' + esc(artist.alt || artist.name + ', portrait') + '"'
           + ' loading="' + (extraClass === 'featured' ? 'eager' : 'lazy') + '"'
           + ' width="90" height="90"'
-          + ' onerror="this.outerHTML=\'<div class=artist-photo-placeholder aria-hidden=true>♪</div>\'">'
-        : '<div class="artist-photo-placeholder" aria-hidden="true">♪</div>';
+          + ' onerror="this.outerHTML=\'<div class=artist-photo-placeholder aria-hidden=true>\u266A</div>\'">'
+        : '<div class="artist-photo-placeholder" aria-hidden="true">\u266A</div>';
 
       var isEnemy = artist.alliance && artist.alliance.toLowerCase().indexOf('enemy') > -1;
       var allianceHtml = artist.alliance
@@ -429,10 +458,7 @@
 
     function renderNewsFeed() {
       var root = document.getElementById('news-root');
-      if (!musicArticles.length) {
-        root.innerHTML = '';
-        return;
-      }
+      if (!musicArticles.length) { root.innerHTML = ''; return; }
 
       var totalPages = Math.ceil(musicArticles.length / NEWS_PER_PAGE);
       var slice = musicArticles.slice(
@@ -441,28 +467,44 @@
       );
 
       var cardsHtml = slice.map(function (n) {
+        var songs = extractSongs(n.blurb || '', n.title);
+        var hasSong = songs.length > 0;
+        var songUrl = hasSong ? songs[0].url : '/article.html?id=' + encodeURIComponent(n.id);
+        var songTitle = hasSong ? songs[0].title : n.title;
+        var songPlatform = hasSong ? songs[0].platform : '';
+        var pLabel = songPlatform ? platformLabel(songPlatform) : '';
+        var pClass = 'platform-pill' + (songPlatform ? ' ' + songPlatform : '');
+
         var imgHtml = n.img
           ? '<img class="news-thumb" src="' + esc(n.img) + '" alt="' + esc(n.alt || '') + '" loading="lazy">'
           : '<div class="news-thumb"></div>';
-        return '<a class="news-card" href="/article.html?id=' + encodeURIComponent(n.id) + '"'
-          + ' aria-label="' + esc(n.title) + '">'
+
+        /* Show song title big, article headline small underneath */
+        var titleHtml = '<div class="news-song-title">' + esc(songTitle) + '</div>';
+        if (hasSong && songTitle !== n.title) {
+          titleHtml += '<div class="news-article-title">' + esc(n.title) + '</div>';
+        }
+
+        return '<a class="news-card" href="' + esc(songUrl) + '"'
+          + (hasSong ? ' target="_blank" rel="noopener noreferrer"' : '')
+          + ' aria-label="' + esc(songTitle) + (hasSong ? ', opens on ' + pLabel : '') + '">'
           + imgHtml
           + '<div class="news-body">'
-          + '<div class="news-title">' + esc(n.title) + '</div>'
+          + titleHtml
           + '<div class="news-meta">'
           + '<time datetime="' + esc(n.date) + '">' + formatDate(n.date) + '</time>'
-          + ' · <span class="reporter">' + esc(n.reporter) + '</span>'
+          + ' \u00B7 <span class="reporter">' + esc(n.reporter) + '</span>'
+          + (songPlatform ? ' \u00B7 <span class="' + pClass + '">' + esc(pLabel) + ' \u2197</span>' : '')
           + '</div>'
           + '</div></a>';
       }).join('');
 
-      /* Pagination */
       var pagHtml = '';
       if (totalPages > 1) {
         pagHtml = '<nav class="pagination" aria-label="Music news pages">';
         pagHtml += '<button class="page-btn" type="button"'
           + (newsPage === 0 ? ' disabled' : '')
-          + ' aria-label="Previous page">&lsaquo;</button>';
+          + ' aria-label="Previous page">\u2039</button>';
         for (var i = 0; i < totalPages; i++) {
           pagHtml += '<button class="page-btn' + (i === newsPage ? ' active' : '') + '"'
             + ' type="button" aria-label="Page ' + (i + 1) + '"'
@@ -471,18 +513,17 @@
         }
         pagHtml += '<button class="page-btn" type="button"'
           + (newsPage === totalPages - 1 ? ' disabled' : '')
-          + ' aria-label="Next page">&rsaquo;</button>';
+          + ' aria-label="Next page">\u203A</button>';
         pagHtml += '</nav>';
       }
 
       root.innerHTML = '<section class="music-news" aria-labelledby="news-h">'
         + '<span class="section-label" id="news-h">Music News</span>'
-        + '<p class="news-subtitle">Every article tagged "Music" — updated automatically</p>'
+        + '<p class="news-subtitle">Every article tagged "Music" \u2014 click to listen</p>'
         + '<div class="news-grid">' + cardsHtml + '</div>'
         + pagHtml
         + '</section>';
 
-      /* Wire pagination buttons */
       root.querySelectorAll('.page-btn').forEach(function (btn) {
         btn.addEventListener('click', function () {
           if (btn.disabled) return;
@@ -534,26 +575,21 @@
       loading.style.display = 'none';
 
       if (!artists.length) {
-        root.innerHTML = '<p style="text-align:center;color:var(--muted);padding:48px 0">No artists yet — check back soon.</p>';
+        root.innerHTML = '<p style="text-align:center;color:var(--muted);padding:48px 0">No artists yet \u2014 check back soon.</p>';
         root.removeAttribute('aria-busy');
         return;
       }
 
-      /* Filter music articles, sort newest first */
       musicArticles = allNews
         .filter(function (a) { return (a.tags || []).indexOf('Music') > -1; })
         .sort(function (a, b) { return b.date.localeCompare(a.date); });
 
-      /* Build songs per artist from news articles */
       var songMap = buildArtistSongs(musicArticles, artists);
-
-      /* Find featured = whoever is in the most recent music article */
       var featuredId = findFeaturedId(musicArticles, artists);
 
       var featured = featuredId ? artists.find(function (a) { return a.id === featuredId; }) : null;
       var supporting = artists.filter(function (a) { return a.id !== featuredId; });
 
-      /* Sort supporting: artists with songs first, then alphabetical */
       supporting.sort(function (a, b) {
         var aHas = (songMap[a.id] || []).length ? 0 : 1;
         var bHas = (songMap[b.id] || []).length ? 0 : 1;
@@ -563,7 +599,6 @@
 
       var html = '';
 
-      /* Featured artist */
       if (featured) {
         html += '<section aria-labelledby="artist-' + esc(featured.id) + '">'
           + '<span class="section-label" style="text-align:center">Latest Drop</span>'
@@ -571,7 +606,6 @@
           + '</section>';
       }
 
-      /* Everyone else */
       if (supporting.length) {
         html += '<section class="all-artists" aria-labelledby="all-h">'
           + '<span class="section-label" id="all-h">All Artists</span>'
@@ -587,7 +621,6 @@
       root.innerHTML = html;
       root.removeAttribute('aria-busy');
 
-      /* Render news feed */
       renderNewsFeed();
     })
     .catch(function (err) {
