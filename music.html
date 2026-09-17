@@ -119,6 +119,42 @@
       margin: 0; font-size: .88rem; color: var(--muted); line-height: 1.6;
     }
 
+    .like-row {
+      display: flex; align-items: center; gap: 6px;
+      margin-top: 14px; margin-bottom: 16px;
+    }
+    .like-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 6px 14px; border-radius: 999px;
+      border: 1px solid rgba(255,100,130,.2);
+      background: rgba(255,100,130,.06);
+      color: #ff8fa3; font-size: .85rem; font-weight: 700;
+      cursor: pointer; transition: all .15s; user-select: none;
+    }
+    .like-btn:hover {
+      background: rgba(255,100,130,.14);
+      border-color: rgba(255,100,130,.4);
+      transform: scale(1.04);
+    }
+    .like-btn:active { transform: scale(0.96); }
+    .like-btn.liked {
+      background: rgba(255,100,130,.18);
+      border-color: rgba(255,100,130,.45);
+      color: #ff6b8a;
+    }
+    .like-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    .like-heart { font-style: normal; transition: transform .2s; display: inline-block; }
+    .like-btn.liked .like-heart { transform: scale(1.2); }
+    .like-count { font-variant-numeric: tabular-nums; }
+
+    @keyframes heartPop {
+      0% { transform: scale(1); }
+      30% { transform: scale(1.5); }
+      60% { transform: scale(0.9); }
+      100% { transform: scale(1.2); }
+    }
+    .like-btn.pop .like-heart { animation: heartPop .35s ease; }
+
     .song-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -185,8 +221,7 @@
     .news-meta { font-size: .72rem; color: var(--muted); }
     .news-meta .reporter { color: var(--gold); }
     .platform-pill {
-      font-size: .65rem; font-weight: 800; letter-spacing: .06em;
-      text-transform: uppercase;
+      font-size: .65rem; font-weight: 800; letter-spacing: .06em; text-transform: uppercase;
     }
     .platform-pill.spotify { color: #1ed760; }
     .platform-pill.youtube { color: #ff5050; }
@@ -220,6 +255,7 @@
       .news-thumb { width: 100%; height: 160px; }
       .artist-bio-row { flex-direction: column; align-items: center; text-align: center; }
       .artist-name-meta { justify-content: center; }
+      .like-row { justify-content: center; }
     }
   </style>
 </head>
@@ -258,10 +294,36 @@
       });
     }
 
+    /* ======= LIKES (cosmetic — resets every page load) ======= */
+
+    function wireLikeButtons() {
+      document.querySelectorAll('.like-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          if (btn.classList.contains('liked')) return;
+          var countEl = btn.querySelector('.like-count');
+          var count = parseInt(countEl.textContent, 10) + 1;
+          countEl.textContent = count;
+          btn.classList.add('liked', 'pop');
+          btn.setAttribute('aria-label', 'Liked, ' + count + ' likes');
+          setTimeout(function () { btn.classList.remove('pop'); }, 400);
+        });
+      });
+    }
+
+    function renderLikeButton(artist) {
+      if (typeof artist.seedLikes === 'undefined') return '';
+      return '<div class="like-row">'
+        + '<button class="like-btn" type="button"'
+        + ' aria-label="Like this artist, ' + artist.seedLikes + ' likes">'
+        + '<em class="like-heart" aria-hidden="true">\u2764\uFE0F</em>'
+        + '<span class="like-count">' + artist.seedLikes + '</span>'
+        + '</button>'
+        + '</div>';
+    }
+
     /* ======= LINK + SONG TITLE EXTRACTION ======= */
 
     var MUSIC_HOSTS = /(?:suno\.com|open\.spotify\.com|youtube\.com|youtu\.be|music\.apple\.com|soundcloud\.com)/i;
-
     var ANCHOR_RE = /<a[^>]*href=["']([^"']+)["'][^>]*>([^<]+)<\/a>/gi;
 
     var BARE_LINK_PATTERNS = [
@@ -273,15 +335,14 @@
       { re: /https?:\/\/(?:www\.)?soundcloud\.com\/[^\s"'<>]+/gi,    platform: 'soundcloud' }
     ];
 
-    /* Words that mean the anchor text is generic, not a song title */
     var GENERIC_TEXT = /^(listen|here|available|click|suno|spotify|youtube|apple music|link|stream|play|open|watch|check it out|song here|available here)/i;
 
     function detectPlatform(url) {
-      if (/spotify\.com/i.test(url))    return 'spotify';
-      if (/suno\.com/i.test(url))       return 'suno';
-      if (/youtu\.?be/i.test(url))      return 'youtube';
+      if (/spotify\.com/i.test(url))      return 'spotify';
+      if (/suno\.com/i.test(url))         return 'suno';
+      if (/youtu\.?be/i.test(url))        return 'youtube';
       if (/music\.apple\.com/i.test(url)) return 'apple';
-      if (/soundcloud\.com/i.test(url)) return 'soundcloud';
+      if (/soundcloud\.com/i.test(url))   return 'soundcloud';
       return 'link';
     }
 
@@ -290,36 +351,26 @@
       var seen = {};
       var m;
 
-      /* Pass 1: anchors with music URLs — extract song title from anchor text */
       ANCHOR_RE.lastIndex = 0;
       while ((m = ANCHOR_RE.exec(blurb)) !== null) {
         var url = m[1].replace(/[.,;)]+$/, '');
         if (!MUSIC_HOSTS.test(url) || seen[url]) continue;
         seen[url] = true;
 
-        var rawText = m[2].trim().replace(/\s*→\s*$/, '').replace(/\s*↗\s*$/, '').trim();
+        var rawText = m[2].trim().replace(/\s*[→↗]\s*$/, '').trim();
         var isGeneric = GENERIC_TEXT.test(rawText) || /^https?:\/\//i.test(rawText);
         var title = isGeneric ? fallbackTitle : rawText;
 
-        found.push({
-          url: url,
-          platform: detectPlatform(url),
-          title: title
-        });
+        found.push({ url: url, platform: detectPlatform(url), title: title });
       }
 
-      /* Pass 2: bare URLs not already captured */
       BARE_LINK_PATTERNS.forEach(function (pat) {
         pat.re.lastIndex = 0;
         while ((m = pat.re.exec(blurb)) !== null) {
           var burl = m[0].replace(/[.,;)]+$/, '');
           if (!seen[burl]) {
             seen[burl] = true;
-            found.push({
-              url: burl,
-              platform: pat.platform,
-              title: fallbackTitle
-            });
+            found.push({ url: burl, platform: pat.platform, title: fallbackTitle });
           }
         }
       });
@@ -367,11 +418,8 @@
           if (existing[song.url]) return;
           existing[song.url] = true;
           songs[artistId].push({
-            title: song.title,
-            url: song.url,
-            platform: song.platform,
-            date: article.date,
-            articleId: article.id
+            title: song.title, url: song.url, platform: song.platform,
+            date: article.date, articleId: article.id
           });
         });
       });
@@ -383,8 +431,6 @@
 
       return songs;
     }
-
-    /* ======= FIND FEATURED ARTIST ======= */
 
     function findFeaturedId(musicArticles, artists) {
       for (var i = 0; i < musicArticles.length; i++) {
@@ -401,7 +447,7 @@
         return '<p class="no-songs-note">No songs linked in the archive yet.</p>';
       }
       return '<div class="song-grid">'
-        + songs.slice(0, 3).map(function (s) {
+        + songs.map(function (s) {
             var label = platformLabel(s.platform);
             var pClass = 'platform-label' + (s.platform ? ' ' + s.platform : '');
             var ariaLabel = s.title + ' by ' + artistName
@@ -444,6 +490,7 @@
         + allianceHtml
         + '</div>'
         + (artist.bio ? '<p class="artist-bio-text">' + esc(artist.bio) + '</p>' : '')
+        + renderLikeButton(artist)
         + '</div>'
         + '</div>'
         + renderSongButtons(songs, artist.name)
@@ -457,8 +504,8 @@
     var musicArticles = [];
 
     function renderNewsFeed() {
-      var root = document.getElementById('news-root');
-      if (!musicArticles.length) { root.innerHTML = ''; return; }
+      var nRoot = document.getElementById('news-root');
+      if (!musicArticles.length) { nRoot.innerHTML = ''; return; }
 
       var totalPages = Math.ceil(musicArticles.length / NEWS_PER_PAGE);
       var slice = musicArticles.slice(
@@ -479,7 +526,6 @@
           ? '<img class="news-thumb" src="' + esc(n.img) + '" alt="' + esc(n.alt || '') + '" loading="lazy">'
           : '<div class="news-thumb"></div>';
 
-        /* Show song title big, article headline small underneath */
         var titleHtml = '<div class="news-song-title">' + esc(songTitle) + '</div>';
         if (hasSong && songTitle !== n.title) {
           titleHtml += '<div class="news-article-title">' + esc(n.title) + '</div>';
@@ -517,14 +563,14 @@
         pagHtml += '</nav>';
       }
 
-      root.innerHTML = '<section class="music-news" aria-labelledby="news-h">'
+      nRoot.innerHTML = '<section class="music-news" aria-labelledby="news-h">'
         + '<span class="section-label" id="news-h">Music News</span>'
         + '<p class="news-subtitle">Every article tagged "Music" \u2014 click to listen</p>'
         + '<div class="news-grid">' + cardsHtml + '</div>'
         + pagHtml
         + '</section>';
 
-      root.querySelectorAll('.page-btn').forEach(function (btn) {
+      nRoot.querySelectorAll('.page-btn').forEach(function (btn) {
         btn.addEventListener('click', function () {
           if (btn.disabled) return;
           var p = btn.getAttribute('data-p');
@@ -590,11 +636,16 @@
       var featured = featuredId ? artists.find(function (a) { return a.id === featuredId; }) : null;
       var supporting = artists.filter(function (a) { return a.id !== featuredId; });
 
+      /* Sort by most recent music article appearance */
+      var lastSeen = {};
+      artists.forEach(function (a) { lastSeen[a.id] = '0000-00-00'; });
+      musicArticles.forEach(function (article) {
+        var id = matchArtist(article, artists);
+        if (id && article.date > lastSeen[id]) lastSeen[id] = article.date;
+      });
+
       supporting.sort(function (a, b) {
-        var aHas = (songMap[a.id] || []).length ? 0 : 1;
-        var bHas = (songMap[b.id] || []).length ? 0 : 1;
-        if (aHas !== bHas) return aHas - bHas;
-        return a.name.localeCompare(b.name);
+        return lastSeen[b.id].localeCompare(lastSeen[a.id]);
       });
 
       var html = '';
@@ -621,6 +672,7 @@
       root.innerHTML = html;
       root.removeAttribute('aria-busy');
 
+      wireLikeButtons();
       renderNewsFeed();
     })
     .catch(function (err) {
