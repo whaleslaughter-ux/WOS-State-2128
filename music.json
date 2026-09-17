@@ -2,67 +2,66 @@
   "artists": [
     {
       "id": "whaleslaughter",
-      "name": "WHALESLAUGHTER",
+      "name": "Whaleslaughter",
+      "match": ["Whaleslaughter", "WHALESLAUGHTER", "Whalerilyn"],
       "alliance": "HAVOC",
-      "img": "/assets/music/whaleslaughter.jpg",
-      "alt": "WHALESLAUGHTER, founder of HAVOC and state 2128 recording artist",
-      "bio": "Founder of HAVOC and state 2128's most prolific composer of diplomatically disastrous bangers. If it rhymes and it burns, it's probably his fault.",
-      "featured": true,
-      "songs": [
-        {
-          "title": "Your Song Title Here",
-          "url": "https://youtube.com/watch?v=REPLACE",
-          "platform": "youtube",
-          "targets": [],
-          "date": "2026-01-01"
-        },
-        {
-          "title": "Your Second Track",
-          "url": "https://soundcloud.com/REPLACE",
-          "platform": "soundcloud",
-          "targets": ["ETF"],
-          "date": "2026-02-14"
-        },
-        {
-          "title": "Your Third Track",
-          "url": "https://youtube.com/watch?v=REPLACE",
-          "platform": "youtube",
-          "targets": ["300", "ETF"],
-          "date": "2026-03-22"
-        }
-      ]
+      "img": "/assets/music/whaleslaughter.webp",
+      "alt": "WHALESLAUGHTER, founder of HAVOC and State 2128's most prolific recording artist",
+      "bio": "Founder of HAVOC and State 2128's most prolific composer of diplomatically disastrous bangers. If it rhymes and it burns, it's probably her fault."
     },
     {
-      "id": "artist-two",
-      "name": "Artist Name",
-      "alliance": "300",
-      "img": "/assets/music/artist-two.jpg",
-      "alt": "Artist Name, portrait",
-      "bio": "Short bio for this artist. One or two sentences about their style or what state 2128 beef they've contributed to.",
-      "featured": false,
-      "songs": [
-        {
-          "title": "Track Title",
-          "url": "https://youtube.com/watch?v=REPLACE",
-          "platform": "youtube",
-          "targets": ["HAVOC"],
-          "date": "2026-01-10"
-        },
-        {
-          "title": "Track Title Two",
-          "url": "https://soundcloud.com/REPLACE",
-          "platform": "soundcloud",
-          "targets": [],
-          "date": "2026-02-05"
-        },
-        {
-          "title": "Track Title Three",
-          "url": "https://youtube.com/watch?v=REPLACE",
-          "platform": "youtube",
-          "targets": [],
-          "date": "2026-03-01"
-        }
-      ]
+      "id": "mordukai",
+      "name": "Mordukai",
+      "match": ["Mordukai"],
+      "alliance": "NLO",
+      "img": "/assets/music/mordukai.webp",
+      "alt": "Mordukai, NLO's resident lyricist",
+      "bio": "NLO's demon poet. Wrote a song about dropping the whale, then wrote another about a pigeon. Has declared his work Song of the Year. Nobody has confirmed this."
+    },
+    {
+      "id": "great-dane",
+      "name": "Great Dane",
+      "match": ["Great Dane"],
+      "alliance": "SNK",
+      "img": "/assets/music/great-dane.webp",
+      "alt": "Great Dane, State 2128's resident bard",
+      "bio": "State 2128's actual bard. Wrote a Christmas song so sincere it made Whaleslaughter gag. Catty crowned his track her official anthem. The man has range."
+    },
+    {
+      "id": "spider",
+      "name": "Spider",
+      "match": ["Spider"],
+      "alliance": "IDK",
+      "img": "/assets/music/spider.webp",
+      "alt": "Spider of IDK, reluctant Suno convert",
+      "bio": "Does not like AI music. Made a Suno account anyway. Released a diss track about Zar's spreadsheets. The hypocrisy is the art."
+    },
+    {
+      "id": "queen-zar",
+      "name": "Queen Zar",
+      "match": ["Queen Zar", "Zar"],
+      "alliance": "NLO",
+      "img": "/assets/music/queen-zar.webp",
+      "alt": "Queen Zar, NLO commander and nursery rhyme composer",
+      "bio": "Commander, former president, and apparently a songwriter now. Responded to Spider's diss track with a dark nursery rhyme. The beef is adorable. Also has a spicy song about Death."
+    },
+    {
+      "id": "shartblaster",
+      "name": "Shartblaster",
+      "match": ["Shartblaster"],
+      "alliance": "Friend from another state",
+      "img": "/assets/music/shartblaster.webp",
+      "alt": "Shartblaster, multi-platform recording artist",
+      "bio": "Multi-platform artist with music on Spotify, YouTube, and Apple Music. Details incoming."
+    },
+    {
+      "id": "datsuzoku",
+      "name": "Datsuzoku",
+      "match": ["Datsuzoku"],
+      "alliance": "Enemy State",
+      "img": "/assets/music/datsuzoku.webp",
+      "alt": "Datsuzoku, enemy state video creator",
+      "bio": "Made a video about battling State 2128. We're including it because the disrespect deserves documentation."
     }
   ]
 }
