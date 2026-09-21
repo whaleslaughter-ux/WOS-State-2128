@@ -1,5 +1,18 @@
 [
 {
+  "id": "comments-moderation-policy",
+  "date": "2026-09-21",
+  "title": "A Brief Note on Comments, Conduct, and Who You Are Allowed to Insult",
+  "img": "/assets/bia/comments-policy-20260921.webp",
+  "alt": "Griff Harpoon the bulldog in a trench coat and fedora sits at his desk looking exhausted, writing a comment policy by hand while a laptop shows a Supabase spreadsheet flagging a comment as offensive, with sticky notes reading Catty is busy being thrilled about this and People have opinions Shocking, a mug that says Same chaos Different day, and filing cabinets labeled We Keep Everything",
+  "blurb": "<p>I have been asked to write a comment policy. I did not know we needed one until approximately forty-five minutes ago, which is when the comments section of our fourth international story began doing what comment sections do, and someone had to deal with it, and apparently that someone is me because Catty is busy being thrilled about the whole thing.</p><p>We have also added a Comments button to the top of every article so readers can skip past the reporting and get straight to whatever is happening down there. I am told this is a feature.</p><p>You may criticize the article, the reporting, the reporter, and WHALESLAUGHTER personally, including creatively, including with profanity. She has been called worse by alliances she later absorbed. You may tell us to get a job. You may ask if we have tried going outside. You may name players. These are all protected forms of expression at 2128 News.</p><p><strong>Update:</strong> A reader named Reina pointed out that our original policy said not to name other players in comments, while our articles name players constantly. Reina is correct. That was a bad rule and we have rewritten it. You may name players. You may have opinions about players. What you may not do is use the comments for hate speech, sexism, or racism.</p><p>If you do, your comment will be replaced with a polite notice, and the original will be preserved in our records in case we ever need it for a future article. I want to be clear about that last part. We keep everything.</p><p>Comments that are aggressive toward the publication but do not target protected categories may be flagged as potentially offensive. Readers will need to tap through a warning to see them. We do this because the tap makes it funnier. I was overruled on this.</p><p>Finally, telling us we are wrong is always more persuasive when you include what, exactly, we got wrong. &ldquo;GET YOUR FACTS RIGHT&rdquo; in capital letters is a sentiment, not a correction. We can work with corrections. We publish sentiments for entertainment.</p><p><em>&mdash;Griff Harpoon, actually reporting.</em></p>",
+  "reporter": "Griff Harpoon",
+  "tags": ["Guide"],
+  "alliances": [],
+  "states": ["2128"],
+  "characters": [""]
+},
+  {
   "id": "state-1474-exile-vote",
   "date": "2026-09-21",
   "title": "Three Alliances Voted to Exile STD From State 1474. One of Them Was Already Leaving.",
