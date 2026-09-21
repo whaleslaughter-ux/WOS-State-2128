@@ -92,6 +92,26 @@
     }
     .share-btn:hover { background: rgba(165,180,255,.14); border-color: rgba(165,180,255,.4); color: #fff; }
     .share-btn.copied { color: #86efac; border-color: rgba(134,239,172,.3); }
+
+    /* Top toolbar: nav + jump to comments */
+    .article-toolbar {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 10px; flex-wrap: wrap; margin-bottom: 24px;
+    }
+    .article-toolbar .toolbar-nav {
+      display: flex; gap: 8px; flex-wrap: wrap;
+    }
+    .jump-comments-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 7px 14px; border-radius: 8px;
+      border: 1px solid rgba(165,180,255,.25);
+      background: rgba(165,180,255,.06);
+      color: var(--muted); font-size: .78rem; font-weight: 700;
+      cursor: pointer; text-decoration: none;
+      transition: background .15s, color .15s;
+    }
+    .jump-comments-btn:hover { background: rgba(165,180,255,.14); color: var(--ink); text-decoration: none; }
+
     .comments-section {
       background: var(--card-bg); border: 1px solid var(--border);
       border-radius: 14px; padding: 24px; margin-bottom: 40px;
@@ -186,6 +206,31 @@
     .comments-empty { text-align: center; padding: 28px 0; color: var(--muted); font-size: .88rem; }
     .comments-loading { text-align: center; padding: 20px 0; color: var(--muted); font-size: .85rem; }
     .error-msg { color: #fca5a5; font-size: .82rem; margin-top: 6px; }
+
+    /* Offensive: blurred, click to reveal */
+    .comment-offensive .comment-bubble { position: relative; }
+    .comment-offensive .comment-text {
+      filter: blur(5px); user-select: none;
+      pointer-events: none; transition: filter .2s;
+    }
+    .comment-offensive .comment-reveal {
+      position: absolute; inset: 0; display: flex;
+      align-items: center; justify-content: center;
+      cursor: pointer; font-size: .78rem; font-weight: 700;
+      color: var(--muted); letter-spacing: .04em;
+      background: rgba(11,16,48,.6); border-radius: 8px;
+      z-index: 1;
+    }
+    .comment-offensive.revealed .comment-text {
+      filter: none; user-select: auto; pointer-events: auto;
+    }
+    .comment-offensive.revealed .comment-reveal { display: none; }
+
+    /* Moderated: replaced with policy notice */
+    .comment-moderated .comment-text {
+      color: var(--muted); font-style: italic; font-size: .82rem;
+    }
+
     .related-section { margin-bottom: 48px; }
     .related-heading {
       font-size: .72rem; font-weight: 800; letter-spacing: .18em;
@@ -314,7 +359,7 @@
     function loadComments(aid) {
       var list = qs('#comments-list');
       if (!list) return;
-      list.innerHTML = '<div class="comments-loading" aria-live="polite">Loading comments…</div>';
+      list.innerHTML = '<div class="comments-loading" aria-live="polite">Loading comments&hellip;</div>';
 
       fetch(SUPABASE_URL + '/rest/v1/comments?article_id=eq.' + encodeURIComponent(aid) + '&order=created_at.asc', {
         headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
@@ -326,19 +371,40 @@
           return;
         }
         list.innerHTML = comments.map(function(c) {
-          var avatarHtml = c.avatar_url 
+          var avatarHtml = c.avatar_url
             ? '<img class="comment-avatar" src="' + escHtml(c.avatar_url) + '" alt="' + escHtml(c.username) + '" />'
             : '<div class="comment-avatar">' + escHtml(initial(c.username)) + '</div>';
 
-          return '<div class="comment-item" role="article" aria-label="Comment by ' + escHtml(c.username) + '">'
+          // Moderated: replace entire comment with policy notice
+          if (c.moderated) {
+            return '<div class="comment-item comment-moderated" role="article" aria-label="Moderated comment">'
+              + '<div class="comment-avatar">\u26A0\uFE0F</div>'
+              + '<div class="comment-bubble">'
+              + '<div class="comment-meta">'
+              + '<span class="comment-name" style="color:var(--muted)">Moderated</span>'
+              + '<time class="comment-time" datetime="' + escHtml(c.created_at) + '">' + timeAgo(c.created_at) + '</time>'
+              + '</div>'
+              + '<p class="comment-text">This comment was removed. 2128 News does not allow personal attacks against other players in the comments. Talk about the article, talk about the reporter, talk about Whales &mdash; but leave other players out of it.</p>'
+              + '</div></div>';
+          }
+
+          // Offensive: blurred with click to reveal
+          var isOffensive = c.offensive;
+          var wrapClass = isOffensive ? ' comment-offensive' : '';
+          var revealBtn = isOffensive
+            ? '<div class="comment-reveal" role="button" tabindex="0" aria-label="This comment may be offensive. Click to reveal.">\u26A0\uFE0F This comment may be offensive. Tap to reveal.</div>'
+            : '';
+
+          return '<div class="comment-item' + wrapClass + '" role="article" aria-label="Comment by ' + escHtml(c.username) + '">'
             + avatarHtml
             + '<div class="comment-bubble">'
             + '<div class="comment-meta">'
             + '<span class="comment-name">' + escHtml(c.username) + '</span>'
             + '<time class="comment-time" datetime="' + escHtml(c.created_at) + '">' + timeAgo(c.created_at) + '</time>'
-            + '<a class="translate-btn" href="' + translateUrl(c.comment) + '" target="_blank" rel="noopener" aria-label="Translate this comment">🌐</a>'
+            + '<a class="translate-btn" href="' + translateUrl(c.comment) + '" target="_blank" rel="noopener" aria-label="Translate this comment">\uD83C\uDF10</a>'
             + '</div>'
             + '<p class="comment-text">' + escHtml(c.comment) + '</p>'
+            + revealBtn
             + '</div></div>';
         }).join('');
       })
@@ -386,7 +452,7 @@
     }
 
     function buildComments() {
-      return '<section class="comments-section" aria-labelledby="comments-heading">'
+      return '<section class="comments-section" id="comments-section" aria-labelledby="comments-heading">'
         + '<h2 class="section-heading" id="comments-heading">Comments</h2>'
         + '<div id="comment-login" class="comment-login">'
         + '<p style="font-size:.85rem;color:var(--muted);margin:0 0 12px">Enter your Player ID and custom username to join the discussion.</p>'
@@ -412,7 +478,7 @@
         + '</div>'
         + '<div id="comment-composer" class="comment-composer" aria-label="Write a comment">'
         + '<label for="comment-textarea" style="display:block;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:6px">Your comment</label>'
-        + '<textarea id="comment-textarea" placeholder="Say something about this article…" maxlength="' + MAX_COMMENT + '" aria-describedby="char-count post-error"></textarea>'
+        + '<textarea id="comment-textarea" placeholder="Say something about this article\u2026" maxlength="' + MAX_COMMENT + '" aria-describedby="char-count post-error"></textarea>'
         + '<div class="composer-footer">'
         + '<span id="char-count" class="char-count" aria-live="polite">' + MAX_COMMENT + ' remaining</span>'
         + '<button class="btn-primary" id="post-btn" type="button">Post</button>'
@@ -420,7 +486,7 @@
         + '<div id="post-error" class="error-msg" role="alert" aria-live="polite"></div>'
         + '</div>'
         + '<div id="comments-list" class="comments-list" aria-label="Comments" aria-live="polite">'
-        + '<div class="comments-loading">Loading comments…</div>'
+        + '<div class="comments-loading">Loading comments&hellip;</div>'
         + '</div>'
         + '</section>';
     }
@@ -479,7 +545,7 @@
           if (!text) { postError.textContent = 'Write something first!'; return; }
           if (!currentUser) { postError.textContent = 'Please log in first.'; return; }
           postBtn.disabled = true;
-          postBtn.textContent = 'Posting…';
+          postBtn.textContent = 'Posting\u2026';
           postError.textContent = '';
           postComment(text)
             .then(function() {
@@ -525,15 +591,15 @@
     function getAdjacentArticles(article, all) {
       var idx = all.findIndex(function(n){ return n.id === article.id; });
       if (idx === -1) return { newer: null, older: null };
-      
+
       var newer = idx > 0 ? all[idx - 1] : null;
       var older = idx < all.length - 1 ? all[idx + 1] : null;
-      
+
       return { newer: newer, older: older };
     }
 
     function renderArticle(article, all) {
-      document.title = article.title + ' — WOS State 2128';
+      document.title = article.title + ' \u2014 WOS State 2128';
 
       var tagsHtml = [
         (article.alliances || []).map(function(a){ return '<span class="tag alliance">' + escHtml(a) + '</span>'; }).join(''),
@@ -541,17 +607,32 @@
       ].join('');
 
       var adj = getAdjacentArticles(article, all);
-      var navHtml = '';
+
+      // Build nav links (reused top and bottom)
+      var newerLink = adj.newer
+        ? '<a href="/article.html?id=' + encodeURIComponent(adj.newer.id) + '" class="btn-primary" style="text-decoration:none;display:inline-flex;align-items:center;gap:6px;">\u2190 Newer Story</a>'
+        : '';
+      var olderLink = adj.older
+        ? '<a href="/article.html?id=' + encodeURIComponent(adj.older.id) + '" class="btn-primary" style="text-decoration:none;display:inline-flex;align-items:center;gap:6px;">Older Story \u2192</a>'
+        : '';
+
+      // Bottom nav (full width, spaced apart)
+      var bottomNav = '';
       if (adj.newer || adj.older) {
-        navHtml = '<nav class="article-nav" aria-label="More stories" style="display:flex;justify-content:space-between;gap:12px;margin:32px 0 40px;flex-wrap:wrap;">'
-          + (adj.newer 
-              ? '<a href="/article.html?id=' + encodeURIComponent(adj.newer.id) + '" class="btn-primary" style="text-decoration:none;display:inline-flex;align-items:center;gap:6px;">← Newer Story</a>' 
-              : '<div></div>')
-          + (adj.older 
-              ? '<a href="/article.html?id=' + encodeURIComponent(adj.older.id) + '" class="btn-primary" style="text-decoration:none;display:inline-flex;align-items:center;gap:6px;margin-left:auto;">Older Story →</a>' 
-              : '')
+        bottomNav = '<nav class="article-nav" aria-label="More stories" style="display:flex;justify-content:space-between;gap:12px;margin:32px 0 40px;flex-wrap:wrap;">'
+          + (newerLink || '<div></div>')
+          + (adj.older ? '<a href="/article.html?id=' + encodeURIComponent(adj.older.id) + '" class="btn-primary" style="text-decoration:none;display:inline-flex;align-items:center;gap:6px;margin-left:auto;">Older Story \u2192</a>' : '')
           + '</nav>';
       }
+
+      // Top toolbar (compact nav + jump to comments)
+      var topToolbar = '<div class="article-toolbar">'
+        + '<div class="toolbar-nav">'
+        + (adj.newer ? '<a href="/article.html?id=' + encodeURIComponent(adj.newer.id) + '" class="btn-primary" style="text-decoration:none;display:inline-flex;align-items:center;gap:6px;font-size:.78rem;padding:7px 14px;">\u2190 Newer</a>' : '')
+        + (adj.older ? '<a href="/article.html?id=' + encodeURIComponent(adj.older.id) + '" class="btn-primary" style="text-decoration:none;display:inline-flex;align-items:center;gap:6px;font-size:.78rem;padding:7px 14px;">Older \u2192</a>' : '')
+        + '</div>'
+        + '<a href="#comments-section" class="jump-comments-btn" aria-label="Jump to comments">\uD83D\uDCAC Comments</a>'
+        + '</div>';
 
       var related = getRelated(article, all);
       var relatedHtml = '';
@@ -572,6 +653,7 @@
 
       qs('#article-root').innerHTML =
         '<a href="/index.html" class="back-link">Back to home</a>'
+        + topToolbar
         + '<article aria-labelledby="article-title">'
         + (article.img ? '<img class="article-hero" src="' + escHtml(article.img) + '" alt="' + escHtml(article.alt||'') + '" fetchpriority="high">' : '')
         + '<header class="article-header">'
@@ -579,13 +661,13 @@
         + '<h1 class="article-title" id="article-title">' + escHtml(article.title) + '</h1>'
         + '<div class="article-byline">'
         + '<span>By <a class="reporter" href="/reporter.html?id=' + slugify(article.reporter) + '">' + escHtml(article.reporter) + '</a></span>'
-        + '<span class="sep">·</span>'
+        + '<span class="sep">\u00B7</span>'
         + '<time datetime="' + escHtml(article.date) + '">' + formatDate(article.date) + '</time>'
         + '</div>'
         + '</header>'
         + '<div class="article-body">' + article.blurb + '</div>'
         + '</article>'
-        + navHtml
+        + bottomNav
         + '<div class="share-wrap">'
         + '<button class="share-btn" id="share-btn" type="button">&#128279; Share this article</button>'
         + '</div>'
@@ -597,12 +679,12 @@
         if (navigator.share) {
           navigator.share({
             title: article.title,
-            text: article.title + ' — WOS State 2128',
+            text: article.title + ' \u2014 WOS State 2128',
             url: window.location.href
           }).catch(function(){});
         } else {
           navigator.clipboard.writeText(window.location.href).then(function() {
-            shareBtn.textContent = '✓ Link copied!';
+            shareBtn.textContent = '\u2713 Link copied!';
             shareBtn.classList.add('copied');
             setTimeout(function(){ shareBtn.innerHTML = '&#128279; Share this article'; shareBtn.classList.remove('copied'); }, 2000);
           });
@@ -611,6 +693,17 @@
 
       wireComments();
       loadComments(articleId);
+
+      // Offensive comment reveal handlers
+      document.addEventListener('click', function(e) {
+        var reveal = e.target.closest('.comment-reveal');
+        if (reveal) reveal.closest('.comment-offensive').classList.add('revealed');
+      });
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' && e.target.classList.contains('comment-reveal')) {
+          e.target.closest('.comment-offensive').classList.add('revealed');
+        }
+      });
     }
 
     var params = new URLSearchParams(window.location.search);
