@@ -1,5 +1,18 @@
 [
   {
+  "id": "state-1474-part-two-teaser",
+  "date": "2026-09-22",
+  "title": "State 1474 Part Two Is Coming. TEX Has Opinions.",
+  "img": "/assets/bia/state-1474-exile-20260921.webp",
+  "alt": "Anime-style news panel with Catty von Catacean in a pink blazer at the anchor desk alongside Hodey as Mario and Yoshi, facing hooded figures labeled TEX, DIE, NGL, and STD, while Denv the golden retriever and STRESSballs the white cat sit with their arms crossed in the corner",
+  "blurb": "<p>Following the publication of our investigation into the exile of STD from State 1474, 2128 News received detailed commentary from TEX leadership offering their side of the story, corrections to specific details in our reporting, and new information about events that preceded the exile vote.</p><p>Because we believe in balanced coverage &mdash; and because Greigh Fox will not stop emailing me about it &mdash; a follow-up piece is currently in development.</p><p>Part two will be reported by Greigh Fox and will cover TEX&rsquo;s account of events, additional source material, and several claims we are currently in the process of verifying.</p><p>If you were involved and would like to comment, correct, or yell at us on the record, our DMs are open. You can message WHALESLAUGHTER in-game, she handles our questions and your responses. </p><p><em>&mdash;Catty von Catacean</em></p>",
+  "reporter": "Catty von Catacean",
+  "tags": ["Drama", "Alliance News"],
+  "alliances": ["TEX", "DIE", "NGL", "STD"],
+  "states": ["1474"],
+  "characters": [""]
+},
+  {
   "id": "ai-tools-newsroom-evaluation",
   "date": "2026-09-21",
   "title": "A Technical Overview of AI Tools Used in the 2128 News Production Pipeline",
