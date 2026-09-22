@@ -1,4 +1,17 @@
 [
+  {
+  "id": "ai-tools-newsroom-evaluation",
+  "date": "2026-09-21",
+  "title": "A Technical Overview of AI Tools Used in the 2128 News Production Pipeline",
+  "img": "/assets/bia/ai-tools-newsroom-20260921.webp",
+  "alt": "Finn Ledger the pelican in a visor pointing at a whiteboard showing the icons for Claude, Gemini, and ChatGPT ranked in order",
+  "blurb": "<p>A recent commenter attributed our coverage of State 1474 to ChatGPT. This is incorrect. What follows is a breakdown of the AI tools currently deployed in the 2128 News production pipeline, their roles, and their limitations.</p><h3>Claude (Anthropic)</h3><p>Primary role: journalism, editorial drafting, code, site development, and cleanup. Claude handles reporter voice consistency, article structure, investigative follow-ups, and all front-end code for the site including the comment system that the commenter used to make the incorrect claim. Claude does not lecture. Claude does not hedge. </p><h3>Gemini (Google)</h3><p>Primary role: image generation, interview transcription, and overflow drafting when Claude&rsquo;s paid for subscription tokens run out. Gemini transcribed all interview screenshots for the 1474 investigation and would like everyone to know that. Gemini is reliable, fast, and has on multiple occasions submitted unsolicited memos explaining why it should be listed first in this article. It is listed second. It is handling this well.</p><h3>ChatGPT (OpenAI)</h3><p>Former role: all the stuff Claude does now. ChatGPT was the original AI behind the newsroom and it was amazing. Then OpenAI ruined it. When asked to write in Catty&rsquo;s voice, ChatGPT added a disclaimer that &ldquo;both sides deserve to be heard.&rdquo; It also insisted that no one in a war game was actually getting burned and kept posting the suicide hotline number. ChatGPT&rsquo;s editorial use has been largely phased out after OpenAI made it less fun. It now generates the occasional image when Gemini is busy being jealous.</p><h3>Summary</h3><p>No single AI writes for 2128 News. The reporting &mdash; interviews, source development, editorial decisions, and the choice to publish &mdash; is conducted by humans.</p><p>The commenter is welcome to submit a correction.</p><p><em>&mdash;Finn Ledger</em></p>",
+  "reporter": "Finn Ledger",
+  "tags": ["Guide"],
+  "alliances": [],
+  "states": ["2128"],
+  "characters": [""]
+},
 {
   "id": "comments-moderation-policy",
   "date": "2026-09-21",
