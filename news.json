@@ -36,7 +36,7 @@
   "tags": ["Drama", "Music"],
   "alliances": ["HAV"],
   "states": ["2128"],
-  "characters": ["Mordukai", "Queen Zar", "Captain Zaddy", "Griff Harpoon"]
+  "characters": [ "Queen Zar", "Captain Zaddy", "Griff Harpoon"]
 },
   {
   "id": "state-1474-whaleslaughter-interview",
