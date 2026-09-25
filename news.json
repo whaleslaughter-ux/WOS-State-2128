@@ -1,5 +1,18 @@
 [
   {
+  "id": "greigh-fox-missing",
+  "date": "2026-09-25",
+  "title": "UPDATE: Greigh Fox Is Missing. The Following Was Found On His Desk.",
+  "img": "/assets/bia/griff-greigh-missing-20260925.webp",
+  "alt": "A panda screaming in terror under a blood moon, surrounded by demonic red-eyed animals with exposed teeth and claws swarming over rooftops and through the streets, a fox with glowing red eyes among the horde on the right, a faint blue glow from a crushed pamphlet on the ground, the good vibes are gone",
+  "blurb": "<p>The following document was recovered from Greigh Fox's desk this afternoon. His chair was overturned. His notes were scattered. A single damp pamphlet was pinned to the wall. It smelled like jalapenos.</p><p>Greigh Fox has not reported back from lunch. His whereabouts are unknown. This publication is printing his final notes as received. &mdash;Griff Harpoon, actually reporting.</p><p><em>The small animals in black hoods are gone. They have been replaced by something worse. The red eyes remain but the good vibes do not. The pamphlets have stopped. The smiling has stopped. Whatever was in those pamphlets &mdash; incense, jalapeno powder, or something I am no longer confident enough to speculate about &mdash; it has been burned. All of it.</em></p><p><em>Panda was last seen surrounded. Not by followers. By whatever followers become when the hood comes off and the teeth come out. The blood moon overhead is either a coincidence or confirmation that I should not have published that article.</em></p><p><em>I asked if your PFP was safe. I should have asked if mine was.</em></p><p><em>I am not suggesting I am responsible for what is happening. I am suggesting I may have made things significantly worse. I am reporting from an undisclosed location. The location is undisclosed because the things with the red eyes do not appear to need addresses.</em></p><p><em>This is no longer an investigation. This is a warning. &mdash;Greigh Fox</em></p>",
+  "reporter": "Griff Harpoon",
+  "tags": ["Drama", "Alliance News"],
+  "alliances": ["NWO"],
+  "states": ["2128"],
+  "characters": ["Greigh Fox", "Griff Harpoon", "Panda"]
+},
+  {
   "id": "nwo-cult-exposed",
   "date": "2026-09-25",
   "title": "The New World Order Exposed: Is Your PFP Safe?",
