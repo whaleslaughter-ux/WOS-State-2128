@@ -1,5 +1,18 @@
 [
   {
+  "id": "weekly-roundup-sept-25",
+  "date": "2026-09-25",
+  "title": "Weekly Round-Up — Mordukai Returns, Zar Is Fine, HAVOC Rents Couches",
+  "img": "/assets/bia/griff-weekly-roundup-20260925.webp",
+  "alt": "A tired war correspondent reading from a clipboard in front of a bulletin board covered in pinned notes, one reading Mordukai is back with three question marks, another reading she is fine underlined twice, a couch with a vacancy sign on it, and a small pile of bones in the corner on a green square of fabric",
+  "blurb": "<p>A summary of the week's developments for those who blinked.</p><p>King Mordukai has returned. No one asked for this. No one was consulted. He simply appeared, as he does, like a weather event that makes landfall without a forecast. Details on what he wants, what he's planning, and who he's already annoyed are expected to emerge within the hour.</p><p>Queen Zar released a song this week. The song is called <a href='https://suno.com/song/c10d7bab-a4eb-420c-a935-1aeb39271f30?sh=5fH0xT67Cmri4Mt0'>I'm Fine</a>. No follow-up questions were asked because asking follow-up questions when someone says they are fine is how wars start in this state.</p><p>HAVOC has opened its doors to incoming players and is now operating as what leadership describes as a short-term housing arrangement. Couches are available. Husbands who have been told to sleep on the couch elsewhere in the state are welcome to sleep on HAVOC's couch instead. The vetting process appears to consist of showing up. Towels are not provided.</p><p>Captain Zaddy, who last week announced changes to the presidential rotation, demanded compliance from leader chat, and was told no by the entire state, is now a pile of bones. Whether this is metaphorical or literal has not been confirmed. This publication has reached out for comment. No response was received, on account of the bones. &mdash;Griff Harpoon, actually reporting.</p>",
+  "reporter": "Griff Harpoon",
+  "tags": ["Drama", "Music"],
+  "alliances": ["HAV"],
+  "states": ["2128"],
+  "characters": ["Mordukai", "Queen Zar", "Captain Zaddy", "Griff Harpoon"]
+},
+  {
   "id": "state-1474-whaleslaughter-interview",
   "date": "2026-09-23",
   "title": "WHALESLAUGHTER Weighs In on State 1474: An Interview the Editors Did Not Approve",
