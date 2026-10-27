@@ -1,5 +1,18 @@
 [
 {
+  "id": "where-weve-been-greigh-fox-search",
+  "date": "2026-10-27",
+  "title": "A Note From the Editor: Where We've Been",
+  "img": "/assets/bia/editorial-greigh-search-20261027.webp",
+  "alt": "Three detectives search a snowy town at dusk. A white cat with pastel hair, dressed as Sherlock Holmes in a deerstalker cap and plaid cape, peers through a magnifying glass that makes one eye enormous. Beside her, a pelican in the same costume counts paw prints on a clipboard. A grumpy bulldog in a fedora and trench coat shines a flashlight on the trail, with an unworn deerstalker cap lying in the snow at his feet. Small fox paw prints circle in the snow. A missing poster of a gray fox is nailed to a post. In the background, small hooded animals carve pumpkins, a door scowls with an angry face, a tavern spills out noise, and a stately building flies flags.",
+  "blurb": "<p>Readers may have noticed that 2128 News went quiet for two weeks. We apologize. The entire newsroom was out looking for Greigh Fox, who went to lunch in September and still hasn't come back.</p><p>We searched every alliance in the state. Here is what we found.</p><p><strong>NWO</strong> was checked again. They seem innocent. They were polite, the hoods are still black, and nobody had teeth. Panda is still in danger, as Panda always is, but there was no sign of a fox.</p><p><strong>IDK</strong> was ruled out quickly. The alliance is far too cranky for anyone to hide in comfortably, and since Mordukai joined, the whole place faintly smells of poop emojis. Greigh has many flaws, but he has a nose.</p><p><strong>HAVOC</strong> has no idea whether it has Greigh Fox. Nobody there could be bothered to check. They were too busy being HAVOC.</p><p><strong>300</strong> was observed closely for the full two weeks. Not one member was spotted wearing a fox skin. We have concluded he didn't end up there.</p><p><strong>Out of Order</strong> has an airtight alibi. AceFace spent the entire two weeks being president, which leaves no time for kidnapping anyone, and the rest of the alliance was simply doing its thing. We checked every corner of their territory and found nothing out of the ordinary, which for Out of Order is itself a little suspicious. But no fox.</p><p>That covers the state. Greigh Fox is not in 2128. His chair remains overturned.</p><p>Late last night, however, the newsroom received a tip. It came from outside the state, it mentioned a fox, and it was signed with a single paw print. We are not at liberty to say more. We are packing.</p><p><em>&mdash;Editorial Staff</em></p>",
+  "reporter": "Editorial Staff",
+  "tags": ["Drama", "Alliance News"],
+  "alliances": ["NWO", "IDK", "HAV", "300", "OOO"],
+  "states": ["2128"],
+  "characters": ["Greigh Fox", "Panda", "Mordukai", "AceFace", "Catty von Catacean", "Finn Ledger", "Griff Harpoon"]
+},
+  {
   "id": "invest-in-almas-paid-advertisement",
   "date": "2026-10-27",
   "title": "INVEST IN ALMAS: The Only Fund in 2128 That Is Guaranteed to Spend Your Money",
