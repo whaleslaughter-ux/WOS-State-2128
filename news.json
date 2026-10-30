@@ -1,5 +1,17 @@
 [
 {
+  "id": "halloween-pfp-costume-contest-2026",
+  "date": "2026-10-30",
+  "title": "Halloween Costume Contest: Show Us Your Spookiest PFP",
+  "img": "/assets/bia/editorial-halloween-contest-20261030.webp",
+  "alt": "Under a glowing sign reading Halloween Costume Contest, four animal contestants pose on a snowy wooden stage at night, with a castle, a full moon, and a lantern-lit village behind them. A dark-furred cat in a purple witch costume holds a glowing broom. A shiba in a black and white maid uniform holds a feather duster. A white bunny in a nurse outfit and red heels carries a first aid kit and waves. A gray mouse in a police uniform holds a baton. A crowd of bundled-up villagers waves glow sticks in front of the stage, surrounded by jack-o-lanterns and cobwebs.",
+  "blurb": "<p>Change your profile picture to a Halloween costume, then DM WHALESLAUGHTER the word CONTEST to enter. Entries close October 31 at 16:00 UTC.</p><p>Each reporter will crown one winner: Catty for Most Glamorous, Griff for Most Committed, Finn for Statistically Least Likely, and Greigh for Most Suspicious, assuming he is back by then.</p><p>Winners get a free player card. All states and all alliances are welcome. Even IDK.</p><p><em>&mdash;Editorial Staff</em></p>",
+  "reporter": "Editorial Staff",
+  "tags": ["Drama"],
+  "alliances": [],
+  "states": ["2128"],
+  "characters": ["Catty von Catacean", "Griff Harpoon", "Finn Ledger", "Greigh Fox"]
+},{
   "id": "almas-scaled-guardian-paid-advertisement",
   "date": "2026-10-30",
   "title": "ALMAS ASCENDS: The Fund's Director Is Now a Scaled Guardian",
