@@ -41,7 +41,9 @@ export async function onRequestPost({ request, env }) {
         return jsonRes({ status: 'error', message: 'STOP YOU FIEND. PAYMENT NOT VERIFIED.' });
       }
     }
-
+    if (isOriginal) {
+      data.payment_code = 'ORIGINAL-' + crypto.randomUUID().slice(0, 8);
+    }
     const scriptUrl = 'https://script.google.com/macros/s/AKfycbwYByTa24Yd4WX97uozPPT7y-8lOyLxdar-jP8HYfGLb0rm8Tw9o8o7Z7T3L0revXkJ/exec';
     const scriptRes = await fetch(scriptUrl, {
       method: 'POST',
