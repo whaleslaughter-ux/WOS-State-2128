@@ -21,7 +21,9 @@ export async function onRequestPost({ request, env }) {
       return jsonRes({ status: 'error', message: 'Missing required fields.' });
     }
 
-    const isGrandfathered = code === 'ORIGINAL' || code.startsWith('PC-');
+    const freeUntil = new Date('2026-11-05T05:00:00Z'); // midnight ET, end of Wed Nov 4
+    const isOriginal = code === 'ORIGINAL' && new Date() < freeUntil;
+    const isGrandfathered = isOriginal || code.startsWith('PC-');
     if (!isGrandfathered) {
       const stripeKey = env.STRIPE_SECRET_KEY;
       if (!stripeKey) {
