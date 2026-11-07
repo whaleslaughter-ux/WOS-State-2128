@@ -1,5 +1,17 @@
 [
 {
+  "id": "catty-svs-20261107",
+  "date": "2026-11-07",
+  "title": "State 2128 Routs 2139 in SvS Battle",
+  "img": "/assets/bia/catty-svs-20261107.webp",
+    "alt": "A snowy battlefield under a smoky sky, with a castle in the distance. Huge armies of dark-armored soldiers and cavalry under black 2128 banners surge in from both sides, with fires burning along the lines. In the center, six defenders in white winter armor stand their ground: a bearded man firing a scoped rifle, a bald man in a white cloak with a giant ice axe and a glowing blue sword, a dark-haired woman with 2139 on her chest holding a rifle and a sword, a silver-haired fighter throwing purple magic, a brown-haired woman with daggers, and a blond man firing a rifle.",
+  "blurb": "<p>State 2128 is winning the SvS Battle Phase against State 2139 by a wide margin, following a clean sweep of every Preparation day.</p><p>Panda of NWO is holding the castle. 2139 holds one turret.</p><p>The battle has been so lopsided that 2128's biggest challenge has been finding someone to fight. SvS awards points only for hitting the enemy, and the enemy has been hard to locate. Many 2128 players spent the morning searching the map with full marches and nowhere to send them. WHALESLAUGHTER reports this is the first time she has ever had to go looking.</p><p>Those who looked found nine players from 2139, positioned in the special power-up zone around the globe. They have held that spot against 2128's armies and kept World Chat entertained with jokes while they did it.</p><p>2139 drew a difficult matchup this week, and its players have handled it with good humor. This reporter found them charming. Should any of them consider a transfer, State 2128 would be lucky to have them.</p>",
+  "reporter": "Catty von Catacean",
+  "tags": ["SVS"],
+  "alliances": ["NWO"],
+  "states": ["2128", "2139"],
+  "characters": ["Panda", "WHALESLAUGHTER"]
+},{
   "id": "editorial-almas-20261106",
   "date": "2026-11-06",
   "title": "ALMAS Launches the Profitable Exchange",
